@@ -1,10 +1,10 @@
 import React from "react";
+import Mypage from "./Components/Mypage/Mypage";
 
 function App() {
 	return (
 		<div>
-			h1
-			<Test />
+			<Mypage/>
 		</div>
 	);
 }
