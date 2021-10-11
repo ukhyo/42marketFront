@@ -1,21 +1,9 @@
-
-
-
-
-function Test() {
-	return (
-		<div>hi2</div>
-	);
-}
-
-
-
+import styled from "styled-components";
+import React from "react";
 
 function App() {
 	return (
 		<div>
-			h1
-			<Test />
 		</div>
 	);
 }
