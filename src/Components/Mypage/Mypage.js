@@ -52,7 +52,29 @@ const   LevelViewC = styled.div`
     }
 `;
 
+const   ExpViewC = styled.div`
+  width: 300px;
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  height: 30px;
+  span {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 5px 0px;
+    font-family: 'TmoneyRoundWindExtraBold';
+    font-size: 20px;
+    opacity: 0.4;
+  }
+`;
 
+const   CurrExpViewC = styled.div`
+  height: 100%;
+  width: 42%;
+  border-radius: 20px;
+  background-color: #05e35e;
+`;
 
 function DataViewComponent ()
 {
@@ -65,9 +87,11 @@ function DataViewComponent ()
             <LevelViewC>
                 <span>Lv.42</span>
             </LevelViewC>
-            <div>
-                <span>42%</span>
-            </div>
+            <ExpViewC>
+                <CurrExpViewC>
+                    <span>42%</span>
+                </CurrExpViewC>
+            </ExpViewC>
             <div>
                 <span>자유로운 거래 추구</span>
             </div>
