@@ -1,5 +1,5 @@
 import React from "react";
-import Nongdam from "../../images/nongdam.png";
+import Nongdam from "../../Images/nongdam.png";
 import styled from "styled-components";
 
 const   MypageHeaderC = styled.h1`
@@ -35,9 +35,24 @@ const   NickNameC = styled.div`
     margin-left: auto;
     margin-right: auto;
     span {
+      font-weight: 600;
+      font-family: 'TmoneyRoundWindExtraBold';
       font-size: 27px;
     }
 `;
+
+const   LevelViewC = styled.div`
+    text-align: left;
+    margin : 0px 20px;
+    span {
+      font-size: 20px;
+      font-family: 'TmoneyRoundWindExtraBold';
+      font-weight: 800;
+      opacity: 0.6;
+    }
+`;
+
+
 
 function DataViewComponent ()
 {
@@ -47,9 +62,9 @@ function DataViewComponent ()
             <NickNameC>
                 <span>hyeolee</span>
             </NickNameC>
-            <div>
+            <LevelViewC>
                 <span>Lv.42</span>
-            </div>
+            </LevelViewC>
             <div>
                 <span>42%</span>
             </div>
