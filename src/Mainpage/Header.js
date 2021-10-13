@@ -1,41 +1,58 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import logoimg from "../img/logo.png";
 
 function Header() {
-	const [text, setText] = useState('');
-
+	const [text, setText] = useState("");
+	console.log(`%c${text} + red`, "color:red");
 	function onChange(e) {
 		setText(e.target.value);
+		console.log(e.target.name);
 	}
 
 	const check = (e) => {
 		if (e.key == "Enter") {
 			imgClick();
 		}
-	}
+	};
 
 	function imgClick(e) {
-		setText('');
+		setText("");
 	}
 
 	return (
 		<HeaderC>
 			<HeaderLineC>
 				<HeaderLogoC>
-					<Link to="/"><img src={logoimg} /></Link>
+					<Link to="/">
+						<img src={logoimg} />
+					</Link>
 				</HeaderLogoC>
 				<HeaderSearchC>
 					<HeaderSearchInputC>
-						<input onChange={onChange} onKeyDown={check} type="text" value={text}/>
-						<a href="#"><img  onClick={imgClick} className="header_search_img" src={process.env.PUBLIC_URL + '/img/search.png' }  alt="img" /></a>
+						<input name="ohoh" onChange={onChange} onKeyDown={check} type="text" value={text} />
+						<a href="#">
+							<img
+								onClick={imgClick}
+								className="header_search_img"
+								src={process.env.PUBLIC_URL + "/img/search.png"}
+								alt="img"
+							/>
+						</a>
 					</HeaderSearchInputC>
 				</HeaderSearchC>
 				<HeaderInfoC>
-					<span><i className="fas fa-won-sign fa-1.5x"></i>판매하기</span>
-					<span><i className="far fa-bell fa-1.5x"></i>알림</span>
-					<span><i className="far fa-user fa-1.5x"></i><a href="mypage.html">내정보</a></span>
+					<span>
+						<i className="fas fa-won-sign fa-1.5x"></i>판매하기
+					</span>
+					<span>
+						<i className="far fa-bell fa-1.5x"></i>알림
+					</span>
+					<span>
+						<i className="far fa-user fa-1.5x"></i>
+						<a href="mypage.html">내정보</a>
+					</span>
 				</HeaderInfoC>
 			</HeaderLineC>
 		</HeaderC>
@@ -47,7 +64,7 @@ function Header() {
 const HeaderC = styled.header`
 	width: 100%;
 	height: 100px;
-	position:sticky;
+	position: sticky;
 	top: 0;
 	background-color: white;
 	z-index: 20;
@@ -97,7 +114,7 @@ const HeaderSearchInputC = styled.fieldset`
 		outline: none;
 	}
 
-	&  img {
+	& img {
 		width: 50px;
 	}
 `;
@@ -111,15 +128,15 @@ const HeaderInfoC = styled.div`
 		margin-right: 5px;
 	}
 	& > span {
+		font-size: 15px;
 		padding: 0 15px;
 	}
-
 	& > span::last-child {
 		padding-right: 0;
 	}
 
 	& > span::not(span::first-child) {
-		border-left: 1px solid rgb(0,0,0, 0.1);
+		border-left: 1px solid rgb(0, 0, 0, 0.1);
 	}
 `;
 
