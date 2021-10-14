@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import React, { Component } from 'react';
-import Header from './Header';
-import MainBanner from './Banner';
-import Category from './Category';
-import PreviewPost from './PreviewPost';
+import styled from "styled-components";
+import React, { Component } from "react";
+import Header from "./Header";
+import MainBanner from "./Banner";
+import Category from "./Category";
+import PreviewPost from "./PreviewPost";
 
 function Mainpage() {
 	return (
@@ -16,6 +16,9 @@ function Mainpage() {
 	);
 }
 
-const SectionC = styled.section``;
+const SectionC = styled.section`
+	width: 1000px;
+	margin: 0 auto;
+`;
 
 export default Mainpage;

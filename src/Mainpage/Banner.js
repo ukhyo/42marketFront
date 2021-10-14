@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import pleaseBuy from "../img/pleasebuy.png";
-import bannerimg from "../img/mainBanner.png"
+import bannerimg from "../img/mainBanner.png";
 
 function MainBanner() {
 	return (
@@ -54,6 +54,5 @@ const MainBannerC = styled.div`
 		}
 	}
 `;
-
 
 export default MainBanner;

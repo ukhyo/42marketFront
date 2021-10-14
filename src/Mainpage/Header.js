@@ -51,7 +51,7 @@ function Header() {
 					</span>
 					<span>
 						<i className="far fa-user fa-1.5x"></i>
-						<a href="mypage.html">내정보</a>
+						<Link to={"/mypage"}>내정보</Link>
 					</span>
 				</HeaderInfoC>
 			</HeaderLineC>
@@ -100,7 +100,7 @@ const HeaderSearchInputC = styled.fieldset`
 	margin: 0;
 	padding: 0;
 	width: 100%;
-	height: 50px;
+	height: 30px;
 	border-color: rgb(178, 236, 238);
 	& > input {
 		width: 400px;
@@ -116,6 +116,7 @@ const HeaderSearchInputC = styled.fieldset`
 
 	& img {
 		width: 50px;
+		height: 30px;
 	}
 `;
 

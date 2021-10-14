@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Category() {
 	return (
@@ -56,6 +56,5 @@ const CategoryItemsC = styled.div`
 		}
 	}
 `;
-
 
 export default Category;
