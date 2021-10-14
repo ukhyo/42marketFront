@@ -72,11 +72,13 @@ const PostViewLineC = styled.div`
 `;
 
 const PostItemC = styled.div`
-	border: 1px solid rgb(0, 0, 0, 0.3);
 	width: 18%;
 	height: 200px;
+	border-radius: 10px;
+	background-color: #f5f5f5;
 	margin-bottom: 20px;
 	& img {
+		border-radius: 10px;
 		width: 180px;
 		height: 200px;
 	}

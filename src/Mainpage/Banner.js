@@ -2,15 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import pleaseBuy from "../img/pleasebuy.png";
 import bannerimg from "../img/mainBanner.png";
-
+import testImg from "../img/banner2.jpeg";
 function MainBanner() {
 	return (
 		<MainC>
 			<MainBannerC>
 				<div>
-					<img alt="img" src={bannerimg} />
-					<img className="buy_img1" alt="img" src={pleaseBuy} />
-					<img className="buy_img2" alt="img" src={pleaseBuy} />
+					<img alt="img" src={testImg} />
+					{/*<img className="buy_img1" alt="img" src={pleaseBuy} />
+					<img className="buy_img2" alt="img" src={pleaseBuy} />*/}
 				</div>
 			</MainBannerC>
 		</MainC>
@@ -28,13 +28,17 @@ const MainBannerC = styled.div`
 	justify-content: center;
 	width: 1000px;
 	height: 200px;
-	background-color: rgb(178, 236, 238);
+	margin-bottom: 30px;
+	/*background-color: rgb(178, 236, 238);*/
 	& > div {
+		width: 100%;
 		display: flex;
 		justify-content: center;
 		position: relative;
 		height: 100%;
 		& > img:first-child {
+			width: 100%;
+			height: 250px;
 			position: absolute;
 			bottom: -10px;
 		}

@@ -60,7 +60,6 @@ function Header() {
 }
 
 // Header style
-
 const HeaderC = styled.header`
 	width: 100%;
 	height: 100px;
