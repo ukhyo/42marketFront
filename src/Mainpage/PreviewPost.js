@@ -21,15 +21,12 @@ function PreviewPost() {
 		temp[idx].likes += 1;
 		setItem(temp);
 	}
-
 	return (
 		<PostViewC>
 			{console.log()}
 			<h3>인기게시글</h3>
 			<PostViewLineC>
-				{Loading
-					? console.log("wait")
-					: item.map((data, index) => {
+				{Loading ? console.log("wait") : item.map((data, index) => {
 							return (
 								<PostItemC>
 									<Link
@@ -39,14 +36,8 @@ function PreviewPost() {
 												item: item,
 												itemId: data.id,
 											},
-										}}
-									>
-										<img
-											onClick={() => {
-												imgClick(index);
-											}}
-											src={data.img}
-										/>
+										}}>
+										<img onClick={() => (imgClick(index))} src={data.img} />
 									</Link>
 								</PostItemC>
 							);
@@ -63,7 +54,7 @@ const PostViewC = styled.div`
 
 const PostViewLineC = styled.div`
 	width: 100%;
-	height: 200px;
+	height: 900px;
 	margin-bottom: 20px;
 	display: flex;
 	flex-wrap: wrap;

@@ -65,7 +65,6 @@ const HeaderC = styled.header`
 	height: 100px;
 	position: sticky;
 	top: 0;
-	background-color: white;
 	z-index: 20;
 	display: flex;
 	justify-content: center;
@@ -75,8 +74,8 @@ const HeaderC = styled.header`
 const HeaderLineC = styled.div`
 	width: 1000px;
 	height: 100px;
+	background-color: #f5f5f5;
 	display: flex;
-	background-color: white;
 	justify-content: space-between;
 	align-items: center;
 	z-index: 10;
