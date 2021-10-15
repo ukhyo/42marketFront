@@ -4,6 +4,8 @@ import Header from "./Header";
 import MainBanner from "./Banner";
 import Category from "./Category";
 import PreviewPost from "./PreviewPost";
+import Footer from "./Footer";
+
 
 function Mainpage() {
 	return (
@@ -12,12 +14,12 @@ function Mainpage() {
 			<MainBanner />
 			<Category />
 			<PreviewPost />
+			<Footer />
 		</SectionC>
 	);
 }
 
 const SectionC = styled.section`
-	width: 1000px;
 	margin: 0 auto;
 `;
 

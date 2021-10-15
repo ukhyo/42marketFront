@@ -2,32 +2,33 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+
 function Category() {
 	return (
 		<CategoryC>
 			<CategoryItemsC>
 				<div>
-					<i className="fas fa-list fa-2x"></i>
-					<span>More</span>
+					<img src={process.env.PUBLIC_URL + "/img/alignIcon.png"}></img>
+					<span>더보기</span>
 				</div>
 				<div>
-					<i className="fas fa-desktop fa-2x"></i>
+					<img src={process.env.PUBLIC_URL + "/img/itIcon.png"}></img>
 					<span>전자기기</span>
 				</div>
 				<div>
-					<i className="fas fa-mouse fa-2x"></i>
+					<img src={process.env.PUBLIC_URL + "/img/mouseIcon.png"}></img>
 					<span>주변기기</span>
 				</div>
 				<div>
-					<i className="fas fa-tshirt fa-2x"></i>
+					<img src={process.env.PUBLIC_URL + "/img/clothIcon.png"}></img>
 					<span>의류</span>
 				</div>
 				<div>
-					<i className="fas fa-book fa-2x"></i>
+					<img src={process.env.PUBLIC_URL + "/img/bookIcon.png"}></img>
 					<span>책</span>
 				</div>
 				<div>
-					<i className="fas fa-people-arrows fa-2x"></i>
+					<img src={process.env.PUBLIC_URL + "/img/personIcon.png"}></img>
 					<span>공동구매</span>
 				</div>
 			</CategoryItemsC>
@@ -38,21 +39,25 @@ function Category() {
 // Category Style
 
 const CategoryC = styled.div`
-	width: 1000px;
+	width: 1200px;
 	margin: 20px auto;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #c0c0c0;
 `;
 
 const CategoryItemsC = styled.div`
 	display: flex;
+	width: 800px;
+	margin: 0 auto;
 	justify-content: space-between;
 	> div {
-		/*width: 80px;*/
 		display: flex;
-		align-items: center;
 		flex-direction: column;
+		justify-content:center;
+		align-items: center;
 		span {
-			font-size: 12px;
-			line-height: 20px;
+			margin: 15px 0;
+			font-size: 18px;
 		}
 	}
 `;

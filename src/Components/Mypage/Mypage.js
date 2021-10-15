@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Nongdam from "../../Images/nongdam.png";
 import styled from "styled-components";
-import Header from "../../Mainpage/Header";
+import Header from "../Mainpage/Header"
 function UploadImg() {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const handleFileChange = (event) => {

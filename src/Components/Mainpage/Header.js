@@ -31,15 +31,15 @@ function Header() {
 				</HeaderLogoC>
 				<HeaderSearchC>
 					<HeaderSearchInputC>
-						<input name="ohoh" onChange={onChange} onKeyDown={check} type="text" value={text} />
 						<a href="#">
 							<img
 								onClick={imgClick}
 								className="header_search_img"
-								src={process.env.PUBLIC_URL + "/img/search.png"}
+								src={process.env.PUBLIC_URL + "/img/searchIcon.png"}
 								alt="img"
 							/>
 						</a>
+						<input placeholder="검색어를 입력해주세요." onChange={onChange} onKeyDown={check} type="text" value={text} />
 					</HeaderSearchInputC>
 				</HeaderSearchC>
 				<HeaderInfoC>
@@ -68,28 +68,27 @@ const HeaderC = styled.header`
 	z-index: 20;
 	display: flex;
 	justify-content: center;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #c0c0c0;
 `;
 
 const HeaderLineC = styled.div`
-	width: 1000px;
+	width: 1200px;
 	height: 100px;
-	background-color: #f5f5f5;
+	background-color: #fdfdfd;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	z-index: 10;
-	border-bottom: 1px solid gray;
 `;
 
 const HeaderLogoC = styled.div`
-	width: 15%;
+	width: 200px;
 	height: 110px;
 	line-height: 130px;
 `;
 
 const HeaderSearchC = styled.div`
-	width: 45%;
+	width: 540px;
 `;
 
 const HeaderSearchInputC = styled.fieldset`
@@ -98,36 +97,48 @@ const HeaderSearchInputC = styled.fieldset`
 	margin: 0;
 	padding: 0;
 	width: 100%;
-	height: 30px;
-	border-color: rgb(178, 236, 238);
+	border-bottom: 1.5px solid rgba(0,0,0, 0.7);
+	/*border-top: none;*/
+	/*border-left: none;*/
+	/*border-right: none;*/
+	/*background-color: #fcfcfc;*/
+	/*border-color: rgb(178, 236, 238);*/
+	background-color: #fdfdfd;
+	& > input::placeholder {
+		color: rgba(0,0,0,0.2);
+	}
 	& > input {
-		width: 400px;
+		background-color: #fdfdfd;
+		width: 100%;
 		font-size: 18px;
 		border: none;
 		outline: none;
 	}
 
 	& > input:hover {
-		width: 400px;
+		width: 100%;
 		outline: none;
 	}
 
+	& a {
+		padding: 5px;
+
+	}
 	& img {
-		width: 50px;
-		height: 30px;
+		width: 30px;
+		height: 20px;
 	}
 `;
 
 const HeaderInfoC = styled.div`
 	display: flex;
 	justify-content: right;
-	width: 30%;
-
+	width: 300px;
+	font-size: 16px;
 	& i {
 		margin-right: 5px;
 	}
 	& > span {
-		font-size: 15px;
 		padding: 0 15px;
 	}
 	& > span::last-child {
