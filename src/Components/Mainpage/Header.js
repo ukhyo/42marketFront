@@ -39,19 +39,29 @@ function Header() {
 								alt="img"
 							/>
 						</a>
-						<input placeholder="검색어를 입력해주세요." onChange={onChange} onKeyDown={check} type="text" value={text} />
+						<input
+							placeholder="검색어를 입력해주세요."
+							onChange={onChange}
+							onKeyDown={check}
+							type="text"
+							value={text}
+						/>
 					</HeaderSearchInputC>
 				</HeaderSearchC>
 				<HeaderInfoC>
 					<span>
-						<i className="fas fa-won-sign fa-1.5x"></i>판매하기
+						<LinkC to="/product/regi">
+							<i className="fas fa-won-sign fa-1.5x"></i>판매하기
+						</LinkC>
 					</span>
 					<span>
-						<i className="far fa-bell fa-1.5x"></i>알림
+						<LinkC to="/">
+							<i className="far fa-bell fa-1.5x"></i>알림
+						</LinkC>
 					</span>
 					<span>
 						<i className="far fa-user fa-1.5x"></i>
-						<Link to={"/mypage"}>내정보</Link>
+						<LinkC to={"/mypage"}>내정보</LinkC>
 					</span>
 				</HeaderInfoC>
 			</HeaderLineC>
@@ -141,13 +151,17 @@ const HeaderInfoC = styled.div`
 	& > span {
 		padding: 0 15px;
 	}
-	& > span::last-child {
+	& > span:last-child {
 		padding-right: 0;
 	}
-
-	& > span::not(span::first-child) {
+	& > span:not(span:first-child) {
 		border-left: 1px solid rgb(0, 0, 0, 0.1);
 	}
+`;
+
+const LinkC = styled(Link)`
+	text-decoration: none;
+	color: black;
 `;
 
 export default Header;

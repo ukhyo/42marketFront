@@ -9,7 +9,6 @@ function Footer() {
 }
 
 const FooterLineC = styled.div`
-
 	border-top: 1px solid #c0c0c0;
 	height: 140px;
 	text-align: center;

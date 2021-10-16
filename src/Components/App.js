@@ -1,24 +1,18 @@
 import { createGlobalStyle } from "styled-components";
-import { BrowserRouter, Route } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import { BrowserRouter } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import reset from "styled-reset";
-import Mypage from "./Components/Mypage/Mypage";
-import Mainpage from "./Components/Mainpage/Mainpage";
-import PostDetail from "./Components/PostDetail/PostDetail";
+import Router from "./Router";
+
 
 function App() {
 	console.log("%c in Function", "color: blue");
 	return (
 		<BrowserRouter>
-			<Section>
-				<GlobalStyles />
-				<ScrollToTop />
-				<Route path={"/"} exact component={Mainpage} />
-				<Route path={"/mypage"} component={Mypage} />
-				<Route path={"/post/detail"} component={PostDetail} />
-			</Section>
+			<Router />
+			<GlobalStyles />
+			<ScrollToTop />
 		</BrowserRouter>
 	);
 }
@@ -33,9 +27,6 @@ function ScrollToTop() {
 	return null;
 }
 
-const Section = styled.section`
-	/*font-family: 'Noto Sans KR';*/
-`;
 
 const GlobalStyles = createGlobalStyle`
  ${reset}
@@ -60,5 +51,4 @@ const GlobalStyles = createGlobalStyle`
 	}
 `;
 
-// test App Component
 export default App;

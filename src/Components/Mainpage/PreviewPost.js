@@ -35,7 +35,7 @@ function PostViewComp({ idx }) {
 								<PostItemC>
 									<Link
 										to={{
-											pathname: "/post/detail",
+											pathname: "/postview",
 											state: {
 												item: item,
 												itemId: data.id,
