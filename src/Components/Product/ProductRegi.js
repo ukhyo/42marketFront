@@ -271,7 +271,7 @@ const ContentC = styled.div`
 	> ${InputC} {
 		margin-top: 20px;
 		> input {
-			multiline=true
+
 			line-height: 0;
 			width: 80%;
 			height: 160px;
