@@ -1,0 +1,162 @@
+[
+    {
+        "id": 6,
+        "title": "신상 옷 팝니다!",
+        "subtitle": "몇번안입었어요",
+        "likes": 0,
+        "price": 15000,
+        "img": "http://localhost:8000/static/cloth2.jpeg"
+    },
+    {
+        "id": 7,
+        "title": "입던옷팝니다 착샷있음",
+        "subtitle": "ㅈㄱㄴ",
+        "likes": 0,
+        "price": 20000,
+        "img": "http://localhost:8000/static/cloth1.jpeg"
+    },
+    {
+        "id": 8,
+        "title": "옷 팜",
+        "subtitle": "ㅈㄱㄴ",
+        "likes": 0,
+        "price": 15300,
+        "img": "http://localhost:8000/static/cloth3.jpeg"
+    },
+    {
+        "id": 9,
+        "title": "옷 ㅍㅍ",
+        "subtitle": "ㅍㅍ",
+        "likes": 0,
+        "price": 23000,
+        "img": "http://localhost:8000/static/cloth4.jpeg"
+    },
+    {
+        "id": 10,
+        "title": "옷입니당",
+        "subtitle": "네",
+        "likes": 0,
+        "price": 2345,
+        "img": "http://localhost:8000/static/cloth5.jpeg"
+    },
+    {
+        "id": 11,
+        "title": "노트북 ㅍㅍ",
+        "subtitle": "ㅍㅍ",
+        "likes": 0,
+        "price": 1033000,
+        "img": "http://localhost:8000/static/it1.jpeg"
+    },
+    {
+        "id": 12,
+        "title": "노트북 신형",
+        "subtitle": "얼마전에 삿어요",
+        "likes": 0,
+        "price": 2000000,
+        "img": "http://localhost:8000/static/it2.jpeg"
+    },
+    {
+        "id": 13,
+        "title": "맥북인지 삼성노트북인지 모르곘음",
+        "subtitle": "직접판단하세요",
+        "likes": 0,
+        "price": 1234123,
+        "img": "http://localhost:8000/static/it3.jpeg"
+    },
+    {
+        "id": 14,
+        "title": "노트북",
+        "subtitle": "ㅈㄱㄴ",
+        "likes": 0,
+        "price": 2345123,
+        "img": "http://localhost:8000/static/it4.jpeg"
+    },
+    {
+        "id": 15,
+        "title": "notebook",
+        "subtitle": "ok",
+        "likes": 0,
+        "price": 3000000,
+        "img": "http://localhost:8000/static/it5.jpeg"
+    },
+    {
+        "id": 16,
+        "title": "전자기기 팔아요",
+        "subtitle": "ㅈㄱㄴ",
+        "likes": 0,
+        "price": 100000,
+        "img": "http://localhost:8000/static/ex1.jpeg"
+    },
+    {
+        "id": 17,
+        "title": "마우스 인듯?",
+        "subtitle": "ㅇㅋ",
+        "likes": 0,
+        "price": 35000,
+        "img": "http://localhost:8000/static/ex2.jpeg"
+    },
+    {
+        "id": 18,
+        "title": "거치대 였나",
+        "subtitle": "모르곘네",
+        "likes": 0,
+        "price": 10000,
+        "img": "http://localhost:8000/static/ex3.jpeg"
+    },
+    {
+        "id": 19,
+        "title": "이제 기억안나네",
+        "subtitle": "진짜로",
+        "likes": 0,
+        "price": 5555,
+        "img": "http://localhost:8000/static/ex4.jpeg"
+    },
+    {
+        "id": 20,
+        "title": "아이디어 고갈",
+        "subtitle": "ㅇㅋ",
+        "likes": 0,
+        "price": 100000,
+        "img": "http://localhost:8000/static/ex5.jpeg"
+    },
+    {
+        "id": 21,
+        "title": "인생책팝니다",
+        "subtitle": "꼭보세요",
+        "likes": 0,
+        "price": 15000,
+        "img": "http://localhost:8000/static/book1.jpeg"
+    },
+    {
+        "id": 22,
+        "title": "좋은책들 팜",
+        "subtitle": "ㅈㄱㄴ",
+        "likes": 0,
+        "price": 30000,
+        "img": "http://localhost:8000/static/book2.jpeg"
+    },
+    {
+        "id": 23,
+        "title": "책책책 책을 읽읍시다!",
+        "subtitle": "ㅈㄱㄴ",
+        "likes": 0,
+        "price": 100004,
+        "img": "http://localhost:8000/static/book3.jpeg"
+    },
+    {
+        "id": 24,
+        "title": "책",
+        "subtitle": "팜",
+        "likes": 0,
+        "price": 15000,
+        "img": "http://localhost:8000/static/book4.jpeg"
+    },
+    {
+        "id": 25,
+        "title": "책책",
+        "subtitle": "책책",
+        "likes": 0,
+        "price": 234,
+        "img": "http://localhost:8000/static/book5.jpeg"
+    }
+]
