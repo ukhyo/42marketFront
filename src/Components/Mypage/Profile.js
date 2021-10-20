@@ -51,6 +51,9 @@ function	ProfileLevelBar()
 	)
 }
 
+
+// 전체 긁어오기
+
 function	ProfileBar()
 {
 	return (

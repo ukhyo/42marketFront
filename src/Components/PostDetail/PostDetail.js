@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../Mainpage/Header';
 import styled from 'styled-components';
 import Footer from '../Mainpage/Footer';
+
 function PostDetail(state) {
 	const [propsData, setData] = useState(state);
 	console.log(propsData, 'propData', typeof propsData);

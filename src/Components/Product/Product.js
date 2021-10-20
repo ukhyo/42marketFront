@@ -27,7 +27,7 @@ function ProductStateBar() {
 				<LinkC to="/product/manage">
 					<span>상품관리</span>
 				</LinkC>
-				<LinkC to="product/history">
+				<LinkC to="/product/history">
 					<span>구매 / 판매내역</span>
 				</LinkC>
 				<div></div>

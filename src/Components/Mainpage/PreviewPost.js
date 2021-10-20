@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 function PostViewComp({ idx }) {
-
 	let [item, setItem] = useState([]);
 	let [Loading, setLoading] = useState(true);
 	useEffect(() => {
@@ -35,7 +34,7 @@ function PostViewComp({ idx }) {
 								<PostItemC>
 									<Link
 										to={{
-											pathname: "/postview",
+											pathname: `/postview/${data.id}`,
 											state: {
 												item: item,
 												itemId: data.id,
@@ -100,7 +99,7 @@ const PostViewLineC = styled.div`
 `;
 
 const PostItemC = styled.div`
-	width: 15%;
+	width: 18%;
 	height: 270px;
 	border-radius: 15px;
 	margin-bottom: 20px;

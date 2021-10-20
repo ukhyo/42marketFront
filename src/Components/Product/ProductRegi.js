@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import Header from "../Mainpage/Header";
 import Footer from "../Mainpage/Footer";
+import ProductManage from "./ProductManage";
 import ProductStateBar from "./Product";
 import React, { useState } from "react";
 import { RadioRet } from "./Product";
-
+import { Route } from "react-router-dom";
 function ProductRegi() {
 	let [title, setTitle] = useState("");
 	let [location, setLocation] = useState("");
@@ -36,11 +37,9 @@ function ProductRegi() {
 		}
 		setTitle(e.target.value);
 	}
-	console.log(idx, "카테고리 결정 확인 in: ProductRegi.js"); // 카테고리 결정 확인
+	console.log(idx, "카테고리 결정 확인 in: ProductRegi.js");
 	return (
-		<SectionC>
-			<Header />
-			<ProductStateBar />
+		<div>
 			<RegiHeaderC>
 				<span>기본정보</span>
 				<span> *필수항목</span>
@@ -90,12 +89,19 @@ function ProductRegi() {
 							<button onClick={DirectLocation}>직접입력</button>
 						</div>
 						<div>
-							<input onChange={ChangeLocation} type="text" placeholder="상세주소를 적어주세요." value={location}></input>
+							<input
+								onChange={ChangeLocation}
+								type="text"
+								placeholder="상세주소를 적어주세요."
+								value={location}
+							></input>
 						</div>
 					</InputC>
 				</TradeLocationC>
 				<PriceC>
-					<SubtitleC>가격<b>*</b></SubtitleC>
+					<SubtitleC>
+						가격<b>*</b>
+					</SubtitleC>
 					<InputC>
 						<input type="number" placeholder="숫자만 입력해주세요."></input>
 						<span>원</span>
@@ -104,15 +110,62 @@ function ProductRegi() {
 				<ContentC>
 					<SubtitleC>설명</SubtitleC>
 					<InputC>
-						<input type="text" placeholder="상품 설명을 입력해주세요."></input>
+						<input type="text" cols="40" rows="5" placeholder="상품 설명을 입력해주세요."></input>
 					</InputC>
 				</ContentC>
 				<SubmitC>
-					<button onClick={() => {
-						console.log("here?");
-					} }>등록하기</button>
+					<button
+						onClick={() => {
+							console.log("here?");
+						}}
+					>
+						등록하기
+					</button>
 				</SubmitC>
 			</RegiMainC>
+		</div>
+	);
+}
+
+
+function Product() {
+	//let [title, setTitle] = useState("");
+	//let [location, setLocation] = useState("");
+	//const [idx, setIdx] = useState(0);
+
+	//const getIdx = (number) => {
+	//	setIdx(number);
+	//}
+	//function GaepoClick() {
+	//	setLocation("서울 강남구 개포로 416 ");
+	//}
+	//function SeochoClick() {
+	//	setLocation("서울 서초구 강남대로 327 대륭서초타워 ");
+	//}
+
+	//function DirectLocation() {
+	//	setLocation("");
+	//}
+
+	//function ChangeLocation(e) {
+	//	console.log(location);
+	//	setLocation(e.target.value);
+	//}
+
+	//function inputChange(e) {
+	//	if (e.target.value.length > 40) {
+	//		e.target.value = e.target.value.slice(0, 39);
+	//		return;
+	//	}
+	//	setTitle(e.target.value);
+	//}
+	//console.log(idx, "카테고리 결정 확인 in: ProductRegi.js"); // 카테고리 결정 확인
+	return (
+		<SectionC>
+			<Header />
+			<ProductStateBar />
+			<Route path={"/product/regi"} component={ ProductRegi } />
+			<Route path={"/product/manage"} component={ ProductManage }/>
 			<Footer />
 		</SectionC>
 	);
@@ -307,4 +360,4 @@ const SectionC = styled.section`
 	margin: 0 auto;
 `;
 
-export default ProductRegi;
+export default Product;
