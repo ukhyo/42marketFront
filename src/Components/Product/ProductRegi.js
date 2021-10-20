@@ -7,10 +7,26 @@ import { RadioRet } from "./Product";
 
 function ProductRegi() {
 	let [title, setTitle] = useState("");
+	let [location, setLocation] = useState("");
 	const [idx, setIdx] = useState(0);
 
 	const getIdx = (number) => {
 		setIdx(number);
+	}
+	function GaepoClick() {
+		setLocation("서울 강남구 개포로 416 ");
+	}
+	function SeochoClick() {
+		setLocation("서울 서초구 강남대로 327 대륭서초타워 ");
+	}
+
+	function DirectLocation() {
+		setLocation("");
+	}
+
+	function ChangeLocation(e) {
+		console.log(location);
+		setLocation(e.target.value);
 	}
 
 	function inputChange(e) {
@@ -45,7 +61,7 @@ function ProductRegi() {
 						제목<b>*</b>
 					</SubtitleC>
 					<InputC>
-						<input onChange={inputChange} type="text" placeholder="상품 제목을 입력하세요." valye={title} />
+						<input onChange={inputChange} type="text" placeholder="상품 제목을 입력하세요." value={title} />
 						<span> {title.length}/40</span>
 					</InputC>
 				</TitleC>
@@ -69,12 +85,12 @@ function ProductRegi() {
 					</SubtitleC>
 					<InputC>
 						<div>
-							<button>개포</button>
-							<button>서초</button>
-							<button>직접입력</button>
+							<button onClick={GaepoClick}>개포</button>
+							<button onClick={SeochoClick}>서초</button>
+							<button onClick={DirectLocation}>직접입력</button>
 						</div>
 						<div>
-							<input type="text" placeholder="상세주소를 적어주세요."></input>
+							<input onChange={ChangeLocation} type="text" placeholder="상세주소를 적어주세요." value={location}></input>
 						</div>
 					</InputC>
 				</TradeLocationC>
@@ -91,6 +107,11 @@ function ProductRegi() {
 						<input type="text" placeholder="상품 설명을 입력해주세요."></input>
 					</InputC>
 				</ContentC>
+				<SubmitC>
+					<button onClick={() => {
+						console.log("here?");
+					} }>등록하기</button>
+				</SubmitC>
 			</RegiMainC>
 			<Footer />
 		</SectionC>
@@ -100,7 +121,7 @@ function ProductRegi() {
 // width: 1000, 1200 비교해보기. 팀원들한테 상의 후 결정 => 수정시 Product.js stateBar 수정해야함
 
 const RegiHeaderC = styled.div`
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 	margin-top: 70px;
 	height: 65px;
@@ -116,7 +137,7 @@ const RegiHeaderC = styled.div`
 `;
 
 const RegiMainC = styled.div`
-	width: 1200px;
+	width: 1000px;
 	/*height: 500px;*/
 	margin: 0 auto;
 	margin-top: 50px;
@@ -206,7 +227,7 @@ const TradeLocationC = styled.div`
 				height: 48px;
 				margin-right: 20px;
 				background-color: white;
-				border: 1px solid #c0c0c0;
+				border: 1px solid black;
 				&:hover {
 					background-color: rgb(178,236,238);
 				}
@@ -215,7 +236,7 @@ const TradeLocationC = styled.div`
 		> div:last-child {
 			margin-top: 22px;
 			> input {
-				width: 70%;
+				width: 80%;
 				height: 40px;
 			}
 		}
@@ -229,6 +250,7 @@ const PriceC = styled.div`
 	line-height: 100px;
 	> ${InputC} {
 		> input {
+			border: 1px solid black;
 			width: 30%;
 			height: 40px;
 			margin-right: 10px;
@@ -249,9 +271,32 @@ const ContentC = styled.div`
 	> ${InputC} {
 		margin-top: 20px;
 		> input {
+			multiline=true
+			line-height: 0;
 			width: 80%;
 			height: 160px;
 			margin-right: 10px;
+		}
+	}
+`;
+
+const SubmitC = styled.div`
+	position: relative;
+	width: 100%;
+	height: 80px;
+	> button {
+		width: 150px;
+		height: 60px;
+		position: absolute;
+		top: 10px;
+		right: 0px;
+		background-color: #fdfdfd;
+		border: 3px solid rgb(178, 236, 238);
+		&:hover {
+			background-color:white;
+		}
+		&:active {
+			color: red;
 		}
 	}
 `;
