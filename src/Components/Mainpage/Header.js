@@ -75,20 +75,19 @@ const HeaderC = styled.header`
 	height: 100px;
 	position: sticky;
 	top: 0;
-	z-index: 20;
+	z-index: 1;
 	display: flex;
 	justify-content: center;
+	background-color: #fdfdfd;
 	border-bottom: 1px solid #c0c0c0;
 `;
 
 const HeaderLineC = styled.div`
 	width: 1200px;
 	height: 100px;
-	background-color: #fdfdfd;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	z-index: 10;
 `;
 
 const HeaderLogoC = styled.div`

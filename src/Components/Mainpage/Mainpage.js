@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React, { Component } from "react";
 import Header from "./Header";
 import MainBanner from "./Banner";
-import Category from "./Category";
+import CategoryBar from "./CategoryBar";
 import PreviewPost from "./PreviewPost";
 import Footer from "./Footer";
 
@@ -12,7 +12,7 @@ function Mainpage() {
 		<SectionC>
 			<Header />
 			<MainBanner />
-			<Category />
+			<CategoryBar />
 			<PreviewPost />
 			<Footer />
 		</SectionC>

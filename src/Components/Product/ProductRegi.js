@@ -69,8 +69,7 @@ function ProductRegi() {
 						카테고리<b>*</b>
 					</SubtitleC>
 					<FormC>
-						{" "}
-						{/* Json 다 받으면 한주롤 줄어들 예정 */}
+						{/* Json 다 받으면 한줄로 줄어들 예정 */}
 						<RadioRet value="전자기기" getIdx={getIdx} />
 						<RadioRet value="주변기기" getIdx={getIdx} />
 						<RadioRet value="의류" getIdx={getIdx} />
@@ -129,37 +128,6 @@ function ProductRegi() {
 
 
 function Product() {
-	//let [title, setTitle] = useState("");
-	//let [location, setLocation] = useState("");
-	//const [idx, setIdx] = useState(0);
-
-	//const getIdx = (number) => {
-	//	setIdx(number);
-	//}
-	//function GaepoClick() {
-	//	setLocation("서울 강남구 개포로 416 ");
-	//}
-	//function SeochoClick() {
-	//	setLocation("서울 서초구 강남대로 327 대륭서초타워 ");
-	//}
-
-	//function DirectLocation() {
-	//	setLocation("");
-	//}
-
-	//function ChangeLocation(e) {
-	//	console.log(location);
-	//	setLocation(e.target.value);
-	//}
-
-	//function inputChange(e) {
-	//	if (e.target.value.length > 40) {
-	//		e.target.value = e.target.value.slice(0, 39);
-	//		return;
-	//	}
-	//	setTitle(e.target.value);
-	//}
-	//console.log(idx, "카테고리 결정 확인 in: ProductRegi.js"); // 카테고리 결정 확인
 	return (
 		<SectionC>
 			<Header />
@@ -360,4 +328,5 @@ const SectionC = styled.section`
 	margin: 0 auto;
 `;
 
+export { ProductRegi }
 export default Product;

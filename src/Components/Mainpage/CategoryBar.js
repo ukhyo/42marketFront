@@ -3,34 +3,34 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 
-function Category() {
+function CategoryBar() {
 	return (
 		<CategoryC>
 			<CategoryItemsC>
-				<div>
+				<LinkC to="/category/0">
 					<img src={process.env.PUBLIC_URL + "/img/alignIcon.png"}></img>
-					<span>더보기</span>
-				</div>
-				<div>
+					<span>전체</span>
+				</LinkC>
+				<LinkC to="/category/1">
 					<img src={process.env.PUBLIC_URL + "/img/itIcon.png"}></img>
 					<span>전자기기</span>
-				</div>
-				<div>
+				</LinkC>
+				<LinkC to="/category/2">
 					<img src={process.env.PUBLIC_URL + "/img/mouseIcon.png"}></img>
 					<span>주변기기</span>
-				</div>
-				<div>
+				</LinkC>
+				<LinkC to="/category/3">
 					<img src={process.env.PUBLIC_URL + "/img/clothIcon.png"}></img>
 					<span>의류</span>
-				</div>
-				<div>
+				</LinkC>
+				<LinkC to="/category/4">
 					<img src={process.env.PUBLIC_URL + "/img/bookIcon.png"}></img>
 					<span>책</span>
-				</div>
-				<div>
+				</LinkC>
+				<LinkC to="/category/5">
 					<img src={process.env.PUBLIC_URL + "/img/personIcon.png"}></img>
 					<span>공동구매</span>
-				</div>
+				</LinkC>
 			</CategoryItemsC>
 		</CategoryC>
 	);
@@ -45,12 +45,17 @@ const CategoryC = styled.div`
 	border-bottom: 1px solid #c0c0c0;
 `;
 
+const LinkC = styled(Link)`
+	text-decoration: none;
+	color: black;
+`;
+
 const CategoryItemsC = styled.div`
 	display: flex;
 	width: 800px;
 	margin: 0 auto;
 	justify-content: space-between;
-	> div {
+	> ${LinkC} {
 		display: flex;
 		flex-direction: column;
 		justify-content:center;
@@ -62,4 +67,4 @@ const CategoryItemsC = styled.div`
 	}
 `;
 
-export default Category;
+export default CategoryBar;

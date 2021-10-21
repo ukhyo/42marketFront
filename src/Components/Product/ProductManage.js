@@ -12,8 +12,10 @@ function ShowData(props) {
 			<SellImgC>
 				<img src={ props.img }/>
 			</SellImgC>
-			<div>{props.content}</div>
-			<div>{ props.price}</div>
+			<TitlePriceC>
+				<div>{props.title}</div>
+				<div>{props.price}원</div>
+			</TitlePriceC>
 		</ShowDataC>
 	);
 }
@@ -35,13 +37,6 @@ function ProductManage() {
 					<input type="text" placeholder="상품명을 입력해주세요." />
 					<img src={process.env.PUBLIC_URL + "/img/searchIcon.png"} />
 				</MainHeaderC>
-				<PostLineHedaerC>
-					<div>상품이미지</div>
-					<div>제목</div>
-					<div>상품이미지</div>
-					<div>상품이미지</div>
-					<div>상품이미지</div>
-				</PostLineHedaerC>
 				{PostList.map((data, index) => {
 					return <ShowData img={data.img} title={data.title} price={data.price} content={data.subtitle} id={data.id} />;
 				})}
@@ -95,22 +90,15 @@ const SellImgC = styled.div`
 	}
 `;
 
-const PostLineHedaerC = styled.div`
-	display: flex;
-	align-items: center;
-	width: 100%;
-	height: 30px;
-	margin-top: 10px;
-	border-top: 1px solid #c0c0c0;
-	border-bottom: 1px solid #c0c0c0;
-	margin-bottom: 10px;
-	> div:nth-child(1) {
-		text-align: center;
-		width: 16%;
+const TitlePriceC = styled.div`
+	margin-left: 20px;
+	> div:first-child {
+		padding-bottom: 20px;
+	}
+	> div:last-child {
+		font-weight: bold;
 	}
 `;
-
-
 const SectionC = styled.div`
 	margin: 0 auto;
 `;

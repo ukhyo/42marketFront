@@ -5,12 +5,10 @@ import axios from "axios";
 
 function PostViewComp({ idx }) {
 	let [item, setItem] = useState([]);
-	let [Loading, setLoading] = useState(true);
 	useEffect(() => {
 		const getImg = async () => {
 			const { data } = await axios.get("http://localhost:8000/ukwon/");
 			setItem(data);
-			setLoading(!Loading);
 		};
 		getImg();
 	}, []);
@@ -21,9 +19,7 @@ function PostViewComp({ idx }) {
 	}
 	return (
 			<PostViewLineC>
-				{Loading
-					? console.log("wait")
-					: item.map((data, index) => {
+					{item.map((data, index) => {
 						console.log(idx, ": idx");
 							if (index < idx || index > (idx + 4)) return;
 							let title = "";
@@ -54,21 +50,15 @@ function PostViewComp({ idx }) {
 
 
 function PreviewPost() {
-	let [Loading, setLoading] = useState(true);
-
-	useEffect(() => {
-			setLoading(!Loading);
-	}, []);
-
 	return (
 		<PostViewC>
 			{console.log()}
 			<h3>인기게시글</h3>
-			<PostViewLineC>{Loading ? "" : <PostViewComp idx={0} />}</PostViewLineC>
-			<PostViewLineC>{Loading ? "" : <PostViewComp idx={5} />}</PostViewLineC>
+			<PostViewLineC><PostViewComp idx={5} /></PostViewLineC>
+			<PostViewLineC><PostViewComp idx={0} /></PostViewLineC>
 			<h3>추천게시글</h3>
-			<PostViewLineC>{Loading ? "" : <PostViewComp idx={10} />}</PostViewLineC>
-			<PostViewLineC>{Loading ? "" : <PostViewComp idx={15} />}</PostViewLineC>
+			<PostViewLineC><PostViewComp idx={10} /></PostViewLineC>
+			<PostViewLineC><PostViewComp idx={15} /></PostViewLineC>
 		</PostViewC>
 	);
 }
