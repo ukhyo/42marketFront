@@ -7,7 +7,7 @@ function PostViewComp({ idx }) {
 	let [item, setItem] = useState([]);
 	useEffect(() => {
 		const getImg = async () => {
-			const { data } = await axios.get("http://localhost:8000/ukwon/");
+			const { data } = await axios.get("http://localhost:4000/posts/");
 			setItem(data);
 		};
 		getImg();

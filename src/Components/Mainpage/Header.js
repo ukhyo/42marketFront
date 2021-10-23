@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import logoimg from "../img/logo.png";
 
+
+
 function Header() {
 	const [text, setText] = useState("");
 	console.log(`%c${text} + red`, "color:red");
@@ -26,7 +28,7 @@ function Header() {
 			<HeaderLineC>
 				<HeaderLogoC>
 					<Link to="/">
-						<img src={logoimg} />
+						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/logo.png" } />
 					</Link>
 				</HeaderLogoC>
 				<HeaderSearchC>
@@ -92,8 +94,11 @@ const HeaderLineC = styled.div`
 
 const HeaderLogoC = styled.div`
 	width: 200px;
-	height: 110px;
-	line-height: 130px;
+`;
+
+const HeaderLogoImgC = styled.img`
+	width: 100%;
+	height: 50%;
 `;
 
 const HeaderSearchC = styled.div`

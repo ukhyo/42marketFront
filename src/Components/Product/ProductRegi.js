@@ -3,14 +3,20 @@ import Header from "../Mainpage/Header";
 import Footer from "../Mainpage/Footer";
 import ProductManage from "./ProductManage";
 import ProductStateBar from "./Product";
-import React, { useState } from "react";
+import React, { useState, } from "react";
 import { RadioRet } from "./Product";
 import { Route } from "react-router-dom";
-function ProductRegi() {
+import axios from "axios";
+function ProductRegi(props) {
 	let [title, setTitle] = useState("");
 	let [location, setLocation] = useState("");
 	const [idx, setIdx] = useState(0);
-
+	const [previewImg, setPreviewImg] = useState([]);
+	const [price, setPrice] = useState(0);
+	const [imgFile, setFile] = useState(null);
+	const [imgUrl, setImgUrl] = useState(null);
+	const [content, setContent] = useState("");
+	const { history } = props;
 	const getIdx = (number) => {
 		setIdx(number);
 	}
@@ -37,9 +43,50 @@ function ProductRegi() {
 		}
 		setTitle(e.target.value);
 	}
+
+	const setImageFromFile = (e) => {
+		let reader = new FileReader();
+		let file = e.target.files[0];
+		setFile(e.target.files[0]);
+		reader.onload = (e) => {
+			setPreviewImg([...previewImg, e.target.result]);
+			setImgUrl(e.target.result);
+		}
+		reader.readAsDataURL(file);
+	};
+
+	const submitHandle = (e) => {
+		const pushData = async () => {
+			if (!imgFile) {
+				alert("사진을 넣어주세요");
+				return;
+			}
+			let name = imgFile.name;
+			console.log(title, "타이틀은?");
+			if (title == "" || price == 0 || location == "" || idx == 0) {
+				alert("필수항목을 입력해주세요")
+				return;
+			}
+			let data = {
+				title: title,
+				subtitle: content,
+				price: price,
+				likes: 0,
+				category: idx,
+				location: location,
+				img: "/jsonimg/" + name,
+				date: "2021-10-21T14:08:25+09:00",
+			};
+			await axios.post("http://localhost:4000/posts/", data);
+			history.push("/");
+		}
+		pushData();
+	}
+
 	console.log(idx, "카테고리 결정 확인 in: ProductRegi.js");
 	return (
 		<div>
+			{console.log(previewImg, "%cfirstCheck", "color: green")}
 			<RegiHeaderC>
 				<span>기본정보</span>
 				<span> *필수항목</span>
@@ -50,9 +97,21 @@ function ProductRegi() {
 						상품 이미지<b>*</b>
 					</SubtitleC>
 					<InputC>
-						<label for="file">이거 머임?</label>
-						<input type="file" placeholder="메롱"></input>
-						<span></span>
+						<label for="test12">상품이미지</label>
+						<input
+							type="file"
+							id="test12"
+							multiple
+							onChange={(e) => {
+								setFile(e.target.files[0]);
+								setImageFromFile(e);
+							}}
+						></input>
+						{previewImg.map((img) => {
+							return (
+								<img src={img} alt="what?"/>
+							);
+						})}
 					</InputC>
 				</PictureC>
 				<TitleC>
@@ -70,11 +129,11 @@ function ProductRegi() {
 					</SubtitleC>
 					<FormC>
 						{/* Json 다 받으면 한줄로 줄어들 예정 */}
-						<RadioRet value="전자기기" getIdx={getIdx} />
-						<RadioRet value="주변기기" getIdx={getIdx} />
-						<RadioRet value="의류" getIdx={getIdx} />
-						<RadioRet value="책" getIdx={getIdx} />
-						<RadioRet value="공동구매" getIdx={getIdx} />
+						<RadioRet value="전자기기" idx={1} getIdx={getIdx} />
+						<RadioRet value="주변기기" idx={2} getIdx={getIdx} />
+						<RadioRet value="의류" idx={3} getIdx={getIdx} />
+						<RadioRet value="책" idx={4}getIdx={getIdx} />
+						<RadioRet value="공동구매" idx={5} getIdx={getIdx} />
 					</FormC>
 				</CategoryC>
 				<TradeLocationC>
@@ -102,22 +161,24 @@ function ProductRegi() {
 						가격<b>*</b>
 					</SubtitleC>
 					<InputC>
-						<input type="number" placeholder="숫자만 입력해주세요."></input>
+						<input type="number" placeholder="숫자만 입력해주세요." value={price} onChange={(e) => {
+							setPrice(parseInt(e.target.value));
+						}}></input>
 						<span>원</span>
 					</InputC>
 				</PriceC>
 				<ContentC>
 					<SubtitleC>설명</SubtitleC>
 					<InputC>
-						<input type="text" cols="40" rows="5" placeholder="상품 설명을 입력해주세요."></input>
+						<input type="text" cols="40" rows="5" placeholder="상품 설명을 입력해주세요." value={content}
+							onChange={(e) => {
+								setContent(e.target.value);
+						}}></input>
 					</InputC>
 				</ContentC>
 				<SubmitC>
 					<button
-						onClick={() => {
-							console.log("here?");
-						}}
-					>
+						onClick={submitHandle}>
 						등록하기
 					</button>
 				</SubmitC>
@@ -176,19 +237,35 @@ const RegiMainC = styled.div`
 
 const PictureC = styled.div`
 	width: 100%;
-
 	> div:last-child {
-		> input[type=file] {
-			overflow: hidden;
-			position: absolute;
-			width:0;
-			height:0;
+		> label {
+			display: inline-block;
+			line-height: 200px;
+			text-align: center;
+			width: 200px;
+			height: 200px;
+			background-color: #f0f0f0;
+			cursor: pointer;
+		}
+		> input[type="file"] {
+			/*/*overflow: hidden;
+			position: absolute;*/
+			/*width:0;*/
+			/*height:0;*/
 			padding: 0;
-			border: 0;
+			display: none;
+			border: none;
+			background-color: #fff;
+		}
+		display: flex;
+		flex-wrap: wrap;
+		img {
+			margin-left: 10px;
+			width: 200px;
+			height: 200px;
 		}
 	}
 	height: 270px;
-
 `;
 
 const SubtitleC = styled.div`

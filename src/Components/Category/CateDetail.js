@@ -8,7 +8,7 @@ function CateDetail(props) {
 
 	useEffect(() => {
 		const getData = async () => {
-			const { data } = await axios.get("http://localhost:8000/ukwon/");
+			const { data } = await axios.get("http://localhost:4000/posts/");
 			setData(data);
 		};
 		getData();
@@ -24,23 +24,23 @@ function CateDetail(props) {
 
 			</NameAndSortC>
 			<PostViewC>
-			{data.map((data) => {
-				if (data.category != cate && cate != 0) return;
+			{data.map((temp) => {
+				if (temp.category != cate && cate != 0) return;
 				return (
 					<PostItemC>
 						<Link
 							to={{
-								pathname: `/postview/${data.id}`,
+								pathname: `/postview/${temp.id}`,
 								state: {
 									item: data,
-									itemId: data.id,
+									itemId: temp.id,
 								},
 							}}
 							>
-							<img src={data.img} />
+							<img src={temp.img} />
 						</Link>
-						<div>{data.title}</div>
-						<div>{data.price} 원</div>
+						<div>{temp.title}</div>
+						<div>{temp.price} 원</div>
 					</PostItemC>
 				);
 			})}

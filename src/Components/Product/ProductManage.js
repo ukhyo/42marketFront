@@ -25,7 +25,7 @@ function ProductManage() {
 
 	useEffect(() => {
 		const getData = async () => {
-			const { data } = await axios.get("http://localhost:8000/ukwon/");
+			const { data } = await axios.get("http://localhost:4000/posts/");
 			setPostList(data);
 		}
 		getData();

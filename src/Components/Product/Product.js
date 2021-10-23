@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 
 
-function RadioRet({ value, getIdx }) {
+function RadioRet({ idx, value, getIdx }) {
 	const ClickEvt = () => {
-		getIdx(1);
+		getIdx(idx);
 	}
 	return (
 		<span>
