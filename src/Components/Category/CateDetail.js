@@ -4,12 +4,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import CategoryBar from "../Mainpage/CategoryBar";
 function CateDetail(props) {
-	const [data, setData] = useState([]);
+	const [item, setItem] = useState([]);
 
 	useEffect(() => {
 		const getData = async () => {
 			const { data } = await axios.get("http://localhost:4000/posts/");
-			setData(data);
+			setItem(data);
 		};
 		getData();
 	}, []);
@@ -21,26 +21,25 @@ function CateDetail(props) {
 			<CategoryBar />
 			<NameAndSortC>
 				<CateNameC>해당 카테고리네임 디비에서 가져올수있을듯?</CateNameC>
-
 			</NameAndSortC>
 			<PostViewC>
-			{data.map((temp) => {
-				if (temp.category != cate && cate != 0) return;
+			{item.map((data) => {
+				if (data.category != cate && cate != 0) return;
 				return (
 					<PostItemC>
 						<Link
 							to={{
-								pathname: `/postview/${temp.id}`,
+								pathname: `/postview/${data.id}`,
 								state: {
-									item: data,
-									itemId: temp.id,
+									data: data,
+									itemId: data.id,
 								},
 							}}
 							>
-							<img src={temp.img} />
+							<img src={data.img} />
 						</Link>
-						<div>{temp.title}</div>
-						<div>{temp.price} 원</div>
+						<div>{data.title}</div>
+						<div>{data.price} 원</div>
 					</PostItemC>
 				);
 			})}

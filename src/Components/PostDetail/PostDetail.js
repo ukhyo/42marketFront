@@ -2,52 +2,57 @@ import React, { useEffect, useState } from 'react';
 import Header from '../Mainpage/Header';
 import styled from 'styled-components';
 import Footer from '../Mainpage/Footer';
-
-function PostDetail(state) {
-	const [propsData, setData] = useState(state);
-	console.log(propsData, 'propData', typeof propsData);
-	const { location, history } = state;
+import axios from 'axios';
+function PostDetail(props) {
+	const { location } = props;
+	const { location: { state: { data: data } } } = props;
 	useEffect(() => {
-		if (location.state === undefined) propsData.history.push('/');
-	});
-	const {
-		location: { state: data },
-	} = state;
-	console.log("%clast here?", "color: red", data);
-	let test = data.item.find((src) => {
-		if (src.id == data.itemId) return src;
-	});
+// props가 비었을경우 메인으로 보내주는역할 Link를 통해서
+// 데이터를 주고받기때문에 해당링크가아닌 url에 직접 입력하고
+// 들어오는 방식은 막아줘야한다. Router의 장점은 못살린다고 하는거같은데 해결방법을 찾아봐야함.
+		if (location.state === undefined) props.history.push('/');
+		const putFunc = async () => {
+			const dataForm = {
+				title: data.title,
+				subtitle: data.subtitle,
+				likes: data.likes+1,
+				price: data.price,
+				img: data.img,
+				date: data.date,
+				location: data.location,
+				category: data.category,
+			};
+			console.log("here? 오는데?");
+			let res = await axios.put(`http://localhost:4000/posts/` + `${data.id}`, dataForm);
+			console.log(res, "결과왜 안바껴!");
+		}
+		putFunc();
+	}, []);
 
 	// 이부분 간단한 로직을 구현하는게 나아보임
-	test.date = test.date.replace("T", " ");
-	test.date = test.date.substr(0, test.date.indexOf(":", 0));
-	test.date += "시";
+	data.date = data.date.replace("T", " ");
+	data.date = data.date.substr(0, data.date.indexOf(":", 0));
+	data.date += "시";
 	return (
 		<div>
 			<Header />
 			<PostDetailC>
 				<PostDetailHeaderC>
 					<PostDetailMainC>
-						<img src={test.img} />
+						<img src={data.img} />
 					</PostDetailMainC>
 					<PostDetailInfoC>
-						<TitleC>{test.title}</TitleC>
+						<TitleC>{data.title}</TitleC>
 						<PriceAndDateC>
-							<div>{test.price} 원</div>
-							<div>{test.date}</div>
+							<div>{data.price} 원</div>
+							<div>{data.date}</div>
 						</PriceAndDateC>
 						<LocationAndViewsC>
-							<div>거래장소 : {test.location}</div>
-							<div>조회수 : {test.likes}</div>
+							<div>거래장소 : {data.location}</div>
+							<div>조회수 : {data.likes}</div>
 						</LocationAndViewsC>
 						<div>
-							{test.subtitle}
-							울려댔어 사이렌 텅 빈 길거린엔 도망치다 흘린 칼자루와 피가 흥건해 우리 그때 어릴땐 뭘 몰랐었지 Man
-							그냥 힘쎈 형이 제일로 멋졌었지 그땐 그래 우린 살아나왔어 지옥 이제 어딜가든 다 비옥 수도 없이 맛본
-							치욕 어릴때부터 입에 붙은 쌍욕 절대 할 수 없었지 신고 할 수 있는게 오직 기도 어떻게 느끼겠어 피곤 붉게
-							물들지 않을려 내 흰옷 아무 방법이 없어 No way 돈만 준다면 해 노예 내 믿음이 바뀌기 전에 주변이 다
-							바뀌길 원해 아직 죽지마 Ma bro 달려왔어 짓밟고 상처투성이된 몸 씻기엔 피가 물든 손 빈속에 피워대기엔
-							뻑뻑해
+							{data.subtitle}
 						</div>
 					</PostDetailInfoC>
 				</PostDetailHeaderC>

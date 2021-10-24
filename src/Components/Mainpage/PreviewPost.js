@@ -12,34 +12,24 @@ function PostViewComp({ idx }) {
 		};
 		getImg();
 	}, []);
-	function imgClick(idx) {
-		let temp = [...item];
-		temp[idx].likes += 1;
-		setItem(temp);
-	}
 	return (
 			<PostViewLineC>
 					{item.map((data, index) => {
-						console.log(idx, ": idx");
 							if (index < idx || index > (idx + 4)) return;
-							let title = "";
-							console.log(data.title.length);
-							if (data.title.length >= 10) title = data.title.slice(0, 10) + "...";
-							else title = data.title.slice(0, 8);
 							return (
 								<PostItemC>
 									<Link
 										to={{
 											pathname: `/postview/${data.id}`,
 											state: {
-												item: item,
+												data: data,
 												itemId: data.id,
 											},
 										}}
 									>
-										<img onClick={() => imgClick(index)} src={data.img} />
+										<img src={data.img} />
 									</Link>
-									<div>{title}</div>
+									<div>{data.title}</div>
 									<div>{data.price} 원</div>
 								</PostItemC>
 							);

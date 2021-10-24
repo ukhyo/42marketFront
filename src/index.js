@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import GlobalFonts from "./Styles/fonts";
-import App from "./Components/App";
-//import App from "./testApp";n
+//import App from "./Components/App";
+import App from "./testApp";
 
 ReactDOM.render(
 		<App />,

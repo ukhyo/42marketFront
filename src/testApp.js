@@ -1,76 +1,94 @@
-
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-const App = () => {
-	const [data, setData] = useState([]);
-	const [previewImg, setPreviewImg] = useState([]);
-	const [allimg, setallimg] = useState([]);
-	const [imgFile, setFile] = useState(null);
-	const [imgUrl, setImgUrl] = useState(null);
-	const [Loading, setLoading] = useState(true);
-	const setImageFromFile = (e) => {
-		let reader = new FileReader();
-		let file = e.target.files[0];
-		setFile(e.target.files[0]);
-		console.log("비교하기전", e.target.files[0]);
-		reader.onload = (e) => {
-			setPreviewImg([...previewImg, e.target.result]);
-			setallimg([...allimg, e.target.result]);
-			console.log("비교하기후", e.target.result);
-			setImgUrl(e.target.result);
-		};
-		reader.readAsDataURL(file);
-	};
-	const Click = async () => {
-		const formData = new FormData();
-		formData.append('file', imgFile);
-		//console.log(formData.get("file"), "뭐라고나오려나");
-		//console.log("%chere", "color:blue");
-		console.log(allimg, "전체이미지");
-		setLoading(!Loading);
-		const res = await axios.post("http://localhost:8000/static/", formData);
-		console.log("%c 확인용", "color: red", res);
-	}
 
-	data.map((check) => {
-		console.log("%c Check here!", "color: red");
-		console.log(check);
+
+
+
+const App = () => {
+	let testarr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+	let temparr = []
+
+	let t = testarr.map(data => {
+		if (data % 2 == 0)
+			temparr = [...temparr, data];
+		return 1;
 	})
-	console.log(data, "data here");
-	console.log(previewImg, "프리뷰이미지엔 뭐가담겨있을까요?");
+	console.log(temparr, "test");
+	console.log(t, "t");
+
+
+
+	//return;
+	const [File, setFile] = useState([]);
+	const fileOnChange = async (e) => {
+		const files = e.target.files;
+		let fileArr = Array.from(files);
+		console.log(files);
+		fileArr.forEach(data => {
+			console.log(data);
+		})
+		fileArr.forEach(data => {
+			setFile((qq, idx) => {
+
+				console.log(qq, `File` + idx);
+				return [...File, data];
+			});
+		});
+	}
+	const SubmitHandle = async () => {
+		const formData = new FormData();
+		File.forEach((data, index) => {
+			formData.append(`안녕${index}`, data)
+		})
+		let test = {};
+		console.log(formData);
+		//console.log(formData.getAll("file"), "get All");
+		const res = await axios.post("http://localhost:4000/data", formData);
+		//console.log(File, "In File");
+		//formData.append(
+		//	"myfile",
+		//	File,
+		//);
+		//axios.post("http://localhost:4000/comments", formData);
+		console.log(res, "결과");
+	}
+	console.log(File, "In File");
 	return (
 		<div>
 			<SC>
-				<label for="test12">상품이미지</label>
-				<input
-					accept="image/*"
-					type="file"
-					id="test12"
-					multiple
-					onChange={(e) => {
-						setFile(e.target.files[0]);
-						setImageFromFile(e);
-					}}
-				></input>
-				{previewImg.map((img) => {
-					return <img src={img} alt="what?" />;
-				})}
+				<label for="getFile">상품이미지</label>
+				<input type="file" onChange={fileOnChange} multiple id="getFile" />
+				<div>
+					<button onClick={SubmitHandle}>제출</button>
+				</div>
 			</SC>
-			<button onClick={Click}>클릭해봐</button>
-			{Loading ? "" : allimg.map((file) => {
-				console.log(file, "파일안에 뭐가들었지");
-				console.log(file[0], "파일 포문돌렸을때");
-				return <img src={file} alt="real?"></img>
-			})}
 		</div>
 	);
 }
 
 const SC = styled.div`
+	width: 1000px;
+	height: 500px;
 	img {
 		width: 200px;
 		height: 200px;
+	}
+	> label {
+		display: inline-block;
+		width: 200px;
+		height: 200px;
+		text-align: center;
+		line-height: 200px;
+		background-color: #f0f0f0;
+	}
+	> input {
+		display: none;
+	}
+	button {
+		margin-top: 20px;
+		width: 200px;
+		height: 50px;
 	}
 `;
 

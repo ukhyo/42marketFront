@@ -7,6 +7,7 @@ import React, { useState, } from "react";
 import { RadioRet } from "./Product";
 import { Route } from "react-router-dom";
 import axios from "axios";
+
 function ProductRegi(props) {
 	let [title, setTitle] = useState("");
 	let [location, setLocation] = useState("");
@@ -61,12 +62,23 @@ function ProductRegi(props) {
 				alert("사진을 넣어주세요");
 				return;
 			}
-			let name = imgFile.name;
-			console.log(title, "타이틀은?");
-			if (title == "" || price == 0 || location == "" || idx == 0) {
-				alert("필수항목을 입력해주세요")
+			else if (title == "") {
+				alert("제목을 입력해주세요.")
 				return;
 			}
+			else if (price == 0) {
+				alert("가격을 입력해주세요.");
+				return;
+			}
+			else if (location == "") {
+				alert("거래장소를 입력해주세요.");
+				return;
+			}
+			else if (idx == 0) {
+				alert("카테고리를 선택해주세요.");
+				return;
+			}
+			let name = imgFile.name;
 			let data = {
 				title: title,
 				subtitle: content,
@@ -79,6 +91,7 @@ function ProductRegi(props) {
 			};
 			await axios.post("http://localhost:4000/posts/", data);
 			history.push("/");
+			alert("상품 등록 완료!");
 		}
 		pushData();
 	}
@@ -106,6 +119,7 @@ function ProductRegi(props) {
 								setFile(e.target.files[0]);
 								setImageFromFile(e);
 							}}
+							required
 						></input>
 						{previewImg.map((img) => {
 							return (
@@ -119,7 +133,7 @@ function ProductRegi(props) {
 						제목<b>*</b>
 					</SubtitleC>
 					<InputC>
-						<input onChange={inputChange} type="text" placeholder="상품 제목을 입력하세요." value={title} />
+						<input onChange={inputChange} type="text" placeholder="상품 제목을 입력하세요." value={title}  required/>
 						<span> {title.length}/40</span>
 					</InputC>
 				</TitleC>
@@ -152,6 +166,7 @@ function ProductRegi(props) {
 								type="text"
 								placeholder="상세주소를 적어주세요."
 								value={location}
+								required
 							></input>
 						</div>
 					</InputC>
@@ -163,7 +178,9 @@ function ProductRegi(props) {
 					<InputC>
 						<input type="number" placeholder="숫자만 입력해주세요." value={price} onChange={(e) => {
 							setPrice(parseInt(e.target.value));
-						}}></input>
+						}}
+							required
+						></input>
 						<span>원</span>
 					</InputC>
 				</PriceC>
