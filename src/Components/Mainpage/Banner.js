@@ -4,13 +4,15 @@ import pleaseBuy from "../img/pleasebuy.png";
 import bannerimg from "../img/mainBanner.png";
 import testImg from "../img/test1.jpeg";
 import testBanner from "../img/testBanner.png";
-
+//import banner from "../img/mainBanner.jpg";
+import banner from "../img/mainBanner 1.png";
+//import banner from "../img/1.png";
 function MainBanner() {
 	return (
 		<MainC>
 			<MainBannerC>
 				<div>
-					<img alt="img" src={testBanner} />
+					<img alt="img" src={banner} />
 					{/*<img className="buy_img1" alt="img" src={pleaseBuy} />
 					<img className="buy_img2" alt="img" src={pleaseBuy} />*/}
 				</div>

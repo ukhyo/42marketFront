@@ -9,25 +9,38 @@ import { Route } from "react-router-dom";
 import axios from "axios";
 
 function ProductRegi(props) {
-	let [title, setTitle] = useState("");
-	let [location, setLocation] = useState("");
+	// Input 양식 State
+	const [title, setTitle] = useState("");
+	const [location, setLocation] = useState("");
 	const [idx, setIdx] = useState(0);
-	const [previewImg, setPreviewImg] = useState([]);
 	const [price, setPrice] = useState(0);
-	const [imgFile, setFile] = useState(null);
-	const [imgUrl, setImgUrl] = useState(null);
 	const [content, setContent] = useState("");
+
+
+	// Input 양식 state 이미지 관련
+	const [Files, setFiles] = useState([]);
+	const [FileUrl, setFileUrl] = useState([]);
+
+
+
+
 	const { history } = props;
-	const getIdx = (number) => {
-		setIdx(number);
+	// title section
+	function inputChange(e) {
+		if (e.target.value.length > 40) {
+			e.target.value = e.target.value.slice(0, 39);
+			return;
+		}
+		setTitle(e.target.value);
 	}
+
+	// location section
 	function GaepoClick() {
 		setLocation("서울 강남구 개포로 416 ");
 	}
 	function SeochoClick() {
 		setLocation("서울 서초구 강남대로 327 대륭서초타워 ");
 	}
-
 	function DirectLocation() {
 		setLocation("");
 	}
@@ -37,48 +50,53 @@ function ProductRegi(props) {
 		setLocation(e.target.value);
 	}
 
-	function inputChange(e) {
-		if (e.target.value.length > 40) {
-			e.target.value = e.target.value.slice(0, 39);
+	// img section
+	const onChangeImg = (e) => {
+		const file = e.target.files;
+		let transArr = Array.from(file);
+		if (transArr.length + Files.length > 8) {
+			alert(`사진은 최대 8개까지 가능합니다. 현재 : ${Files.length}개`);
 			return;
 		}
-		setTitle(e.target.value);
-	}
-
-	const setImageFromFile = (e) => {
-		let reader = new FileReader();
-		let file = e.target.files[0];
-		setFile(e.target.files[0]);
-		reader.onload = (e) => {
-			setPreviewImg([...previewImg, e.target.result]);
-			setImgUrl(e.target.result);
-		}
-		reader.readAsDataURL(file);
+		transArr.forEach((file) => {
+			setFiles((Files) => [...Files, file]);
+		})
+		transArr.forEach(async (file) => {
+			let reader = new FileReader();
+			reader.onload = (e) => {
+				setFileUrl(url => [...url, e.target.result]);
+			};
+			reader.readAsDataURL(file);
+		})
 	};
+
+	// submit section
 
 	const submitHandle = (e) => {
 		const pushData = async () => {
-			if (!imgFile) {
+			if (!Files) {
 				alert("사진을 넣어주세요");
 				return;
 			}
-			else if (title == "") {
+			else if (title === "") {
 				alert("제목을 입력해주세요.")
 				return;
 			}
-			else if (price == 0) {
+			else if (price === 0) {
 				alert("가격을 입력해주세요.");
 				return;
 			}
-			else if (location == "") {
+			else if (location === "") {
 				alert("거래장소를 입력해주세요.");
 				return;
 			}
-			else if (idx == 0) {
+			else if (idx === 0) {
 				alert("카테고리를 선택해주세요.");
 				return;
 			}
-			let name = imgFile.name;
+			let name = Files.map((data) => {
+				return `/jsonimg/${data.name}`;
+			});
 			let data = {
 				title: title,
 				subtitle: content,
@@ -86,7 +104,7 @@ function ProductRegi(props) {
 				likes: 0,
 				category: idx,
 				location: location,
-				img: "/jsonimg/" + name,
+				img: name,
 				date: "2021-10-21T14:08:25+09:00",
 			};
 			await axios.post("http://localhost:4000/posts/", data);
@@ -95,11 +113,8 @@ function ProductRegi(props) {
 		}
 		pushData();
 	}
-
-	console.log(idx, "카테고리 결정 확인 in: ProductRegi.js");
 	return (
 		<div>
-			{console.log(previewImg, "%cfirstCheck", "color: green")}
 			<RegiHeaderC>
 				<span>기본정보</span>
 				<span> *필수항목</span>
@@ -110,22 +125,32 @@ function ProductRegi(props) {
 						상품 이미지<b>*</b>
 					</SubtitleC>
 					<InputC>
-						<label for="test12">상품이미지</label>
-						<input
-							type="file"
-							id="test12"
-							multiple
-							onChange={(e) => {
-								setFile(e.target.files[0]);
-								setImageFromFile(e);
-							}}
-							required
-						></input>
-						{previewImg.map((img) => {
-							return (
-								<img src={img} alt="what?"/>
-							);
-						})}
+						<LabelAndManualC>
+							<label for="test12">이미지 등록</label>
+							<div>
+								<span>- 상품 이미지는 640x640에 최적화 되어 있습니다.</span>
+								<span>- 이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.</span>
+								<span>- 이미지를 클릭 할 경우 원본이미지를 확인할 수 있습니다.</span>
+							</div>
+						</LabelAndManualC>
+						<ul>
+							<li>
+								<input
+									type="file"
+									id="test12"
+									multiple
+									onChange={onChangeImg}
+									required
+								></input>
+							</li>
+							{FileUrl ? FileUrl.map((img, idx) => {
+								return (
+									<li key={idx}>
+										<img src={img} alt={idx}></img>
+									</li>
+								);
+							}): ""}
+						</ul>
 					</InputC>
 				</PictureC>
 				<TitleC>
@@ -133,7 +158,7 @@ function ProductRegi(props) {
 						제목<b>*</b>
 					</SubtitleC>
 					<InputC>
-						<input onChange={inputChange} type="text" placeholder="상품 제목을 입력하세요." value={title}  required/>
+						<input onChange={inputChange} type="text" placeholder="상품 제목을 입력하세요." value={title} required />
 						<span> {title.length}/40</span>
 					</InputC>
 				</TitleC>
@@ -143,11 +168,11 @@ function ProductRegi(props) {
 					</SubtitleC>
 					<FormC>
 						{/* Json 다 받으면 한줄로 줄어들 예정 */}
-						<RadioRet value="전자기기" idx={1} getIdx={getIdx} />
-						<RadioRet value="주변기기" idx={2} getIdx={getIdx} />
-						<RadioRet value="의류" idx={3} getIdx={getIdx} />
-						<RadioRet value="책" idx={4}getIdx={getIdx} />
-						<RadioRet value="공동구매" idx={5} getIdx={getIdx} />
+						<RadioRet value="전자기기" idx={1} setIdx={setIdx} />
+						<RadioRet value="주변기기" idx={2} setIdx={setIdx} />
+						<RadioRet value="의류" idx={3} setIdx={setIdx} />
+						<RadioRet value="책" idx={4} setIdx={setIdx} />
+						<RadioRet value="공동구매" idx={5} setIdx={setIdx} />
 					</FormC>
 				</CategoryC>
 				<TradeLocationC>
@@ -176,9 +201,13 @@ function ProductRegi(props) {
 						가격<b>*</b>
 					</SubtitleC>
 					<InputC>
-						<input type="number" placeholder="숫자만 입력해주세요." value={price} onChange={(e) => {
-							setPrice(parseInt(e.target.value));
-						}}
+						<input
+							type="number"
+							placeholder="숫자만 입력해주세요."
+							value={price}
+							onChange={(e) => {
+								setPrice(parseInt(e.target.value));
+							}}
 							required
 						></input>
 						<span>원</span>
@@ -187,17 +216,20 @@ function ProductRegi(props) {
 				<ContentC>
 					<SubtitleC>설명</SubtitleC>
 					<InputC>
-						<input type="text" cols="40" rows="5" placeholder="상품 설명을 입력해주세요." value={content}
+						<textarea
+							type="text"
+							cols="40"
+							rows="5"
+							placeholder="상품 설명을 입력해주세요."
+							value={content}
 							onChange={(e) => {
 								setContent(e.target.value);
-						}}></input>
+							}}
+						></textarea>
 					</InputC>
 				</ContentC>
 				<SubmitC>
-					<button
-						onClick={submitHandle}>
-						등록하기
-					</button>
+					<button onClick={submitHandle}>등록하기</button>
 				</SubmitC>
 			</RegiMainC>
 		</div>
@@ -237,7 +269,6 @@ const RegiHeaderC = styled.div`
 
 const RegiMainC = styled.div`
 	width: 1000px;
-	/*height: 500px;*/
 	margin: 0 auto;
 	margin-top: 50px;
 	font-size: 15px;
@@ -250,39 +281,67 @@ const RegiMainC = styled.div`
 	& input {
 		padding-left: 10px;
 	}
+	`;
+
+const InputC = styled.div`
+		width: 80%;
+`;
+
+const LabelAndManualC = styled.div`
+	display: flex;
+	align-items: center;
+
+	> label {
+		display: inline-block;
+		line-height: 100px;
+		text-align: center;
+		width: 200px;
+		height: 100px;
+		background-color: #f0f0f0;
+		cursor: pointer;
+	}
+	> div {
+		display: flex;
+		flex-direction: column;
+		width: 600px;
+		margin-left: 50px;
+		> span {
+			font-size: 14px;
+			line-height: 1.5;
+		}
+	}
 `;
 
 const PictureC = styled.div`
 	width: 100%;
-	> div:last-child {
-		> label {
-			display: inline-block;
-			line-height: 200px;
-			text-align: center;
-			width: 200px;
-			height: 200px;
-			background-color: #f0f0f0;
-			cursor: pointer;
-		}
-		> input[type="file"] {
-			/*/*overflow: hidden;
-			position: absolute;*/
-			/*width:0;*/
-			/*height:0;*/
+	> ${InputC} {
+		input[type="file"] {
 			padding: 0;
 			display: none;
 			border: none;
 			background-color: #fff;
 		}
-		display: flex;
-		flex-wrap: wrap;
+		/*display: flex;
+		flex-wrap: wrap;*/
 		img {
-			margin-left: 10px;
-			width: 200px;
-			height: 200px;
+			margin-right: 10px;
+			margin-top: 10px;
+			width: 190px;
+			height: 190px;
+		}
+		> ul {
+			display: flex;
+			flex-wrap: wrap;
+			overflow-x: hidden;
+			> li {
+				display: flex;
+			}
+			/*> li:first-child {
+				position: relative;
+			}*/
 		}
 	}
-	height: 270px;
+	padding-bottom: 30px;
 `;
 
 const SubtitleC = styled.div`
@@ -292,9 +351,6 @@ const SubtitleC = styled.div`
 	}
 `;
 
-const InputC = styled.div`
-	width: 80%;
-`;
 
 const FormC = styled.form`
 	width: 80%;
@@ -385,9 +441,9 @@ const ContentC = styled.div`
 	line-height: 100px;
 	> ${InputC} {
 		margin-top: 20px;
-		> input {
-
-			line-height: 0;
+		> textarea {
+			resize: none;
+			padding: 10px;
 			width: 80%;
 			height: 160px;
 			margin-right: 10px;

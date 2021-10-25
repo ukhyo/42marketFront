@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 
 
-function RadioRet({ idx, value, getIdx }) {
+function RadioRet({ idx, value, setIdx }) {
 	const ClickEvt = () => {
-		getIdx(idx);
+		setIdx(idx);
 	}
 	return (
 		<span>
@@ -50,7 +50,6 @@ const ProductStateBarC = styled.div`
 	margin: 0 auto;
 	height: 70px;
 	line-height: 70px;
-	/*margin-bottom: 30px;*/
 	margin-bottom: 10px;
 	span {
 

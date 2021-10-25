@@ -14,10 +14,15 @@ function PostViewComp({ idx }) {
 	}, []);
 	return (
 			<PostViewLineC>
-					{item.map((data, index) => {
-							if (index < idx || index > (idx + 4)) return;
+			{item.map((data, index) => {
+				let title;
+				if (data.title.length > 12)
+					title = data.title.slice(0, 12) + "...";
+				else
+					title = data.title;
+						if (index < idx || index > (idx + 4)) return;
 							return (
-								<PostItemC>
+								<PostItemC key={index}>
 									<Link
 										to={{
 											pathname: `/postview/${data.id}`,
@@ -29,7 +34,7 @@ function PostViewComp({ idx }) {
 									>
 										<img src={data.img} />
 									</Link>
-									<div>{data.title}</div>
+									<div>{title}</div>
 									<div>{data.price} 원</div>
 								</PostItemC>
 							);
@@ -37,7 +42,6 @@ function PostViewComp({ idx }) {
 			</PostViewLineC>
 	);
 }
-
 
 function PreviewPost() {
 	return (
@@ -103,13 +107,13 @@ const PostItemC = styled.div`
 		font-size: 16px;
 		padding-left: 10px;
 	}
+	> div:nth-child(2) {
+		color: rgba(0, 0, 0, 0.6);
+	}
 	> div:last-child {
 		margin-top: 10px;
 		margin-bottom: 5px;
 		color: rgba(0, 0, 0, 0.9);
-	}
-	> div:nth-child(2) {
-		color: rgba(0, 0, 0, 0.6);
 	}
 `;
 

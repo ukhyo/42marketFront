@@ -6,62 +6,93 @@ import axios from "axios";
 
 
 const App = () => {
-	let testarr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-	let temparr = []
-
-	let t = testarr.map(data => {
-		if (data % 2 == 0)
-			temparr = [...temparr, data];
-		return 1;
-	})
-	console.log(temparr, "test");
-	console.log(t, "t");
-
-
-
-	//return;
 	const [File, setFile] = useState([]);
+
 	const fileOnChange = async (e) => {
 		const files = e.target.files;
 		let fileArr = Array.from(files);
-		console.log(files);
 		fileArr.forEach(data => {
 			console.log(data);
 		})
 		fileArr.forEach(data => {
-			setFile((qq, idx) => {
-
-				console.log(qq, `File` + idx);
-				return [...File, data];
+			setFile((file) => {
+				return [...file, data];
 			});
 		});
 	}
 	const SubmitHandle = async () => {
-		const formData = new FormData();
+		let formData = new FormData();
+		const config = {
+				header: { "content-type": "multipart/form-data" },
+			};
 		File.forEach((data, index) => {
-			formData.append(`안녕${index}`, data)
+			formData.append("file", data)
 		})
-		let test = {};
-		console.log(formData);
-		//console.log(formData.getAll("file"), "get All");
-		const res = await axios.post("http://localhost:4000/data", formData);
-		//console.log(File, "In File");
-		//formData.append(
-		//	"myfile",
-		//	File,
-		//);
-		//axios.post("http://localhost:4000/comments", formData);
-		console.log(res, "결과");
+		for (let values of formData.values()) {
+			console.log(values, "값");
+		}
+		 const Food = {
+				name: "피자",
+				price: 13500,
+			};
+
+		var object = {};
+		formData.forEach((value, key) => {
+			if (!object.hasOwnProperty(key)) {
+				object[key] = value;
+				return;
+			}
+			if (!Array.isArray(object[key])) {
+				object[key] = [object[key]];
+			}
+			object[key].Push(value);
+		});
+		var json = JSON.stringify(object);
+		formData.append("stringFood", JSON.stringify(Food));
+		let check = {
+			item: "zxz",
+			price: 1,
+		}
+		let check2 = new FormData();
+		check2.append("file", "file1");
+		check2.append("file12", "이론");
+		console.log(formData.getAll('file'));
+		const res = await axios.post("http://localhost:4000/data", formData, config).then(res => {
+			console.log(res,"이거머임");
+		});
+		console.log(res);
 	}
-	console.log(File, "In File");
+
+	const testArr = ["/img/a.jpeg", "/img/b.jpeg", "/img/c.jpeg", "/img/d.jpeg",];
+	const Test = async () => {
+		let Arr = File.map((data) => {
+			return data.name;
+		});
+
+		console.log(Arr, "Arr 는?");
+
+		//const Data = {
+		//	title: "제목",
+		//	subtitle: "내용",
+		//	likes: 0,
+		//	price: 10000,
+		//	img: testArr,
+		//};
+		//await axios.post("http://localhost:4000/comments", Data);
+	}
+
+
+
 	return (
 		<div>
 			<SC>
+
 				<label for="getFile">상품이미지</label>
 				<input type="file" onChange={fileOnChange} multiple id="getFile" />
-				<div>
-					<button onClick={SubmitHandle}>제출</button>
-				</div>
+				<button type="submit" onClick={SubmitHandle}>제출</button>
+
+				<div></div>
+				<button onClick={Test}>눌러봐유</button>
 			</SC>
 		</div>
 	);

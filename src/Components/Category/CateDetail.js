@@ -15,18 +15,17 @@ function CateDetail(props) {
 	}, []);
 	let { undefined: cate } = props.match.params;
 	cate = Number(cate);
-
 	return (
 		<SectionC>
 			<CategoryBar />
 			<NameAndSortC>
-				<CateNameC>해당 카테고리네임 디비에서 가져올수있을듯?</CateNameC>
+				<CateNameC>카테고리네임 디비에서 가져올 예정</CateNameC>
 			</NameAndSortC>
 			<PostViewC>
-			{item.map((data) => {
+			{item.map((data, idx) => {
 				if (data.category != cate && cate != 0) return;
 				return (
-					<PostItemC>
+					<PostItemC key={idx}>
 						<Link
 							to={{
 								pathname: `/postview/${data.id}`,
@@ -36,7 +35,7 @@ function CateDetail(props) {
 								},
 							}}
 							>
-							<img src={data.img} />
+							<img src={data.img[0]} />
 						</Link>
 						<div>{data.title}</div>
 						<div>{data.price} 원</div>

@@ -10,7 +10,7 @@ function ShowData(props) {
 	return (
 		<ShowDataC>
 			<SellImgC>
-				<img src={ props.img }/>
+				<img src={ props.img[0] }/>
 			</SellImgC>
 			<TitlePriceC>
 				<div>{props.title}</div>
