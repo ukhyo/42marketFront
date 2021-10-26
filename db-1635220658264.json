@@ -380,7 +380,7 @@
     {
       "title": "사진올린 모든책 일괄로 판매합니다.",
       "subtitle": "개포 내일 한시부터 거래 가능합니다!!",
-      "likes": 3,
+      "likes": 2,
       "price": 12345,
       "img": [
         "/jsonimg/book1.jpeg",
@@ -410,36 +410,6 @@
       "location": "서울 강남구 개포로 416 ",
       "category": 4,
       "id": 36
-    },
-    {
-      "title": "휴대폰 거치대 판매합니다!",
-      "subtitle": "휴대폰 거치대입니다. 게임하실때나 동영상보실때 사용하세요!\n\n낄낄",
-      "price": 5000,
-      "likes": 0,
-      "category": 2,
-      "location": "서울 서초구 강남대로 327 대륭서초타워 5층 3시",
-      "img": [
-        "/jsonimg/ex2.jpeg"
-      ],
-      "date": "2021-10-21T14:08:25+09:00",
-      "id": 37
-    },
-    {
-      "title": "ㅂ",
-      "subtitle": "1",
-      "price": 1,
-      "likes": 0,
-      "category": 4,
-      "location": "서울 서초구 강남대로 327 대륭서초타워 ",
-      "img": [
-        "/jsonimg/book1.jpeg",
-        "/jsonimg/book2.jpeg",
-        "/jsonimg/book3.jpeg",
-        "/jsonimg/book4.jpeg",
-        "/jsonimg/book5.jpeg"
-      ],
-      "date": "2021-10-21T14:08:25+09:00",
-      "id": 38
     }
   ],
   "comments": [

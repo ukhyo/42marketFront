@@ -107,7 +107,7 @@ function ProductRegi(props) {
 				img: name,
 				date: "2021-10-21T14:08:25+09:00",
 			};
-			await axios.post("http://localhost:4000/posts/", data);
+			await axios.post("http://localhost:3001/posts/", data);
 			history.push("/");
 			alert("상품 등록 완료!");
 		}

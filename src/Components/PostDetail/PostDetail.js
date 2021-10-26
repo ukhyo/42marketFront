@@ -25,7 +25,7 @@ function PostDetail(props) {
 				location: data.location,
 				category: data.category,
 			};
-			await axios.put(`http://localhost:4000/posts/` + `${data.id}`, dataForm);
+			await axios.put(`http://localhost:3001/posts/` + `${data.id}`, dataForm);
 		}
 		putFunc();
 	}, []);

@@ -7,6 +7,7 @@ import testBanner from "../img/testBanner.png";
 //import banner from "../img/mainBanner.jpg";
 import banner from "../img/mainBanner 1.png";
 //import banner from "../img/1.png";
+//import banner from "../img/test22.jpg";
 function MainBanner() {
 	return (
 		<MainC>
@@ -45,7 +46,7 @@ const MainBannerC = styled.div`
 	display: flex;
 	justify-content: center;
 	width: 100%;
-	height: 500px;
+	height: 480px;
 	margin-bottom: 30px;
 	/*background-color: rgb(178, 236, 238);*/
 

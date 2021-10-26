@@ -28,7 +28,7 @@ function Header() {
 			<HeaderLineC>
 				<HeaderLogoC>
 					<Link to="/">
-						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/logo.png" } />
+						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/test11.png" } />
 					</Link>
 				</HeaderLogoC>
 				<HeaderSearchC>
