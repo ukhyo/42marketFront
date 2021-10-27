@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import logoimg from "../img/logo.png";
+//import logoimg from "../img/logo.png";
+//import logoimg from "../img/noname.png";
 
 
 
@@ -28,7 +29,7 @@ function Header() {
 			<HeaderLineC>
 				<HeaderLogoC>
 					<Link to="/">
-						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/test11.png" } />
+						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/logoTest2.png" } />
 					</Link>
 				</HeaderLogoC>
 				<HeaderSearchC>
@@ -93,12 +94,13 @@ const HeaderLineC = styled.div`
 `;
 
 const HeaderLogoC = styled.div`
-	width: 200px;
+	width: 150px;
 `;
 
 const HeaderLogoImgC = styled.img`
 	width: 100%;
-	height: 50%;
+	height: 80%;
+	/*height: 50%;*/
 `;
 
 const HeaderSearchC = styled.div`

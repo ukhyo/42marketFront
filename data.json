@@ -81,7 +81,7 @@
     {
       "title": "노트북 신형",
       "subtitle": "얼마전에 삿어요",
-      "likes": 16,
+      "likes": 17,
       "price": 2000000,
       "img": [
         "/jsonimg/it2.jpeg"
@@ -107,7 +107,7 @@
     {
       "title": "노트북",
       "subtitle": "ㅈㄱㄴ",
-      "likes": 13,
+      "likes": 14,
       "price": 2345123,
       "img": [
         "/jsonimg/it4.jpeg"
@@ -222,17 +222,17 @@
       "category": 4
     },
     {
-      "id": 23,
       "title": "책책책 책을 읽읍시다!",
       "subtitle": "ㅈㄱㄴ",
-      "likes": 0,
+      "likes": 1,
       "price": 100004,
       "img": [
         "/jsonimg/book3.jpeg"
       ],
-      "date": "2021-10-21T14:08:25+09:00",
+      "date": "2021-10-21 14시",
       "location": "서울 강남구 개포로 416 1층",
-      "category": 4
+      "category": 4,
+      "id": 23
     },
     {
       "title": "책",
@@ -440,6 +440,21 @@
       ],
       "date": "2021-10-21T14:08:25+09:00",
       "id": 38
+    },
+    {
+      "title": "책들",
+      "subtitle": "ㄱㄱㄱ",
+      "likes": 1,
+      "price": 5000,
+      "img": [
+        "/jsonimg/book1.jpeg",
+        "/jsonimg/book2.jpeg",
+        "/jsonimg/book3.jpeg"
+      ],
+      "date": "2021-10-21 14시",
+      "location": "서울 서초구 강남대로 327 대륭서초타워 ",
+      "category": 4,
+      "id": 39
     }
   ],
   "comments": [

@@ -48,6 +48,7 @@ function PostDetail(props) {
 	data.date = data.date.replace("T", " ");
 	data.date = data.date.substr(0, data.date.indexOf(":", 0));
 	data.date += "시";
+	console.log(data," hhhhhhhhhhhhhhhhh ");
 	return (
 		<div>
 			<Header />

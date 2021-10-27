@@ -5,6 +5,13 @@ export const setCookie = (name, value, option) => {
 	return cookies.set(name, value, { ...option });
 }
 
-export const getCookie = (name) => {
-	return cookies.get(name);
+const setCookie = (name, value, option) => {
+	return cookies.set(name, value, { ...option });
 }
+
+const getCookie = (name) => {
+	return cookies.get(name);
+};
+
+export { setCookie }
+export { getCookie }
