@@ -7,7 +7,6 @@ import Router from "./Router";
 
 
 function App() {
-	console.log("%c in Function", "color: blue");
 	return (
 		<BrowserRouter>
 			<Router />

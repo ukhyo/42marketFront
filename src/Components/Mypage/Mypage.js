@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import axios from "axios";
+import {Route} from 'react-router-dom'; 
 import styled from "styled-components";
 import Header from "../Mainpage/Header"
 import ProfileBar from "./Profile";
 import NaviBar from "./Navibar";
-import BuyList from "./Infolist";
+import InfoList from "./Infolist";
 
 function	MypageMain()
 {
+
 	return (
 		<MypageMainC>
-			<ProfileBar></ProfileBar>
-			<BuyList></BuyList>
+			<ProfileBar />
+			<Route
+				path="/mypage"
+				exact
+				render={() => <InfoList />}
+			/>
+			<Route path="/mypage/:tags" component={ InfoList }/>
 		</MypageMainC>
 	)
 }
