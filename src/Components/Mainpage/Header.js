@@ -64,7 +64,7 @@ function Header() {
 					</span>
 					<span>
 						<i className="far fa-user fa-1.5x"></i>
-						<LinkC to={"/mypage"}>내정보</LinkC>
+						<LinkC to={"/mypage/buylist"}>내정보</LinkC>
 					</span>
 				</HeaderInfoC>
 			</HeaderLineC>

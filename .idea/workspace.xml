@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="701af0da-f644-40e8-bbb3-9dc7604141c3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Components/Mypage/Infolist.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Mypage/Navibar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Mypage/Profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Mypage/Mypage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Mypage/Mypage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Mypage/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Mypage/Profile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +65,18 @@
       <workItem from="1634487522145" duration="14407000" />
       <workItem from="1634554383715" duration="453000" />
       <workItem from="1634612728871" duration="170000" />
+      <workItem from="1634644468643" duration="222000" />
+      <workItem from="1634700979569" duration="130000" />
+      <workItem from="1634705994930" duration="2000" />
+      <workItem from="1634705998729" duration="11000" />
+      <workItem from="1634706036440" duration="21000" />
+      <workItem from="1634706059421" duration="65000" />
+      <workItem from="1634706178298" duration="289000" />
+      <workItem from="1634708901271" duration="1655000" />
+      <workItem from="1634711867178" duration="4000" />
+      <workItem from="1634711877271" duration="6000" />
+      <workItem from="1634711899412" duration="5000" />
+      <workItem from="1634711907595" duration="7000" />
     </task>
     <servers />
   </component>
@@ -94,7 +101,7 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/Components/Mypage/Profile.js</url>
           <line>53</line>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
