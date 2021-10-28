@@ -3,7 +3,7 @@
     {
       "title": "신상 옷 팝니다!",
       "subtitle": "몇번안입었어요",
-      "likes": 11,
+      "likes": 12,
       "price": 15000,
       "img": [
         "/jsonimg/cloth2.jpeg"
@@ -16,7 +16,7 @@
     {
       "title": "입던옷팝니다 착샷있음",
       "subtitle": "ㅈㄱㄴ",
-      "likes": 4,
+      "likes": 5,
       "price": 20000,
       "img": [
         "/jsonimg/cloth1.jpeg"
@@ -68,7 +68,7 @@
     {
       "title": "노트북 ㅍㅍ",
       "subtitle": "ㅍㅍ",
-      "likes": 35,
+      "likes": 36,
       "price": 19,
       "img": [
         "/jsonimg/it1.jpeg"
@@ -81,7 +81,7 @@
     {
       "title": "노트북 신형",
       "subtitle": "얼마전에 삿어요",
-      "likes": 17,
+      "likes": 18,
       "price": 2000000,
       "img": [
         "/jsonimg/it2.jpeg"

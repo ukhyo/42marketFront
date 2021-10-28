@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import axios from "axios";
 import useAsync from "./useAsync";
 import styled from "styled-components";
@@ -14,15 +14,31 @@ async function getList(list)
 function InfoList({match})
 {
 	const { tags } = match.params;
+	const list = await axios.get(
+		`http://localhost:3001/${list}`
+	); 
 	const [state] = useAsync(() => getList(tags), []);
 	const { loading, data: list, error } = state;
-
+	// const [list, setList] = useState([]);
+	// useEffect(()=> {
+	// 	console.log("tttttttttttt");
+	// 	const getData = () => {
+	// 		getList("buylist").then(data => {
+	// 			console.log(data, "data");
+	// 			setList(list => {
+	// 				console.log("come here?");
+	// 				return ([...list, data]);
+	// 			})
+	// 		})
+	// 	}
+	// 	getData();
+	// }, [])
 	if (loading) return <div>Loading...</div>;
 	if (error) return <div>Error occured</div>;
 	if (!list) return null;
-	console.log(list, "hwat at");
 	return (
 		<InfoListC>
+			{/* {console.log(list, "gggggggg")} */}
 			{list.map((posts,index) => {
 				return (
 					<PostListC key={index}>
@@ -73,7 +89,7 @@ const PostImgC = styled.div`
 const PostInfosC = styled.div`
 	width: 60%;
 	height: 90%;
-	align-items: center;
+	align-content: center;
 `;
 
 const PostLogsC = styled.div`

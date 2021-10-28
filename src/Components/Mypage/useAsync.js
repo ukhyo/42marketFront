@@ -38,6 +38,7 @@ function	useAsync(callback, deps = [])
 		dispatch({ type: 'LOADING' });
 		try
 		{
+			console.log("why??");
 			const data = await callback();
 			dispatch({ type: 'SUCCESS', data});
 		}
