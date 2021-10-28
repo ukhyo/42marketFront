@@ -8,7 +8,6 @@ import Product from "./Product/ProductRegi";
 import Category from "./Category/Category";
 
 function Router() {
-	const tabs = "안녕하세요";
 	return (
 		<div>
 			<Switch>
@@ -21,6 +20,4 @@ function Router() {
 		</div>
 	);
 }
-
-
 export default Router;
