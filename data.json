@@ -237,7 +237,7 @@
     {
       "title": "책",
       "subtitle": "팜",
-      "likes": 2,
+      "likes": 3,
       "price": 15000,
       "img": [
         "/jsonimg/book4.jpeg"
@@ -459,7 +459,7 @@
     {
       "title": "안녕 디지몬",
       "subtitle": "ㄱ",
-      "likes": 1,
+      "likes": 2,
       "price": 5555,
       "img": [
         "/jsonimg/5.jpg",
@@ -468,7 +468,7 @@
         "/jsonimg/book3.jpeg",
         "/jsonimg/book4.jpeg"
       ],
-      "date": "2021-10-21 14시",
+      "date": "시",
       "location": "서울 서초구 강남대로 327 대륭서초타워 ",
       "category": 4,
       "id": 40
@@ -486,6 +486,65 @@
       "location": "서울 서초구 강남대로 327 대륭서초타워 ",
       "category": 4,
       "id": 41
+    },
+    {
+      "title": "안녕하세요",
+      "subtitle": "1234",
+      "likes": 2,
+      "price": 1234,
+      "img": [
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/e3cab8-08f0-af3-1a63-b5f624f1a18b0png",
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/e3cab8-08f0-af3-1a63-b5f624f1a18b1png"
+      ],
+      "date": "시",
+      "location": "서울 강남구 개포로 416 ",
+      "category": 3,
+      "id": 42
+    },
+    {
+      "title": "12341251251",
+      "subtitle": "1241241",
+      "likes": 1,
+      "price": 1241241,
+      "img": [
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/8af62d-ff-1224-03dd-3286bc122d150png"
+      ],
+      "date": "2021-10-21 14시",
+      "location": "서울 강남구 개포로 416 ",
+      "category": 1,
+      "id": 43
+    },
+    {
+      "title": "잡동사니 전자기기",
+      "subtitle": "124",
+      "likes": 1,
+      "price": 41,
+      "img": [
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/e78e3-8c5b-25a0-c12c-7428e762f2c0.jpeg",
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/e78e3-8c5b-25a0-c12c-7428e762f2c1.jpeg",
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/e78e3-8c5b-25a0-c12c-7428e762f2c2.jpeg",
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/e78e3-8c5b-25a0-c12c-7428e762f2c3.jpeg",
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/e78e3-8c5b-25a0-c12c-7428e762f2c4.jpeg",
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/e78e3-8c5b-25a0-c12c-7428e762f2c5.jpeg"
+      ],
+      "date": "2021-10-21 14시",
+      "location": "서울 서초구 강남대로 327 대륭서초타워 ",
+      "category": 1,
+      "id": 44
+    },
+    {
+      "title": "전자기기",
+      "subtitle": "12345",
+      "likes": 1,
+      "price": 12345,
+      "img": [
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/e001d7-fd6a-2ca8-2eb8-c57876f74ceb0.jpeg",
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/e001d7-fd6a-2ca8-2eb8-c57876f74ceb1.jpeg"
+      ],
+      "date": "2021-10-21 14시",
+      "location": "서울 강남구 개포로 416 ",
+      "category": 1,
+      "id": 45
     }
   ],
   "comments": [

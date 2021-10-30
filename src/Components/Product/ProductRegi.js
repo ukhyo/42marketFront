@@ -7,8 +7,27 @@ import React, { useState, } from "react";
 import { RadioRet } from "./Product";
 import { Route } from "react-router-dom";
 import axios from "axios";
-
+import jsonData from "../../secret.json";
+import AWS from "aws-sdk";
+import uuid from "react-uuid";
 function ProductRegi(props) {
+	// Aws s3 인증
+	const ACCESS_KEY = jsonData.accesskey;
+	const SECRET_ACCESS_KEY = jsonData.secretkey;
+	const REGION = jsonData.awsregion;
+	const S3_BUCKET = jsonData.s3burket;
+
+	AWS.config.update({
+		accessKeyId: ACCESS_KEY,
+		secretAccessKey: SECRET_ACCESS_KEY,
+	});
+
+	const myBucket = new AWS.S3({
+		params: { Bucket: S3_BUCKET },
+		region: REGION,
+	});
+
+
 	// Input 양식 State
 	const [title, setTitle] = useState("");
 	const [location, setLocation] = useState("");
@@ -94,8 +113,22 @@ function ProductRegi(props) {
 				alert("카테고리를 선택해주세요.");
 				return;
 			}
-			let name = Files.map((data) => {
-				return `/jsonimg/${data.name}`;
+			const pickUUid = uuid();
+			let name = Files.map((data, idx) => {
+				const type = data.name.split(".").pop();
+				const filename = `${pickUUid}${idx}.${type}`;
+				const params = {
+			ACL: "public-read",
+			Body: data,
+			Bucket: S3_BUCKET,
+			Key: "upload/" + filename,
+		};
+		myBucket
+			.putObject(params)
+			.send((err) => {
+				if (err) console.log(err);
+			});
+				return `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/upload/${filename}`;
 			});
 			let data = {
 				title: title,

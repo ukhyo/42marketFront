@@ -1,115 +1,100 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-
-
-function test() {
-	const fucnTest = async () => {
-		const response = await axios.get("http://localhost:3001/posts");
-		console.log(response.data, "띵");
-		return (response.data);
-	}
-	return (fucnTest())
-}
-
+import jsonData from "./secret.json";
+import "./app.css";
+import AWS from "aws-sdk";
+import { Row, Col, Button, Input, Alert } from "reactstrap";
+import uuid from "react-uuid";
 const App = () => {
-	const [data, setData] = useState([]);
-	useEffect(() => {
-		test().then(value => {
-			console.log(value);
-			setData(value);
-		});
-	}, [])
 
-	//const [File, setFile] = useState([]);
+	console.log(uuid());
+	const [progress, setProgress] = useState(0);
+	const [selectedFile, setSelectedFile] = useState(null);
+	const [showAlert, setShowAlert] = useState(false);
 
-	//const fileOnChange = async (e) => {
-	//	const files = e.target.files;
-	//	let fileArr = Array.from(files);
-	//	fileArr.forEach(data => {
-	//		console.log(data);
-	//	})
-	//	fileArr.forEach(data => {
-	//		setFile((file) => {
-	//			return [...file, data];
-	//		});
-	//	});
-	//}
-	//const SubmitHandle = async () => {
-	//	let formData = new FormData();
-	//	const config = {
-	//			header: { "content-type": "multipart/form-data" },
-	//		};
-	//	File.forEach((data, index) => {
-	//		formData.append("file", data)
-	//	})
-	//	for (let values of formData.values()) {
-	//		console.log(values, "값");
-	//	}
-	//	 const Food = {
-	//			name: "피자",
-	//			price: 13500,
-	//		};
+	const ACCESS_KEY = jsonData.accesskey;
+	const SECRET_ACCESS_KEY = jsonData.secretkey;
+	const REGION = jsonData.awsregion;
+	const S3_BUCKET = jsonData.s3burket;
 
-	//	var object = {};
-	//	formData.forEach((value, key) => {
-	//		if (!object.hasOwnProperty(key)) {
-	//			object[key] = value;
-	//			return;
-	//		}
-	//		if (!Array.isArray(object[key])) {
-	//			object[key] = [object[key]];
-	//		}
-	//		object[key].Push(value);
-	//	});
-	//	var json = JSON.stringify(object);
-	//	formData.append("stringFood", JSON.stringify(Food));
-	//	let check = {
-	//		item: "zxz",
-	//		price: 1,
-	//	}
-	//	let check2 = new FormData();
-	//	check2.append("file", "file1");
-	//	check2.append("file12", "이론");
-	//	console.log(formData.getAll('file'));
-	//	const res = await axios.post("http://localhost:4000/data", formData, config).then(res => {
-	//		console.log(res,"이거머임");
-	//	});
-	//	console.log(res);
-	//}
+	AWS.config.update({
+		accessKeyId: ACCESS_KEY,
+		secretAccessKey: SECRET_ACCESS_KEY,
+	});
 
-	//const testArr = ["/img/a.jpeg", "/img/b.jpeg", "/img/c.jpeg", "/img/d.jpeg",];
-	//const Test = async () => {
-	//	let Arr = File.map((data) => {
-	//		return data.name;
-	//	});
+	const myBucket = new AWS.S3({
+		params: { Bucket: S3_BUCKET },
+		region: REGION,
+	});
 
-	//	console.log(Arr, "Arr 는?");
+	const handleFileInput = (e) => {
+		const file = e.target.files[0];
+		console.log(file.name.split(".").pop(), "이름");
+		const fileExt = file.name.split(".").pop();
+		//if (file.type !== "image/jpeg" || fileExt !== "jpg") {
+		//	alert("jpg 파일만 Upload 가능합니다.");
+		//	return;
+		//}
+		setProgress(0);
+		setSelectedFile(e.target.files[0]);
+	};
 
-		//const Data = {
-		//	title: "제목",
-		//	subtitle: "내용",
-		//	likes: 0,
-		//	price: 10000,
-		//	img: testArr,
-		//};
-		//await axios.post("http://localhost:4000/comments", Data);
-	//}
+	const uploadFile = (file) => {
+		const params = {
+			ACL: "public-read",
+			Body: file,
+			Bucket: S3_BUCKET,
+			Key: "upload/" + file.name,
+		};
 
-	const hi = "hi";
-	console.log(hi);
-//hi
+		myBucket
+			.putObject(params)
+			.on("httpUploadProgress", (evt) => {
+				console.log(evt, "확인");
+				setProgress(Math.round((evt.loaded / evt.total) * 100));
+				setShowAlert(true);
+				setTimeout(() => {
+					setShowAlert(false);
+					setSelectedFile(null);
+				}, 3000);
+			})
+			.send((err) => {
+				if (err) console.log(err);
+			});
+};
 	return (
-		<div>
-			<SC>
-				{console.log(data, "data check")}
-				{/*<label for="getFile">상품이미지</label>
-				<input type="file" onChange={fileOnChange} multiple id="getFile" />
-				<button type="submit" onClick={SubmitHandle}>제출</button>
-
-				<div></div>
-				<button onClick={Test}>눌러봐유</button>*/}
-			</SC>
+		<div className="App">
+			<img src="https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/5.jpg" />
+			<div className="App-header">
+				<Row>
+					<Col>
+						<h1>File Upload</h1>
+					</Col>
+				</Row>
+			</div>
+			<div className="App-body">
+				<Row>
+					<Col>
+						{showAlert ? (
+							<Alert color="primary">업로드 진행률 : {progress}%</Alert>
+						) : (
+							<Alert color="primary">파일을 선택해 주세요.</Alert>
+						)}
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<Input color="primary" type="file" onChange={handleFileInput} />
+						{selectedFile ? (
+							<Button color="primary" onClick={() => uploadFile(selectedFile)}>
+								{" "}
+								Upload to S3
+							</Button>
+						) : null}
+					</Col>
+				</Row>
+			</div>
 		</div>
 	);
 }
