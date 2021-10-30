@@ -476,13 +476,13 @@
     {
       "title": "서순이",
       "subtitle": "55",
-      "likes": 1,
+      "likes": 2,
       "price": 55,
       "img": [
         "/jsonimg/5.jpg",
         "/jsonimg/book1.jpeg"
       ],
-      "date": "2021-10-21 14시",
+      "date": "시",
       "location": "서울 서초구 강남대로 327 대륭서초타워 ",
       "category": 4,
       "id": 41
