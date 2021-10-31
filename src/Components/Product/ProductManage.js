@@ -10,7 +10,7 @@ function ShowData(props) {
 	return (
 		<ShowDataC>
 			<SellImgC>
-				<img src={ props.img[0] }/>
+				<BackImgC url={ props.img[0] }/>
 			</SellImgC>
 			<TitlePriceC>
 				<div>{props.title}</div>
@@ -70,6 +70,18 @@ const MainHeaderC = styled.fieldset`
 		height: 20px;
 	}
 	margin-bottom: 20px;
+`;
+
+const BackImgC = styled.div`
+	width: 160px;
+	height: 160px;
+	background-image: url("${(props) => props.url}");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 15px;
+	margin-right: 30px;
+	margin-top: 10px;
 `;
 
 const ShowDataC = styled.div`

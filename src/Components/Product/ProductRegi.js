@@ -10,12 +10,13 @@ import axios from "axios";
 import jsonData from "../../secret.json";
 import AWS from "aws-sdk";
 import uuid from "react-uuid";
+
 function ProductRegi(props) {
 	// Aws s3 인증
 	const ACCESS_KEY = jsonData.accesskey;
 	const SECRET_ACCESS_KEY = jsonData.secretkey;
 	const REGION = jsonData.awsregion;
-	const S3_BUCKET = jsonData.s3burket;
+	const S3_BUCKET_NAME = jsonData.s3burket;
 
 	AWS.config.update({
 		accessKeyId: ACCESS_KEY,
@@ -23,7 +24,7 @@ function ProductRegi(props) {
 	});
 
 	const myBucket = new AWS.S3({
-		params: { Bucket: S3_BUCKET },
+		params: { Bucket: S3_BUCKET_NAME },
 		region: REGION,
 	});
 
@@ -115,12 +116,13 @@ function ProductRegi(props) {
 			}
 			const pickUUid = uuid();
 			let name = Files.map((data, idx) => {
+				console.log(data, "데이터부분");
 				const type = data.name.split(".").pop();
 				const filename = `${pickUUid}${idx}.${type}`;
 				const params = {
 			ACL: "public-read",
 			Body: data,
-			Bucket: S3_BUCKET,
+			Bucket: S3_BUCKET_NAME,
 			Key: "upload/" + filename,
 		};
 		myBucket
@@ -128,7 +130,7 @@ function ProductRegi(props) {
 			.send((err) => {
 				if (err) console.log(err);
 			});
-				return `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/upload/${filename}`;
+				return `https://${S3_BUCKET_NAME}.s3.${REGION}.amazonaws.com/upload/${filename}`;
 			});
 			let data = {
 				title: title,
@@ -146,6 +148,7 @@ function ProductRegi(props) {
 		}
 		pushData();
 	}
+
 	return (
 		<div>
 			<RegiHeaderC>
@@ -163,7 +166,7 @@ function ProductRegi(props) {
 							<div>
 								<span>- 상품 이미지는 640x640에 최적화 되어 있습니다.</span>
 								<span>- 이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.</span>
-								<span>- 이미지를 클릭 할 경우 원본이미지를 확인할 수 있습니다.</span>
+								{/*<span>- 이미지를 클릭 할 경우 원본이미지를 확인할 수 있습니다.</span>*/}
 							</div>
 						</LabelAndManualC>
 						<ul>
@@ -179,7 +182,7 @@ function ProductRegi(props) {
 							{FileUrl ? FileUrl.map((img, idx) => {
 								return (
 									<li key={idx}>
-										<img src={img} alt={idx}></img>
+										<BackImgC url={ img }></BackImgC>
 									</li>
 								);
 							}): ""}
@@ -345,6 +348,18 @@ const LabelAndManualC = styled.div`
 	}
 `;
 
+const BackImgC = styled.div`
+	width: 190px;
+	height: 190px;
+	background-image: url("${(props) => props.url}");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 15px;
+	margin-right: 30px;
+	margin-top: 10px;
+`;
+
 const PictureC = styled.div`
 	width: 100%;
 	> ${InputC} {
@@ -354,14 +369,6 @@ const PictureC = styled.div`
 			border: none;
 			background-color: #fff;
 		}
-		/*display: flex;
-		flex-wrap: wrap;*/
-		img {
-			margin-right: 10px;
-			margin-top: 10px;
-			width: 190px;
-			height: 190px;
-		}
 		> ul {
 			display: flex;
 			flex-wrap: wrap;
@@ -369,9 +376,6 @@ const PictureC = styled.div`
 			> li {
 				display: flex;
 			}
-			/*> li:first-child {
-				position: relative;
-			}*/
 		}
 	}
 	padding-bottom: 30px;

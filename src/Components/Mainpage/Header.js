@@ -29,7 +29,7 @@ function Header() {
 			<HeaderLineC>
 				<HeaderLogoC>
 					<Link to="/">
-						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/logoTest2.png" } />
+						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/test22.png" } />
 					</Link>
 				</HeaderLogoC>
 				<HeaderSearchC>
@@ -94,7 +94,7 @@ const HeaderLineC = styled.div`
 `;
 
 const HeaderLogoC = styled.div`
-	width: 150px;
+	width: 180px;
 `;
 
 const HeaderLogoImgC = styled.img`
@@ -104,7 +104,7 @@ const HeaderLogoImgC = styled.img`
 `;
 
 const HeaderSearchC = styled.div`
-	width: 540px;
+	width: 600px;
 `;
 
 const HeaderSearchInputC = styled.fieldset`
@@ -114,11 +114,6 @@ const HeaderSearchInputC = styled.fieldset`
 	padding: 0;
 	width: 100%;
 	border-bottom: 1.5px solid rgba(0,0,0, 0.7);
-	/*border-top: none;*/
-	/*border-left: none;*/
-	/*border-right: none;*/
-	/*background-color: #fcfcfc;*/
-	/*border-color: rgb(178, 236, 238);*/
 	background-color: #fdfdfd;
 	& > input::placeholder {
 		color: rgba(0,0,0,0.2);

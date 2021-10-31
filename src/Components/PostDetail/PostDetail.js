@@ -54,7 +54,7 @@ function PostDetail(props) {
 			<PostDetailC>
 				<PostDetailHeaderC>
 					<PostDetailMainC>
-						<img src={data.img[ImgIdx]} />
+						<BackImg url={ data.img[ImgIdx]}/*src={data.img[ImgIdx]}*/ />
 						<div>
 							<div onClick={(e) => {
 								SelectPicture(e, 0)
@@ -108,13 +108,24 @@ const PostDetailMainC = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	> img {
+	width: 400px;
+	height: 400px;
+	position: relative;
+	/*> img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0 px;
+		left: 0 px;
+		background-color: #fdfdfd;
 		width: 400px;
 		height: 400px;
 		border-radius: 15px;
 		margin-right: 30px;
-	}
-	> div {
+	}*/
+	> div:last-child {
+		position: absolute;
+		bottom: 0px;
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
@@ -127,6 +138,21 @@ const PostDetailMainC = styled.div`
 			margin-right: 30px;
 		}
 	}
+`;
+
+const BackImg = styled.div`
+	/*position: absolute;*/
+	width: 100%;
+	height: 100%;
+	/*top: 0 px;
+	left: 0 px;*/
+	/*background-color: ${(props) => props.color};*/
+	background-image: url("${(props) => props.url}");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 15px;
+	margin-right: 30px;
 `;
 
 const PostDetailInfoC = styled.div`

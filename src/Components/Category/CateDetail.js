@@ -35,7 +35,7 @@ function CateDetail(props) {
 								},
 							}}
 							>
-							<img src={data.img[0]} />
+							<BackImgC url={data.img[0]} />
 						</Link>
 						<div>{data.title}</div>
 						<div>{data.price} 원</div>
@@ -76,6 +76,10 @@ const PostViewC = styled.div`
 	}
 `;
 
+const BackImgC = styled.div`
+	background-image: url("${(props) => props.url}");
+`;
+
 const PostItemC = styled.div`
 	width: 19%;
 	height: 270px;
@@ -84,16 +88,14 @@ const PostItemC = styled.div`
 	border: 1px solid #f0f0f0;
 	/*background-color: rgb(178, 236, 238);*/
 	background-color: #ffffff;
-	& img {
-		margin: 0;
+	${BackImgC} {
+		width: 100%px;
+		height: 200px;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		border-radius: 15px;
 		box-sizing: border-box;
-		/*border: 1px solid rgb(178, 236, 238);*/
-		/*border: 1px solid #f0f0f0;*/
-		/*border-radius: 15px;*/
-		border-top-right-radius: 15px;
-		border-top-left-radius: 15px;
-		width: 100%;
-		height: 190px;
 	}
 	> div {
 		width: 100%;

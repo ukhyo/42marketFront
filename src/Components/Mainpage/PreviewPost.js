@@ -32,7 +32,7 @@ function PostViewComp({ idx }) {
 											},
 										}}
 									>
-										<img src={data.img} />
+										<BackImgC url={data.img[0]} />
 									</Link>
 									<div>{title}</div>
 									<div>{data.price} 원</div>
@@ -56,6 +56,7 @@ function PreviewPost() {
 		</PostViewC>
 	);
 }
+
 
 const PostViewC = styled.div`
 	width: 1200px;
@@ -82,25 +83,25 @@ const PostViewLineC = styled.div`
 	flex-wrap: wrap;
 `;
 
+const BackImgC = styled.div`
+	width: 100%;
+	height: 200px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 15px;
+	box-sizing: border-box;
+	background-image: url("${(props) => props.url}");
+`;
+
+
 const PostItemC = styled.div`
 	width: 18%;
 	height: 270px;
 	border-radius: 15px;
 	margin-bottom: 20px;
 	border: 1px solid #f0f0f0;
-	/*background-color: rgb(178, 236, 238);*/
 	background-color: #ffffff;
-	& img {
-		margin: 0;
-		box-sizing: border-box;
-		/*border: 1px solid rgb(178, 236, 238);*/
-		/*border: 1px solid #f0f0f0;*/
-		/*border-radius: 15px;*/
-		border-top-right-radius: 15px;
-		border-top-left-radius: 15px;
-		width: 100%;
-		height: 190px;
-	}
 	> div {
 		width: 100%;
 		margin-top: 10px;
