@@ -35,10 +35,10 @@ function	useAsync(callback, deps = [])
 		error: false
 	});
 	const fetchData = async () => {
+		
 		dispatch({ type: 'LOADING' });
 		try
 		{
-			console.log("why??");
 			const data = await callback();
 			dispatch({ type: 'SUCCESS', data});
 		}

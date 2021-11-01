@@ -1,4 +1,3 @@
-import React, { useReducer, useEffect, useState } from "react";
 import axios from "axios";
 import useAsync from "./useAsync";
 import styled from "styled-components";
@@ -11,34 +10,17 @@ async function getList(list)
 	return response.data;
 }
 
-function InfoList({match})
+function InfoList({ url })
 {
-	const { tags } = match.params;
-	const list = await axios.get(
-		`http://localhost:3001/${list}`
-	); 
-	const [state] = useAsync(() => getList(tags), []);
+	console.log(url, "Info");
+	const [state] = useAsync(() => getList(url), [url]);
 	const { loading, data: list, error } = state;
-	// const [list, setList] = useState([]);
-	// useEffect(()=> {
-	// 	console.log("tttttttttttt");
-	// 	const getData = () => {
-	// 		getList("buylist").then(data => {
-	// 			console.log(data, "data");
-	// 			setList(list => {
-	// 				console.log("come here?");
-	// 				return ([...list, data]);
-	// 			})
-	// 		})
-	// 	}
-	// 	getData();
-	// }, [])
+
 	if (loading) return <div>Loading...</div>;
 	if (error) return <div>Error occured</div>;
 	if (!list) return null;
 	return (
 		<InfoListC>
-			{/* {console.log(list, "gggggggg")} */}
 			{list.map((posts,index) => {
 				return (
 					<PostListC key={index}>
@@ -50,11 +32,8 @@ function InfoList({match})
 								<h2>{posts.title}</h2>
 							</PostInfos__TitleC>
 							<PostInfos__PriceC>
-								<span>{posts.price}</span>
+								<span>{posts.price}₩</span>
 							</PostInfos__PriceC>
-							<PostInfos__IntroC>
-								<span>{posts.subtitle}</span>
-							</PostInfos__IntroC>
 						</PostInfosC>
 						<PostLogsC>
 						</PostLogsC>
@@ -68,7 +47,7 @@ function InfoList({match})
 const PostListC = styled.div`
 	width: 880px;
 	height: 160px;
-	margin: 0px 20px;
+	margin: 0px 50px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
@@ -80,16 +59,18 @@ const PostImgC = styled.div`
 	align-items: center;
 	justify-content: center;
 	img {
-		border: 1px solid rgba(0,0,0,1);
 		width: 140px;
 		height: 140px;
 	}
 `;
 
 const PostInfosC = styled.div`
+	padding-right: 100px;
 	width: 60%;
 	height: 90%;
-	align-content: center;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 `;
 
 const PostLogsC = styled.div`
@@ -97,18 +78,20 @@ const PostLogsC = styled.div`
 `;
 
 const PostInfos__TitleC = styled.div`
+	margin-bottom: 30px;
 	h2 {
 		font-weight: 600;
-		font-size: 20px;
+		font-size: 24px;
+		color: rgb(99, 178, 225);
 	}
 `;
 
-const PostInfos__IntroC = styled.div`
-
-`;
-
 const PostInfos__PriceC = styled.div`
-
+	span {
+		font-weight: 600;
+		font-size: 18px;
+		color: rgba(0, 0, 0, 0.8);
+	}
 `;
 
 const InfoListC = styled.div`

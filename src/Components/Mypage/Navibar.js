@@ -2,65 +2,55 @@ import React, { useState } from "react";
 import axios from "axios";
 import InfoList from "./Infolist";
 import styled from "styled-components";
-import { Route, Link } from "react-router-dom";
+import { Link, withRoute } from "react-router-dom";
 
-function	NaviBar()
+const NaviBar = (props) =>
 {
+	
 	return (
 		<NaviBarC>
-			<BuyListC to="/mypage/buylist">
-				<span>구매 목록</span>
-			</BuyListC>
-			<SellListC to="/mypage/selllist">
-				<span>판매 목록</span>
-			</SellListC>
-			<PickListC to="/mypage/picklist">
-				<span>찜한 목록</span>
-			</PickListC>
-			<CommentsListC to="/mypage/commentslist">
-				<span>댓글 목록</span>
-			</CommentsListC>
+			<ItemC current={props.name === "buylist"}>
+				<ListC to="/mypage/buylist" current={props.name === "buylist"}>구매 목록</ListC>
+			</ItemC>
+			<ItemC current={props.name === "selllist"}>
+				<ListC to="/mypage/selllist" current={props.name === "selllist"}>판매 목록</ListC>
+			</ItemC>
+			<ItemC current={props.name === "picklist"}>
+				<ListC to="/mypage/picklist" current={props.name === "picklist"}>찜한 목록</ListC>
+			</ItemC>
+			<ItemC current={props.name === "commentslist"}>
+				<ListC to="/mypage/commentslist" current={props.name === "commentslist"}>댓글 목록</ListC>
+			</ItemC>
 		</NaviBarC>
 	);
-}
+};
 
-const NaviBarC = styled.div`
+const NaviBarC = styled.ul `
 	height: 70px;
 	display: flex;
 	justify-content: center;
 	align-content: center;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
-	> Link {
-		width: 130px;
-		height: 70px;
-		> span {
-			font-weight: 600;
-			font-size: 16px;
-			display: table-cell;
-			text-align: left;
-			padding: 0px 30px;
-			padding-top: 45px;
-			color: rgb(50, 232, 230);
-			vertical-align: middle;
-		}
-	}
 `;
 
-const		BuyListC = styled(Link)`
-
+const		ItemC = styled.li`
+	width: 130px;
+	height: 70px;
+	border-bottom: 4px solid
+		${props => (props.current ? "rgb(53, 124, 202)" : "transparent")};
+	transition: border-bottom 0.5s ease-in-out;
 `;
 
-const		SellListC = styled(Link)`
-
-`;
-
-const		PickListC = styled(Link)`
-
-`;
-
-const		CommentsListC = styled(Link)`
-
+const		ListC = styled(Link)`
+	font-weight: 600;
+	font-size: 16px;
+	display: table-cell;
+	text-align: left;
+	padding: 0px 30px;
+	padding-top: 45px;
+	vertical-align: middle;
+	text-decoration-line: none;
+	color : ${props => (props.current ? "rgb(53, 124, 202)" : "rgba(0, 0, 0, 0.2)")};
 `;
 
 export default NaviBar;

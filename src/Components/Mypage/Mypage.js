@@ -7,29 +7,25 @@ import ProfileBar from "./Profile";
 import NaviBar from "./Navibar";
 import InfoList from "./Infolist";
 
-function	MypageMain()
+function	MypageMain(props)
 {
-
 	return (
 		<MypageMainC>
 			<ProfileBar />
-			<Route
-				path="/mypage"
-				exact
-				render={() => <InfoList />}
-			/>
-			<Route path="/mypage/:tags" component={ InfoList }/>
+			<InfoList url={props.name}/>
 		</MypageMainC>
 	)
 }
 
-function	Mypage()
+function	Mypage({ match })
 {
+	const { tabs } = match.params;
+
 	return (
 		<div>
-			<Header></Header>
-			<NaviBar></NaviBar>
-			<MypageMain></MypageMain>
+			<Header />
+			<NaviBar name={tabs}/>
+			<MypageMain name={tabs}/>
 		</div>
 	);
 };
