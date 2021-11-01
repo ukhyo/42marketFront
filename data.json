@@ -29,7 +29,7 @@
     {
       "title": "옷 팜",
       "subtitle": "ㅈㄱㄴ",
-      "likes": 3,
+      "likes": 4,
       "price": 15300,
       "img": [
         "/jsonimg/cloth3.jpeg"
@@ -42,7 +42,7 @@
     {
       "title": "옷 ㅍㅍ",
       "subtitle": "ㅍㅍ",
-      "likes": 8,
+      "likes": 9,
       "price": 23000,
       "img": [
         "/jsonimg/test.jpeg.jpg"
@@ -94,7 +94,7 @@
     {
       "title": "맥북인지 삼성노트북인지 모르겠음",
       "subtitle": "직접판단하세요",
-      "likes": 8,
+      "likes": 10,
       "price": 1234123,
       "img": [
         "/jsonimg/it3.jpeg"
@@ -562,7 +562,7 @@
     {
       "title": "사진들 테스트",
       "subtitle": "ㅅㅅ",
-      "likes": 5,
+      "likes": 6,
       "price": 1555555,
       "img": [
         "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/2d308ec-e0a-f238-2304-7cecec8c6df0.jpg",
@@ -637,13 +637,13 @@
     {
       "title": "width : 1000 height: 600",
       "subtitle": "5",
-      "likes": 1,
+      "likes": 2,
       "price": 5,
       "img": [
         "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/76ac4f-14-6408-ec68-e4f14ac2e3f80.png",
         "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/76ac4f-14-6408-ec68-e4f14ac2e3f81.png"
       ],
-      "date": "2021-10-21 14시",
+      "date": "시",
       "location": "서울 강남구 개포로 416 ",
       "category": 1,
       "id": 52
@@ -651,15 +651,41 @@
     {
       "title": "123",
       "subtitle": "test",
+      "likes": 2,
       "price": 1,
-      "likes": 0,
-      "category": 3,
-      "location": "서울 서초구 강남대로 327 대륭서초타워 ",
       "img": [
         "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/4105b1a-0fda-c842-d560-76c738c1c1210.png"
       ],
-      "date": "2021-10-21T14:08:25+09:00",
+      "date": "시",
+      "location": "서울 서초구 강남대로 327 대륭서초타워 ",
+      "category": 3,
       "id": 53
+    },
+    {
+      "title": "맥 팝니다",
+      "subtitle": "맥 팝니다.",
+      "likes": 1,
+      "price": 300000,
+      "img": [
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/2b006-4441-d400-75dc-2641cf7730be0.png"
+      ],
+      "date": "2021-10-21 14시",
+      "location": "서울 강남구 개포로 416 5층",
+      "category": 1,
+      "id": 54
+    },
+    {
+      "title": "사진에 나와있는 상품 판매합니다.",
+      "subtitle": "22",
+      "likes": 2,
+      "price": 2222222,
+      "img": [
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/cab1fe4-206-10a3-0d41-4f5a12cde84d0.jpg"
+      ],
+      "date": "시",
+      "location": "서울 강남구 개포로 416 5층",
+      "category": 1,
+      "id": 55
     }
   ],
   "comments": [

@@ -8,28 +8,25 @@ import { Link } from "react-router-dom";
 
 function Header() {
 	const [text, setText] = useState("");
-	console.log(`%c${text} + red`, "color:red");
 	function onChange(e) {
 		setText(e.target.value);
-		console.log(e.target.name);
 	}
-
 	const check = (e) => {
 		if (e.key == "Enter") {
 			imgClick();
 		}
 	};
-
 	function imgClick(e) {
 		setText("");
 	}
+	const [Login, setLogin] = useState(false);
 
 	return (
 		<HeaderC>
 			<HeaderLineC>
 				<HeaderLogoC>
 					<Link to="/">
-						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/test22.png" } />
+						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/test22.png"} />
 					</Link>
 				</HeaderLogoC>
 				<HeaderSearchC>
@@ -62,15 +59,37 @@ function Header() {
 							<i className="far fa-bell fa-1.5x"></i>알림
 						</LinkC>
 					</span>
-					<span>
-						<i className="far fa-user fa-1.5x"></i>
-						<LinkC to={{
-							pathname: "/mypage/buylist",
-							state: {
-								path: "buylist",
-							}
-							}} > 내정보</LinkC>
-					</span>
+					{Login ? (
+						<span>
+							<i className="far fa-user fa-1.5x"></i>
+							<LinkC
+								to={{
+									pathname: "/mypage/buylist",
+									state: {
+										path: "buylist",
+									},
+								}}
+							>
+								{" "}
+								내정보
+							</LinkC>
+						</span>
+					) : (
+						<span>
+							<i className="far fa-user fa-1.5x"></i>
+							<LinkC
+								to={{
+									pathname: "/mypage/buylist",
+									state: {
+										path: "buylist",
+									},
+								}}
+							>
+								{" "}
+								로그인
+							</LinkC>
+						</span>
+					)}
 				</HeaderInfoC>
 			</HeaderLineC>
 		</HeaderC>

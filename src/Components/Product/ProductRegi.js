@@ -10,7 +10,6 @@ import axios from "axios";
 import jsonData from "../../secret.json";
 import AWS from "aws-sdk";
 import uuid from "react-uuid";
-
 function ProductRegi(props) {
 	// Aws s3 인증
 	const ACCESS_KEY = jsonData.accesskey;
@@ -71,8 +70,10 @@ function ProductRegi(props) {
 	}
 
 	// img section
+
 	const onChangeImg = (e) => {
 		const file = e.target.files;
+		console.log("files = ", e.target.files[0]);
 		let transArr = Array.from(file);
 		if (transArr.length + Files.length > 8) {
 			alert(`사진은 최대 8개까지 가능합니다. 현재 : ${Files.length}개`);
@@ -80,14 +81,14 @@ function ProductRegi(props) {
 		}
 		transArr.forEach((file) => {
 			setFiles((Files) => [...Files, file]);
-		})
+		});
 		transArr.forEach(async (file) => {
 			let reader = new FileReader();
 			reader.onload = (e) => {
-				setFileUrl(url => [...url, e.target.result]);
+				setFileUrl((url) => [...url, e.target.result]);
 			};
 			reader.readAsDataURL(file);
-		})
+		});
 	};
 
 	// submit section
@@ -165,8 +166,8 @@ function ProductRegi(props) {
 							<label for="test12">이미지 등록</label>
 							<div>
 								<span>- 상품 이미지는 640x640에 최적화 되어 있습니다.</span>
+								<span>- 비율이 1:1인 사진을 올리시면 짤리지 않습니다.</span>
 								<span>- 이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.</span>
-								{/*<span>- 이미지를 클릭 할 경우 원본이미지를 확인할 수 있습니다.</span>*/}
 							</div>
 						</LabelAndManualC>
 						<ul>
@@ -175,7 +176,9 @@ function ProductRegi(props) {
 									type="file"
 									id="test12"
 									multiple
-									onChange={onChangeImg}
+									onChange={e => {
+										onChangeImg(e, setFileUrl, setFiles, Files);
+									}}
 									required
 								></input>
 							</li>
@@ -197,6 +200,7 @@ function ProductRegi(props) {
 						<input onChange={inputChange} type="text" placeholder="상품 제목을 입력하세요." value={title} required />
 						<span> {title.length}/40</span>
 					</InputC>
+
 				</TitleC>
 				<CategoryC>
 					<SubtitleC>
@@ -272,19 +276,6 @@ function ProductRegi(props) {
 	);
 }
 
-
-function Product() {
-	return (
-		<SectionC>
-			<Header />
-			<ProductStateBar />
-			<Route path={"/product/regi"} component={ ProductRegi } />
-			<Route path={"/product/manage"} component={ ProductManage }/>
-			<Footer />
-		</SectionC>
-	);
-}
-
 // width: 1000, 1200 비교해보기. 팀원들한테 상의 후 결정 => 수정시 Product.js stateBar 수정해야함
 
 const RegiHeaderC = styled.div`
@@ -353,10 +344,9 @@ const BackImgC = styled.div`
 	height: 190px;
 	background-image: url("${(props) => props.url}");
 	background-position: center;
-	background-repeat: no-repeat;
 	background-size: cover;
 	border-radius: 15px;
-	margin-right: 30px;
+	margin-right: 10px;
 	margin-top: 10px;
 `;
 
@@ -515,5 +505,4 @@ const SectionC = styled.section`
 	margin: 0 auto;
 `;
 
-export { ProductRegi }
-export default Product;
+export default ProductRegi;

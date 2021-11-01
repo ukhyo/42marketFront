@@ -6,21 +6,36 @@ import axios from "axios";
 function PostViewComp({ idx }) {
 	let [item, setItem] = useState([]);
 	useEffect(() => {
-		const getImg = async () => {
-			const { data } = await axios.get("http://localhost:3001/posts/");
-			setItem(data);
+		const ApiGet = async () => {
+			const { data } = await axios.get("http://localhost:3001/posts/").then(response => {
+				return (response);
+			});
+			console.log(data);
+			let tempArr = [];
+			let i = 0;
+			if (data.length < idx + 5) {
+				alert("error");
+				return;
+			}
+			else {
+				console.log(data.length);
+			}
+			const limit = idx + 5;
+			for (idx; idx < limit; idx++) {
+				tempArr[i] = data[idx];
+				i++;
+			}
+			setItem(tempArr);
 		};
-		getImg();
+		ApiGet();
 	}, []);
+
 	return (
 			<PostViewLineC>
 			{item.map((data, index) => {
 				let title;
-				if (data.title.length > 12)
-					title = data.title.slice(0, 12) + "...";
-				else
-					title = data.title;
-						if (index < idx || index > (idx + 4)) return;
+				data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
+					: title = data.title;
 							return (
 								<PostItemC key={index}>
 									<Link
@@ -87,7 +102,6 @@ const BackImgC = styled.div`
 	width: 100%;
 	height: 200px;
 	background-position: center;
-	background-repeat: no-repeat;
 	background-size: cover;
 	border-radius: 15px;
 	box-sizing: border-box;

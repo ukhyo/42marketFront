@@ -54,15 +54,16 @@ function PostDetail(props) {
 			<PostDetailC>
 				<PostDetailHeaderC>
 					<PostDetailMainC>
-						<BackImg url={ data.img[ImgIdx]}/*src={data.img[ImgIdx]}*/ />
-						<div>
+						<BackImg url={ data.img[ImgIdx]} />
+						<LeftRightBtnC>
 							<div onClick={(e) => {
 								SelectPicture(e, 0)
 							}}>이전사진</div>
+							<div>{ImgIdx + 1}/{data.img.length}</div>
 							<div onClick={(e) => {
 								SelectPicture(e, 1)
 							}}>다음사진</div>
-						</div>
+						</LeftRightBtnC>
 					</PostDetailMainC>
 					<PostDetailInfoC>
 						<TitleC>{data.title}</TitleC>
@@ -102,28 +103,19 @@ const PostDetailHeaderC = styled.div`
 	padding-bottom: 30px;
 	border-bottom: 1px solid #c0c0c0;
 `;
-
+const LeftRightBtnC = styled.div`
+	/*height: 30px;*/
+	/*margin-top: 10px;*/
+`;
 const PostDetailMainC = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 400px;
-	height: 400px;
+	height: 420px;
 	position: relative;
-	/*> img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0 px;
-		left: 0 px;
-		background-color: #fdfdfd;
-		width: 400px;
-		height: 400px;
-		border-radius: 15px;
-		margin-right: 30px;
-	}*/
-	> div:last-child {
+	${LeftRightBtnC} {
 		position: absolute;
 		bottom: 0px;
 		display: flex;
@@ -141,17 +133,11 @@ const PostDetailMainC = styled.div`
 `;
 
 const BackImg = styled.div`
-	/*position: absolute;*/
 	width: 100%;
-	height: 100%;
-	/*top: 0 px;
-	left: 0 px;*/
-	/*background-color: ${(props) => props.color};*/
+	height: 400px;
 	background-image: url("${(props) => props.url}");
 	background-position: center;
-	background-repeat: no-repeat;
 	background-size: cover;
-	border-radius: 15px;
 	margin-right: 30px;
 `;
 

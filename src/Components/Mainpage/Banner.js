@@ -5,6 +5,7 @@ import bannerimg from "../img/mainBanner.png";
 import testImg from "../img/test1.jpeg";
 import testBanner from "../img/testBanner.png";
 import banner from "../img/test123.jpg";
+
 function MainBanner() {
 	return (
 		<MainC>
