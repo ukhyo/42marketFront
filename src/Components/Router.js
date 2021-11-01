@@ -12,7 +12,7 @@ function Router() {
 		<div>
 			<Switch>
 				<Route path={"/"} exact component={Mainpage}></Route>
-				<Route path={"/mypage/:tags"} component={Mypage}></Route>
+				<Route path={"/mypage/:tabs"} component={Mypage}></Route>
 				<Route path={"/postview/:id"} exact component={PostDetail}></Route>
 				<Route path={"/product/:tabs"} exact component={Product}></Route>
 				<Route path={"/category/:catename"} exact component={Category}/>
