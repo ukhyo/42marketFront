@@ -35,7 +35,7 @@ function	useAsync(callback, deps = [])
 		error: false
 	});
 	const fetchData = async () => {
-		
+		console.log("here?");
 		dispatch({ type: 'LOADING' });
 		try
 		{

@@ -3,6 +3,7 @@ import axios from "axios";
 import Nongdam from "../../Images/nongdam.png";
 import useAsync from "./useAsync";
 import styled from "styled-components";
+import { FaImage } from 'react-icons/fa';
 
 async function getProfile()
 {
@@ -14,17 +15,27 @@ async function getProfile()
 
 function	ProfileBar()
 {
-	const [state, refetch] = useAsync(getProfile, []);
+	const [state] = useAsync(getProfile, ["profile"]);
 	const { loading, data: profile, error }  = state;
 
 	if (loading) return <div>loading...</div>;
 	if (error) return <div>Error occured</div>;
 	if (!profile) return null;
 
+
 	return (
 		<ProfileBarC>
 			<ProfileImgC>
 				<img src={Nongdam}/>
+				<ProfileImgModifyC>
+					<label for="Profile_Img">
+						<FaImage />
+					</label>
+					<input
+						type="file"
+						id="Profile_Img"
+						onChange={onImgChange}></input>
+				</ProfileImgModifyC>
 			</ProfileImgC>
 			<ProfileNameC>
 				<span>{profile.name}</span>
@@ -44,6 +55,26 @@ function	ProfileBar()
 	)
 }
 
+
+
+const		ProfileImgModifyC = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	background-color: #fdfdfd;
+	border-radius: 15px;
+	left: 230px;
+	top: 220px;
+	> label {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+`;
 
 const		ProfileContentsC = styled.div`
   	width: 280px;
@@ -67,19 +98,21 @@ const		ProfileNameC = styled.div`
 `;
 
 const		ProfileBarC = styled.div`
-  width: 280px;
-  height: 600px;
-  margin-top: 30px;
+	width: 280px;
+	height: 600px;
+	margin-top: 30px;
 `;
 
 
 const		ProfileImgC = styled.div`
-  img {
-    width: 280px;
-    height: 280px;
-	border-radius: 150px;
-	border: 1px solid rgba(0, 0, 0, 0.2);
-  }
+	display: flex;
+	position: relative;
+	img {
+		width: 280px;
+		height: 280px;
+		border-radius: 150px;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+	}
 `;
 
 const		ProfileLevelC = styled.div`
