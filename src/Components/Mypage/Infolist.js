@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import axios from "axios";
 import useAsync from "./useAsync";
 import styled from "styled-components";
@@ -11,19 +11,28 @@ async function getList(list)
 	return response.data;
 }
 
-function InfoList({match})
+function InfoList(props, {match})
 {
-	const { tags } = match.params;
-	const [state] = useAsync(() => getList(tags), []);
-	const { loading, data: list, error } = state;
-
-	if (loading) return <div>Loading...</div>;
-	if (error) return <div>Error occured</div>;
-	if (!list) return null;
-	console.log(list, "hwat at");
+	console.log(props);
+	let { location: { state: test } } = props;
+	const [data, setData] = useState([]);
+	useEffect(() => {
+		const getData = async () => {
+			let test = await axios.get(`http://localhost:3001/${match}`);
+			console.log(test);
+		}
+		getData();
+	}, [])
+	//const { tags } = match.params;
+	//const [state] = useAsync(() => getList(tags), [tags]);
+	//const { loading, data: list, error } = state;
+	//console.log(list, "리스트안에는?");
+	//if (loading) return <div>Loading...</div>;
+	//if (error) return <div>Error occured</div>;
+	//if (!list) return null;
 	return (
 		<InfoListC>
-			{list.map((posts,index) => {
+			{/*{list.map((posts,index) => {
 				return (
 					<PostListC key={index}>
 						<PostImgC>
@@ -44,7 +53,7 @@ function InfoList({match})
 						</PostLogsC>
 					</PostListC>
 				);
-			})}
+			})}*/}
 		</InfoListC>
 	);
 }

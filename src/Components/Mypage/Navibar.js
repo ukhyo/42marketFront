@@ -8,10 +8,20 @@ function	NaviBar()
 {
 	return (
 		<NaviBarC>
-			<BuyListC to="/mypage/buylist">
+			<BuyListC to={{
+				pathname: "/mypage/buylist",
+				state: {
+					path: "buylist",
+				}
+			}}>
 				<span>구매 목록</span>
 			</BuyListC>
-			<SellListC to="/mypage/selllist">
+			<SellListC to={{
+				pathname: "/mypage/selllist",
+				state: {
+					path: "selllist",
+				}
+			}}>
 				<span>판매 목록</span>
 			</SellListC>
 			<PickListC to="/mypage/picklist">

@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from "react";
 import axios from "axios";
-import {Route} from 'react-router-dom'; 
+import {Route} from 'react-router-dom';
 import styled from "styled-components";
 import Header from "../Mainpage/Header"
 import ProfileBar from "./Profile";
@@ -13,18 +13,14 @@ function	MypageMain()
 	return (
 		<MypageMainC>
 			<ProfileBar />
-			<Route
-				path="/mypage"
-				exact
-				render={() => <InfoList />}
-			/>
-			<Route path="/mypage/:tags" component={ InfoList }/>
+			<Route path="/mypage/buylist" component={InfoList} />
+			<Route path="/mypage/selllist" component={InfoList} />
 		</MypageMainC>
-	)
+	);
 }
 
-function	Mypage()
-{
+function Mypage(props) {
+	console.log(props,"testset");
 	return (
 		<div>
 			<Header></Header>

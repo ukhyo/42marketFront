@@ -130,10 +130,8 @@ const App = () => {
 			maxSizeMB: 2,
 			maxWidthOrHeight: 600,
 		};
-
 		const compressedFile = await imageCompression(file, options);
-
-		setSelectedFile(file);
+		setSelectedFile(compressedFile);
 		reader.readAsDataURL(file);
 	};
 
