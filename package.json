@@ -16,7 +16,7 @@
 
     "@testing-library/user-event": "^12.8.3",
 
-    "aws-sdk": "^2.1018.0",
+    "aws-sdk": "^2.1019.0",
 
     "axion": "^0.1.0",
 

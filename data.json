@@ -263,14 +263,14 @@
     {
       "title": "책을 읽는 사람들 팝니다!",
       "subtitle": "재밌게 읽었는데 다른책 구매하려고 팝니다.",
+      "likes": 1,
       "price": 12345,
-      "likes": 0,
-      "category": 4,
-      "location": "서울 서초구 강남대로 327 대륭서초타워 ",
       "img": [
         "/jsonimg/book5.jpeg"
       ],
-      "date": "2021-10-21T14:08:25+09:00",
+      "date": "2021-10-21 14시",
+      "location": "서울 서초구 강남대로 327 대륭서초타워 ",
+      "category": 4,
       "id": 26
     },
     {
@@ -807,6 +807,7 @@
     }
   ],
   "profile": {
+    "img": "https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1",
     "name": "hyeolee",
     "level": 50,
     "intro": "hello my name is hyeolee"
