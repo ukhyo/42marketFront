@@ -8,6 +8,7 @@ function PostViewComp({ idx }) {
 	useEffect(() => {
 		const ApiGet = async () => {
 			const { data } = await axios.get("http://localhost:3001/posts/").then(response => {
+				console.log(response, "test");
 				return (response);
 			});
 			console.log(data);

@@ -103,7 +103,7 @@ function ProductRegi(props) {
 				alert("제목을 입력해주세요.")
 				return;
 			}
-			else if (price === 0) {
+			else if (price === 0 && idx !== 100) {
 				alert("가격을 입력해주세요.");
 				return;
 			}
@@ -114,6 +114,10 @@ function ProductRegi(props) {
 			else if (idx === 0) {
 				alert("카테고리를 선택해주세요.");
 				return;
+			}
+			else if (idx === 100 && price !== 0) {
+				alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
+				setPrice(0);
 			}
 			const pickUUid = uuid();
 			let name = Files.map((data, idx) => {
@@ -176,19 +180,21 @@ function ProductRegi(props) {
 									type="file"
 									id="test12"
 									multiple
-									onChange={e => {
+									onChange={(e) => {
 										onChangeImg(e, setFileUrl, setFiles, Files);
 									}}
 									required
 								></input>
 							</li>
-							{FileUrl ? FileUrl.map((img, idx) => {
-								return (
-									<li key={idx}>
-										<BackImgC url={ img }></BackImgC>
-									</li>
-								);
-							}): ""}
+							{FileUrl
+								? FileUrl.map((img, idx) => {
+										return (
+											<li key={idx}>
+												<BackImgC url={img}></BackImgC>
+											</li>
+										);
+								  })
+								: ""}
 						</ul>
 					</InputC>
 				</PictureC>
@@ -200,7 +206,6 @@ function ProductRegi(props) {
 						<input onChange={inputChange} type="text" placeholder="상품 제목을 입력하세요." value={title} required />
 						<span> {title.length}/40</span>
 					</InputC>
-
 				</TitleC>
 				<CategoryC>
 					<SubtitleC>
@@ -213,6 +218,7 @@ function ProductRegi(props) {
 						<RadioRet value="의류" idx={3} setIdx={setIdx} />
 						<RadioRet value="책" idx={4} setIdx={setIdx} />
 						<RadioRet value="공동구매" idx={5} setIdx={setIdx} />
+						<RadioRet value="나눔" idx={100} setIdx={setIdx} />
 					</FormC>
 				</CategoryC>
 				<TradeLocationC>
@@ -281,7 +287,6 @@ function ProductRegi(props) {
 const RegiHeaderC = styled.div`
 	width: 1000px;
 	margin: 0 auto;
-	margin-top: 70px;
 	height: 65px;
 	> span:first-child {
 		font-size: 30px;
@@ -439,7 +444,6 @@ const TradeLocationC = styled.div`
 			}
 		}
 	}
-
 `;
 
 const PriceC = styled.div`
@@ -476,6 +480,7 @@ const ContentC = styled.div`
 			margin-right: 10px;
 		}
 	}
+	padding-bottom: 15px;
 `;
 
 const SubmitC = styled.div`

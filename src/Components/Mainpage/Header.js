@@ -49,12 +49,19 @@ function Header() {
 					</HeaderSearchInputC>
 				</HeaderSearchC>
 				<HeaderInfoC>
-					<span>
-						<LinkC to="/product/regi">
-							<i className="fas fa-won-sign fa-1.5x"></i>판매하기
-						</LinkC>
-					</span>
-					<span>
+					<LinkC to="/product/regi">
+						<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
+						<div>판매하기</div>
+					</LinkC>
+					<LinkC to="/product/regi">
+						<img src={process.env.PUBLIC_URL + "/img/bellIcon2.png"} />
+						<div>알림</div>
+					</LinkC>
+					<LinkC to="/product/regi">
+						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
+						<div>내정보</div>
+					</LinkC>
+					{/*<span>
 						<LinkC to="/">
 							<i className="far fa-bell fa-1.5x"></i>알림
 						</LinkC>
@@ -89,7 +96,7 @@ function Header() {
 								로그인
 							</LinkC>
 						</span>
-					)}
+					)}*/}
 				</HeaderInfoC>
 			</HeaderLineC>
 		</HeaderC>
@@ -99,10 +106,9 @@ function Header() {
 // Header style
 const HeaderC = styled.header`
 	width: 100%;
-	height: 100px;
 	position: sticky;
 	top: 0;
-	z-index: 1;
+	z-index: 10;
 	display: flex;
 	justify-content: center;
 	background-color: #fdfdfd;
@@ -111,6 +117,7 @@ const HeaderC = styled.header`
 
 const HeaderLineC = styled.div`
 	width: 1200px;
+	max-width: 1200px;
 	height: 100px;
 	display: flex;
 	justify-content: space-between;
@@ -149,15 +156,12 @@ const HeaderSearchInputC = styled.fieldset`
 		border: none;
 		outline: none;
 	}
-
 	& > input:hover {
 		width: 100%;
 		outline: none;
 	}
-
 	& a {
 		padding: 5px;
-
 	}
 	& img {
 		width: 30px;
@@ -165,28 +169,39 @@ const HeaderSearchInputC = styled.fieldset`
 	}
 `;
 
-const HeaderInfoC = styled.div`
+const LinkC = styled(Link)`
 	display: flex;
-	justify-content: right;
-	width: 300px;
-	font-size: 16px;
-	& i {
-		margin-right: 5px;
-	}
-	& > span {
-		padding: 0 15px;
-	}
-	& > span:last-child {
-		padding-right: 0;
-	}
-	& > span:not(span:first-child) {
-		border-left: 1px solid rgb(0, 0, 0, 0.1);
+	align-items: center;
+	text-decoration: none;
+	color: black;
+	> div:hover {
+		border-bottom: 2px solid rgb(100,130, 238);
 	}
 `;
 
-const LinkC = styled(Link)`
-	text-decoration: none;
-	color: black;
+const HeaderInfoC = styled.div`
+	display: flex;
+	justify-content: right;
+	width: 350px;
+	font-size: 16px;
+
+	& i {
+		margin-right: 5px;
+	}
+	& ${LinkC} {
+		padding: 0 15px;
+	}
+	& ${LinkC}:last-child {
+		padding-right: 0;
+	}
+	& > ${LinkC}:not(${LinkC}:first-child) {
+		border-left: 1px solid rgb(0, 0, 0, 0.1);
+	}
+	& div {
+		height: 16px;
+		margin-left: 10px;
+	}
 `;
+
 
 export default Header;

@@ -27,9 +27,9 @@ function CategoryBar() {
 					<img src={process.env.PUBLIC_URL + "/img/bookIcon.png"}></img>
 					<span>책</span>
 				</LinkC>
-				<LinkC to="/category/5">
-					<img src={process.env.PUBLIC_URL + "/img/personIcon.png"}></img>
-					<span>공동구매</span>
+				<LinkC to="/category/share">
+					<img src={process.env.PUBLIC_URL + "/img/shareIcon.png"}></img>
+					<span>나눔</span>
 				</LinkC>
 			</CategoryItemsC>
 		</CategoryC>
@@ -58,11 +58,17 @@ const CategoryItemsC = styled.div`
 	> ${LinkC} {
 		display: flex;
 		flex-direction: column;
-		justify-content:center;
+		justify-content: center;
 		align-items: center;
 		span {
 			margin: 15px 0;
 			font-size: 18px;
+			box-sizing: border-box;
+		}
+		span:hover {
+			color: rgb(130, 130, 238);
+			border-bottom: 1px solid rgb(130, 130, 238);
+			box-sizing: border-box;
 		}
 	}
 `;

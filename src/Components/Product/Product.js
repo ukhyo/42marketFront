@@ -68,7 +68,7 @@ const ProductStateBarC = styled.div`
 	margin: 0 auto;
 	height: 70px;
 	line-height: 70px;
-	margin-bottom: 10px;
+	margin-bottom: 60px;
 	${LinkC}:first-child, ${LinkC}:nth-child(2) {
 		border-right: 1px solid #c0c0c0;
 		margin-right: 60px;
