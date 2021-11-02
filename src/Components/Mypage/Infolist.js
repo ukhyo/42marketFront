@@ -1,5 +1,6 @@
 import axios from "axios";
 import useAsync from "./useAsync";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 async function getList(list)
@@ -25,11 +26,21 @@ function InfoList({ url })
 				return (
 					<PostListC key={index}>
 						<PostImgC>
-							<img src={posts.img} />
+							<img src={posts.img[0]} />
 						</PostImgC>
 						<PostInfosC>
 							<PostInfos__TitleC>
-								<h2>{posts.title}</h2>
+								<LinkC
+									to={{
+										pathname: `/postview/${posts.id}`,
+										state: {
+											data: posts,
+											itemId: posts.id,
+										},
+									}}
+									>
+								{posts.title}
+								</LinkC>
 							</PostInfos__TitleC>
 							<PostInfos__PriceC>
 								<span>{posts.price}₩</span>
@@ -79,11 +90,13 @@ const PostLogsC = styled.div`
 
 const PostInfos__TitleC = styled.div`
 	margin-bottom: 30px;
-	h2 {
-		font-weight: 600;
-		font-size: 24px;
-		color: rgb(99, 178, 225);
-	}
+`;
+
+const LinkC = styled(Link)`
+	font-weight: 600;
+	font-size: 24px;
+	color: rgb(99, 178, 225);
+
 `;
 
 const PostInfos__PriceC = styled.div`

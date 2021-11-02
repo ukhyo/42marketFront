@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Nongdam from "../../Images/nongdam.png";
 import useAsync from "./useAsync";
 import styled from "styled-components";
-
+import jsonData from "../../secret.json";
+import { FaImage } from 'react-icons/fa';
+import AWS from "aws-sdk";
+import { timeout } from "q";
 async function getProfile()
 {
 	const response = await axios.get(
@@ -14,8 +17,49 @@ async function getProfile()
 
 function	ProfileBar()
 {
-	const [state, refetch] = useAsync(getProfile, []);
+	const ACCESS_KEY = jsonData.accesskey;
+	const SECRET_ACCESS_KEY = jsonData.secretkey;
+	const REGION = jsonData.awsregion;
+	const S3_BUCKET_NAME = jsonData.s3burket;
+
+	const [state] = useAsync(getProfile, ["profile"]);
+	const [files, setFiles] = useState("");
 	const { loading, data: profile, error }  = state;
+
+	AWS.config.update({
+		accessKeyId: ACCESS_KEY,
+		secretAccessKey: SECRET_ACCESS_KEY,
+	});
+
+	const myBucket = new AWS.S3({
+		params: { Bucket: S3_BUCKET_NAME },
+		region: REGION,
+	});
+	const onChangeImg = (e) => {
+		const file = e.target.files[0];
+		const getData = async () => {
+			const params = {
+				ACL: "public-read",
+				Body: file,
+				Bucket: S3_BUCKET_NAME,
+				Key: "user/1",
+			};
+			await myBucket
+				.putObject(params)
+				.send((err) => {
+					if (err) console.log(err);
+				});
+		}
+		getData();
+		setTimeout(()=> {
+			console.log("finish");
+			setFiles("hhh");
+		}, 5000);
+		setFiles("h");
+	};
+	useEffect(()=> {
+		console.log("here?!!!");
+	},[files])
 
 	if (loading) return <div>loading...</div>;
 	if (error) return <div>Error occured</div>;
@@ -24,7 +68,15 @@ function	ProfileBar()
 	return (
 		<ProfileBarC>
 			<ProfileImgC>
-				<img src={Nongdam}/>
+				<img src="https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1"/>
+				<label for="ChangeImg">
+					<ProfileImgModifyC>
+							<FaImage />
+					</ProfileImgModifyC>
+				</label>
+				<input type="file"
+						id="ChangeImg"
+						onChange={onChangeImg}/>
 			</ProfileImgC>
 			<ProfileNameC>
 				<span>{profile.name}</span>
@@ -44,6 +96,24 @@ function	ProfileBar()
 	)
 }
 
+const		ProfileImgModifyC = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	background-color: #fdfdfd;
+	border-radius: 15px;
+	left: 230px;
+	top: 220px;
+	> label {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+`;
 
 const		ProfileContentsC = styled.div`
   	width: 280px;
@@ -67,19 +137,21 @@ const		ProfileNameC = styled.div`
 `;
 
 const		ProfileBarC = styled.div`
-  width: 280px;
-  height: 600px;
-  margin-top: 30px;
+	width: 280px;
+	height: 600px;
+	margin-top: 30px;
 `;
 
 
 const		ProfileImgC = styled.div`
-  img {
-    width: 280px;
-    height: 280px;
-	border-radius: 150px;
-	border: 1px solid rgba(0, 0, 0, 0.2);
-  }
+	display: flex;
+	position: relative;
+	img {
+		width: 280px;
+		height: 280px;
+		border-radius: 150px;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+	}
 `;
 
 const		ProfileLevelC = styled.div`
