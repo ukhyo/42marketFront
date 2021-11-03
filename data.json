@@ -42,7 +42,7 @@
     {
       "title": "옷 ㅍㅍ",
       "subtitle": "ㅍㅍ",
-      "likes": 9,
+      "likes": 10,
       "price": 23000,
       "img": [
         "/jsonimg/test.jpeg.jpg"
@@ -55,7 +55,7 @@
     {
       "title": "옷입니당",
       "subtitle": "네",
-      "likes": 10,
+      "likes": 11,
       "price": 2345,
       "img": [
         "/jsonimg/cloth5.jpeg"
@@ -81,7 +81,7 @@
     {
       "title": "노트북 신형",
       "subtitle": "얼마전에 삿어요",
-      "likes": 23,
+      "likes": 25,
       "price": 2000000,
       "img": [
         "/jsonimg/it2.jpeg"
@@ -94,7 +94,7 @@
     {
       "title": "맥북인지 삼성노트북인지 모르겠음",
       "subtitle": "직접판단하세요",
-      "likes": 10,
+      "likes": 12,
       "price": 1234123,
       "img": [
         "/jsonimg/it3.jpeg"
@@ -107,7 +107,7 @@
     {
       "title": "노트북",
       "subtitle": "ㅈㄱㄴ",
-      "likes": 15,
+      "likes": 16,
       "price": 2345123,
       "img": [
         "/jsonimg/it4.jpeg"
@@ -120,7 +120,7 @@
     {
       "title": "notebook",
       "subtitle": "ok",
-      "likes": 4,
+      "likes": 5,
       "price": 3000000,
       "img": [
         "/jsonimg/it5.jpeg"
@@ -224,7 +224,7 @@
     {
       "title": "책책책 책을 읽읍시다!",
       "subtitle": "ㅈㄱㄴ",
-      "likes": 2,
+      "likes": 3,
       "price": 100004,
       "img": [
         "/jsonimg/book3.jpeg"
@@ -248,17 +248,17 @@
       "id": 24
     },
     {
-      "id": 25,
       "title": "책책",
       "subtitle": "책책",
-      "likes": 0,
+      "likes": 1,
       "price": 234,
       "img": [
         "/jsonimg/book5.jpeg"
       ],
-      "date": "2021-10-21T14:08:25+09:00",
+      "date": "2021-10-21 14시",
       "location": "서울 강남구 개포로 416 1층",
-      "category": 4
+      "category": 4,
+      "id": 25
     },
     {
       "title": "책을 읽는 사람들 팝니다!",
@@ -686,6 +686,107 @@
       "location": "서울 강남구 개포로 416 5층",
       "category": 1,
       "id": 55
+    },
+    {
+      "title": "테스트 한번 해볼게요",
+      "subtitle": "123456",
+      "likes": 2,
+      "price": 123456,
+      "img": [
+        {},
+        {},
+        {},
+        {},
+        {},
+        {}
+      ],
+      "date": "시",
+      "location": "서울 강남구 개포로 416 ",
+      "category": 1,
+      "id": 56
+    },
+    {
+      "title": "잘 되것지",
+      "subtitle": "1234",
+      "likes": 1,
+      "price": 1234,
+      "img": [
+        {},
+        {},
+        {},
+        {},
+        {},
+        {}
+      ],
+      "date": "2021-10-21 14시",
+      "location": "서울 강남구 개포로 416 ",
+      "category": 1,
+      "id": 57
+    },
+    {
+      "title": "1",
+      "subtitle": "123",
+      "price": 123,
+      "likes": 0,
+      "category": 1,
+      "location": "서울 강남구 개포로 416 ",
+      "img": [
+        {}
+      ],
+      "date": "2021-10-21T14:08:25+09:00",
+      "id": 58
+    },
+    {
+      "title": "1",
+      "subtitle": "1",
+      "price": 1,
+      "likes": 0,
+      "category": 1,
+      "location": "서울 강남구 개포로 416 ",
+      "img": [
+        {}
+      ],
+      "date": "2021-10-21T14:08:25+09:00",
+      "id": 59
+    },
+    {
+      "title": "1",
+      "subtitle": "1",
+      "price": 1,
+      "likes": 0,
+      "category": 1,
+      "location": "서울 강남구 개포로 416 ",
+      "img": [
+        {}
+      ],
+      "date": "2021-10-21T14:08:25+09:00",
+      "id": 60
+    },
+    {
+      "title": "1234",
+      "subtitle": "124",
+      "price": 1228,
+      "likes": 0,
+      "category": 1,
+      "location": "서울 강남구 개포로 416 ",
+      "img": [
+        {}
+      ],
+      "date": "2021-10-21T14:08:25+09:00",
+      "id": 61
+    },
+    {
+      "title": "123",
+      "subtitle": "123",
+      "likes": 1,
+      "price": 123,
+      "img": [
+        "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/1ba5e03-b202-8efe-8f4-0e4bc0b8de7a0.png"
+      ],
+      "date": "2021-10-21 14시",
+      "location": "서울 강남구 개포로 416 ",
+      "category": 1,
+      "id": 62
     }
   ],
   "comments": [

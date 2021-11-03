@@ -53,11 +53,11 @@ function Header() {
 						<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
 						<div>판매하기</div>
 					</LinkC>
-					<LinkC to="/product/regi">
+					<LinkC to="/">
 						<img src={process.env.PUBLIC_URL + "/img/bellIcon2.png"} />
 						<div>알림</div>
 					</LinkC>
-					<LinkC to="/product/regi">
+					<LinkC to="/mypage/buylist">
 						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
 						<div>내정보</div>
 					</LinkC>
@@ -131,7 +131,6 @@ const HeaderLogoC = styled.div`
 const HeaderLogoImgC = styled.img`
 	width: 100%;
 	height: 80%;
-	/*height: 50%;*/
 `;
 
 const HeaderSearchC = styled.div`

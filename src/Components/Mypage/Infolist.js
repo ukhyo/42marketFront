@@ -13,7 +13,6 @@ async function getList(list)
 
 function InfoList({ url })
 {
-	console.log(url, "Info");
 	const [state] = useAsync(() => getList(url), [url]);
 	const { loading, data: list, error } = state;
 
@@ -36,6 +35,7 @@ function InfoList({ url })
 										state: {
 											data: posts,
 											itemId: posts.id,
+											flag: true,
 										},
 									}}
 									>

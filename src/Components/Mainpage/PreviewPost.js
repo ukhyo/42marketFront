@@ -7,9 +7,10 @@ function PostViewComp({ idx }) {
 	let [item, setItem] = useState([]);
 	useEffect(() => {
 		const ApiGet = async () => {
-			const { data } = await axios.get("http://localhost:3001/posts/").then(response => {
+			//const headers = { Authorization:  };
+			const { data } = await axios.get("http://52.79.76.165/login").then((response) => {
 				console.log(response, "test");
-				return (response);
+				return response;
 			});
 			console.log(data);
 			let tempArr = [];

@@ -7,26 +7,17 @@ import React, { useState, } from "react";
 import { RadioRet } from "./Product";
 import { Route } from "react-router-dom";
 import axios from "axios";
-import jsonData from "../../secret.json";
-import AWS from "aws-sdk";
+import awsData from "../../secret.json";
 import uuid from "react-uuid";
+import S3 from "react-aws-s3";
+
+
 function ProductRegi(props) {
 	// Aws s3 인증
-	const ACCESS_KEY = jsonData.accesskey;
-	const SECRET_ACCESS_KEY = jsonData.secretkey;
-	const REGION = jsonData.awsregion;
-	const S3_BUCKET_NAME = jsonData.s3burket;
-
-	AWS.config.update({
-		accessKeyId: ACCESS_KEY,
-		secretAccessKey: SECRET_ACCESS_KEY,
-	});
-
-	const myBucket = new AWS.S3({
-		params: { Bucket: S3_BUCKET_NAME },
-		region: REGION,
-	});
-
+	const ACCESS_KEY = awsData.accesskey;
+	const SECRET_ACCESS_KEY = awsData.secretkey;
+	const REGION = awsData.awsregion;
+	const S3_BUCKET_NAME = awsData.s3burket;
 
 	// Input 양식 State
 	const [title, setTitle] = useState("");
@@ -119,24 +110,27 @@ function ProductRegi(props) {
 				alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
 				setPrice(0);
 			}
+			const config = {
+				bucketName: S3_BUCKET_NAME,
+				region: REGION,
+				accessKeyId: ACCESS_KEY,
+				secretAccessKey: SECRET_ACCESS_KEY,
+				dirName: "upload",
+			};
+			const ReactS3 = new S3(config);
 			const pickUUid = uuid();
+
 			let name = Files.map((data, idx) => {
-				console.log(data, "데이터부분");
 				const type = data.name.split(".").pop();
 				const filename = `${pickUUid}${idx}.${type}`;
-				const params = {
-			ACL: "public-read",
-			Body: data,
-			Bucket: S3_BUCKET_NAME,
-			Key: "upload/" + filename,
-		};
-		myBucket
-			.putObject(params)
-			.send((err) => {
-				if (err) console.log(err);
-			});
+				ReactS3.uploadFile(data, filename)
+				.then((data) => {
+					console.log(data, "성공");
+				})
+				.catch((err) => console.error(err, "에러"));
 				return `https://${S3_BUCKET_NAME}.s3.${REGION}.amazonaws.com/upload/${filename}`;
 			});
+			console.log(name,"di");
 			let data = {
 				title: title,
 				subtitle: content,
@@ -148,7 +142,7 @@ function ProductRegi(props) {
 				date: "2021-10-21T14:08:25+09:00",
 			};
 			await axios.post("http://localhost:3001/posts/", data);
-			history.push("/");
+			//history.push("/");
 			alert("상품 등록 완료!");
 		}
 		pushData();
@@ -217,7 +211,6 @@ function ProductRegi(props) {
 						<RadioRet value="주변기기" idx={2} setIdx={setIdx} />
 						<RadioRet value="의류" idx={3} setIdx={setIdx} />
 						<RadioRet value="책" idx={4} setIdx={setIdx} />
-						<RadioRet value="공동구매" idx={5} setIdx={setIdx} />
 						<RadioRet value="나눔" idx={100} setIdx={setIdx} />
 					</FormC>
 				</CategoryC>

@@ -4,18 +4,34 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 function ShowData(props) {
-	console.log(props);
+	const [show, setShow] = useState(false);
+	const DropBtn = (e) => {
+		setShow(!show);
+	}
 	return (
 		<ShowDataC>
 			<SellImgC>
-				<BackImgC url={ props.img[0] }/>
+				<BackImgC url={props.img[0]} />
 			</SellImgC>
 			<TitlePriceC>
 				<div>{props.title}</div>
 				<div>{props.price}원</div>
 			</TitlePriceC>
+			<StateManageC>
+				<button onClick={DropBtn}>
+					판매중
+					</button>
+				{show && (
+					<div>
+						<div>첫번째</div>
+						<div>두번째</div>
+						<div>세번째</div>
+						<div>네번째</div>
+						<div>다섯번째</div>
+					</div>
+				)}
+			</StateManageC>
 		</ShowDataC>
 	);
 }
@@ -37,7 +53,7 @@ function ProductManage() {
 					<input type="text" placeholder="상품명을 입력해주세요." />
 					<img src={process.env.PUBLIC_URL + "/img/searchIcon.png"} />
 				</MainHeaderC>
-				{PostList.map((data, index) => {
+				{PostList.map((data) => {
 					return <ShowData img={data.img} title={data.title} price={data.price} content={data.subtitle} id={data.id} />;
 				})}
 			</MainC>
@@ -105,6 +121,7 @@ const SellImgC = styled.div`
 
 const TitlePriceC = styled.div`
 	margin-left: 20px;
+	width: 74%;
 	> div:first-child {
 		padding-bottom: 20px;
 	}
@@ -112,6 +129,16 @@ const TitlePriceC = styled.div`
 		font-weight: bold;
 	}
 `;
+
+const StateManageC = styled.div`
+	width: 10%;
+	text-align: right;
+`;
+
+const DropItemC = styled.div`
+
+`;
+
 const SectionC = styled.div`
 	margin: 0 auto;
 `;

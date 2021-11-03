@@ -3,10 +3,11 @@ import axios from "axios";
 import Nongdam from "../../Images/nongdam.png";
 import useAsync from "./useAsync";
 import styled from "styled-components";
-import jsonData from "../../secret.json";
+import awsData from "../../secret.json";
 import { FaImage } from 'react-icons/fa';
 import AWS from "aws-sdk";
 import { timeout } from "q";
+import S3 from "react-aws-s3";
 async function getProfile()
 {
 	const response = await axios.get(
@@ -15,51 +16,36 @@ async function getProfile()
 	return response.data;
 }
 
-function	ProfileBar()
+function	ProfileBar(props)
 {
-	const ACCESS_KEY = jsonData.accesskey;
-	const SECRET_ACCESS_KEY = jsonData.secretkey;
-	const REGION = jsonData.awsregion;
-	const S3_BUCKET_NAME = jsonData.s3burket;
+	console.log(props);
+	const ACCESS_KEY = awsData.accesskey;
+	const SECRET_ACCESS_KEY = awsData.secretkey;
+	const REGION = awsData.awsregion;
+	const S3_BUCKET_NAME = awsData.s3burket;
 
-	const [state] = useAsync(getProfile, ["profile"]);
-	const [files, setFiles] = useState("");
-	const { loading, data: profile, error }  = state;
-
-	AWS.config.update({
+	const s3_config = {
+		bucketName: S3_BUCKET_NAME,
+		region: REGION,
 		accessKeyId: ACCESS_KEY,
 		secretAccessKey: SECRET_ACCESS_KEY,
-	});
-
-	const myBucket = new AWS.S3({
-		params: { Bucket: S3_BUCKET_NAME },
-		region: REGION,
-	});
-	const onChangeImg = (e) => {
-		const file = e.target.files[0];
-		const getData = async () => {
-			const params = {
-				ACL: "public-read",
-				Body: file,
-				Bucket: S3_BUCKET_NAME,
-				Key: "user/1",
-			};
-			await myBucket
-				.putObject(params)
-				.send((err) => {
-					if (err) console.log(err);
-				});
-		}
-		getData();
-		setTimeout(()=> {
-			console.log("finish");
-			setFiles("hhh");
-		}, 5000);
-		setFiles("h");
+		dirName: "user",
 	};
-	useEffect(()=> {
-		console.log("here?!!!");
-	},[files])
+
+	const ReactS3 = new S3(s3_config);
+
+	const [state] = useAsync(getProfile, ["profile"]);
+	const { loading, data: profile, error }  = state;
+
+	const onChangeImg = async (e) => {
+		const file = e.target.files[0];
+		const filename = "1.jpeg";
+		await ReactS3.uploadFile(file, filename)
+			.then(() => {
+				window.location.reload();
+			})
+			.catch(() => alert("이미지 등록에 실패했습니다 ㅠ.ㅠ"));
+	};
 
 	if (loading) return <div>loading...</div>;
 	if (error) return <div>Error occured</div>;
@@ -68,7 +54,7 @@ function	ProfileBar()
 	return (
 		<ProfileBarC>
 			<ProfileImgC>
-				<img src="https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1"/>
+				<img src="https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1.jpeg"/>
 				<label for="ChangeImg">
 					<ProfileImgModifyC>
 							<FaImage />

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Footer from '../Mainpage/Footer';
 import axios from 'axios';
 function PostDetail(props) {
+	console.log(props, "here props");
 	const { location } = props;
 	const { location: { state: { data: data } } } = props;
 	const [ImgIdx, setImgIdx] = useState(0);
@@ -30,7 +31,9 @@ function PostDetail(props) {
 		putFunc();
 	}, []);
 
-
+	if (props.location.state.flag === undefined)
+		console.log("hewre?");
+	console.log(props.location.state.flag, "here data");
 	const SelectPicture = (e, flag) => {
 		if (flag == 0) {
 			if (ImgIdx <= 0)
@@ -54,15 +57,25 @@ function PostDetail(props) {
 			<PostDetailC>
 				<PostDetailHeaderC>
 					<PostDetailMainC>
-						<BackImg url={ data.img[ImgIdx]} />
+						<BackImg url={data.img[ImgIdx]} />
 						<LeftRightBtnC>
-							<div onClick={(e) => {
-								SelectPicture(e, 0)
-							}}>이전사진</div>
-							<div>{ImgIdx + 1}/{data.img.length}</div>
-							<div onClick={(e) => {
-								SelectPicture(e, 1)
-							}}>다음사진</div>
+							<div
+								onClick={(e) => {
+									SelectPicture(e, 0);
+								}}
+							>
+								<img src={process.env.PUBLIC_URL + "/img/LeftArrow.png"} />
+							</div>
+							<div>
+								{ImgIdx + 1}/{data.img.length}
+							</div>
+							<div
+								onClick={(e) => {
+									SelectPicture(e, 1);
+								}}
+							>
+								<img src={process.env.PUBLIC_URL + "/img/RightArrow.png"} />
+							</div>
 						</LeftRightBtnC>
 					</PostDetailMainC>
 					<PostDetailInfoC>
@@ -75,9 +88,7 @@ function PostDetail(props) {
 							<div>거래장소 : {data.location}</div>
 							<div>조회수 : {data.likes}</div>
 						</LocationAndViewsC>
-						<div>
-							{data.subtitle}
-						</div>
+						<div>{data.subtitle}</div>
 					</PostDetailInfoC>
 				</PostDetailHeaderC>
 			</PostDetailC>
@@ -104,32 +115,26 @@ const PostDetailHeaderC = styled.div`
 	border-bottom: 1px solid #c0c0c0;
 `;
 const LeftRightBtnC = styled.div`
-	/*height: 30px;*/
-	/*margin-top: 10px;*/
+	bottom: 0px;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 20px;
+	> div {
+		cursor: pointer;
+	}
 `;
 const PostDetailMainC = styled.div`
+
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-between;
+
 	align-items: center;
 	width: 400px;
-	height: 420px;
+	height: 400px;
 	position: relative;
-	${LeftRightBtnC} {
-		position: absolute;
-		bottom: 0px;
-		display: flex;
-		justify-content: space-between;
-		width: 100%;
-		margin-top: 20px;
-		> div:first-child {
-			cursor: pointer;
-		}
-		> div:last-child {
-			cursor: pointer;
-			margin-right: 30px;
-		}
-	}
 `;
 
 const BackImg = styled.div`
@@ -138,7 +143,8 @@ const BackImg = styled.div`
 	background-image: url("${(props) => props.url}");
 	background-position: center;
 	background-size: cover;
-	margin-right: 30px;
+	border-radius: 15px;
+	box-sizing: border-box;
 `;
 
 const PostDetailInfoC = styled.div`
