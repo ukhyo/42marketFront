@@ -61,6 +61,14 @@ function Header() {
 						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
 						<div>내정보</div>
 					</LinkC>
+					{/*<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2F52.79.76.165%2Flogin%2FgetToken&response_type=code">
+						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
+						<div>내정보</div>
+					</a>*/}
+					{/*<a href="https://www.naver.com">*/}
+						{/*<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />*/}
+						{/*<div>내정보</div>*/}
+					{/*</a>*/}
 					{/*<span>
 						<LinkC to="/">
 							<i className="far fa-bell fa-1.5x"></i>알림

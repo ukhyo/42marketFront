@@ -86,30 +86,30 @@ function ProductRegi(props) {
 
 	const submitHandle = (e) => {
 		const pushData = async () => {
-			if (!Files) {
-				alert("사진을 넣어주세요");
-				return;
-			}
-			else if (title === "") {
-				alert("제목을 입력해주세요.")
-				return;
-			}
-			else if (price === 0 && idx !== 100) {
-				alert("가격을 입력해주세요.");
-				return;
-			}
-			else if (location === "") {
-				alert("거래장소를 입력해주세요.");
-				return;
-			}
-			else if (idx === 0) {
-				alert("카테고리를 선택해주세요.");
-				return;
-			}
-			else if (idx === 100 && price !== 0) {
-				alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
-				setPrice(0);
-			}
+			//if (!Files) {
+			//	alert("사진을 넣어주세요");
+			//	return;
+			//}
+			//if (title === "") {
+			//	alert("제목을 입력해주세요.")
+			//	return;
+			//}
+			//else if (price === 0 && idx !== 100) {
+			//	alert("가격을 입력해주세요.");
+			//	return;
+			//}
+			//else if (location === "") {
+			//	alert("거래장소를 입력해주세요.");
+			//	return;
+			//}
+			//else if (idx === 0) {
+			//	alert("카테고리를 선택해주세요.");
+			//	return;
+			//}
+			//else if (idx === 100 && price !== 0) {
+			//	alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
+			//	setPrice(0);
+			//}
 			const config = {
 				bucketName: S3_BUCKET_NAME,
 				region: REGION,
@@ -117,32 +117,40 @@ function ProductRegi(props) {
 				secretAccessKey: SECRET_ACCESS_KEY,
 				dirName: "upload",
 			};
-			const ReactS3 = new S3(config);
-			const pickUUid = uuid();
+			//const ReactS3 = new S3(config);
+			//const pickUUid = uuid();
 
-			let name = Files.map((data, idx) => {
-				const type = data.name.split(".").pop();
-				const filename = `${pickUUid}${idx}.${type}`;
-				ReactS3.uploadFile(data, filename)
-				.then((data) => {
-					console.log(data, "성공");
-				})
-				.catch((err) => console.error(err, "에러"));
-				return `https://${S3_BUCKET_NAME}.s3.${REGION}.amazonaws.com/upload/${filename}`;
-			});
-			console.log(name,"di");
+			//let name = Files.map((data, idx) => {
+			//	const type = data.name.split(".").pop();
+			//	const filename = `${pickUUid}${idx}.${type}`;
+			//	ReactS3.uploadFile(data, filename)
+			//	.then((data) => {
+			//		console.log(data, "성공");
+			//	})
+			//	.catch((err) => console.error(err, "에러"));
+			//	return `https://${S3_BUCKET_NAME}.s3.${REGION}.amazonaws.com/upload/${filename}`;
+			//});
+			//console.log(name,"di");
+			//let data = {
+			//	title: "gd",
+			//	content: "안녕",
+			//	price: 123456,
+			//	//local: location,
+			//	//categoryId: 1,
+			//	//userId: 1,
+			//};
 			let data = {
 				title: title,
-				subtitle: content,
-				price: price,
-				likes: 0,
-				category: idx,
-				location: location,
-				img: name,
-				date: "2021-10-21T14:08:25+09:00",
+				content: "안녕",
+				price: 123456,
+				local: location,
+				categoryId: 1,
+				userId: 1,
 			};
-			await axios.post("http://localhost:3001/posts/", data);
-			//history.push("/");
+			await axios.post("http://52.79.76.165/api/posts", data).then(res => {
+				console.log(res, "post 성공");
+				history.push("/");
+			}).catch((err) => console.error(err, "에러"));
 			alert("상품 등록 완료!");
 		}
 		pushData();
