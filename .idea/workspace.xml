@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="701af0da-f644-40e8-bbb3-9dc7604141c3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Mypage/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Mypage/Profile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +15,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1zMw0cITJk83aTHZj51nQ47E3Nf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -32,6 +41,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -49,7 +59,24 @@
       <option name="presentableId" value="Default" />
       <updated>1633971043891</updated>
       <workItem from="1633971047773" duration="16244000" />
-      <workItem from="1634207107264" duration="62000" />
+      <workItem from="1634372089204" duration="758000" />
+      <workItem from="1634385317723" duration="1392000" />
+      <workItem from="1634386734282" duration="2156000" />
+      <workItem from="1634487522145" duration="14407000" />
+      <workItem from="1634554383715" duration="453000" />
+      <workItem from="1634612728871" duration="170000" />
+      <workItem from="1634644468643" duration="222000" />
+      <workItem from="1634700979569" duration="130000" />
+      <workItem from="1634705994930" duration="2000" />
+      <workItem from="1634705998729" duration="11000" />
+      <workItem from="1634706036440" duration="21000" />
+      <workItem from="1634706059421" duration="65000" />
+      <workItem from="1634706178298" duration="289000" />
+      <workItem from="1634708901271" duration="1655000" />
+      <workItem from="1634711867178" duration="4000" />
+      <workItem from="1634711877271" duration="6000" />
+      <workItem from="1634711899412" duration="5000" />
+      <workItem from="1634711907595" duration="7000" />
     </task>
     <servers />
   </component>
@@ -67,5 +94,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/Components/Mypage/Profile.js</url>
+          <line>53</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
