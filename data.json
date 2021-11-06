@@ -807,10 +807,9 @@
     }
   ],
   "profile": {
-    "img": "https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1",
     "name": "hyeolee",
-    "level": 50,
-    "intro": "hello my name is hyeolee"
+    "level": "80",
+    "intro": "hello world "
   },
   "buylist": [
     {

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Nongdam from "../../Images/nongdam.png";
+import Coming_soon from "../../Images/coming_soon.jpeg";
 import useAsync from "./useAsync";
+import ModifyProfile from "./ModifyProfile";
 import styled from "styled-components";
 import jsonData from "../../secret.json";
 import { FaImage } from 'react-icons/fa';
@@ -23,44 +24,56 @@ function	ProfileBar()
 	const S3_BUCKET_NAME = jsonData.s3burket;
 
 	const [state] = useAsync(getProfile, ["profile"]);
-	const [files, setFiles] = useState("");
+	const [onButton, setOnButton] = useState(false);
+	const [intro, setIntro] = useState("");
 	const { loading, data: profile, error }  = state;
-
 	AWS.config.update({
 		accessKeyId: ACCESS_KEY,
 		secretAccessKey: SECRET_ACCESS_KEY,
 	});
-
 	const myBucket = new AWS.S3({
 		params: { Bucket: S3_BUCKET_NAME },
 		region: REGION,
 	});
 	const onChangeImg = (e) => {
 		const file = e.target.files[0];
-		const getData = async () => {
-			const params = {
-				ACL: "public-read",
-				Body: file,
-				Bucket: S3_BUCKET_NAME,
-				Key: "user/1",
-			};
-			await myBucket
-				.putObject(params)
-				.send((err) => {
-					if (err) console.log(err);
-				});
-		}
-		getData();
-		setTimeout(()=> {
-			console.log("finish");
-			setFiles("hhh");
-		}, 5000);
-		setFiles("h");
+		const params = {
+			ACL: "public-read",
+			Body: file,
+			Bucket: S3_BUCKET_NAME,
+			Key: "user/1",
+		};
+		myBucket
+			.putObject(params)
+			.send((err) => {
+				if (err) console.log(err);
+			});
+		setTimeout(() => {
+			window.location.reload();
+		}, 500)
 	};
-	useEffect(()=> {
-		console.log("here?!!!");
-	},[files])
 
+	const onButtonClick = () => {
+		setOnButton(true);
+	};
+	const inputIntro = (e) => {
+		setIntro(e.target.value);
+	};
+	const submitHandler = (e) => {
+		const pushData = async () => {
+			let data = {
+				name: profile.name,
+				level: profile.level,
+				intro: intro
+			};
+			await axios.put("http://localhost:3001/profile/", data);
+		}
+		pushData();
+		setOnButton(false);
+		setTimeout(() => {
+			window.location.reload();
+		}, 100)
+	}
 	if (loading) return <div>loading...</div>;
 	if (error) return <div>Error occured</div>;
 	if (!profile) return null;
@@ -92,9 +105,75 @@ function	ProfileBar()
 			<ProfileContentsC>
 				<span>{profile.intro}</span>
 			</ProfileContentsC>
+			{ onButton === false ? <ProfileModifyBtnC onClick={onButtonClick}>
+				<span>Edit introduce</span>
+			</ProfileModifyBtnC> :
+			<ModifyIntroC>
+				<textarea 
+					type="text"
+					cols="32"
+					rows="10"
+					value={intro}
+					onChange={inputIntro}
+				/>
+				<button  onClick={submitHandler}>등록</button>
+			</ModifyIntroC>
+			}
+			<BadgeC>
+				<img src={Coming_soon} />
+			</BadgeC>
 		</ProfileBarC>
 	)
 }
+
+const		ModifyIntroC = styled.div`
+    margin: 3px 0px;
+	> textarea {
+		width: 100%;
+		height: 200px;
+		outline: none;
+		border-radius: 7px;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+	}
+	> button {
+		width: 50px;
+		height: 30px;
+		outline: none;
+		border-radius: 7px;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		background-color: rgba(205, 229, 231, 0.7);
+		&:hover {
+			background-color: rgba(205, 229, 231);
+			transition: background-color 0.3s ease-in-out;
+        }
+	}
+`;
+
+const		BadgeC = styled.div`
+	width: 100%;
+	height: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	> img {
+		position: relative;
+		bottom: -50px;
+	}
+`;
+
+const		ProfileModifyBtnC = styled.button`
+	width: 280px;
+	height: 45px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 15px;
+	margin: 20px 0px;
+	> span {
+		font-weight: 600;
+		font-size: 15px;
+		color: rgb(76, 76, 76);
+	}
+`;
 
 const		ProfileImgModifyC = styled.div`
 	display: flex;
@@ -110,6 +189,7 @@ const		ProfileImgModifyC = styled.div`
 	top: 220px;
 	> label {
 		display: flex;
+		top: 30px;
 		justify-content: center;
 		align-items: center;
 	}
@@ -184,7 +264,7 @@ const		ProfileLevelBarC = styled.div`
 const		ProgressBarC = styled.div`
   	background-color: rgb(199, 230, 232);
 	width: ${({ percent }) => percent}%;
-  	height: 30px;
+  	height: 500px;
 `;
 
 
