@@ -4,7 +4,7 @@ import React from "react";
 import Mypage from "./Mypage/Mypage";
 import Mainpage from "./Mainpage/Mainpage";
 import PostDetail from "./PostDetail/PostDetail";
-import Product from "./Product/ProductRegi";
+import Product from "./Product/Product";
 import Category from "./Category/Category";
 
 function Router() {

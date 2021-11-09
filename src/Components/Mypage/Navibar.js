@@ -6,7 +6,7 @@ import { Link, withRoute } from "react-router-dom";
 
 const NaviBar = (props) =>
 {
-	
+
 	return (
 		<NaviBarC>
 			<ItemC current={props.name === "buylist"}>

@@ -48,6 +48,7 @@ function ProductManage() {
 const MainC = styled.div`
 	width: 1000px;
 	margin: 0 auto;
+
 `;
 
 const MainHeaderC = styled.fieldset`
