@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Footer from '../Mainpage/Footer';
 import axios from 'axios';
 function PostDetail(props) {
-	console.log(props, "here props");
 	const { location } = props;
 	const { location: { state: { data: data } } } = props;
 	const [ImgIdx, setImgIdx] = useState(0);
@@ -25,6 +24,7 @@ function PostDetail(props) {
 				date: data.date,
 				location: data.location,
 				category: data.category,
+				state: data.state
 			};
 			await axios.put(`http://localhost:3001/posts/` + `${data.id}`, dataForm);
 		}
@@ -48,9 +48,6 @@ function PostDetail(props) {
 	}
 
 	// 이부분 간단한 로직을 구현하는게 나아보임 생성시간 받는순간 고칠예정.
-	data.date = data.date.replace("T", " ");
-	data.date = data.date.substr(0, data.date.indexOf(":", 0));
-	data.date += "시";
 	return (
 		<div>
 			<Header />

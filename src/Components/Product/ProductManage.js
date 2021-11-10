@@ -4,33 +4,82 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
-function ShowData(props) {
+import PostDelete from "../utils/PostDelete";
+function ShowData({ data }) {
+	const [showState, setShowState] = useState("판매중");
 	const [show, setShow] = useState(false);
 	const DropBtn = (e) => {
 		setShow(!show);
 	}
+	useEffect(() => {
+		if (data.state === 1) setShowState("판매 완료");
+	}, [])
+	const stateSet = async (e, choice, msg) => {
+		alert(msg);
+		const config = {
+		  "title": data.title,
+		  "subtitle": data.subtitle,
+		  "likes": data.likes,
+		  "price": data.price,
+		  "img": data.img,
+		  "date": Date.now(),
+		  "location": data.location,
+		  "category": data.category,
+		  "state" : choice,
+		}
+		await axios.put(`http://localhost:3001/posts/${data.id}`, config);
+		console.log("수정 Clikc!");
+		if (choice === 1)
+			setShowState("판매 완료");
+		else
+			setShowState("판매 중");
+	}
 	return (
 		<ShowDataC>
 			<SellImgC>
-				<BackImgC url={props.img[0]} />
+				<BackImgC url={data.img[0]} />
 			</SellImgC>
 			<TitlePriceC>
-				<div>{props.title}</div>
-				<div>{props.price}원</div>
+				<div>{data.title}</div>
+				<div>{data.price}원</div>
 			</TitlePriceC>
 			<StateManageC>
-				<button onClick={DropBtn}>
-					판매중
-					</button>
-				{show && (
+				<SellDropBtnC onClick={DropBtn}>
 					<div>
-						<div>첫번째</div>
-						<div>두번째</div>
-						<div>세번째</div>
-						<div>네번째</div>
-						<div>다섯번째</div>
+						{showState}<img src={process.env.PUBLIC_URL + "/img/DropBtn.png"} />
+					{show && (
+						<ul>
+							<li>
+								<button onClick={(e) => {
+									stateSet(e, 1, "상품 상태가 변경되었습니다.");
+								}}>판매완료</button>
+							</li>
+							<li>
+								<button onClick={(e) => {
+									stateSet(e, 0, "상품 상태가 변경되었습니다.");
+								}}>판매중</button>
+							</li>
+							<li>
+								<button>
+									<Link to={{
+											pathname: `/product/edit`,
+											state: {
+												data: data,
+											},
+										}}>
+										수정
+									</Link>
+								</button>
+							</li>
+							<li>
+									<button onClick={(e) => {
+										PostDelete(e, data.id);
+								}}>삭제</button>
+							</li>
+						</ul>
+					)}
 					</div>
-				)}
+				</SellDropBtnC>
 			</StateManageC>
 		</ShowDataC>
 	);
@@ -53,8 +102,8 @@ function ProductManage() {
 					<input type="text" placeholder="상품명을 입력해주세요." />
 					<img src={process.env.PUBLIC_URL + "/img/searchIcon.png"} />
 				</MainHeaderC>
-				{PostList.map((data) => {
-					return <ShowData img={data.img} title={data.title} price={data.price} content={data.subtitle} id={data.id} />;
+				{PostList.map((data, idx) => {
+					return <ShowData key={idx} data={data} />
 				})}
 			</MainC>
 		</SectionC>
@@ -131,12 +180,52 @@ const TitlePriceC = styled.div`
 `;
 
 const StateManageC = styled.div`
-	width: 10%;
 	text-align: right;
+	display:flex;
 `;
 
-const DropItemC = styled.div`
+const SellDropBtnC = styled.div`
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-direction:column;
+	border: 1px solid rgb(130, 130, 238);
+	margin: 0;
+	padding: 0;
+	> div {
+		width: 95px;
+		position: relative;
+		display: flex;
+		align-items: center;
+	}
+	> div >  ul {
+		position:absolute;
+		right: -100%;
+		width: 98%;
+		box-sizing: border-box;
+		text-align: left;
+		margin: 0;
+		padding: 0;
+		background-color: #fdfdfd;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: left;
+		> li:not(li:first-child) {
+			margin-top: 5px;
+		}
+		> li {
+			> button {
+				width: 100%;
+				background-color: transparent;
+				border: 1px solid rgb(130,130, 238);
+				&hover {
+					color: rgb(130, 130, 238);
+				}
+			}
 
+		}
+	}
 `;
 
 const SectionC = styled.div`

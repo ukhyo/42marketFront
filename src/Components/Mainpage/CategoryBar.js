@@ -8,7 +8,7 @@ function CategoryBar() {
 		<CategoryC>
 			<CategoryItemsC>
 				<LinkC to="/category/0">
-					<img src={process.env.PUBLIC_URL + "/img/alignIcon.png"}></img>
+					<img src={process.env.PUBLIC_URL + "/img/allIcon.png"}></img>
 					<span>전체</span>
 				</LinkC>
 				<LinkC to="/category/1">
@@ -16,7 +16,7 @@ function CategoryBar() {
 					<span>전자기기</span>
 				</LinkC>
 				<LinkC to="/category/2">
-					<img src={process.env.PUBLIC_URL + "/img/mouseIcon.png"}></img>
+					<img src={process.env.PUBLIC_URL + "/img/SubItIcon.png"}></img>
 					<span>주변기기</span>
 				</LinkC>
 				<LinkC to="/category/3">

@@ -4,19 +4,22 @@ import Footer from "../Mainpage/Footer";
 import { Link, Route } from "react-router-dom";
 import ProductRegi from "./ProductRegi";
 import ProductManage from "./ProductManage";
-
-function RadioRet({ idx, value, setIdx }) {
+import ProductEdit from "./ProductEdit";
+function RadioRet({ idx, value, setIdx, flag }) {
 	const ClickEvt = () => {
 		setIdx(idx);
 	}
 	return (
 		<span>
-			<input onClick={ ClickEvt } name="select" type="radio" value={value} />
+			{idx === flag ? (
+				<input onClick={ClickEvt} name="select" type="radio" value={value} checked />
+			) : (
+				<input onClick={ClickEvt} name="select" type="radio" value={value}/>
+			)}
 			<label for="select">{value}</label>
 		</span>
 	);
 }
-
 function ProductStateBar({ path }) {
 	console.log("statebar", path);
 	return (
@@ -41,9 +44,10 @@ function Product(props) {
 	return (
 		<SectionC>
 			<Header />
-			<ProductStateBar path={props.location.pathname.split("/").pop()}/>
+			<ProductStateBar path={props.location.pathname.split("/").pop()} />
 			<Route path={"/product/regi"} component={ProductRegi} />
 			<Route path={"/product/manage"} component={ProductManage} />
+			{/*<Route path={"/product/edit"} component={ProductEdit} />*/}
 			<Footer />
 		</SectionC>
 	);
