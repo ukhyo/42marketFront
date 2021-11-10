@@ -1,8 +1,8 @@
 {
   "posts": [
     {
-      "title": "신상 옷 팝니다!",
-      "subtitle": "몇번안입었어요",
+      "title": "다다다다다다다다다다다다다다다다다다다다",
+      "subtitle": "몇번안입었어요 오늘 사시면 공짜로 드려요! 내일은 더 비쌀지도..? 냠냠냠냐얼ㅇㄴㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㅁㄹㅁㄹㄴㅁㄹㅁㄴㄹㅁㅁㅈㄹㅁㅈㄹㅁㅈㄹㅁㅈㄹㅈㄹㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅈ",
       "likes": 13,
       "price": 15000,
       "img": [
@@ -68,7 +68,7 @@
     {
       "title": "노트북 ㅍㅍ",
       "subtitle": "ㅍㅍ",
-      "likes": 40,
+      "likes": 42,
       "price": 19,
       "img": [
         "/jsonimg/it1.jpeg"
@@ -94,7 +94,7 @@
     {
       "title": "맥북인지 삼성노트북인지 모르겠음",
       "subtitle": "직접판단하세요",
-      "likes": 10,
+      "likes": 9,
       "price": 1234123,
       "img": [
         "/jsonimg/it3.jpeg"
@@ -276,7 +276,7 @@
     {
       "title": "책을 읽어볼까요? 재미없어서 팝니다.",
       "subtitle": "읽다가 재미없어서 거래합니다.",
-      "likes": 4,
+      "likes": 5,
       "price": 100500,
       "img": [
         "/jsonimg/book5.jpeg"
@@ -328,14 +328,14 @@
     {
       "title": "또 책 책이 맨 위에 있어요",
       "subtitle": "안녕",
+      "likes": 1,
       "price": 23,
-      "likes": 0,
-      "category": 4,
-      "location": "서울 강남구 개포로 416 ",
       "img": [
         "/jsonimg/book1.jpeg"
       ],
-      "date": "2021-10-21T14:08:25+09:00",
+      "date": "2021-10-21 14시",
+      "location": "서울 강남구 개포로 416 ",
+      "category": 4,
       "id": 31
     },
     {
@@ -637,7 +637,7 @@
     {
       "title": "width : 1000 height: 600",
       "subtitle": "5",
-      "likes": 3,
+      "likes": 2,
       "price": 5,
       "img": [
         "https://42trademarket.s3.ap-northeast-2.amazonaws.com/upload/76ac4f-14-6408-ec68-e4f14ac2e3f80.png",
@@ -835,18 +835,18 @@
   "profile": {
     "name": "hyeolee",
     "level": "80",
-    "intro": "hello world "
+    "intro": "hello how are you?"
   },
-  "buylist": [
+  "picklist": [
     {
-      "title": "신상 옷 팝니다!",
-      "subtitle": "몇번안입었어요",
+      "title": "다다다다다다다다다다다다다다다다다다다다",
+      "subtitle": "몇번안입었어요 오늘 사시면 공짜로 드려요! 내일은 더 비쌀지도..? 냠냠냠냐얼ㅇㄴㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㅁㄹㅁㄹㄴㅁㄹㅁㄴㄹㅁㅁㅈㄹㅁㅈㄹㅁㅈㄹㅁㅈㄹㅈㄹㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅈ",
       "likes": 12,
       "price": 15000,
       "img": [
         "/jsonimg/cloth2.jpeg"
       ],
-      "date": "시",
+      "date": "2021-10-13 4시",
       "location": "서울 강남구 개포로 416 1층",
       "category": 3,
       "id": 6
@@ -1501,382 +1501,5 @@
     }
   ],
   "selllist": [
-    {
-      "title": "신상 옷 팝니다!",
-      "subtitle": "몇번안입었어요",
-      "likes": 12,
-      "price": 15000,
-      "img": [
-        "/jsonimg/cloth2.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 3,
-      "id": 6
-    },
-    {
-      "title": "입던옷팝니다 착샷있음",
-      "subtitle": "ㅈㄱㄴ",
-      "likes": 5,
-      "price": 20000,
-      "img": [
-        "/jsonimg/cloth1.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 3,
-      "id": 7
-    },
-    {
-      "title": "옷 팜",
-      "subtitle": "ㅈㄱㄴ",
-      "likes": 3,
-      "price": 15300,
-      "img": [
-        "/jsonimg/cloth3.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 3,
-      "id": 8
-    },
-    {
-      "title": "옷 ㅍㅍ",
-      "subtitle": "ㅍㅍ",
-      "likes": 8,
-      "price": 23000,
-      "img": [
-        "/jsonimg/test.jpeg.jpg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 3,
-      "id": 9
-    },
-    {
-      "title": "옷입니당",
-      "subtitle": "네",
-      "likes": 10,
-      "price": 2345,
-      "img": [
-        "/jsonimg/cloth5.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 3,
-      "id": 10
-    },
-    {
-      "title": "노트북 ㅍㅍ",
-      "subtitle": "ㅍㅍ",
-      "likes": 40,
-      "price": 19,
-      "img": [
-        "/jsonimg/it1.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 1,
-      "id": 11
-    },
-    {
-      "title": "노트북 신형",
-      "subtitle": "얼마전에 삿어요",
-      "likes": 22,
-      "price": 2000000,
-      "img": [
-        "/jsonimg/it2.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 1,
-      "id": 12
-    },
-    {
-      "title": "맥북인지 삼성노트북인지 모르겠음",
-      "subtitle": "직접판단하세요",
-      "likes": 8,
-      "price": 1234123,
-      "img": [
-        "/jsonimg/it3.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 1,
-      "id": 13
-    },
-    {
-      "title": "노트북",
-      "subtitle": "ㅈㄱㄴ",
-      "likes": 15,
-      "price": 2345123,
-      "img": [
-        "/jsonimg/it4.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 1,
-      "id": 14
-    },
-    {
-      "title": "notebook",
-      "subtitle": "ok",
-      "likes": 3,
-      "price": 3000000,
-      "img": [
-        "/jsonimg/it5.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 1,
-      "id": 15
-    },
-    {
-      "title": "전자기기 팔아요",
-      "subtitle": "ㅈㄱㄴ",
-      "likes": 3,
-      "price": 100000,
-      "img": [
-        "/jsonimg/ex1.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 2,
-      "id": 16
-    },
-    {
-      "title": "마우스 인듯?",
-      "subtitle": "ㅇㅋ",
-      "likes": 2,
-      "price": 35000,
-      "img": [
-        "/jsonimg/ex2.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 2,
-      "id": 17
-    },
-    {
-      "title": "거치대 였나",
-      "subtitle": "모르곘네",
-      "likes": 3,
-      "price": 10000,
-      "img": [
-        "/jsonimg/ex3.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 2,
-      "id": 18
-    },
-    {
-      "title": "이제 기억안나네",
-      "subtitle": "진짜로",
-      "likes": 2,
-      "price": 5555,
-      "img": [
-        "/jsonimg/ex4.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 2,
-      "id": 19
-    },
-    {
-      "title": "아이디어 고갈",
-      "subtitle": "ㅇㅋ",
-      "likes": 1,
-      "price": 100000,
-      "img": [
-        "/jsonimg/ex5.jpeg"
-      ],
-      "date": "2021-10-21 14시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 2,
-      "id": 20
-    },
-    {
-      "title": "인생책팝니다",
-      "subtitle": "꼭보세요",
-      "likes": 1,
-      "price": 15000,
-      "img": [
-        "/jsonimg/book1.jpeg"
-      ],
-      "date": "2021-10-21 14시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 4,
-      "id": 21
-    },
-    {
-      "id": 22,
-      "title": "좋은책들 팜",
-      "subtitle": "ㅈㄱㄴ",
-      "likes": 0,
-      "price": 30000,
-      "img": [
-        "/jsonimg/book2.jpeg"
-      ],
-      "date": "2021-10-21T14:08:25+09:00",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 4
-    },
-    {
-      "title": "책책책 책을 읽읍시다!",
-      "subtitle": "ㅈㄱㄴ",
-      "likes": 2,
-      "price": 100004,
-      "img": [
-        "/jsonimg/book3.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 4,
-      "id": 23
-    },
-    {
-      "title": "책",
-      "subtitle": "팜",
-      "likes": 3,
-      "price": 15000,
-      "img": [
-        "/jsonimg/book4.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 4,
-      "id": 24
-    },
-    {
-      "id": 25,
-      "title": "책책",
-      "subtitle": "책책",
-      "likes": 0,
-      "price": 234,
-      "img": [
-        "/jsonimg/book5.jpeg"
-      ],
-      "date": "2021-10-21T14:08:25+09:00",
-      "location": "서울 강남구 개포로 416 1층",
-      "category": 4
-    },
-    {
-      "title": "책을 읽는 사람들 팝니다!",
-      "subtitle": "재밌게 읽었는데 다른책 구매하려고 팝니다.",
-      "price": 12345,
-      "likes": 0,
-      "category": 4,
-      "location": "서울 서초구 강남대로 327 대륭서초타워 ",
-      "img": [
-        "/jsonimg/book5.jpeg"
-      ],
-      "date": "2021-10-21T14:08:25+09:00",
-      "id": 26
-    },
-    {
-      "title": "책을 읽어볼까요? 재미없어서 팝니다.",
-      "subtitle": "읽다가 재미없어서 거래합니다.",
-      "likes": 4,
-      "price": 100500,
-      "img": [
-        "/jsonimg/book5.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 강남구 개포로 416 지하3층 바로 지금!",
-      "category": 4,
-      "id": 27
-    },
-    {
-      "title": "모르는 노트북 팝니다!",
-      "subtitle": "여기에 들어가는 내용들이 다 들어갈지는 잘 모르겠네요 ㅎㅎ",
-      "likes": 1,
-      "price": 99997,
-      "img": [
-        "/jsonimg/it4.jpeg"
-      ],
-      "date": "2021-10-21 14시",
-      "location": "서울 강남구 개포로 416 ",
-      "category": 1,
-      "id": 28
-    },
-    {
-      "title": "책팜",
-      "subtitle": "ㄷㅂㅈㄷㅂㅈ",
-      "likes": 1,
-      "price": 123,
-      "img": [
-        "/jsonimg/book1.jpeg"
-      ],
-      "date": "2021-10-21 14시",
-      "location": "서울 서초구 강남대로 327 대륭서초타워 ",
-      "category": 4,
-      "id": 29
-    },
-    {
-      "title": "책 2권 팜팜",
-      "subtitle": "책 두권 팔아요~ 새책과 비슷합니다.",
-      "likes": 3,
-      "price": 20000,
-      "img": [
-        "/jsonimg/book1.jpeg"
-      ],
-      "date": "시",
-      "location": "서울 서초구 강남대로 327 대륭서초타워 ",
-      "category": 4,
-      "id": 30
-    },
-    {
-      "title": "또 책 책이 맨 위에 있어요",
-      "subtitle": "안녕",
-      "price": 23,
-      "likes": 0,
-      "category": 4,
-      "location": "서울 강남구 개포로 416 ",
-      "img": [
-        "/jsonimg/book1.jpeg"
-      ],
-      "date": "2021-10-21T14:08:25+09:00",
-      "id": 31
-    },
-    {
-      "title": "ㅊ",
-      "subtitle": "ㅂㅈ3",
-      "price": 123,
-      "likes": 0,
-      "category": 4,
-      "location": "서울 서초구 강남대로 327 대륭서초타워 ",
-      "img": [
-        "/jsonimg/book1.jpeg"
-      ],
-      "date": "2021-10-21T14:08:25+09:00",
-      "id": 32
-    },
-    {
-      "title": "옷 들",
-      "subtitle": "1234",
-      "price": 1234,
-      "likes": 0,
-      "category": 3,
-      "location": "서울 강남구 개포로 416 ",
-      "img": [
-        "/jsonimg/cloth1.jpeg"
-      ],
-      "date": "2021-10-21T14:08:25+09:00",
-      "id": 33
-    },
-    {
-      "title": "ㅂ",
-      "subtitle": "ㅂ",
-      "price": 1,
-      "likes": 0,
-      "category": 4,
-      "location": "서울 서초구 강남대로 327 대륭서초타워 ",
-      "img": [
-        "/jsonimg/book1.jpeg"
-      ],
-      "date": "2021-10-21T14:08:25+09:00",
-      "id": 34
-    }
   ]
 }

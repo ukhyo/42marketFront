@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Coming_soon from "../../Images/coming_soon.jpeg";
 import useAsync from "./useAsync";
-import ModifyProfile from "./ModifyProfile";
 import styled from "styled-components";
 import jsonData from "../../secret.json";
 import { FaImage } from 'react-icons/fa';
