@@ -14,11 +14,6 @@ import { DeleteUrl } from "../utils/DeleteFile";
 function ProductEdit(props) {
 
 	const [data, setData] = useState(props.location.state.data);
-	const ACCESS_KEY = awsData.accesskey;
-	const SECRET_ACCESS_KEY = awsData.secretkey;
-	const REGION = awsData.awsregion;
-	const S3_BUCKET_NAME = awsData.s3burket;
-
 	// Input 양식 State
 	const [title, setTitle] = useState(data.title);
 	const [location, setLocation] = useState(data.location);
@@ -111,22 +106,25 @@ function ProductEdit(props) {
 			//	alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
 			//	setPrice(0);
 			//}
+
 			let fileList = new FormData();
 			Files.forEach((data) => {
 				fileList.append(`fileList`, data);
 			});
-			let oldFile = oldFiles.map((data) => {
-				console.log(data, "파일이름은?");
-				return data.slice(data.length - 1, data.length);
-			});
+
+			//let oldFile = oldFiles.map((data) => {
+			//	console.log(data, "파일이름은?");
+			//	return data.slice(data.length - 1, data.length);
+			//});
+
+			let oldFile = ["1","3"];
 			let data = {
 				title: title,
 				content: "안녕",
 				price: 123456,
 				local: location,
-				imageNum: 2,
+				//imageNum: 2,
 				categoryId: 1,
-				userId: 1,
 				oldFileList: oldFile,
 			};
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));

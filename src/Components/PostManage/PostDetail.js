@@ -31,9 +31,6 @@ function PostDetail(props) {
 		putFunc();
 	}, []);
 
-	if (props.location.state.flag === undefined)
-		console.log("hewre?");
-	console.log(props.location.state.flag, "here data");
 	const SelectPicture = (e, flag) => {
 		if (flag == 0) {
 			if (ImgIdx <= 0)
