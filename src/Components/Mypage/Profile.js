@@ -8,6 +8,7 @@ import { FaImage } from 'react-icons/fa';
 import AWS from "aws-sdk";
 import { timeout } from "q";
 import S3 from "react-aws-s3";
+
 async function getProfile()
 {
 	const response = await axios.get(

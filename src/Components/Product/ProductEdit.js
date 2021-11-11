@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from "react";
-import awsData from "../../secret.json";
 import styled from "styled-components";
 import Header from "../Mainpage/Header";
 import Footer from "../Mainpage/Footer";
-import ProductManage from "./ProductManage";
-import ProductStateBar from "./Product";
 import { RadioRet } from "./Product";
 import axios from "axios";
-import uuid from "react-uuid";
-import S3 from "react-aws-s3";
 import DeleteFile from "../utils/DeleteFile";
 import { DeleteUrl } from "../utils/DeleteFile";
 function ProductEdit(props) {
 
 	const [data, setData] = useState(props.location.state.data);
-	const ACCESS_KEY = awsData.accesskey;
-	const SECRET_ACCESS_KEY = awsData.secretkey;
-	const REGION = awsData.awsregion;
-	const S3_BUCKET_NAME = awsData.s3burket;
-
 	// Input 양식 State
 	const [title, setTitle] = useState(data.title);
 	const [location, setLocation] = useState(data.location);
@@ -111,42 +101,30 @@ function ProductEdit(props) {
 			//	alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
 			//	setPrice(0);
 			//}
-			const config = {
-				bucketName: S3_BUCKET_NAME,
-				region: REGION,
-				accessKeyId: ACCESS_KEY,
-				secretAccessKey: SECRET_ACCESS_KEY,
-				dirName: "upload",
-			};
-			const pickUUid = uuid();
-			let PostsUpdateRequestDto = new FormData();
-			let name = Files.map((data, idx) => {
-				const type = data.name.split(".").pop();
-				const filename = `${pickUUid}${idx}.${type}`;
-				PostsUpdateRequestDto.append(`fileList`, data);
-				return `https://${S3_BUCKET_NAME}.s3.${REGION}.amazonaws.com/upload/${filename}`;
+			let fileList = new FormData();
+			Files.forEach((data) => {
+				fileList.append(`fileList`, data);
+			});
+
+			let oldFile = oldFiles.map((data) => {
+				console.log(data, "파일이름은?");
+				return data.slice(data.length - 1, data.length);
 			});
 			let data = {
 				title: title,
 				content: "안녕",
 				price: 123456,
 				local: location,
-				imageNum: 2,
 				categoryId: 1,
-				userId: 1,
-				oldFileList: "2",
+				oldFileList: oldFile,
 			};
-			let test = {
-				oldFileList: "2",
-			};
+			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
 			const headers = {
 				"Content-Type": `multipart/form-data`,
 			};
-			PostsUpdateRequestDto.append("data", new Blob([JSON.stringify(data)]), { type: "application/json" });
-			//PostsUpdateRequestDto.append(`fileList`, null);
-			PostsUpdateRequestDto.append("oldFileList", new Blob([JSON.stringify(test)]), { type: "application/json" });
+			// Api 주소만 postId 끝에 달아주면 될 것 같음.
 			await axios
-				.patch("http://13.124.164.7:8080/api/posts/4", PostsUpdateRequestDto, {headers})
+				.post("http://13.124.164.7:8080/api/posts/5", fileList, { headers })
 				.then((res) => {
 					console.log(res, "post 성공");
 					history.push("/");

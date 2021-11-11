@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 //import logoimg from "../img/logo.png";
 //import logoimg from "../img/noname.png";
 
-
-
 function Header() {
 	const [text, setText] = useState("");
 	function onChange(e) {
@@ -23,6 +21,7 @@ function Header() {
 
 	return (
 		<HeaderC>
+			<img src="https://d15s1x1wlyvaud.cloudfront.net/post5/file" />
 			<HeaderLineC>
 				<HeaderLogoC>
 					<Link to="/">
@@ -66,8 +65,8 @@ function Header() {
 						<div>내정보</div>
 					</a>*/}
 					{/*<a href="https://www.naver.com">*/}
-						{/*<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />*/}
-						{/*<div>내정보</div>*/}
+					{/*<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />*/}
+					{/*<div>내정보</div>*/}
 					{/*</a>*/}
 					{/*<span>
 						<LinkC to="/">
