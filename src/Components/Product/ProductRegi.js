@@ -1,15 +1,8 @@
 import styled from "styled-components";
-import Header from "../Mainpage/Header";
-import Footer from "../Mainpage/Footer";
-import ProductManage from "./ProductManage";
-import ProductStateBar from "./Product";
 import React, { useState, } from "react";
 import { RadioRet } from "./Product";
 import { Route } from "react-router-dom";
 import axios from "axios";
-import awsData from "../../secret.json";
-import uuid from "react-uuid";
-import S3 from "react-aws-s3";
 
 
 function ProductRegi(props) {
@@ -100,18 +93,8 @@ function ProductRegi(props) {
 			//	alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
 			//	setPrice(0);
 			//}
-
-			//const pickUUid = uuid();
-			//let fileList = new FormData();
-			//let name = Files.map((data, idx) => {
-			//	const type = data.name.split(".").pop();
-			//	const filename = `${pickUUid}${idx}.${type}`;
-			//	fileList.append(`fileList`, data);
-			//	return `https://${S3_BUCKET_NAME}.s3.${REGION}.amazonaws.com/upload/${filename}`;
-			//});
-
 			let fileList = new FormData();
-			Files.forEach((data, idx) => {
+			Files.forEach((data) => {
 				fileList.append(`fileList`, data);
 			});
 			let data = {

@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
-import awsData from "../../secret.json";
 import styled from "styled-components";
 import Header from "../Mainpage/Header";
 import Footer from "../Mainpage/Footer";
-import ProductManage from "./ProductManage";
-import ProductStateBar from "./Product";
 import { RadioRet } from "./Product";
 import axios from "axios";
-import uuid from "react-uuid";
-import S3 from "react-aws-s3";
 import DeleteFile from "../utils/DeleteFile";
 import { DeleteUrl } from "../utils/DeleteFile";
 function ProductEdit(props) {
@@ -106,24 +101,20 @@ function ProductEdit(props) {
 			//	alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
 			//	setPrice(0);
 			//}
-
 			let fileList = new FormData();
 			Files.forEach((data) => {
 				fileList.append(`fileList`, data);
 			});
 
-			//let oldFile = oldFiles.map((data) => {
-			//	console.log(data, "파일이름은?");
-			//	return data.slice(data.length - 1, data.length);
-			//});
-
-			let oldFile = ["1","3"];
+			let oldFile = oldFiles.map((data) => {
+				console.log(data, "파일이름은?");
+				return data.slice(data.length - 1, data.length);
+			});
 			let data = {
 				title: title,
 				content: "안녕",
 				price: 123456,
 				local: location,
-				//imageNum: 2,
 				categoryId: 1,
 				oldFileList: oldFile,
 			};
