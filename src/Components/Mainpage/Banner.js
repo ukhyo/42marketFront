@@ -1,17 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import pleaseBuy from "../img/pleasebuy.png";
-import bannerimg from "../img/mainBanner.png";
-import testImg from "../img/test1.jpeg";
-import testBanner from "../img/testBanner.png";
-import banner from "../img/test123.jpg";
 
 function MainBanner() {
 	return (
 		<MainC>
 			<MainBannerC>
 				<div>
-					<img alt="img" src={banner} />
+					{/*<img alt="img" src={process.env.PUBLIC_URL + "/img/mainBanner.jpg"} />*/}
+					<img alt="img" src={process.env.PUBLIC_URL + "/img/banner2.png"} />
 				</div>
 			</MainBannerC>
 		</MainC>

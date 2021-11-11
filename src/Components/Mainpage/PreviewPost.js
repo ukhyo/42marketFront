@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { FiHeart } from "react-icons/fi";
+import { BsSuitHeartFill } from "react-icons/bs";
+import { IconContext } from "react-icons/lib";
 function PostViewComp({ idx }) {
 	let [item, setItem] = useState([]);
 	useEffect(() => {
@@ -47,7 +49,7 @@ function PostViewComp({ idx }) {
 					: title = data.title;
 							return (
 								<PostItemC key={index}>
-									<Link
+									<LinkC
 										to={{
 											pathname: `/postview/${data.id}`,
 											state: {
@@ -56,10 +58,23 @@ function PostViewComp({ idx }) {
 											},
 										}}
 									>
-										<BackImgC url={data.img[0]} />
-									</Link>
+										<HoverImgC url={data.img[0]}>안녕</HoverImgC>
+										<BackImgC url={data.img[0]}></BackImgC>
+									</LinkC>
 									<div>{title}</div>
-									<div>{data.price} 원</div>
+									<div>
+										<div>
+											{data.price}
+											<b>원</b>
+										</div>
+										<div>
+											<p>{data.likes}</p>
+											<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
+												<BsSuitHeartFill size={18} />
+											</IconContext.Provider>
+											{/*<img src={process.env.PUBLIC_URL + "/img/heart.png"} />*/}
+										</div>
+									</div>
 								</PostItemC>
 							);
 					  })}
@@ -107,7 +122,11 @@ const PostViewLineC = styled.div`
 	flex-wrap: wrap;
 `;
 
+
 const BackImgC = styled.div`
+	position: static;
+	top:0;
+	left:0;
 	width: 100%;
 	height: 200px;
 	background-position: center;
@@ -115,10 +134,32 @@ const BackImgC = styled.div`
 	border-radius: 15px;
 	box-sizing: border-box;
 	background-image: url("${(props) => props.url}");
+	&:hover {
+		z-index: 0;
+		opacity: 0.8;
+	}
+	`;
+
+const HoverImgC = styled.div`
+	position: static;
+	top: 0;
+	left: 0;
+	display: none;
+	background-color: #000000;
+	width: 100%;
+	height: 200px;
+	z-index: 5;
+	&:hover {
+		display:block;
+	}
 `;
 
+const LinkC = styled(Link)`
+	/*position: relative;*/
+`;
 
 const PostItemC = styled.div`
+	position: relative;
 	width: 18%;
 	height: 270px;
 	border-radius: 15px;
@@ -128,16 +169,31 @@ const PostItemC = styled.div`
 	> div {
 		width: 100%;
 		margin-top: 10px;
-		font-size: 16px;
+		font-size: 14px;
 		padding-left: 10px;
+		font-weight: 600;
 	}
 	> div:nth-child(2) {
-		color: rgba(0, 0, 0, 0.6);
+		/*color: red;*/
+		color: rgba(0, 0, 0, 0.7);
 	}
 	> div:last-child {
 		margin-top: 10px;
 		margin-bottom: 5px;
 		color: rgba(0, 0, 0, 0.9);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		> div:last-child {
+			padding-right: 20px;
+			display: flex;
+			> p {
+				margin-right: 5px;
+			}
+		}
+	}
+	b {
+		font-size: 0.8em;
 	}
 `;
 

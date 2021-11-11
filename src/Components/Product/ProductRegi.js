@@ -56,7 +56,6 @@ function ProductRegi(props) {
 	}
 
 	function ChangeLocation(e) {
-		console.log(location);
 		setLocation(e.target.value);
 	}
 
@@ -64,7 +63,6 @@ function ProductRegi(props) {
 
 	const onChangeImg = (e) => {
 		const file = e.target.files;
-		console.log("files = ", e.target.files[0]);
 		let transArr = Array.from(file);
 		if (transArr.length + Files.length > 8) {
 			alert(`사진은 최대 8개까지 가능합니다. 현재 : ${Files.length}개`);
@@ -117,28 +115,15 @@ function ProductRegi(props) {
 				secretAccessKey: SECRET_ACCESS_KEY,
 				dirName: "upload",
 			};
-			//const ReactS3 = new S3(config);
-			//const pickUUid = uuid();
-
-			//let name = Files.map((data, idx) => {
-			//	const type = data.name.split(".").pop();
-			//	const filename = `${pickUUid}${idx}.${type}`;
-			//	ReactS3.uploadFile(data, filename)
-			//	.then((data) => {
-			//		console.log(data, "성공");
-			//	})
-			//	.catch((err) => console.error(err, "에러"));
-			//	return `https://${S3_BUCKET_NAME}.s3.${REGION}.amazonaws.com/upload/${filename}`;
-			//});
-			//console.log(name,"di");
-			//let data = {
-			//	title: "gd",
-			//	content: "안녕",
-			//	price: 123456,
-			//	//local: location,
-			//	//categoryId: 1,
-			//	//userId: 1,
-			//};
+			const ReactS3 = new S3(config);
+			const pickUUid = uuid();
+			let fileList = new FormData();
+			let name = Files.map((data, idx) => {
+				const type = data.name.split(".").pop();
+				const filename = `${pickUUid}${idx}.${type}`;
+				fileList.append(`fileList`, data);
+				return `https://${S3_BUCKET_NAME}.s3.${REGION}.amazonaws.com/upload/${filename}`;
+			});
 			let data = {
 				title: title,
 				content: "안녕",
@@ -147,10 +132,17 @@ function ProductRegi(props) {
 				categoryId: 1,
 				userId: 1,
 			};
-			await axios.post("http://52.79.76.165/api/posts", data).then(res => {
-				console.log(res, "post 성공");
-				history.push("/");
-			}).catch((err) => console.error(err, "에러"));
+			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
+			const headers = {
+				"Content-Type": `multipart/form-data`,
+			};
+			await axios
+				.post("http://13.124.164.7:8080/api/posts", fileList, { headers })
+				.then((res) => {
+					console.log(res, "post 성공");
+					history.push("/");
+				})
+				.catch((err) => console.error(err, "에러"));
 			alert("상품 등록 완료!");
 		}
 		pushData();
@@ -215,11 +207,11 @@ function ProductRegi(props) {
 					</SubtitleC>
 					<FormC>
 						{/* Json 다 받으면 한줄로 줄어들 예정 */}
-						<RadioRet value="전자기기" idx={1} setIdx={setIdx} />
-						<RadioRet value="주변기기" idx={2} setIdx={setIdx} />
-						<RadioRet value="의류" idx={3} setIdx={setIdx} />
-						<RadioRet value="책" idx={4} setIdx={setIdx} />
-						<RadioRet value="나눔" idx={100} setIdx={setIdx} />
+						<RadioRet value="전자기기" idx={1} flag={idx} setIdx={setIdx} />
+						<RadioRet value="주변기기" idx={2} flag={idx} setIdx={setIdx} />
+						<RadioRet value="의류" idx={3} flag={idx} setIdx={setIdx} />
+						<RadioRet value="책" idx={4} flag={idx} setIdx={setIdx} />
+						<RadioRet value="나눔" idx={100} flag={idx} setIdx={setIdx} />
 					</FormC>
 				</CategoryC>
 				<TradeLocationC>

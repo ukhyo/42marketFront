@@ -171,7 +171,7 @@ const HeaderSearchInputC = styled.fieldset`
 		padding: 5px;
 	}
 	& img {
-		width: 30px;
+		width: 20px;
 		height: 20px;
 	}
 `;
