@@ -19,8 +19,6 @@ function InfoList({ url })
 	if (loading) return <div>Loading...</div>;
 	if (error) return <div>Error occured</div>;
 	if (!list) return null;
-
-
 	return (
 		<InfoListC>
 			{list.map((posts,index) => {
