@@ -5,8 +5,10 @@ import MainBanner from "./Banner";
 import CategoryBar from "./CategoryBar";
 import PreviewPost from "./PreviewPost";
 import Footer from "./Footer";
+import { ConfigurationServicePlaceholders } from "aws-sdk/lib/config_service_placeholders";
 
 function Mainpage() {
+	console.log("hi");
 	return (
 		<SectionC>
 			<Header />
