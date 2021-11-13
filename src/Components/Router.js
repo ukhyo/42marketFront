@@ -7,6 +7,7 @@ import Product from "./Product/Product";
 import Category from "./Category/Category";
 import ProductEdit from "./Product/ProductEdit";
 import Auth from "./Token/Auth";
+
 function Router() {
 	return (
     <div>
