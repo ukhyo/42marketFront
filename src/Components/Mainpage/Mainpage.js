@@ -5,27 +5,10 @@ import MainBanner from "./Banner";
 import CategoryBar from "./CategoryBar";
 import PreviewPost from "./PreviewPost";
 import Footer from "./Footer";
+import { ConfigurationServicePlaceholders } from "aws-sdk/lib/config_service_placeholders";
 
 function Mainpage() {
-	const [HeaderState, setHeaderState] = useState(false);
-	const [ScrollY, setScrollY] = useState(0);
-	const handleFollow  = () => {
-		setScrollY(window.pageYOffset);
-		if (ScrollY > 650)
-			setHeaderState(true);
-		else
-			setHeaderState(false);
-	}
-	useEffect(() => {
-		const watch = () => {
-			window.addEventListener('scroll', handleFollow);
-		}
-		watch();
-		return () => {
-			window.removeEventListener('scroll', handleFollow);
-		}
-	})
-
+	console.log("hi");
 	return (
 		<SectionC>
 			{HeaderState ? <Header/> : null}
