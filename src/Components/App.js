@@ -6,33 +6,16 @@ import { useLocation } from "react-router-dom";
 import reset from "styled-reset";
 import Router from "./Router";
 import axios from "axios";
-import { RefreshToken } from './utils/RefreshToken';
 
 function App() {
-	const [loading, setLoading] = useState(false);
-	const dispatch = useDispatch();
 
-	useEffect(() => {
-		try {
-			RefreshToken();
-		}catch(e) {
-			console.log(e);
-		}
-	}, [])
-
-	if (loading)
-	{
-		return (
-			<BrowserRouter>
-				<Router />
-				<GlobalStyles />
-				<ScrollToTop />
-			</BrowserRouter>
-		);
-	}
-	else {
-		<div>loading</div>
-	}
+	return (
+		<BrowserRouter>
+			<Router />
+			<GlobalStyles />
+			<ScrollToTop />
+		</BrowserRouter>
+	);
 }
 
 function ScrollToTop() {

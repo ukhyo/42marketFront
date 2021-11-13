@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 function BannerHeader() {
-	const isLogin = useSelector((state) => state);
-	const dispatch = useDispatch();
 	const [text, setText] = useState("");
 	function onChange(e) {
 		setText(e.target.value);
@@ -21,9 +19,6 @@ function BannerHeader() {
 	};
 	function imgClick(e) {
 		setText("");
-	}
-	function LoginHandler() {
-		dispatch({type: 'LOGIN_SUCCESS'});
 	}
 	return (
 		<HeaderC>
@@ -61,18 +56,10 @@ function BannerHeader() {
 						<img src={process.env.PUBLIC_URL + "/img/bellIcon2.png"} />
 						<div>알림</div>
 					</LinkC>
-					{isLogin ?
-					(
 						<LinkC to="/mypage/selllist">
 							<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
 							<div>내정보</div>
 						</LinkC>
-					) : (
-						<LinkC to="/login">
-							<div>로그인</div>
-						</LinkC>
-					)
-				}
 				</HeaderInfoC>
 			</HeaderLineC>
 		</HeaderC>
