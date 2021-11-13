@@ -5,12 +5,14 @@ import Mainpage from "./Mainpage/Mainpage";
 import PostDetail from "./PostManage/PostDetail";
 import Product from "./Product/Product";
 import Category from "./Category/Category";
-import ProductEdit from "./Product/ProductEdit";
-function Router() {
+import Login from "./login";
+
+function Router(props) {
 	return (
 		<div>
 			<Switch>
 				<Route path={"/"} exact component={Mainpage}></Route>
+				<Route path={"/login"} component={Login} />
 				<Route path={"/mypage/:tabs"} component={Mypage}></Route>
 				<Route path={"/postview/:id"} exact component={PostDetail}></Route>
 				<Route path={"/product/edit"} exact component={ProductEdit} />
