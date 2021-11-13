@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 //import logoimg from "../img/logo.png";
 //import logoimg from "../img/noname.png";
 
 
 
 function BannerHeader() {
+	const isLogin = useSelector((state) => state);
+	const dispatch = useDispatch();
 	const [text, setText] = useState("");
 	function onChange(e) {
 		setText(e.target.value);
@@ -19,8 +22,9 @@ function BannerHeader() {
 	function imgClick(e) {
 		setText("");
 	}
-	const [Login, setLogin] = useState(false);
-
+	function LoginHandler() {
+		dispatch({type: 'LOGIN_SUCCESS'});
+	}
 	return (
 		<HeaderC>
 			<HeaderLineC>
@@ -57,10 +61,18 @@ function BannerHeader() {
 						<img src={process.env.PUBLIC_URL + "/img/bellIcon2.png"} />
 						<div>알림</div>
 					</LinkC>
-					<LinkC to="/mypage/selllist">
-						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
-						<div>내정보</div>
-					</LinkC>
+					{isLogin ?
+					(
+						<LinkC to="/mypage/selllist">
+							<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
+							<div>내정보</div>
+						</LinkC>
+					) : (
+						<LinkC to="/login">
+							<div>로그인</div>
+						</LinkC>
+					)
+				}
 				</HeaderInfoC>
 			</HeaderLineC>
 		</HeaderC>

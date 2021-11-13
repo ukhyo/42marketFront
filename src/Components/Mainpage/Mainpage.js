@@ -9,7 +9,6 @@ import Footer from "./Footer";
 function Mainpage() {
 	const [HeaderState, setHeaderState] = useState(false);
 	const [ScrollY, setScrollY] = useState(0);
-
 	const handleFollow  = () => {
 		setScrollY(window.pageYOffset);
 		if (ScrollY > 650)
@@ -26,7 +25,6 @@ function Mainpage() {
 			window.removeEventListener('scroll', handleFollow);
 		}
 	})
-
 
 	return (
 		<SectionC>
