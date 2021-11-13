@@ -5,7 +5,13 @@ import axios from "axios";
 import { FiHeart } from "react-icons/fi";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
+import { Cookies } from "react-cookie";
 function PostViewComp({ idx }) {
+	const cookie = new Cookies();
+	console.log(cookie.getAll());
+	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
+	console.log(token, "토큰임");
+
 	let [item, setItem] = useState([]);
 	useEffect(() => {
 		const ApiGet = async () => {
@@ -15,35 +21,38 @@ function PostViewComp({ idx }) {
 			//	console.log(response, "test");
 			//	return response;
 			//});
+	//		const headers = {
+    //    Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1a3dvbiIsInVzZXJBc…YMZQhHgRQNFNmhp7470sko62kwFK1UFn4-52LGb0tb4myk6yQ`,
+    //  };
 
-			// local data
-			const { data } = await axios.get("http://localhost:3001/posts").then((response) => {
+			let { data } = await axios.get("http://api.4m2d.shop/api/posts").then((response) => {
 				console.log(response, "test");
 				return response;
 			});
-			console.log(data);
-			let tempArr = [];
-			let i = 0;
-			if (data.length < idx + 5) {
-				alert("error");
-				return;
-			}
-			else {
-				console.log(data.length);
-			}
-			const limit = idx + 5;
-			for (idx; idx < limit; idx++) {
-				tempArr[i] = data[idx];
-				i++;
-			}
-			setItem(tempArr);
+
+			console.log(data, "뭐야");
+			//let tempArr = [];
+			//let i = 0;
+			//if (data.length < idx + 5) {
+			//	alert("error");
+			//	return;
+			//}
+			//else {
+			//	console.log(data.length);
+			//}
+			//const limit = idx + 5;
+			//for (idx; idx < limit; idx++) {
+			//	tempArr[i] = data[idx];
+			//	i++;
+			//}
+			//setItem(tempArr);
 		};
 		ApiGet();
 	}, []);
 
 	return (
 			<PostViewLineC>
-			{item.map((data, index) => {
+			{/*{item.map((data, index) => {
 				let title;
 				data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
 					: title = data.title;
@@ -72,12 +81,11 @@ function PostViewComp({ idx }) {
 											<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
 												<BsSuitHeartFill size={18} />
 											</IconContext.Provider>
-											{/*<img src={process.env.PUBLIC_URL + "/img/heart.png"} />*/}
 										</div>
 									</div>
 								</PostItemC>
 							);
-					  })}
+					  })}*/}
 			</PostViewLineC>
 	);
 }

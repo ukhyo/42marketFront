@@ -3,7 +3,7 @@ import React, { useState, } from "react";
 import { RadioRet } from "./Product";
 import { Route } from "react-router-dom";
 import axios from "axios";
-
+import { DeleteUrl } from "../utils/DeleteImg";
 
 function ProductRegi(props) {
 
@@ -124,130 +124,151 @@ function ProductRegi(props) {
 	}
 
 	return (
-		<div>
-			<RegiHeaderC>
-				<span>기본정보</span>
-				<span> *필수항목</span>
-			</RegiHeaderC>
-			<RegiMainC>
-				<PictureC>
-					<SubtitleC>
-						상품 이미지<b>*</b>
-					</SubtitleC>
-					<InputC>
-						<LabelAndManualC>
-							<label for="test12">이미지 등록</label>
-							<div>
-								<span>- 상품 이미지는 640x640에 최적화 되어 있습니다.</span>
-								<span>- 비율이 1:1인 사진을 올리시면 짤리지 않습니다.</span>
-								<span>- 이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.</span>
-							</div>
-						</LabelAndManualC>
-						<ul>
-							<li>
-								<input
-									type="file"
-									id="test12"
-									multiple
-									onChange={(e) => {
-										onChangeImg(e, setFileUrl, setFiles, Files);
-									}}
-									required
-								></input>
-							</li>
-							{FileUrl
-								? FileUrl.map((img, idx) => {
-										return (
-											<li key={idx}>
-												<BackImgC url={img}></BackImgC>
-											</li>
-										);
-								  })
-								: ""}
-						</ul>
-					</InputC>
-				</PictureC>
-				<TitleC>
-					<SubtitleC>
-						제목<b>*</b>
-					</SubtitleC>
-					<InputC>
-						<input onChange={inputChange} type="text" placeholder="상품 제목을 입력하세요." value={title} required />
-						<span> {title.length}/40</span>
-					</InputC>
-				</TitleC>
-				<CategoryC>
-					<SubtitleC>
-						카테고리<b>*</b>
-					</SubtitleC>
-					<FormC>
-						{/* Json 다 받으면 한줄로 줄어들 예정 */}
-						<RadioRet value="전자기기" idx={1} flag={idx} setIdx={setIdx} />
-						<RadioRet value="주변기기" idx={2} flag={idx} setIdx={setIdx} />
-						<RadioRet value="의류" idx={3} flag={idx} setIdx={setIdx} />
-						<RadioRet value="책" idx={4} flag={idx} setIdx={setIdx} />
-						<RadioRet value="나눔" idx={100} flag={idx} setIdx={setIdx} />
-					</FormC>
-				</CategoryC>
-				<TradeLocationC>
-					<SubtitleC>
-						거래장소<b>*</b>
-					</SubtitleC>
-					<InputC>
-						<div>
-							<button onClick={GaepoClick}>개포</button>
-							<button onClick={SeochoClick}>서초</button>
-							<button onClick={DirectLocation}>직접입력</button>
-						</div>
-						<div>
-							<input
-								onChange={ChangeLocation}
-								type="text"
-								placeholder="상세주소를 적어주세요."
-								value={location}
-								required
-							></input>
-						</div>
-					</InputC>
-				</TradeLocationC>
-				<PriceC>
-					<SubtitleC>
-						가격<b>*</b>
-					</SubtitleC>
-					<InputC>
-						<input
-							type="number"
-							placeholder="숫자만 입력해주세요."
-							value={price}
-							onChange={(e) => {
-								setPrice(parseInt(e.target.value));
-							}}
-							required
-						></input>
-						<span>원</span>
-					</InputC>
-				</PriceC>
-				<ContentC>
-					<SubtitleC>설명</SubtitleC>
-					<InputC>
-						<textarea
-							type="text"
-							cols="40"
-							rows="5"
-							placeholder="상품 설명을 입력해주세요."
-							value={content}
-							onChange={(e) => {
-								setContent(e.target.value);
-							}}
-						></textarea>
-					</InputC>
-				</ContentC>
-				<SubmitC>
-					<button onClick={submitHandle}>등록하기</button>
-				</SubmitC>
-			</RegiMainC>
-		</div>
-	);
+	<div>
+	  <RegiHeaderC>
+		<span>기본정보</span>
+		<span> *필수항목</span>
+	  </RegiHeaderC>
+	  <RegiMainC>
+		<PictureC>
+		  <SubtitleC>
+			상품 이미지<b>*</b>
+		  </SubtitleC>
+		  <InputC>
+			<LabelAndManualC>
+			  <label for="test12">이미지 등록</label>
+			  <div>
+				<span>- 상품 이미지는 640x640에 최적화 되어 있습니다.</span>
+				<span>- 비율이 1:1인 사진을 올리시면 짤리지 않습니다.</span>
+				<span>
+				  - 이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.
+				</span>
+			  </div>
+			</LabelAndManualC>
+			<ul>
+			  <li>
+				<input
+				  type="file"
+				  id="test12"
+				  multiple
+				  onChange={(e) => {
+					onChangeImg(e, setFileUrl, setFiles, Files);
+				  }}
+				  required
+				></input>
+			  </li>
+			  {FileUrl &&
+				FileUrl.map((img, idx) => {
+				  return (
+					<li key={idx}>
+					  <BackImgC url={img}></BackImgC>
+					  <DeletePostIconC
+						onClick={(e) => {
+						  DeleteUrl(
+							e,
+							idx,
+							Files,
+							setFiles,
+							FileUrl,
+							setFileUrl
+						  );
+						}}
+					  >
+						X
+					  </DeletePostIconC>
+					</li>
+				  );
+				})}
+			</ul>
+		  </InputC>
+		</PictureC>
+		<TitleC>
+		  <SubtitleC>
+			제목<b>*</b>
+		  </SubtitleC>
+		  <InputC>
+			<input
+			  onChange={inputChange}
+			  type="text"
+			  placeholder="상품 제목을 입력하세요."
+			  value={title}
+			  required
+			/>
+			<span> {title.length}/40</span>
+		  </InputC>
+		</TitleC>
+		<CategoryC>
+		  <SubtitleC>
+			카테고리<b>*</b>
+		  </SubtitleC>
+		  <FormC>
+			{/* Json 다 받으면 한줄로 줄어들 예정 */}
+			<RadioRet value="전자기기" idx={1} flag={idx} setIdx={setIdx} />
+			<RadioRet value="주변기기" idx={2} flag={idx} setIdx={setIdx} />
+			<RadioRet value="의류" idx={3} flag={idx} setIdx={setIdx} />
+			<RadioRet value="책" idx={4} flag={idx} setIdx={setIdx} />
+			<RadioRet value="나눔" idx={100} flag={idx} setIdx={setIdx} />
+		  </FormC>
+		</CategoryC>
+		<TradeLocationC>
+		  <SubtitleC>
+			거래장소<b>*</b>
+		  </SubtitleC>
+		  <InputC>
+			<div>
+			  <button onClick={GaepoClick}>개포</button>
+			  <button onClick={SeochoClick}>서초</button>
+			  <button onClick={DirectLocation}>직접입력</button>
+			</div>
+			<div>
+			  <input
+				onChange={ChangeLocation}
+				type="text"
+				placeholder="상세주소를 적어주세요."
+				value={location}
+				required
+			  ></input>
+			</div>
+		  </InputC>
+		</TradeLocationC>
+		<PriceC>
+		  <SubtitleC>
+			가격<b>*</b>
+		  </SubtitleC>
+		  <InputC>
+			<input
+			  type="number"
+			  placeholder="숫자만 입력해주세요."
+			  value={price}
+			  onChange={(e) => {
+				setPrice(parseInt(e.target.value));
+			  }}
+			  required
+			></input>
+			<span>원</span>
+		  </InputC>
+		</PriceC>
+		<ContentC>
+		  <SubtitleC>설명</SubtitleC>
+		  <InputC>
+			<textarea
+			  type="text"
+			  cols="40"
+			  rows="5"
+			  placeholder="상품 설명을 입력해주세요."
+			  value={content}
+			  onChange={(e) => {
+				setContent(e.target.value);
+			  }}
+			></textarea>
+		  </InputC>
+		</ContentC>
+		<SubmitC>
+		  <button onClick={submitHandle}>등록하기</button>
+		</SubmitC>
+	  </RegiMainC>
+	</div>
+  );
 }
 
 // width: 1000, 1200 비교해보기. 팀원들한테 상의 후 결정 => 수정시 Product.js stateBar 수정해야함
@@ -323,6 +344,19 @@ const BackImgC = styled.div`
 	margin-top: 10px;
 `;
 
+const DeletePostIconC = styled.div`
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	line-height: 20px;
+	border: 1px solid gray;
+	background-color: #fdfdfd;
+	border-radius: 3px;
+`;
+
 const PictureC = styled.div`
 	width: 100%;
 	> ${InputC} {
@@ -337,6 +371,7 @@ const PictureC = styled.div`
 			flex-wrap: wrap;
 			overflow-x: hidden;
 			> li {
+				position: relative;
 				display: flex;
 			}
 		}

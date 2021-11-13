@@ -5,8 +5,12 @@ import MainBanner from "./Banner";
 import CategoryBar from "./CategoryBar";
 import PreviewPost from "./PreviewPost";
 import Footer from "./Footer";
-
+import { Cookies } from "react-cookie";
 function Mainpage() {
+	const cookie = new Cookies()
+	console.log(cookie.getAll());
+	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
+	console.log(id, token, sub);
 	return (
 		<SectionC>
 			<Header />

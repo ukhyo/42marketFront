@@ -169,7 +169,7 @@ function ProductEdit(props) {
 									<li key={idx}>
 										<BackImgC url={img}></BackImgC>
 										<DeletePostIconC onClick={(e) => {
-											DeleteFile(e, img, oldFiles, setOldFiles);
+											DeleteFile(e, idx, oldFiles, setOldFiles);
 										} }>O</DeletePostIconC>
 									</li>
 								);
@@ -179,7 +179,7 @@ function ProductEdit(props) {
 									<li key={idx}>
 										<BackImgC url={img}></BackImgC>
 										<DeletePostIconC onClick={(e) => {
-											DeleteUrl(e, img, setFileUrl, Files, setFiles);
+											DeleteUrl(e, idx, Files, setFiles, FileUrl, setFileUrl);
 										}}>X</DeletePostIconC>
 									</li>
 								);
