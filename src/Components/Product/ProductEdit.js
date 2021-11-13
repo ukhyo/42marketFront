@@ -4,8 +4,8 @@ import Header from "../Mainpage/Header";
 import Footer from "../Mainpage/Footer";
 import { RadioRet } from "./Product";
 import axios from "axios";
-import DeleteFile from "../utils/DeleteFile";
-import { DeleteUrl } from "../utils/DeleteFile";
+import DeleteFile from "../utils/DeleteImg";
+import { DeleteUrl } from "../utils/DeleteImg";
 function ProductEdit(props) {
 
 	const [data, setData] = useState(props.location.state.data);
@@ -21,9 +21,6 @@ function ProductEdit(props) {
 	const [oldFiles, setOldFiles] = useState(data.img);
 	const [Files, setFiles] = useState([]);
 	const [FileUrl, setFileUrl] = useState([]);
-
-
-
 
 	const { history } = props;
 	// title section
