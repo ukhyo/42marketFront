@@ -20,7 +20,6 @@ function	MypageMain(props)
 function	Mypage({ match })
 {
 	const { tabs } = match.params;
-
 	return (
 		<div>
 			<Header />
@@ -32,9 +31,10 @@ function	Mypage({ match })
 
 
 const		MypageMainC = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: center;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+
 `;
 
 export default Mypage;
