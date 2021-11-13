@@ -1,19 +1,38 @@
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import reset from "styled-reset";
 import Router from "./Router";
-
+import axios from "axios";
+import { RefreshToken } from './utils/RefreshToken';
 
 function App() {
-	return (
-		<BrowserRouter>
-			<Router />
-			<GlobalStyles />
-			<ScrollToTop />
-		</BrowserRouter>
-	);
+	const [loading, setLoading] = useState(false);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		try {
+			RefreshToken();
+		}catch(e) {
+			console.log(e);
+		}
+	}, [])
+
+	if (loading)
+	{
+		return (
+			<BrowserRouter>
+				<Router />
+				<GlobalStyles />
+				<ScrollToTop />
+			</BrowserRouter>
+		);
+	}
+	else {
+		<div>loading</div>
+	}
 }
 
 function ScrollToTop() {

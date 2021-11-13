@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { Component } from "react";
+import React, { useEffect, useState, Component } from "react";
 import Header from "./Header";
 import MainBanner from "./Banner";
 import CategoryBar from "./CategoryBar";
@@ -11,7 +11,7 @@ function Mainpage() {
 	console.log("hi");
 	return (
 		<SectionC>
-			<Header />
+			{HeaderState ? <Header/> : null}
 			<MainBanner />
 			<CategoryBar />
 			<PreviewPost />
