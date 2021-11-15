@@ -62,7 +62,7 @@ function	ProfileBar(props)
 			});
 		setTimeout(() => {
 			window.location.reload();
-		}, 500)
+		}, 1000)
 	};
 
 	const onButtonClick = () => {
@@ -84,7 +84,7 @@ function	ProfileBar(props)
 		setOnButton(false);
 		setTimeout(() => {
 			window.location.reload();
-		}, 100)
+		}, 1000)
 	}
 	if (loading) return <div>loading...</div>;
 	if (error) return <div>Error occured</div>;

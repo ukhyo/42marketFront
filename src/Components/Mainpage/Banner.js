@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import pleaseBuy from "../img/pleasebuy.png";
 import bannerimg from "../img/mainBanner.png";
-import Samyun from "../img/samyun.jpeg";
+import Samyun from "../img/main_page2-001.png";
 import testImg from "../img/test1.jpeg";
 import testBanner from "../img/testBanner.png";
 import banner from "../img/test123.jpg";
@@ -29,8 +29,8 @@ function MainBanner() {
 				<div>
 					<BannerHeader />
 					<img alt="img" src={Samyun} />
-					<span>세계 유일 카뎃 중고거래 플랫폼</span>
-					<h1>어서오세요, 사면이득입니다</h1>
+					{/* <span>세계 유일 카뎃 중고거래 플랫폼</span>
+					<h1>어서오세요, 사면이득입니다</h1> */}
 					{/* <HeaderSearchC>
 						<HeaderSearchInputC>
 							<a href="#">
@@ -80,8 +80,8 @@ const MainBannerC = styled.div`
 		height: 100%;
 		& > img {
 			z-index: 1;
-			/* width: 100%;
-			height: 100%; */
+			width: 1780px;
+			height: 650px;
 			position: absolute;
 		}
 		/* & > img:nth-child(2) {

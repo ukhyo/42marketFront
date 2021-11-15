@@ -40,19 +40,18 @@ function CategoryBar() {
 
 const CategoryC = styled.div`
 	width: 1200px;
-	margin: 20px auto;
-	padding-bottom: 20px;
-	border-bottom: 1px solid #c0c0c0;
+	margin: auto;
+	/* padding-bottom: 20px; */
 `;
 
 const LinkC = styled(Link)`
 	text-decoration: none;
-	color: black;
+	color: rgba(0, 0, 0, 0.8);
 `;
 
 const CategoryItemsC = styled.div`
 	display: flex;
-	width: 800px;
+	width: 500px;
 	margin: 0 auto;
 	justify-content: space-between;
 	> ${LinkC} {
@@ -60,6 +59,17 @@ const CategoryItemsC = styled.div`
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		img {
+			width: 25px;
+			height: 25px;
+			color: rgba(0, 0, 0, 0.7);
+		}
+		img:hover {
+			width: 30px;
+			height: 30px;
+			transition-duration: 0.2s; 
+			color: rgb(187, 220, 238);
+		}
 		span {
 			margin: 15px 0;
 			font-size: 18px;

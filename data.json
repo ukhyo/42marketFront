@@ -8,24 +8,22 @@
       "img": [
         "/jsonimg/cloth2.jpeg"
       ],
-      "date": 1636620598881,
+      "date": "2021-10-13 4시",
       "location": "서울 강남구 개포로 416 1층",
       "category": 3,
-      "state": 0,
       "id": 6
     },
     {
       "title": "입던옷팝니다 착샷있음",
       "subtitle": "ㅈㄱㄴ",
-      "likes": 8,
+      "likes": 6,
       "price": 20000,
       "img": [
         "/jsonimg/cloth1.jpeg"
       ],
-      "date": 1636365175990,
+      "date": "시",
       "location": "서울 강남구 개포로 416 1층",
       "category": 3,
-      "state": 1,
       "id": 7
     },
     {
@@ -915,8 +913,8 @@
   },
   "picklist": [
     {
-      "title": "다다다다다다다다다다다다다다다다다다다다",
-      "subtitle": "몇번안입었어요 오늘 사시면 공짜로 드려요! 내일은 더 비쌀지도..? 냠냠냠냐얼ㅇㄴㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㅁㄹㅁㄹㄴㅁㄹㅁㄴㄹㅁㅁㅈㄹㅁㅈㄹㅁㅈㄹㅁㅈㄹㅈㄹㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅈ",
+      "title": "몇번 안입은 옷이에요.",
+      "subtitle": "몇번안입었어요 오늘 사시면 공짜로 드려요! 내일은 더 비쌀지도..?",
       "likes": 12,
       "price": 15000,
       "img": [
@@ -929,39 +927,39 @@
     },
     {
       "title": "입던옷팝니다 착샷있음",
-      "subtitle": "ㅈㄱㄴ",
+      "subtitle": "착샷은 있지만 실제로 입어보면 다를 수도 있어요. 만나서 거래하기 원합니다.",
       "likes": 5,
       "price": 20000,
       "img": [
         "/jsonimg/cloth1.jpeg"
       ],
-      "date": "시",
+      "date": "2021-10-13 4시",
       "location": "서울 강남구 개포로 416 1층",
       "category": 3,
       "id": 7
     },
     {
-      "title": "옷 팜",
-      "subtitle": "ㅈㄱㄴ",
+      "title": "옷장에 옷이 남아돌아서 팔아요",
+      "subtitle": "제가 아끼는 최애 옷입니다. 예쁘게 입어주세요 ㅠㅠ",
       "likes": 3,
       "price": 15300,
       "img": [
         "/jsonimg/cloth3.jpeg"
       ],
-      "date": "시",
+      "date": "2021-10-13 4시",
       "location": "서울 강남구 개포로 416 1층",
       "category": 3,
       "id": 8
     },
     {
       "title": "옷 ㅍㅍ",
-      "subtitle": "ㅍㅍ",
+      "subtitle": "누구껀지 모르겠지만 일단 팜팜!! 오늘까지 200% 세일!",
       "likes": 8,
       "price": 23000,
       "img": [
         "/jsonimg/test.jpeg.jpg"
       ],
-      "date": "시",
+      "date": "2021-10-13 4시",
       "location": "서울 강남구 개포로 416 1층",
       "category": 3,
       "id": 9

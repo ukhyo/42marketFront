@@ -162,6 +162,7 @@ const PostImgC = styled.div`
 	img {
 		width: 140px;
 		height: 140px;
+		border-radius: 10px;
 	}
 `;
 
