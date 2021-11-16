@@ -91,7 +91,7 @@ function ProductManage() {
 	useEffect(() => {
 		const getData = async () => {
 			const { data } = await axios.get("http://api.4m2d.shop/api/users/1");
-			console.log(data);
+
 			setPostList(data);
 		}
 		getData();
@@ -103,9 +103,9 @@ function ProductManage() {
 					<input type="text" placeholder="상품명을 입력해주세요." />
 					<img src={process.env.PUBLIC_URL + "/img/searchIcon.png"} />
 				</MainHeaderC>
-				{/*{PostList.map((data, idx) => {
+				{PostList.map((data, idx) => {
 					return <ShowData key={idx} data={data} />
-				})}*/}
+				})}
 			</MainC>
 		</SectionC>
 	);
