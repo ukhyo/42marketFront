@@ -90,7 +90,8 @@ function ProductManage() {
 
 	useEffect(() => {
 		const getData = async () => {
-			const { data } = await axios.get("http://localhost:3001/posts/");
+			const { data } = await axios.get("http://api.4m2d.shop/api/users/1");
+			console.log(data);
 			setPostList(data);
 		}
 		getData();
@@ -102,9 +103,9 @@ function ProductManage() {
 					<input type="text" placeholder="상품명을 입력해주세요." />
 					<img src={process.env.PUBLIC_URL + "/img/searchIcon.png"} />
 				</MainHeaderC>
-				{PostList.map((data, idx) => {
+				{/*{PostList.map((data, idx) => {
 					return <ShowData key={idx} data={data} />
-				})}
+				})}*/}
 			</MainC>
 		</SectionC>
 	);
@@ -233,3 +234,37 @@ const SectionC = styled.div`
 `;
 
 export default ProductManage;
+//{Loading && item.viewList.map((data, index) => {
+//	let title;
+//	data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
+//		: title = data.title;
+//				return (
+//					<PostItemC key={index}>
+//						<LinkC
+//							to={{
+//								pathname: `/postview/${data.id}`,
+//								state: {
+//									data: data,
+//									itemId: data.id,
+//								},
+//							}}
+//						>
+//							{/*<HoverImgC url={data.subThumbnailList[0]}>안녕</HoverImgC>*/}
+//							<BackImgC url={subItem[index]}></BackImgC>
+//						</LinkC>
+//						<div>{title}</div>
+//						<div>
+//							<div>
+//								{data.price}
+//								<b>원</b>
+//							</div>
+//							<div>
+//								<p>{data.likes}</p>
+//								<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
+//									<BsSuitHeartFill size={18} />
+//								</IconContext.Provider>
+//							</div>
+//						</div>
+//					</PostItemC>
+//				);
+//})}

@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-
-function CategoryBar() {
+function CategoryBar({history}) {
+	const [Loading, setLoading] = useState(true);
 	return (
 		<CategoryC>
-			<CategoryItemsC>
+			<CategoryItemsC onClick={(e) => {
+			}}>
 				<LinkC to="/category/0">
 					<img src={process.env.PUBLIC_URL + "/img/allIcon.png"}></img>
 					<span>전체</span>
@@ -27,7 +29,7 @@ function CategoryBar() {
 					<img src={process.env.PUBLIC_URL + "/img/bookIcon.png"}></img>
 					<span>책</span>
 				</LinkC>
-				<LinkC to="/category/share">
+				<LinkC to="/category/5">
 					<img src={process.env.PUBLIC_URL + "/img/shareIcon.png"}></img>
 					<span>나눔</span>
 				</LinkC>

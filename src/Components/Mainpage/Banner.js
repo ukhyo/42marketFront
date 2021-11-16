@@ -8,7 +8,6 @@ import testBanner from "../img/testBanner.png";
 import banner from "../img/test123.jpg";
 import BannerHeader from "./BannerHeader";
 import Header from "./Header";
-
 function MainBanner() {
 	// const [text, setText] = useState("");
 	// function onChange(e) {
@@ -26,31 +25,30 @@ function MainBanner() {
 	return (
 		<MainC>
 			<MainBannerC>
-				<div>
-					<BannerHeader />
-					<img alt="img" src={Samyun} />
-					<span>세계 유일 카뎃 중고거래 플랫폼</span>
-					<h1>어서오세요, 사면이득입니다</h1>
-					{/* <HeaderSearchC>
-						<HeaderSearchInputC>
-							<a href="#">
-								<img
-									onClick={imgClick}
-									className="header_search_img"
-									src={process.env.PUBLIC_URL + "/img/searchIcon.png"}
-									alt="img"
-								/>
-							</a>
-							<input
-								placeholder="검색어를 입력해주세요."
-								onChange={onChange}
-								onKeyDown={check}
-								type="text"
-								value={text}
+				{/*<BannerHeader />*/}
+				{/*<img alt="img" src={process.env.PUBLIC_URL + "/img/banner2.png"} />*/}
+				<img alt="img" src={process.env.PUBLIC_URL + "/img/samyun.jpeg"} />
+				{/*<span>세계 유일 카뎃 중고거래 플랫폼</span>
+				<h1>어서오세요, 사면이득입니다</h1>*/}
+				{/* <HeaderSearchC>
+					<HeaderSearchInputC>
+						<a href="#">
+							<img
+								onClick={imgClick}
+								className="header_search_img"
+								src={process.env.PUBLIC_URL + "/img/searchIcon.png"}
+								alt="img"
 							/>
-						</HeaderSearchInputC>
-					</HeaderSearchC> */}
-				</div>
+						</a>
+						<input
+							placeholder="검색어를 입력해주세요."
+							onChange={onChange}
+							onKeyDown={check}
+							type="text"
+							value={text}
+						/>
+					</HeaderSearchInputC>
+				</HeaderSearchC> */}
 			</MainBannerC>
 		</MainC>
 	);
@@ -60,6 +58,7 @@ const MainC = styled.main`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	width:100%;
 `;
 
 const MainBannerC = styled.div`
@@ -67,8 +66,10 @@ const MainBannerC = styled.div`
 	display: flex;
 	justify-content: center;
 	align-content: center;
-	width: 100%;
-	height: 650px;
+	padding: 0;
+	margin: 0 auto;
+	width: 1200px;
+	height: 500px;
 	margin-bottom: 30px;
 	& > div {
 		width: 100%;
@@ -80,8 +81,7 @@ const MainBannerC = styled.div`
 		height: 100%;
 		& > img {
 			z-index: 1;
-			/* width: 100%;
-			height: 100%; */
+			width: 100%;
 			position: absolute;
 		}
 		/* & > img:nth-child(2) {

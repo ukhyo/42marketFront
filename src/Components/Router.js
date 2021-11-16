@@ -17,8 +17,7 @@ function Router() {
         <Route path={"/postview/:id"} exact component={PostDetail}></Route>
         <Route path={"/product/edit"} exact component={ProductEdit} />
         <Route path={"/product/:tabs"} exact component={Product}></Route>
-        <Route path={"/category/:catename"} exact component={Category} />
-        <Route path={"/auth"} exact component={Auth} />
+        <Route path={"/category/:id"}  exact component={Category} />
       </Switch>
     </div>
   );
