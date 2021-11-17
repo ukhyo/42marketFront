@@ -210,7 +210,7 @@ function ProductRegi(props) {
 			<RadioRet value="주변기기" idx={2} flag={idx} setIdx={setIdx} />
 			<RadioRet value="의류" idx={3} flag={idx} setIdx={setIdx} />
 			<RadioRet value="책" idx={4} flag={idx} setIdx={setIdx} />
-			<RadioRet value="나눔" idx={100} flag={idx} setIdx={setIdx} />
+			<RadioRet value="나눔" idx={5} flag={idx} setIdx={setIdx} />
 		  </FormC>
 		</CategoryC>
 		<TradeLocationC>

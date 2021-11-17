@@ -62,7 +62,7 @@ function	ProfileBar(props)
 			});
 		setTimeout(() => {
 			window.location.reload();
-		}, 1500)
+		}, 2000)
 	};
 
 	const onButtonClick = () => {
