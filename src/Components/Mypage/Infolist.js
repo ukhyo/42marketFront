@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import { AiFillHeart, AiOutlineEye } from "react-icons/ai";
 import {DropdownButton, DropDown} from "react-bootstrap";
 import styled from "styled-components";
-import { Dropdown, Button, ButtonGroup } from "react-bootstrap";
-
+import DropdownMenu  from "./DropdownMenu";
 async function getList(list)
 {
 	const response = await axios.get(
@@ -71,17 +70,7 @@ function InfoList({ url })
 							</PostInfosTwo__LookupC>
 						</PostInfosTwoC>
 						{url === "selllist" ?
-							<Dropdown>
-								<Dropdown.Toggle variant="success" id="dropdown-basic">
-								  판매중
-								</Dropdown.Toggle>
-							  
-								<Dropdown.Menu>
-								  <Dropdown.Item href="#/action-1">판매완료</Dropdown.Item>
-								  <Dropdown.Item href="#/action-2">수정</Dropdown.Item>
-								  <Dropdown.Item href="#/action-3">삭제</Dropdown.Item>
-								</Dropdown.Menu>
-							  </Dropdown>
+							<DropdownMenu></DropdownMenu>
 							:
 							<PostCategoryC>
 								<span>IT/인터넷</span>
@@ -93,11 +82,6 @@ function InfoList({ url })
 		</InfoListC>
 	);
 }
-
-styled(Dropdown)`
-	width: 30px;
-	height: 40px;
-`;
 
 const EmptyInfoListC = styled.div`
 	width: 880px;
