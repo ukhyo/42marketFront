@@ -32,7 +32,8 @@ function Mainpage() {
 
 	return (
 		<SectionC>
-			{HeaderState ? <Header/> : null}
+			{/* {HeaderState ? <Header/> : null} */}
+			<Header />
 			<MainBanner />
 			<CategoryBar />
 			<PreviewPost />

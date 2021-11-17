@@ -179,7 +179,8 @@ const		ProfileModifyBtnC = styled.button`
 	height: 45px;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 15px;
-	margin: 20px 0px;
+	margin-top: 50px;
+	margin-bottom: 10px;
 	> span {
 		font-weight: 600;
 		font-size: 15px;
@@ -208,8 +209,8 @@ const		ProfileImgModifyC = styled.div`
 `;
 
 const		ProfileContentsC = styled.div`
-  	width: 280px;
-  	margin: 20px 0px;
+  	width: 270px;
+  	margin: 20px 5px;
   	span {
 	  opacity: 0.7;
 	  font-size: 15px;
@@ -258,6 +259,7 @@ const		ProfileLevelC = styled.div`
 const		ProfileLevelBarC = styled.div`
   	width: 280px;
   	height: 30px;
+	margin-top: 5px;
   	background-color: rgba(0, 0, 0, 0.1);
   	display: flex;
     position: relative;

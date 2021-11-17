@@ -19,16 +19,17 @@ const NaviBar = (props) =>
 };
 
 const NaviBarC = styled.ul `
+	width: 100%;
 	height: 70px;
 	display: flex;
-	justify-content: center;
-	align-content: center;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const		ItemC = styled.li`
 	width: 130px;
 	height: 70px;
+	position: relative;
+	right: -623px;
 	border-bottom: 4px solid
 		${props => (props.current ? "rgb(99, 178, 225);" : "transparent")};
 	transition: border-bottom 0.5s ease-in-out;

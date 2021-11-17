@@ -30,11 +30,13 @@ function	Mypage({ match })
 };
 
 
+
+
 const		MypageMainC = styled.div`
+	margin: 30px 0px;
 	display: flex;
 	justify-content: center;
 	align-content: center;
-
 `;
 
 export default Mypage;

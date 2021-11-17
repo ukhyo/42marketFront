@@ -1,8 +1,11 @@
 import axios from "axios";
 import useAsync from "./useAsync";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillHeart, AiOutlineEye } from "react-icons/ai";
+import {DropdownButton, DropDown} from "react-bootstrap";
 import styled from "styled-components";
+import { Dropdown, Button, ButtonGroup } from "react-bootstrap";
 
 async function getList(list)
 {
@@ -15,6 +18,7 @@ async function getList(list)
 function InfoList({ url })
 {
 	const [state] = useAsync(() => getList(url), [url]);
+	const [isHover, setIsHover] = useState(false);
 	const { loading, data: list, error } = state;
 
 	console.log(list, "list");
@@ -25,6 +29,7 @@ function InfoList({ url })
 		<h1>아직 활동내역이 없습니다.</h1>
 	</EmptyInfoListC>
 	);
+
 	return (
 		<InfoListC>
 			{list.map((posts,index) => {
@@ -65,17 +70,34 @@ function InfoList({ url })
 								<span><b><AiOutlineEye /></b> 30 </span>
 							</PostInfosTwo__LookupC>
 						</PostInfosTwoC>
-						<PostCategoryC>
-							<span>IT/인터넷</span>
-						</PostCategoryC>
-						<PostStateC>
-						</PostStateC>
+						{url === "selllist" ?
+							<Dropdown>
+								<Dropdown.Toggle variant="success" id="dropdown-basic">
+								  판매중
+								</Dropdown.Toggle>
+							  
+								<Dropdown.Menu>
+								  <Dropdown.Item href="#/action-1">판매완료</Dropdown.Item>
+								  <Dropdown.Item href="#/action-2">수정</Dropdown.Item>
+								  <Dropdown.Item href="#/action-3">삭제</Dropdown.Item>
+								</Dropdown.Menu>
+							  </Dropdown>
+							:
+							<PostCategoryC>
+								<span>IT/인터넷</span>
+							</PostCategoryC>
+						}
 					</PostListC>
 				);
 			})}
 		</InfoListC>
 	);
 }
+
+styled(Dropdown)`
+	width: 30px;
+	height: 40px;
+`;
 
 const EmptyInfoListC = styled.div`
 	width: 880px;
@@ -174,10 +196,6 @@ const PostInfosOneC = styled.div`
 	flex-direction: column;
 `;
 
-const PostStateC = styled.div`
-
-`;
-
 const PostInfosOne__TitleC = styled.div`
 	margin: 0px 0px;
 `;
@@ -186,7 +204,7 @@ const LinkC = styled(Link)`
 	display: inline-block;
 	width: 270px;
 	font-weight: 600;
-	font-size: 24px;
+	font-size: 18px;
 	text-decoration: none;
 	color: rgb(99, 178, 225);
 	white-space: nowrap;

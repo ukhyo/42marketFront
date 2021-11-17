@@ -1,8 +1,8 @@
 {
   "posts": [
     {
-      "title": "다다다다다다다다다다다다다다다다다다다다",
-      "subtitle": "몇번안입었어요 오늘 사시면 공짜로 드려요! 내일은 더 비쌀지도..? 냠냠냠냐얼ㅇㄴㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㅇㄴㄹㅁㄹㅁㄹㄴㅁㄹㅁㄴㄹㅁㅁㅈㄹㅁㅈㄹㅁㅈㄹㅁㅈㄹㅈㄹㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅉㅈ",
+      "title": "몇번 안입은 옷이에요.",
+      "subtitle": "몇번안입었어요 오늘 사시면 공짜로 드려요! 내일은 더 비쌀지도..?",
       "likes": 13,
       "price": 15000,
       "img": [
@@ -15,29 +15,28 @@
     },
     {
       "title": "입던옷팝니다 착샷있음",
-      "subtitle": "ㅈㄱㄴ",
+      "subtitle": "착샷은 있지만 실제로 입어보면 다를 수도 있어요. 만나서 거래하기 원합니다.",
       "likes": 6,
       "price": 20000,
       "img": [
         "/jsonimg/cloth1.jpeg"
       ],
-      "date": "시",
+      "date": "2021-10-13 4시",
       "location": "서울 강남구 개포로 416 1층",
       "category": 3,
       "id": 7
     },
     {
-      "title": "옷 팜",
-      "subtitle": "ㅈㄱㄴ",
+      "title": "옷장에 옷이 남아돌아서 팔아요",
+      "subtitle": "제가 아끼는 최애 옷입니다. 예쁘게 입어주세요 ㅠㅠ",
       "likes": 4,
       "price": 15300,
       "img": [
         "/jsonimg/cloth3.jpeg"
       ],
-      "date": 1636198356365,
+      "date": "2021-10-13 4시",
       "location": "서울 강남구 개포로 416 1층",
       "category": 3,
-      "state": 0,
       "id": 8
     },
     {
@@ -909,7 +908,7 @@
   "profile": {
     "name": "hyeolee",
     "level": "80",
-    "intro": "hello how are you?"
+    "intro": "hello world how are you?"
   },
   "picklist": [
     {
@@ -1574,5 +1573,110 @@
       "id": 53
     }
   ],
-  "selllist": []
+  "selllist": [
+    {
+      "title": "몇번 안입은 옷이에요.",
+      "subtitle": "몇번안입었어요 오늘 사시면 공짜로 드려요! 내일은 더 비쌀지도..?",
+      "likes": 12,
+      "price": 15000,
+      "img": [
+        "/jsonimg/cloth2.jpeg"
+      ],
+      "date": "2021-10-13 4시",
+      "location": "서울 강남구 개포로 416 1층",
+      "category": 3,
+      "id": 6
+    },
+    {
+      "title": "입던옷팝니다 착샷있음",
+      "subtitle": "착샷은 있지만 실제로 입어보면 다를 수도 있어요. 만나서 거래하기 원합니다.",
+      "likes": 5,
+      "price": 20000,
+      "img": [
+        "/jsonimg/cloth1.jpeg"
+      ],
+      "date": "2021-10-13 4시",
+      "location": "서울 강남구 개포로 416 1층",
+      "category": 3,
+      "id": 7
+    },
+    {
+      "title": "옷장에 옷이 남아돌아서 팔아요",
+      "subtitle": "제가 아끼는 최애 옷입니다. 예쁘게 입어주세요 ㅠㅠ",
+      "likes": 3,
+      "price": 15300,
+      "img": [
+        "/jsonimg/cloth3.jpeg"
+      ],
+      "date": "2021-10-13 4시",
+      "location": "서울 강남구 개포로 416 1층",
+      "category": 3,
+      "id": 8
+    },
+    {
+      "title": "옷 ㅍㅍ",
+      "subtitle": "누구껀지 모르겠지만 일단 팜팜!! 오늘까지 200% 세일!",
+      "likes": 8,
+      "price": 23000,
+      "img": [
+        "/jsonimg/test.jpeg.jpg"
+      ],
+      "date": "2021-10-13 4시",
+      "location": "서울 강남구 개포로 416 1층",
+      "category": 3,
+      "id": 9
+    },
+    {
+      "title": "옷입니당",
+      "subtitle": "네",
+      "likes": 10,
+      "price": 2345,
+      "img": [
+        "/jsonimg/cloth5.jpeg"
+      ],
+      "date": "시",
+      "location": "서울 강남구 개포로 416 1층",
+      "category": 3,
+      "id": 10
+    },
+    {
+      "title": "노트북 ㅍㅍ",
+      "subtitle": "ㅍㅍ",
+      "likes": 40,
+      "price": 19,
+      "img": [
+        "/jsonimg/it1.jpeg"
+      ],
+      "date": "시",
+      "location": "서울 강남구 개포로 416 1층",
+      "category": 1,
+      "id": 11
+    },
+    {
+      "title": "노트북 신형",
+      "subtitle": "얼마전에 삿어요",
+      "likes": 22,
+      "price": 2000000,
+      "img": [
+        "/jsonimg/it2.jpeg"
+      ],
+      "date": "시",
+      "location": "서울 강남구 개포로 416 1층",
+      "category": 1,
+      "id": 12
+    },
+    {
+      "title": "맥북인지 삼성노트북인지 모르겠음",
+      "subtitle": "직접판단하세요",
+      "likes": 8,
+      "price": 1234123,
+      "img": [
+        "/jsonimg/it3.jpeg"
+      ],
+      "date": "시",
+      "location": "서울 강남구 개포로 416 1층",
+      "category": 1,
+      "id": 13
+    }
+  ]
 }

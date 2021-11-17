@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import pleaseBuy from "../img/pleasebuy.png";
 import bannerimg from "../img/mainBanner.png";
-import Samyun from "../img/main_page2-001.png";
+import Samyun from "../img/main_page_ver2.png";
 import testImg from "../img/test1.jpeg";
 import testBanner from "../img/testBanner.png";
 import banner from "../img/test123.jpg";
@@ -27,7 +27,7 @@ function MainBanner() {
 		<MainC>
 			<MainBannerC>
 				<div>
-					<BannerHeader />
+					{/* <BannerHeader /> */}
 					<img alt="img" src={Samyun} />
 					{/* <span>세계 유일 카뎃 중고거래 플랫폼</span>
 					<h1>어서오세요, 사면이득입니다</h1> */}
