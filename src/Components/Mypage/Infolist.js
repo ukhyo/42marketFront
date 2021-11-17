@@ -17,7 +17,6 @@ async function getList(list)
 function InfoList({ url })
 {
 	const [state] = useAsync(() => getList(url), [url]);
-	const [isHover, setIsHover] = useState(false);
 	const { loading, data: list, error } = state;
 
 	console.log(list, "list");
@@ -69,13 +68,15 @@ function InfoList({ url })
 								<span><b><AiOutlineEye /></b> 30 </span>
 							</PostInfosTwo__LookupC>
 						</PostInfosTwoC>
-						{url === "selllist" ?
-							<DropdownMenu></DropdownMenu>
-							:
-							<PostCategoryC>
-								<span>IT/인터넷</span>
-							</PostCategoryC>
-						}
+						<PostCategoryC>
+							{url === "selllist" ?
+								<DropdownMenu></DropdownMenu>
+								:
+								<PostCategoryC>
+									<span>IT/인터넷</span>
+								</PostCategoryC>
+							}
+						</PostCategoryC>
 					</PostListC>
 				);
 			})}
@@ -94,7 +95,7 @@ const EmptyInfoListC = styled.div`
  `;
 
 const PostInfosTwoC = styled.div`
-	width: 120px;
+	width: 150px;
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -129,7 +130,7 @@ const PostInfosTwo__LookupC = styled.div`
 `;
 
 const PostCategoryC = styled.div`
-	width: 70px;
+	width: 160px;
 	height: 100%;
 	display: flex;
 	justify-content: center;

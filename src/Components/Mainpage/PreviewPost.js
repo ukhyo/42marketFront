@@ -51,7 +51,7 @@ function PostViewComp({flag}) {
 											}}
 										>
 											{/*<HoverImgC url={data.subThumbnailList[0]}>안녕</HoverImgC>*/}
-											<BackImgC url={subItem[index]}></BackImgC>
+											{/* <BackImgC url={subItem[index]}></BackImgC> */}
 										</LinkC>
 										<div>{title}</div>
 										<div>
@@ -88,7 +88,7 @@ function PostViewComp({flag}) {
 									}}
 								>
 									{/*<HoverImgC url={data.subThumbnailList[0]}>안녕</HoverImgC>*/}
-									<BackImgC url={viewItem[index]}></BackImgC>
+									{/* <BackImgC url={viewItem[index]}></BackImgC> */}
 								</LinkC>
 								<div>{title}</div>
 								<div>
