@@ -12,7 +12,7 @@ import S3 from "react-aws-s3";
 async function getProfile()
 {
 	const response = await axios.get(
-		'http://localhost:3001/profile'
+		'http://api.4m2d.shop/api/users/1'
 	);
 	return response.data;
 }
@@ -62,7 +62,7 @@ function	ProfileBar(props)
 			});
 		setTimeout(() => {
 			window.location.reload();
-		}, 1000)
+		}, 3000)
 	};
 
 	const onButtonClick = () => {
@@ -74,11 +74,11 @@ function	ProfileBar(props)
 	const submitHandler = (e) => {
 		const pushData = async () => {
 			let data = {
-				name: profile.name,
-				level: profile.level,
-				intro: intro
+				userIntra: profile.userIntra,
+				userLevel: profile.userLevel,
+				introduce: intro
 			};
-			await axios.put("http://localhost:3001/profile/", data);
+			await axios.patch("http://api.4m2d.shop/api/users/1", data);
 		}
 		pushData();
 		setOnButton(false);
@@ -104,18 +104,18 @@ function	ProfileBar(props)
 						onChange={onChangeImg}/>
 			</ProfileImgC>
 			<ProfileNameC>
-				<span>{profile.name}</span>
+				<span>{profile.userIntra}</span>
 			</ProfileNameC>
 			<ProfileLevelC>
-				<span>Level: {profile.level}</span>
+				<span>Level: {profile.userLevel}</span>
 				<ProfileLevelBarC>
 					<span>{profile.level}%</span>
-					<ProgressBarC percent={profile.level}>
+					<ProgressBarC percent={profile.userLevel}>
 					</ProgressBarC>
 				</ProfileLevelBarC>
 			</ProfileLevelC>
 			<ProfileContentsC>
-				<span>{profile.intro}</span>
+				<span>{profile.introduce}</span>
 			</ProfileContentsC>
 			{ onButton === false ? <ProfileModifyBtnC onClick={onButtonClick}>
 				<span>Edit introduce</span>

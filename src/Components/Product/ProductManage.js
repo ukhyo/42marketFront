@@ -40,51 +40,6 @@ function ShowData({ data }) {
 	return (
 		<ShowDataC>
 			<InfoList url={"manage"} id={1} />
-			<SellImgC>
-				<BackImgC url={data.image} />
-			</SellImgC>
-			<TitlePriceC>
-				<div>{data.title}</div>
-				<div>{data.price}원</div>
-			</TitlePriceC>
-			<StateManageC>
-				<SellDropBtnC onClick={DropBtn}>
-					<div>
-						{showState}<img src={process.env.PUBLIC_URL + "/img/DropBtn.png"} />
-					{show && (
-						<ul>
-							<li>
-								<button onClick={(e) => {
-									stateSet(e, 1, "상품 상태가 변경되었습니다.");
-								}}>판매완료</button>
-							</li>
-							<li>
-								<button onClick={(e) => {
-									stateSet(e, 0, "상품 상태가 변경되었습니다.");
-								}}>판매중</button>
-							</li>
-							<li>
-								<button>
-									<Link to={{
-											pathname: `/product/edit`,
-											state: {
-												data: data,
-											},
-										}}>
-										수정
-									</Link>
-								</button>
-							</li>
-							<li>
-									<button onClick={(e) => {
-										PostDelete(e, data.id);
-								}}>삭제</button>
-							</li>
-						</ul>
-					)}
-					</div>
-				</SellDropBtnC>
-			</StateManageC>
 		</ShowDataC>
 	);
 }

@@ -115,7 +115,7 @@ function ProductRegi(props) {
 				"Content-Type": `multipart/form-data`,
 			};
 			await axios
-				.post("http://api.4m2d.shop/api/posts/", fileList, {headers})
+				.post("http://api.4m2d.shop/api/posts/", fileList)
 				.then((res) => {
 					console.log(res, "post 성공");
 					history.push("/");
