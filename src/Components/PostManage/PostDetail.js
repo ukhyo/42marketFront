@@ -3,6 +3,9 @@ import Header from '../Mainpage/Header';
 import styled from 'styled-components';
 import Footer from '../Mainpage/Footer';
 import axios from 'axios';
+import { AiOutlineEye } from "react-icons/ai";
+import { BsSuitHeartFill } from "react-icons/bs";
+import { IconContext } from "react-icons/lib";
 function PostDetail(props) {
 
 	const { location } = props;
@@ -64,43 +67,74 @@ function PostDetail(props) {
 			<Header />
 			<PostDetailC>
 				{Loading && (
-				<PostDetailHeaderC>
-					<PostDetailMainC>
-						<BackImg url={data.image[ImgIdx]} />
-						<LeftRightBtnC>
-							<div
-								onClick={(e) => {
-									SelectPicture(e, 0);
-								}}
-							>
-								<img src={process.env.PUBLIC_URL + "/img/LeftArrow.png"} />
-							</div>
-							<div>
-								{ImgIdx + 1}/{data.image.length}
-							</div>
-							<div
-								onClick={(e) => {
-									SelectPicture(e, 1);
-								}}
-							>
-								<img src={process.env.PUBLIC_URL + "/img/RightArrow.png"} />
-							</div>
-						</LeftRightBtnC>
-					</PostDetailMainC>
-					<PostDetailInfoC>
-						<TitleC>{data.title}</TitleC>
-						<PriceAndDateC>
-							<div>{data.price} 원</div>
-							<div>{data.date}</div>
-						</PriceAndDateC>
-						<LocationAndViewsC>
-							<div>거래장소 : {data.local}</div>
-							<div>조회수 : {data.subscribes}</div>
-						</LocationAndViewsC>
-						<div>{data.content}</div>
-					</PostDetailInfoC>
-				</PostDetailHeaderC>)}
+					<PostDetailHeaderC>
+						<PostDetailMainC>
+							<BackImg url={data.image[ImgIdx]} />
+							<LeftRightBtnC>
+								<div
+									onClick={(e) => {
+										SelectPicture(e, 0);
+									}}
+								>
+									<img src={process.env.PUBLIC_URL + "/img/LeftArrow.png"} />
+								</div>
+								<div>
+									{ImgIdx + 1}/{data.image.length}
+								</div>
+								<div
+									onClick={(e) => {
+										SelectPicture(e, 1);
+									}}
+								>
+									<img src={process.env.PUBLIC_URL + "/img/RightArrow.png"} />
+								</div>
+							</LeftRightBtnC>
+						</PostDetailMainC>
+						<PostDetailInfoC>
+							<TitleC>
+								<div>
+									{data.title}
+								</div>
+								<div>
+									<b>
+										판매자 &nbsp;
+										<b>
+											{data.author}
+										</b>
+									</b>
+								</div>
+							</TitleC>
+							<PriceAndDateC>
+								<div>{data.price.toLocaleString()}<b>원</b></div>
+								<DateC>{data.updatedAt}</DateC>
+							</PriceAndDateC>
+							<LocationAndViewsC>
+								<LocationArea>
+									<AiOutlineEye size={18}/><b>12</b>
+								</LocationArea>
+								<LocationArea>
+									<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
+										<BsSuitHeartFill size={18} /><b>{data.subscribes}</b>
+									</IconContext.Provider>
+								</LocationArea>
+							</LocationAndViewsC>
+							<Location>
+								거래장소 {data.local}
+							</Location>
+							<PostContentsC>{data.content}</PostContentsC>
+							<SubscribeBtn>구독</SubscribeBtn>
+						</PostDetailInfoC>
+					</PostDetailHeaderC>
+				)}
+				<CommentArea>
+					<RegiHeaderC>
+						<span>댓글</span>
+					</RegiHeaderC>
+					<CommentMain>
+					</CommentMain>
+				</CommentArea>
 			</PostDetailC>
+
 			<Footer />
 		</div>
 	);
@@ -114,11 +148,12 @@ const PostDetailC = styled.div`
 	width: 1200px;
 	height: 800px;
 	margin: 0 auto;
-	margin-top: 30px;
+	margin-top: 80px;
 `;
 
 const PostDetailHeaderC = styled.div`
 	display: flex;
+	/*position: absolute;*/
 	margin-bottom: 50px;
 	padding-bottom: 30px;
 	border-bottom: 1px solid #c0c0c0;
@@ -141,14 +176,14 @@ const PostDetailMainC = styled.div`
 	justify-content: space-between;
 
 	align-items: center;
-	width: 400px;
-	height: 400px;
+	width: 500px;
+	height: 500px;
 	position: relative;
 `;
 
 const BackImg = styled.div`
 	width: 100%;
-	height: 400px;
+	height: 500px;
 	background-image: url("${(props) => props.url}");
 	background-position: center;
 	background-size: cover;
@@ -157,29 +192,48 @@ const BackImg = styled.div`
 `;
 
 const PostDetailInfoC = styled.div`
+	position: relative;
 	width: 60%;
 	margin-left: 50px;
-	> div:first-child {
-		font-size: 30px;
+	> div:first-child { // 제목
+		font-size: 24px;
 		margin-bottom: 20px;
 	}
-	> div:nth-child(2) {
+	> div:nth-child(2) { // 가격 / 시간
 		width: 100%;
-		font-size: 20px;
-		font-weight: bold;
-		padding-bottom: 20px;
+		font-size: 30px;
+		/*font-weight: bold;*/
+		padding-bottom: 15px;
 		border-bottom: 1px solid #c0c0c0;
+		div > b {
+			margin-left: 3px;
+			font-size: 20px;
+		}
 	}
-	> div:nth-child(4) {
-		font-size: 20px;
-		margin-top: 16px;
-		line-height: 30px;
-		width: 100%;
-	}
+	`;
+
+const Location = styled.div` // 거래장소
+	padding-bottom: 15px;
+	padding-top: 15px;
+	font-size: 17px;
+	border-bottom: 1px solid #c0c0c0;
 `;
 
 const TitleC = styled.div`
+	display: flex;
+	justify-content: space-between;
+	> div > b { // 판매자
+		font-size: 18px;
+		> b {
+			color: rgb(130, 130, 238);
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	}
+`;
 
+const DateC = styled.div`
+	font-size: 20px;
 `;
 
 const PriceAndDateC = styled.div`
@@ -190,12 +244,78 @@ const PriceAndDateC = styled.div`
 		font-weight: normal;
 	}
 `;
+const LocationArea = styled.div`
+	margin-top: 5px;
+	position: relative;
+`;
 
 const LocationAndViewsC = styled.div`
 	margin-top: 10px;
 	display: flex;
-	justify-content: space-between;
+	/*justify-content: space-between;*/
 	align-items: center;
+	> ${LocationArea}:first-child {
+		width: 50px;
+		height: 20px;
+		position: static;
+		> b {
+			position: relative;
+			top: -3.5px;
+			left: 4px;
+		}
+	}
+	> ${LocationArea}:last-child {
+		margin-left : 5px;
+		width: 50px;
+		height: 20px;
+		position: static;
+		> b {
+			position: relative;
+			top: -3.5px;
+			left: 5px;
+		}
+	}
+`;
+
+const PostContentsC = styled.div`
+	margin-top: 15px;
+	line-height: 24px;
+	font-size: 18px;
+`;
+
+
+const SubscribeBtn = styled.button`
+	position: absolute;
+	width: 160px;
+	height: 50px;
+	bottom: 0px;
+	border: none;
+	background-color: rgb(255, 67, 46);
+	color :white;
+	border-radius: 10px;
+`;
+
+// 하단부
+
+const CommentArea = styled.div`
+	width: 1200px;
+
+`;
+
+const RegiHeaderC = styled.div`
+	width: 100%;
+	margin: 0 auto;
+	height: 65px;
+	> span:first-child {
+		font-size: 30px;
+		margin-right: 50px;
+	}
+`;
+
+const CommentMain = styled.div`
+	width: 100%;
+	height: 500px;
+	background-color: white;
 `;
 
 export default PostDetail;

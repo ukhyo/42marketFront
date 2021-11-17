@@ -56,7 +56,7 @@ function PostViewComp({flag}) {
 										<div>{title}</div>
 										<div>
 											<div>
-												{data.price}
+												{data.price.toLocaleString()}
 												<b>원</b>
 											</div>
 											<div>
@@ -93,7 +93,7 @@ function PostViewComp({flag}) {
 								<div>{title}</div>
 								<div>
 									<div>
-										{data.price}
+										{data.price.toLocaleString()}
 										<b>원</b>
 									</div>
 									<div>
