@@ -7,17 +7,20 @@ import {DropdownButton, DropDown} from "react-bootstrap";
 import styled from "styled-components";
 import { Dropdown, Button, ButtonGroup } from "react-bootstrap";
 
-async function getList(list)
+async function getList(id)
 {
 	const response = await axios.get(
-		`http://localhost:3001/${list}`
+		`http://api.4m2d.shop/api/users/${id}`
 	);
+
+
 	return response.data;
 }
 
-function InfoList({ url })
+function InfoList({ url, id })
 {
-	const [state] = useAsync(() => getList(url), [url]);
+
+	const [state] = useAsync(() => getList(id), [url]);
 	const [isHover, setIsHover] = useState(false);
 	const { loading, data: list, error } = state;
 
@@ -29,14 +32,18 @@ function InfoList({ url })
 		<h1>아직 활동내역이 없습니다.</h1>
 	</EmptyInfoListC>
 	);
-
+	if (url === "manage" || url === "selllist")
+		list = list.postsList;
+	else
+		list = list.cartsList;
 	return (
 		<InfoListC>
+			{/*{url === manage || url == sellist  }*/}
 			{list.map((posts,index) => {
 				return (
 					<PostListC key={index}>
 						<PostImgC>
-							<img src={posts.img[0]} />
+							<img src={posts.image} />
 						</PostImgC>
 						<PostInfosOneC>
 							<PostInfosOne__TitleC>
@@ -75,7 +82,7 @@ function InfoList({ url })
 								<Dropdown.Toggle variant="success" id="dropdown-basic">
 								  판매중
 								</Dropdown.Toggle>
-							  
+
 								<Dropdown.Menu>
 								  <Dropdown.Item href="#/action-1">판매완료</Dropdown.Item>
 								  <Dropdown.Item href="#/action-2">수정</Dropdown.Item>

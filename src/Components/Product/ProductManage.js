@@ -5,6 +5,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PostDelete from "../utils/PostDelete";
+import InfoList from "../Mypage/Infolist";
 function ShowData({ data }) {
 	const [showState, setShowState] = useState("판매중");
 	const [show, setShow] = useState(false);
@@ -37,7 +38,7 @@ function ShowData({ data }) {
 	return (
 		<ShowDataC>
 			<SellImgC>
-				<BackImgC url={data.img[0]} />
+				<BackImgC url={data.image} />
 			</SellImgC>
 			<TitlePriceC>
 				<div>{data.title}</div>
@@ -86,13 +87,14 @@ function ShowData({ data }) {
 }
 
 function ProductManage() {
-	const [PostList, setPostList] = useState([]);
-
+	const [data, setData] = useState([]);
+	const [Loading, setLoading] = useState(false);
 	useEffect(() => {
 		const getData = async () => {
-			const { data } = await axios.get("http://api.4m2d.shop/api/users/1");
-
-			setPostList(data);
+			const { data } = await axios.get("http://api.4m2d.shop/api/posts/user/1");
+			console.log(data, "체크");
+			setData(data);
+			setLoading(!Loading);
 		}
 		getData();
 	}, [])
@@ -103,7 +105,7 @@ function ProductManage() {
 					<input type="text" placeholder="상품명을 입력해주세요." />
 					<img src={process.env.PUBLIC_URL + "/img/searchIcon.png"} />
 				</MainHeaderC>
-				{PostList.map((data, idx) => {
+				{Loading && data.map((data, idx) => {
 					return <ShowData key={idx} data={data} />
 				})}
 			</MainC>

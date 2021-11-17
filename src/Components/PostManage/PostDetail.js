@@ -113,7 +113,7 @@ function PostDetail(props) {
 									<AiOutlineEye size={18}/><b>12</b>
 								</LocationArea>
 								<LocationArea>
-									<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
+									<IconContext.Provider value={{ color: "rgb(234, 123, 151)" }}>
 										<BsSuitHeartFill size={18} /><b>{data.subscribes}</b>
 									</IconContext.Provider>
 								</LocationArea>

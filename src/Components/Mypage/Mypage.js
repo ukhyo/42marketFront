@@ -24,7 +24,7 @@ function	Mypage({ match })
 		<div>
 			<Header />
 			<NaviBar name={tabs}/>
-			<MypageMain name={tabs}/>
+			<MypageMain name={tabs} id={1}/>
 		</div>
 	);
 };
