@@ -121,7 +121,7 @@ function ProductEdit(props) {
 			};
 			// Api 주소만 postId 끝에 달아주면 될 것 같음.
 			await axios
-				.post("http://13.124.164.7:8080/api/posts/5", fileList, { headers })
+				.post(`http://api.4m2d.shop/api/posts/`, fileList, { headers })
 				.then((res) => {
 					console.log(res, "post 성공");
 					history.push("/");

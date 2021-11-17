@@ -8,7 +8,6 @@ import testBanner from "../img/testBanner.png";
 import banner from "../img/test123.jpg";
 import BannerHeader from "./BannerHeader";
 import Header from "./Header";
-
 function MainBanner() {
 	// const [text, setText] = useState("");
 	// function onChange(e) {
@@ -26,7 +25,6 @@ function MainBanner() {
 	return (
 		<MainC>
 			<MainBannerC>
-				<div>
 					{/* <BannerHeader /> */}
 					<img alt="img" src={Samyun} />
 					{/* <span>세계 유일 카뎃 중고거래 플랫폼</span>
@@ -48,9 +46,16 @@ function MainBanner() {
 								type="text"
 								value={text}
 							/>
-						</HeaderSearchInputC>
-					</HeaderSearchC> */}
-				</div>
+						</a>
+						<input
+							placeholder="검색어를 입력해주세요."
+							onChange={onChange}
+							onKeyDown={check}
+							type="text"
+							value={text}
+						/>
+					</HeaderSearchInputC>
+				</HeaderSearchC> */}
 			</MainBannerC>
 		</MainC>
 	);
@@ -60,6 +65,7 @@ const MainC = styled.main`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	width:100%;
 `;
 
 const MainBannerC = styled.div`
@@ -67,8 +73,10 @@ const MainBannerC = styled.div`
 	display: flex;
 	justify-content: center;
 	align-content: center;
-	width: 100%;
-	height: 650px;
+	padding: 0;
+	margin: 0 auto;
+	width: 1200px;
+	height: 500px;
 	margin-bottom: 30px;
 	& > div {
 		width: 100%;

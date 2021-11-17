@@ -6,107 +6,131 @@ import { FiHeart } from "react-icons/fi";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
 import { Cookies } from "react-cookie";
-function PostViewComp({ idx }) {
-	const cookie = new Cookies();
-	console.log(cookie.getAll());
-	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
-	console.log(token, "토큰임");
 
-	let [item, setItem] = useState([]);
+function PostViewComp({flag}) {
+	const cookie = new Cookies();
+	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
+
+	const [subItem, setSubItem] = useState([]);
+	const [viewItem, setViewItem] = useState([]);
+	const [item, setItem] = useState([]);
+	const [Loading, setLoading] = useState(false);
 	useEffect(() => {
 		const ApiGet = async () => {
-			// Aws EC2
-
-			//const { data } = await axios.get("http://52.79.76.165/login").then((response) => {
-			//	console.log(response, "test");
-			//	return response;
-			//});
-	//		const headers = {
-    //    Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1a3dvbiIsInVzZXJBc…YMZQhHgRQNFNmhp7470sko62kwFK1UFn4-52LGb0tb4myk6yQ`,
-    //  };
-
-			let { data } = await axios.get("http://api.4m2d.shop/api/posts").then((response) => {
-				console.log(response, "test");
+			let { data: data } = await axios.get("http://api.4m2d.shop/api/").then((response) => {
+				console.log("성공?");
 				return response;
+			}).catch((res) => {
+				console.log(res, "에러");
 			});
-
-			console.log(data, "뭐야");
-			//let tempArr = [];
-			//let i = 0;
-			//if (data.length < idx + 5) {
-			//	alert("error");
-			//	return;
-			//}
-			//else {
-			//	console.log(data.length);
-			//}
-			//const limit = idx + 5;
-			//for (idx; idx < limit; idx++) {
-			//	tempArr[i] = data[idx];
-			//	i++;
-			//}
-			//setItem(tempArr);
+			setItem(data);
+			setSubItem(data.subThumbnailList);
+			setViewItem(data.viewThumbnailList);
+			setLoading(true);
 		};
 		ApiGet();
 	}, []);
 
 	return (
+		<SectionC>
 			<PostViewLineC>
-			{/*{item.map((data, index) => {
+				{flag && (
+				Loading && item.subscribeList.map((data, index) => {
+					let title;
+					data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
+						: title = data.title;
+								return (
+									<PostItemC key={index}>
+										<LinkC
+											to={{
+												pathname: `/postview/${data.id}`,
+												state: {
+													data: data,
+													itemId: data.id,
+												},
+											}}
+										>
+											{/*<HoverImgC url={data.subThumbnailList[0]}>안녕</HoverImgC>*/}
+											<BackImgC url={subItem[index]}></BackImgC>
+										</LinkC>
+										<div>{title}</div>
+										<div>
+											<div>
+												{data.price.toLocaleString()}
+												<b>원</b>
+											</div>
+											<div>
+												<p>{data.likes}</p>
+												<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
+													<BsSuitHeartFill size={18} />
+												</IconContext.Provider>
+											</div>
+										</div>
+									</PostItemC>
+								);
+					})
+				)}
+				{!flag && (
+			Loading && item.viewList.map((data, index) => {
 				let title;
+				console.log(data," zz");
 				data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
 					: title = data.title;
-							return (
-								<PostItemC key={index}>
-									<LinkC
-										to={{
-											pathname: `/postview/${data.id}`,
-											state: {
-												data: data,
-												itemId: data.id,
-											},
-										}}
-									>
-										<HoverImgC url={data.img[0]}>안녕</HoverImgC>
-										<BackImgC url={data.img[0]}></BackImgC>
-									</LinkC>
-									<div>{title}</div>
+						return (
+							<PostItemC key={index}>
+								<LinkC
+									to={{
+										pathname: `/postview/${data.id}`,
+										state: {
+											data: data,
+											itemId: data.id,
+										},
+									}}
+								>
+									{/*<HoverImgC url={data.subThumbnailList[0]}>안녕</HoverImgC>*/}
+									<BackImgC url={viewItem[index]}></BackImgC>
+								</LinkC>
+								<div>{title}</div>
+								<div>
 									<div>
-										<div>
-											{data.price}
-											<b>원</b>
-										</div>
-										<div>
-											<p>{data.likes}</p>
-											<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
-												<BsSuitHeartFill size={18} />
-											</IconContext.Provider>
-										</div>
+										{data.price.toLocaleString()}
+										<b>원</b>
 									</div>
-								</PostItemC>
-							);
-					  })}*/}
+									<div>
+										<p>{data.likes}</p>
+										<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
+											<BsSuitHeartFill size={18} />
+										</IconContext.Provider>
+									</div>
+								</div>
+							</PostItemC>
+						);
+					})
+				)}
 			</PostViewLineC>
+		</SectionC>
 	);
 }
 
 function PreviewPost() {
 	return (
 		<PostViewC>
-			{console.log()}
 			<h3>인기게시글</h3>
-			<PostViewLineC><PostViewComp idx={5} /></PostViewLineC>
-			<PostViewLineC><PostViewComp idx={0} /></PostViewLineC>
-			<h3>추천게시글</h3>
-			<PostViewLineC><PostViewComp idx={10} /></PostViewLineC>
-			<PostViewLineC><PostViewComp idx={15} /></PostViewLineC>
+			<PostViewComp flag={true} />
+			<div><h3>전체게시판</h3></div>
+			<PostViewComp flag={false} />
 		</PostViewC>
 	);
 }
 
+const SectionC = styled.section`
+	width: 1200px;
+	/*height: 300px;*/
+`;
 
 const PostViewC = styled.div`
 	width: 1200px;
+	height: 1280px;
 	margin: 0px auto;
 	> h3 {
 		font-size: 20px;
@@ -116,12 +140,19 @@ const PostViewC = styled.div`
 	> div:last-child {
 		margin-bottom: 50px;
 	}
+	> div:nth-child(2) {
+		height: 100px;
+			> h3 {
+			font-size: 20px;
+			margin-top: 40px;
+			margin-bottom: 10px;
+		}
+	}
 `;
 
 const PostViewLineC = styled.div`
 	width: 100%;
-	height: 270px;
-
+	height: 600px;
 	margin: 10px auto;
 	margin-bottom: 20px;
 	display: flex;

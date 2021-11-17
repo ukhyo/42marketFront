@@ -3,18 +3,27 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import CategoryBar from "../Mainpage/CategoryBar";
+
 function CateDetail(props) {
 	const [item, setItem] = useState([]);
-
+	console.log(props,"네네 선장님");
+	let { undefined: cate }= props.match.params;
 	useEffect(() => {
 		const getData = async () => {
-			const { data } = await axios.get("http://localhost:3001/posts/");
+			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/category/${cate}`);
+			console.log(data, "데이터 0 아닐때");
 			setItem(data);
 		};
+		const getData2 = async () => {
+			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/`);
+			console.log(data, "전체게시글");
+			setItem(data);
+		};
+		if (cate !== "0")
 		getData();
-	}, []);
-	let { undefined: cate } = props.match.params;
-	cate = Number(cate);
+		else
+		getData2();
+	}, [cate]);
 	return (
 		<SectionC>
 			<CategoryBar />
@@ -23,7 +32,6 @@ function CateDetail(props) {
 			</NameAndSortC>
 			<PostViewC>
 			{item.map((data, idx) => {
-				if (data.category != cate && cate != 0) return;
 				return (
 					<PostItemC key={idx}>
 						<Link
@@ -35,7 +43,7 @@ function CateDetail(props) {
 								},
 							}}
 							>
-							<BackImgC url={data.img[0]} />
+							<BackImgC url={data.image} />
 						</Link>
 						<div>{data.title}</div>
 						<div>{data.price} 원</div>

@@ -21,7 +21,6 @@ function Header() {
 
 	return (
 		<HeaderC>
-			<img src="https://d15s1x1wlyvaud.cloudfront.net/post5/file" />
 			<HeaderLineC>
 				<HeaderLogoC>
 					<Link to="/">

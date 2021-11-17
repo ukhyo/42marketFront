@@ -40,7 +40,6 @@ function ProductStateBar({ path }) {
 }
 
 function Product(props) {
-	const pathName = props.location.pathname.split("/").pop();
 	return (
 		<SectionC>
 			<Header />

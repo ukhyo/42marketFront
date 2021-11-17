@@ -4,9 +4,12 @@ import { RadioRet } from "./Product";
 import { Route } from "react-router-dom";
 import axios from "axios";
 import { DeleteUrl } from "../utils/DeleteImg";
+import { Cookies } from "react-cookie";
 
 function ProductRegi(props) {
-
+	const cookie = new Cookies();
+	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
+	console.log(token, "토큰임");
 	// Input 양식 State
 	const [title, setTitle] = useState("");
 	const [location, setLocation] = useState("");
@@ -99,20 +102,20 @@ function ProductRegi(props) {
 			});
 			let data = {
 				title: title,
-				content: "안녕",
-				price: 123456,
+				content: content,
+				price: price,
 				local: location,
-				categoryId: 1,
+				categoryId: idx,
 				userId: 1,
 			};
 
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
 			const headers = {
+				"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
 			};
-
 			await axios
-				.post("http://13.124.164.7:8080/api/posts", fileList, { headers })
+				.post("http://api.4m2d.shop/api/posts/", fileList)
 				.then((res) => {
 					console.log(res, "post 성공");
 					history.push("/");
