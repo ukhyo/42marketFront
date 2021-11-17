@@ -6,6 +6,7 @@ import axios from 'axios';
 import { AiOutlineEye } from "react-icons/ai";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
+import Coming_soon from "../../Images/coming_soon.jpeg";
 function PostDetail(props) {
 
 	const { location } = props;
@@ -131,7 +132,7 @@ function PostDetail(props) {
 						<span>댓글</span>
 					</RegiHeaderC>
 					<CommentMain>
-						{/*이자리엔 컴포넌트 들어올 예정*/}
+					<img src={Coming_soon} />
 					</CommentMain>
 				</CommentArea>
 			</PostDetailC>
@@ -147,7 +148,7 @@ function PostDetail(props) {
 
 const PostDetailC = styled.div`
 	width: 1200px;
-	height: 800px;
+	height: 900px;
 	margin: 0 auto;
 	margin-top: 80px;
 `;
@@ -230,6 +231,9 @@ const TitleC = styled.div`
 			text-decoration: underline;
 			cursor: pointer;
 		}
+	}
+	> div:first-child {
+		width: 500px;
 	}
 `;
 
@@ -314,9 +318,9 @@ const RegiHeaderC = styled.div`
 `;
 
 const CommentMain = styled.div`
-	width: 100%;
-	height: 500px;
-	background-color: white;
+	/*width: 100%;*/
+	/*height: 500px;*/
+	/*background-color: white;*/
 `;
 
 export default PostDetail;
