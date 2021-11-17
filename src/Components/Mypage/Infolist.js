@@ -75,13 +75,15 @@ function InfoList({url, id})
 								<span><b><AiOutlineEye /></b> 30 </span>
 							</PostInfosTwo__LookupC>
 						</PostInfosTwoC>
-						{url === "selllist" ?
-							<span>판매중</span>
-							:
-							<PostCategoryC>
-								<span>IT/인터넷</span>
-							</PostCategoryC>
-						}
+						<PostCategoryC>
+							{url === "selllist"  || url === "manage" ?
+								<DropdownMenu data={posts.id}></DropdownMenu>
+								:
+								<PostCategoryC>
+									<span>IT/인터넷</span>
+								</PostCategoryC>
+							}
+						</PostCategoryC>
 					</PostListC>
 				);
 			})}
@@ -100,7 +102,7 @@ const EmptyInfoListC = styled.div`
  `;
 
 const PostInfosTwoC = styled.div`
-	width: 120px;
+	width: 150px;
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -135,7 +137,7 @@ const PostInfosTwo__LookupC = styled.div`
 `;
 
 const PostCategoryC = styled.div`
-	width: 70px;
+	width: 160px;
 	height: 100%;
 	display: flex;
 	justify-content: center;

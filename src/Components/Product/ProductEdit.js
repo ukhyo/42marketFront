@@ -7,18 +7,32 @@ import axios from "axios";
 import DeleteFile from "../utils/DeleteImg";
 import { DeleteUrl } from "../utils/DeleteImg";
 function ProductEdit(props) {
-
-	const [data, setData] = useState(props.location.state.data);
-	// Input 양식 State
-	const [title, setTitle] = useState(data.title);
-	const [location, setLocation] = useState(data.local);
-	const [idx, setIdx] = useState(data.category);
-	const [price, setPrice] = useState(data.price);
-	const [content, setContent] = useState(data.content);
-
+	const id = props.location.state.id;
+	const [data, setData] = useState([]);
+	const [oldFiles, setOldFiles] = useState([]);
+	const [title, setTitle] = useState("");
+	const [location, setLocation] = useState("");
+	const [idx, setIdx] = useState(0);
+	const [price, setPrice] = useState(0);
+	const [content, setContent] = useState("");
+	const [Loading, setLoading] = useState(false);
+	useEffect(() => {
+		const ApiGet =	async () => {
+			const { data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}`);
+			console.log(data, "데이터");
+			setOldFiles(data.image);
+			setTitle(data.title);
+			setLocation(data.local);
+			setIdx(data.categoryId);
+			setPrice(data.price);
+			setContent(data.content);
+			setData(data.categoryId);
+			setLoading(!Loading);
+		}
+		ApiGet();
+	}, [])
 
 	// Input 양식 state 이미지 관련
-	const [oldFiles, setOldFiles] = useState(data.image);
 	const [Files, setFiles] = useState([]);
 	const [FileUrl, setFileUrl] = useState([]);
 
@@ -121,7 +135,7 @@ function ProductEdit(props) {
 			};
 			// Api 주소만 postId 끝에 달아주면 될 것 같음.
 			await axios
-				.post(`http://api.4m2d.shop/api/posts/`, fileList, { headers })
+				.post(`http://api.4m2d.shop/api/posts/${id}`, fileList, { headers })
 				.then((res) => {
 					console.log(res, "post 성공");
 					history.push("/");
@@ -131,6 +145,9 @@ function ProductEdit(props) {
 		}
 		pushData();
 	}
+	if (!Loading)
+		return (<div>안녕</div>);
+
 	return (
 		<div>
 			<Header />
@@ -170,7 +187,7 @@ function ProductEdit(props) {
 										<BackImgC url={img}></BackImgC>
 										<DeletePostIconC onClick={(e) => {
 											DeleteFile(e, idx, oldFiles, setOldFiles);
-										} }>O</DeletePostIconC>
+										} }>X</DeletePostIconC>
 									</li>
 								);
 							})}

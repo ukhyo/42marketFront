@@ -15,6 +15,7 @@ function ShowData({ data }) {
 	useEffect(() => {
 		if (data.state === 1) setShowState("판매 완료");
 	}, [])
+	console.log(data, "체킹");
 	const stateSet = async (e, choice, msg) => {
 		alert(msg);
 		// 이부분 어떻게 수정할지 고민해봐야할것같음.
@@ -39,7 +40,7 @@ function ShowData({ data }) {
 	return (
 		<ShowDataC>
 			<InfoList url={"manage"} id={1} />
-			{/*<SellImgC>
+			<SellImgC>
 				<BackImgC url={data.image} />
 			</SellImgC>
 			<TitlePriceC>
@@ -83,7 +84,7 @@ function ShowData({ data }) {
 					)}
 					</div>
 				</SellDropBtnC>
-			</StateManageC>*/}
+			</StateManageC>
 		</ShowDataC>
 	);
 }
