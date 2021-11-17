@@ -75,8 +75,8 @@ const MainBannerC = styled.div`
 	align-content: center;
 	padding: 0;
 	margin: 0 auto;
-	width: 1200px;
-	height: 500px;
+	width: 1780px;
+	height: 650px;
 	margin-bottom: 30px;
 	& > div {
 		width: 100%;
