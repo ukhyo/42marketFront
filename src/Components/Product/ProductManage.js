@@ -17,6 +17,7 @@ function ShowData({ data }) {
 	}, [])
 	const stateSet = async (e, choice, msg) => {
 		alert(msg);
+		// 이부분 어떻게 수정할지 고민해봐야할것같음.
 		const config = {
 		  "title": data.title,
 		  "subtitle": data.subtitle,
@@ -37,6 +38,7 @@ function ShowData({ data }) {
 	}
 	return (
 		<ShowDataC>
+
 			<SellImgC>
 				<BackImgC url={data.image} />
 			</SellImgC>

@@ -11,14 +11,14 @@ function ProductEdit(props) {
 	const [data, setData] = useState(props.location.state.data);
 	// Input 양식 State
 	const [title, setTitle] = useState(data.title);
-	const [location, setLocation] = useState(data.location);
+	const [location, setLocation] = useState(data.local);
 	const [idx, setIdx] = useState(data.category);
 	const [price, setPrice] = useState(data.price);
-	const [content, setContent] = useState(data.subtitle);
+	const [content, setContent] = useState(data.content);
 
 
 	// Input 양식 state 이미지 관련
-	const [oldFiles, setOldFiles] = useState(data.img);
+	const [oldFiles, setOldFiles] = useState(data.image);
 	const [Files, setFiles] = useState([]);
 	const [FileUrl, setFileUrl] = useState([]);
 
@@ -109,10 +109,10 @@ function ProductEdit(props) {
 			});
 			let data = {
 				title: title,
-				content: "안녕",
-				price: 123456,
+				content: content,
+				price: price,
 				local: location,
-				categoryId: 1,
+				categoryId: idx,
 				oldFileList: oldFile,
 			};
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));

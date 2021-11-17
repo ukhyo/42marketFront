@@ -11,8 +11,7 @@ function PostViewComp({flag}) {
 	const cookie = new Cookies();
 	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
 
-	const [subItem, setSubItem] = useState([]);
-	const [viewItem, setViewItem] = useState([]);
+
 	const [item, setItem] = useState([]);
 	const [Loading, setLoading] = useState(false);
 	useEffect(() => {
@@ -23,9 +22,11 @@ function PostViewComp({flag}) {
 			}).catch((res) => {
 				console.log(res, "에러");
 			});
-			setItem(data);
-			setSubItem(data.subThumbnailList);
-			setViewItem(data.viewThumbnailList);
+			console.log(data, "데이터 확인용");
+			if (flag === true)
+				setItem(data.subscribeList);
+			else
+				setItem(data.viewList);
 			setLoading(true);
 		};
 		ApiGet();
@@ -33,50 +34,16 @@ function PostViewComp({flag}) {
 
 	return (
 		<SectionC>
+			{console.log(item, "무슨 아이템이 들어왔을까요?")}
 			<PostViewLineC>
-				{flag && (
-				Loading && item.subscribeList.map((data, index) => {
+				{
+				Loading && item.map((data, index) => {
 					let title;
 					data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
 						: title = data.title;
-								return (
-									<PostItemC key={index}>
-										<LinkC
-											to={{
-												pathname: `/postview/${data.id}`,
-												state: {
-													data: data,
-													itemId: data.id,
-												},
-											}}
-										>
-											{/*<HoverImgC url={data.subThumbnailList[0]}>안녕</HoverImgC>*/}
-											<BackImgC url={subItem[index]}></BackImgC>
-										</LinkC>
-										<div>{title}</div>
-										<div>
-											<div>
-												{data.price.toLocaleString()}
-												<b>원</b>
-											</div>
-											<div>
-												<p>{data.likes}</p>
-												<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
-													<BsSuitHeartFill size={18} />
-												</IconContext.Provider>
-											</div>
-										</div>
-									</PostItemC>
-								);
-					})
-				)}
-				{!flag && (
-			Loading && item.viewList.map((data, index) => {
-				let title;
-				console.log(data," zz");
-				data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
-					: title = data.title;
+					console.log(data)
 						return (
+
 							<PostItemC key={index}>
 								<LinkC
 									to={{
@@ -87,8 +54,7 @@ function PostViewComp({flag}) {
 										},
 									}}
 								>
-									{/*<HoverImgC url={data.subThumbnailList[0]}>안녕</HoverImgC>*/}
-									<BackImgC url={viewItem[index]}></BackImgC>
+									<BackImgC url={data.image}></BackImgC>
 								</LinkC>
 								<div>{title}</div>
 								<div>
@@ -106,7 +72,7 @@ function PostViewComp({flag}) {
 							</PostItemC>
 						);
 					})
-				)}
+				}
 			</PostViewLineC>
 		</SectionC>
 	);
@@ -237,3 +203,4 @@ const PostItemC = styled.div`
 `;
 
 export default PreviewPost;
+//{/*<HoverImgC url={data.subThumbnailList[0]}>안녕</HoverImgC>*/}

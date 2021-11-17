@@ -131,6 +131,7 @@ function PostDetail(props) {
 						<span>댓글</span>
 					</RegiHeaderC>
 					<CommentMain>
+						{/*이자리엔 컴포넌트 들어올 예정*/}
 					</CommentMain>
 				</CommentArea>
 			</PostDetailC>

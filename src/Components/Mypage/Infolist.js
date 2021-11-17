@@ -21,7 +21,6 @@ function InfoList({ url, id })
 {
 
 	const [state] = useAsync(() => getList(id), [url]);
-	const [isHover, setIsHover] = useState(false);
 	const { loading, data: list, error } = state;
 
 	console.log(list, "list");
@@ -38,7 +37,6 @@ function InfoList({ url, id })
 		list = list.cartsList;
 	return (
 		<InfoListC>
-			{/*{url === manage || url == sellist  }*/}
 			{list.map((posts,index) => {
 				return (
 					<PostListC key={index}>
@@ -61,11 +59,11 @@ function InfoList({ url, id })
 								</LinkC>
 							</PostInfosOne__TitleC>
 							<PostInfosOne__SubtitleC>
-								<span>{posts.subtitle}</span>
+								<span>{posts.content}</span>
 							</PostInfosOne__SubtitleC>
 							<PostInfosOne__DateC>
 								<span>{posts.date}</span>
-								<span>{posts.location}</span>
+								<span>{posts.local}</span>
 							</PostInfosOne__DateC>
 						</PostInfosOneC>
 						<PostInfosTwoC>
@@ -73,7 +71,7 @@ function InfoList({ url, id })
 								<span>{posts.price}원</span>
 							</PostInfosTwo__PriceC>
 							<PostInfosTwo__LookupC>
-								<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.likes}</span>
+								<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.view}</span>
 								<span><b><AiOutlineEye /></b> 30 </span>
 							</PostInfosTwo__LookupC>
 						</PostInfosTwoC>
