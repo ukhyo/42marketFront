@@ -38,8 +38,8 @@ function ShowData({ data }) {
 	}
 	return (
 		<ShowDataC>
-
-			<SellImgC>
+			<InfoList url={"manage"} id={1} />
+			{/*<SellImgC>
 				<BackImgC url={data.image} />
 			</SellImgC>
 			<TitlePriceC>
@@ -83,7 +83,7 @@ function ShowData({ data }) {
 					)}
 					</div>
 				</SellDropBtnC>
-			</StateManageC>
+			</StateManageC>*/}
 		</ShowDataC>
 	);
 }

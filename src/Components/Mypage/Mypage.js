@@ -12,7 +12,7 @@ function	MypageMain(props)
 	return (
 		<MypageMainC>
 			<ProfileBar />
-			<InfoList url={props.name}/>
+			<InfoList url={props.name} id={1}/>
 		</MypageMainC>
 	);
 }
@@ -24,13 +24,10 @@ function	Mypage({ match })
 		<div>
 			<Header />
 			<NaviBar name={tabs}/>
-			<MypageMain name={tabs} id={1}/>
+			<MypageMain name={tabs}/>
 		</div>
 	);
 };
-
-
-
 
 const		MypageMainC = styled.div`
 	margin: 30px 0px;

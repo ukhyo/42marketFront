@@ -55,7 +55,7 @@ function Header() {
 						<img src={process.env.PUBLIC_URL + "/img/bellIcon2.png"} />
 						<div>알림</div>
 					</LinkC>
-					<LinkC to="/mypage/buylist">
+					<LinkC to="/mypage/selllist">
 						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
 						<div>내정보</div>
 					</LinkC>

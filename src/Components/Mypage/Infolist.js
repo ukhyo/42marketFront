@@ -5,23 +5,20 @@ import { Link } from "react-router-dom";
 import { AiFillHeart, AiOutlineEye } from "react-icons/ai";
 import {DropdownButton, DropDown} from "react-bootstrap";
 import styled from "styled-components";
-import { Dropdown, Button, ButtonGroup } from "react-bootstrap";
-
+import DropdownMenu  from "./DropdownMenu";
 async function getList(id)
 {
 	const response = await axios.get(
 		`http://api.4m2d.shop/api/users/${id}`
 	);
-
-
 	return response.data;
 }
 
-function InfoList({ url, id })
+function InfoList({url, id})
 {
 
-	const [state] = useAsync(() => getList(id), [url]);
-	const { loading, data: list, error } = state;
+	const [state] = useAsync(() => getList(id), [id]);
+	let { loading, data: list, error } = state;
 
 	console.log(list, "list");
 	if (loading) return <div>Loading...</div>;
@@ -35,11 +32,14 @@ function InfoList({ url, id })
 		list = list.postsList;
 	else
 		list = list.cartsList;
+	console.log(list,"리스트안");
 	return (
 		<InfoListC>
-			{list.map((posts,index) => {
+			{list.map((posts, index) => {
+				const location = posts.local.slice(0, 15) + "...";
+				console.log(location);
 				return (
-					<PostListC key={index}>
+					<PostListC key={index} flag={url === "manage"}>
 						<PostImgC>
 							<img src={posts.image} />
 						</PostImgC>
@@ -58,12 +58,12 @@ function InfoList({ url, id })
 									{posts.title}
 								</LinkC>
 							</PostInfosOne__TitleC>
-							<PostInfosOne__SubtitleC>
+							{/*<PostInfosOne__SubtitleC>
 								<span>{posts.content}</span>
-							</PostInfosOne__SubtitleC>
+							</PostInfosOne__SubtitleC>*/}
 							<PostInfosOne__DateC>
-								<span>{posts.date}</span>
-								<span>{posts.local}</span>
+								<span>{posts.updatedAt}</span>
+								<span>{location}</span>
 							</PostInfosOne__DateC>
 						</PostInfosOneC>
 						<PostInfosTwoC>
@@ -76,17 +76,7 @@ function InfoList({ url, id })
 							</PostInfosTwo__LookupC>
 						</PostInfosTwoC>
 						{url === "selllist" ?
-							<Dropdown>
-								<Dropdown.Toggle variant="success" id="dropdown-basic">
-								  판매중
-								</Dropdown.Toggle>
-
-								<Dropdown.Menu>
-								  <Dropdown.Item href="#/action-1">판매완료</Dropdown.Item>
-								  <Dropdown.Item href="#/action-2">수정</Dropdown.Item>
-								  <Dropdown.Item href="#/action-3">삭제</Dropdown.Item>
-								</Dropdown.Menu>
-							  </Dropdown>
+							<span>판매중</span>
 							:
 							<PostCategoryC>
 								<span>IT/인터넷</span>
@@ -98,11 +88,6 @@ function InfoList({ url, id })
 		</InfoListC>
 	);
 }
-
-styled(Dropdown)`
-	width: 30px;
-	height: 40px;
-`;
 
 const EmptyInfoListC = styled.div`
 	width: 880px;
@@ -160,6 +145,8 @@ const PostCategoryC = styled.div`
 `;
 
 const PostInfosOne__DateC = styled.div`
+	position: absolute;
+	bottom: 10px;
 	font-size: 12px;
 	color: rgba(0, 0, 0, 0.5);
 	& > span:nth-child(1){
@@ -173,9 +160,11 @@ const PostInfosOne__DateC = styled.div`
 `;
 
 const PostListC = styled.div`
-	width: 880px;
+	/*width: 880px;*/
+	position: relative;
+	width: ${(props) => (props.flag ? "1000px" : "880px")};
 	height: 160px;
-	margin: 0px 50px;
+	margin: ${(props) => (props.flag ? "0" : "0px 50px")};
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
