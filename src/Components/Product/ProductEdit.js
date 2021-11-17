@@ -17,7 +17,7 @@ function ProductEdit(props) {
 	const [content, setContent] = useState("");
 	const [Loading, setLoading] = useState(false);
 	useEffect(() => {
-		const ApiGet =	async () => {
+		const ApiGet = async () => {
 			const { data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}`);
 			console.log(data, "데이터");
 			setOldFiles(data.image);
@@ -30,7 +30,7 @@ function ProductEdit(props) {
 			setLoading(!Loading);
 		}
 		ApiGet();
-	}, [])
+	}, []);
 
 	// Input 양식 state 이미지 관련
 	const [Files, setFiles] = useState([]);
@@ -88,30 +88,30 @@ function ProductEdit(props) {
 
 	const submitHandle = (e) => {
 		const pushData = async () => {
-			//if (!Files) {
-			//	alert("사진을 넣어주세요");
-			//	return;
-			//}
-			//if (title === "") {
-			//	alert("제목을 입력해주세요.")
-			//	return;
-			//}
-			//else if (price === 0 && idx !== 100) {
-			//	alert("가격을 입력해주세요.");
-			//	return;
-			//}
-			//else if (location === "") {
-			//	alert("거래장소를 입력해주세요.");
-			//	return;
-			//}
-			//else if (idx === 0) {
-			//	alert("카테고리를 선택해주세요.");
-			//	return;
-			//}
-			//else if (idx === 100 && price !== 0) {
-			//	alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
-			//	setPrice(0);
-			//}
+			if (Files.length + oldFiles.length <= 0) {
+				alert("사진을 넣어주세요");
+				return;
+			}
+			if (title === "") {
+				alert("제목을 입력해주세요.")
+				return;
+			}
+			else if (price === 0 && idx !== 100) {
+				alert("가격을 입력해주세요.");
+				return;
+			}
+			else if (location === "") {
+				alert("거래장소를 입력해주세요.");
+				return;
+			}
+			else if (idx === 0) {
+				alert("카테고리를 선택해주세요.");
+				return;
+			}
+			else if (idx === 100 && price !== 0) {
+				alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
+				setPrice(0);
+			}
 			let fileList = new FormData();
 			Files.forEach((data) => {
 				fileList.append(`fileList`, data);

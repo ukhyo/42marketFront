@@ -93,7 +93,7 @@ function	ProfileBar(props)
 	return (
 		<ProfileBarC>
 			<ProfileImgC>
-				<img src="https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1.jpeg"/>
+				<img src="https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1"/>
 				<label for="ChangeImg">
 					<ProfileImgModifyC>
 							<FaImage />

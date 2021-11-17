@@ -7,7 +7,9 @@ import CategoryBar from "../Mainpage/CategoryBar";
 function CateDetail(props) {
 	const [item, setItem] = useState([]);
 	console.log(props,"네네 선장님");
-	let { undefined: cate }= props.match.params;
+	let { undefined: cate } = props.match.params;
+	const catename = ["전체", "전자기기", "주변기기", "의류", "책", "나눔"];
+	console.log(catename[Number(cate)]);
 	useEffect(() => {
 		const getData = async () => {
 			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/category/${cate}`);
@@ -28,7 +30,7 @@ function CateDetail(props) {
 		<SectionC>
 			<CategoryBar />
 			<NameAndSortC>
-				<CateNameC>카테고리네임 디비에서 가져올 예정</CateNameC>
+				<CateNameC>{catename[Number(cate)]}</CateNameC>
 			</NameAndSortC>
 			<PostViewC>
 			{item.map((data, idx) => {

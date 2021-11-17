@@ -58,9 +58,9 @@ function InfoList({url, id})
 									{posts.title}
 								</LinkC>
 							</PostInfosOne__TitleC>
-							{/*<PostInfosOne__SubtitleC>
+							<PostInfosOne__SubtitleC>
 								<span>{posts.content}</span>
-							</PostInfosOne__SubtitleC>*/}
+							</PostInfosOne__SubtitleC>
 							<PostInfosOne__DateC>
 								<span>{posts.updatedAt}</span>
 								<span>{location}</span>
