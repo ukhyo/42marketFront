@@ -7,6 +7,40 @@ import { BsSuitHeartFill } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
 import { Cookies } from "react-cookie";
 
+function PostThumbnail({ data, key}) {
+	let title;
+	data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
+		: title = data.title;
+	return (
+		<PostItemC key={key}>
+			<LinkC
+				to={{
+					pathname: `/postview/${data.id}`,
+					state: {
+						data: data,
+						itemId: data.id,
+					},
+				}}
+			>
+			<BackImgC url={data.image}></BackImgC>
+			</LinkC>
+			<div>{title}</div>
+			<div>
+				<div>
+					{data.price.toLocaleString()}
+					<b>원</b>
+				</div>
+				<div>
+					<p>{data.view}</p>
+					<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
+						<BsSuitHeartFill size={18} />
+					</IconContext.Provider>
+				</div>
+			</div>
+		</PostItemC>
+	);
+}
+
 function PostViewComp({flag}) {
 	const cookie = new Cookies();
 	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
@@ -22,7 +56,6 @@ function PostViewComp({flag}) {
 			}).catch((res) => {
 				console.log(res, "에러");
 			});
-			console.log(data, "데이터 확인용");
 			if (flag === true)
 				setItem(data.subscribeList);
 			else
@@ -34,42 +67,11 @@ function PostViewComp({flag}) {
 
 	return (
 		<SectionC>
-			{console.log(item, "무슨 아이템이 들어왔을까요?")}
 			<PostViewLineC>
 				{
 				Loading && item.map((data, index) => {
-					let title;
-					data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
-						: title = data.title;
-					console.log(data)
-						return (
-
-							<PostItemC key={index}>
-								<LinkC
-									to={{
-										pathname: `/postview/${data.id}`,
-										state: {
-											data: data,
-											itemId: data.id,
-										},
-									}}
-								>
-									<BackImgC url={data.image}></BackImgC>
-								</LinkC>
-								<div>{title}</div>
-								<div>
-									<div>
-										{data.price.toLocaleString()}
-										<b>원</b>
-									</div>
-									<div>
-										<p>{data.likes}</p>
-										<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
-											<BsSuitHeartFill size={18} />
-										</IconContext.Provider>
-									</div>
-								</div>
-							</PostItemC>
+					return (
+						<PostThumbnail key={index}data={data}/>
 						);
 					})
 				}
@@ -81,9 +83,9 @@ function PostViewComp({flag}) {
 function PreviewPost() {
 	return (
 		<PostViewC>
-			<h3>인기게시글</h3>
+			<h3>인기 게시글</h3>
 			<PostViewComp flag={true} />
-			<div><h3>전체게시판</h3></div>
+			<h3>전체 게시글</h3>
 			<PostViewComp flag={false} />
 		</PostViewC>
 	);
@@ -96,7 +98,7 @@ const SectionC = styled.section`
 
 const PostViewC = styled.div`
 	width: 1200px;
-	height: 1280px;
+	/*height: 1280px;*/
 	margin: 0px auto;
 	> h3 {
 		font-size: 20px;
@@ -116,15 +118,21 @@ const PostViewC = styled.div`
 	}
 `;
 
+
+
 const PostViewLineC = styled.div`
 	width: 100%;
 	height: 600px;
 	margin: 10px auto;
 	margin-bottom: 20px;
 	display: flex;
-	justify-content: space-between;
+	/*justify-content: space-between;*/
 	align-items: center;
 	flex-wrap: wrap;
+	> div:not(:nth-child(5n))
+	{
+		margin-right: 2%;
+	}
 `;
 
 
@@ -170,19 +178,20 @@ const PostItemC = styled.div`
 	border-radius: 15px;
 	margin-bottom: 20px;
 	border: 1px solid #f0f0f0;
-	background-color: #ffffff;
-	> div {
+	background-color: #ffffff; // image도 들어감.
+	> div { // 이미지
+
 		width: 100%;
 		margin-top: 10px;
 		font-size: 14px;
 		padding-left: 10px;
 		font-weight: 600;
 	}
-	> div:nth-child(2) {
+	> div:nth-child(2) { // 제목
 		/*color: red;*/
 		color: rgba(0, 0, 0, 0.7);
 	}
-	> div:last-child {
+	> div:last-child { // 나머지
 		margin-top: 10px;
 		margin-bottom: 5px;
 		color: rgba(0, 0, 0, 0.9);
@@ -196,11 +205,15 @@ const PostItemC = styled.div`
 				margin-right: 5px;
 			}
 		}
+		> div {
+
+		}
 	}
 	b {
 		font-size: 0.8em;
 	}
 `;
 
+export {PostThumbnail}
 export default PreviewPost;
 //{/*<HoverImgC url={data.subThumbnailList[0]}>안녕</HoverImgC>*/}

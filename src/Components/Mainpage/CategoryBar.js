@@ -42,8 +42,10 @@ function CategoryBar({history}) {
 
 const CategoryC = styled.div`
 	width: 1200px;
+
 	margin: auto;
-	/* padding-bottom: 20px; */
+	margin-top: 30px;
+	/*padding-bottom: 20px;*/
 `;
 
 const LinkC = styled(Link)`
@@ -52,6 +54,7 @@ const LinkC = styled(Link)`
 `;
 
 const CategoryItemsC = styled.div`
+
 	display: flex;
 	width: 500px;
 	margin: 0 auto;
@@ -69,7 +72,7 @@ const CategoryItemsC = styled.div`
 		img:hover {
 			width: 30px;
 			height: 30px;
-			transition-duration: 0.2s; 
+			transition-duration: 0.2s;
 			color: rgb(187, 220, 238);
 		}
 		span {

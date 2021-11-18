@@ -7,8 +7,10 @@ import { AiOutlineEye } from "react-icons/ai";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
 import Coming_soon from "../../Images/coming_soon.jpeg";
+import { Cookies } from "react-cookie";
 function PostDetail(props) {
-
+	const cookie = new Cookies();
+	const { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const { location } = props;
 	const { location: { state: { itemId: id} } } = props;
 	const [ImgIdx, setImgIdx] = useState(0);
@@ -37,6 +39,9 @@ function PostDetail(props) {
 //		}
 //		putFunc();
 //	}, []);
+	const ClickScribe = () => {
+		if (sub.indexOf() === -1);
+	};
 
 	useEffect(() => {
 		if (location.state === undefined) props.history.push('/');
@@ -111,7 +116,7 @@ function PostDetail(props) {
 							</PriceAndDateC>
 							<LocationAndViewsC>
 								<LocationArea>
-									<AiOutlineEye size={18}/><b>12</b>
+									<AiOutlineEye size={18} /><b>{data.view}</b>
 								</LocationArea>
 								<LocationArea>
 									<IconContext.Provider value={{ color: "rgb(234, 123, 151)" }}>
@@ -262,7 +267,7 @@ const PriceAndDateC = styled.div`
 	align-items: center;
 	> div {
 		color: rgba(0, 0, 0, 0.8);
-		font-weight: 800; 
+		font-weight: 800;
 	}
 	/* > div:last-child {
 		font-weight: normal;

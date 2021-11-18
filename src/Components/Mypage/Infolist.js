@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { AiFillHeart, AiOutlineEye } from "react-icons/ai";
 import {DropdownButton, DropDown} from "react-bootstrap";
 import styled from "styled-components";
-import DropdownMenu  from "./DropdownMenu";
+import DropdownMenu from "./DropdownMenu";
+
 async function getList(id)
 {
 	const response = await axios.get(
@@ -16,7 +17,6 @@ async function getList(id)
 
 function InfoList({url, id})
 {
-
 	const [state] = useAsync(() => getList(id), [id]);
 	let { loading, data: list, error } = state;
 
@@ -77,7 +77,7 @@ function InfoList({url, id})
 						</PostInfosTwoC>
 						<PostCategoryC>
 							{url === "selllist"  || url === "manage" ?
-								<DropdownMenu data={posts.id}></DropdownMenu>
+								<DropdownMenu id={posts.id} status={posts.status}></DropdownMenu>
 								:
 								<PostCategoryC>
 									<span>IT/인터넷</span>
