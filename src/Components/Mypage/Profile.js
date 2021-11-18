@@ -74,10 +74,9 @@ function	ProfileBar(props)
 	const submitHandler = (e) => {
 		const pushData = async () => {
 			let data = {
-				userIntra: profile.userIntra,
-				userLevel: profile.userLevel,
 				introduce: intro
 			};
+			console.log("intro " , intro);
 			await axios.patch("http://api.4m2d.shop/api/users/1", data);
 		}
 		pushData();

@@ -118,7 +118,7 @@ const HeaderC = styled.header`
 	display: flex;
 	justify-content: center;
 	background-color: #fdfdfd;
-	border-bottom: 1px solid #c0c0c0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const HeaderLineC = styled.div`

@@ -96,18 +96,18 @@ function PostDetail(props) {
 								<div>
 									{data.title}
 								</div>
-								<div>
+								{/* <div>
 									<b>
 										판매자 &nbsp;
 										<b>
 											{data.author}
 										</b>
 									</b>
-								</div>
+								</div> */}
 							</TitleC>
 							<PriceAndDateC>
 								<div>{data.price.toLocaleString()}<b>원</b></div>
-								<DateC>{data.updatedAt}</DateC>
+								{/* <DateC>{data.updatedAt}</DateC> */}
 							</PriceAndDateC>
 							<LocationAndViewsC>
 								<LocationArea>
@@ -120,7 +120,14 @@ function PostDetail(props) {
 								</LocationArea>
 							</LocationAndViewsC>
 							<Location>
-								거래장소 {data.local}
+								<li>
+									판매자 &nbsp;
+									<b>
+										{data.author}
+									</b>
+								</li>
+								<li>판매상태 <span>판매중</span></li>
+								<li>거래장소 <span>{data.local}</span></li>
 							</Location>
 							<PostContentsC>{data.content}</PostContentsC>
 							<SubscribeBtn>구독</SubscribeBtn>
@@ -214,16 +221,24 @@ const PostDetailInfoC = styled.div`
 	}
 	`;
 
-const Location = styled.div` // 거래장소
+const Location = styled.ul` // 거래장소
 	padding-bottom: 15px;
 	padding-top: 15px;
 	font-size: 17px;
 	border-bottom: 1px solid #c0c0c0;
+	list-style: inside;
+	> li {
+		padding: 10px 0px;
+	}
 `;
 
 const TitleC = styled.div`
 	display: flex;
 	justify-content: space-between;
+	> div:nth-child(1) {
+		color: rgba(0, 0, 0, 0.7);
+		font-weight: 700;
+	}
 	> div > b { // 판매자
 		font-size: 18px;
 		> b {
@@ -245,9 +260,13 @@ const PriceAndDateC = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	> div:last-child {
-		font-weight: normal;
+	> div {
+		color: rgba(0, 0, 0, 0.8);
+		font-weight: 800; 
 	}
+	/* > div:last-child {
+		font-weight: normal;
+	} */
 `;
 const LocationArea = styled.div`
 	margin-top: 5px;
