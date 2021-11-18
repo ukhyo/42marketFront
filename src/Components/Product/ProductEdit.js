@@ -7,7 +7,7 @@ import axios from "axios";
 import DeleteFile from "../utils/DeleteImg";
 import { DeleteUrl } from "../utils/DeleteImg";
 function ProductEdit(props) {
-	const id = props.location.state.id;
+	const postId = props.location.state.id;
 	const [data, setData] = useState([]);
 	const [oldFiles, setOldFiles] = useState([]);
 	const [title, setTitle] = useState("");
@@ -18,7 +18,7 @@ function ProductEdit(props) {
 	const [Loading, setLoading] = useState(false);
 	useEffect(() => {
 		const ApiGet = async () => {
-			const { data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}`);
+			const { data } = await axios.get(`http://api.4m2d.shop/api/posts/${postId}`);
 			console.log(data, "데이터");
 			setOldFiles(data.image);
 			setTitle(data.title);
@@ -118,9 +118,9 @@ function ProductEdit(props) {
 			});
 
 			let oldFile = oldFiles.map((data) => {
-				console.log(data, "파일이름은?");
 				return data.slice(data.length - 1, data.length);
 			});
+			console.log(oldFile, "oleFile");
 			let data = {
 				title: title,
 				content: content,
@@ -135,7 +135,7 @@ function ProductEdit(props) {
 			};
 			// Api 주소만 postId 끝에 달아주면 될 것 같음.
 			await axios
-				.post(`http://api.4m2d.shop/api/posts/${id}`, fileList, { headers })
+				.post(`http://api.4m2d.shop/api/posts/${postId}`, fileList, { headers })
 				.then((res) => {
 					console.log(res, "post 성공");
 					history.push("/");

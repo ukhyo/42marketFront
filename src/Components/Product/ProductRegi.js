@@ -80,7 +80,7 @@ function ProductRegi(props) {
 				alert("제목을 입력해주세요.")
 				return;
 			}
-			else if (price === 0 && idx !== 100) {
+			else if (price === 0 && idx !== 5) {
 				alert("가격을 입력해주세요.");
 				return;
 			}
@@ -92,26 +92,30 @@ function ProductRegi(props) {
 				alert("카테고리를 선택해주세요.");
 				return;
 			}
-			else if (idx === 100 && price !== 0) {
+			else if (idx === 5) {
 				alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
-				setPrice(0);
 			}
 			let fileList = new FormData();
 			Files.forEach((data) => {
 				fileList.append(`fileList`, data);
 			});
+
+			let temp = price;
+			if (idx === 5)
+				temp = 0;
 			let data = {
 				title: title,
 				content: content,
-				price: price,
+				price: temp,
 				local: location,
 				categoryId: idx,
 				userId: 1,
 			};
 
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
+			// Local에선 headers를 넣어주면 안된다 => Jwt 에 널값이 들어가 오류를 뱉는거같음.
 			const headers = {
-				"Authorization": `Bearer ${token}`,
+				//"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
 			};
 			await axios

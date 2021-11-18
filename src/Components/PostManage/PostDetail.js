@@ -111,7 +111,7 @@ function PostDetail(props) {
 							</PriceAndDateC>
 							<LocationAndViewsC>
 								<LocationArea>
-									<AiOutlineEye size={18}/><b>12</b>
+									<AiOutlineEye size={18} /><b>{data.view}</b>
 								</LocationArea>
 								<LocationArea>
 									<IconContext.Provider value={{ color: "rgb(234, 123, 151)" }}>

@@ -49,20 +49,36 @@ function	ProfileBar(props)
 	});
 	const onChangeImg = (e) => {
 		const file = e.target.files[0];
-		const params = {
-			ACL: "public-read",
-			Body: file,
-			Bucket: S3_BUCKET_NAME,
-			Key: "user/1",
-		};
-		myBucket
-			.putObject(params)
-			.send((err) => {
-				if (err) console.log(err);
+		let fileList = new FormData();
+		fileList.append("image", file);
+		// 수정 필요함 id 유저아이디로.
+		const ApiPost = async () => {
+			const headers = {
+				//"Authorization": `Bearer ${token}`,
+				"Content-Type": `multipart/form-data`,
+			};
+			await axios.post("http://api.4m2d.shop/api/users/1", fileList, headers).then(res => {
+				console.log("성공");
+				window.location.reload();
+			}).catch(err => {
+				console.log("실패");
 			});
-		setTimeout(() => {
-			window.location.reload();
-		}, 2000)
+		};
+		ApiPost();
+		//const params = {
+		//	ACL: "public-read",
+		//	Body: file,
+		//	Bucket: S3_BUCKET_NAME,
+		//	Key: "user/1",
+		//};
+		//myBucket
+		//	.putObject(params)
+		//	.send((err) => {
+		//		if (err) console.log(err);
+		//	});
+		//setTimeout(() => {
+		//	window.location.reload();
+		//}, 2000)
 	};
 
 	const onButtonClick = () => {
@@ -74,17 +90,16 @@ function	ProfileBar(props)
 	const submitHandler = (e) => {
 		const pushData = async () => {
 			let data = {
-				userIntra: profile.userIntra,
-				userLevel: profile.userLevel,
 				introduce: intro
 			};
-			await axios.patch("http://api.4m2d.shop/api/users/1", data);
+			await axios.patch("http://api.4m2d.shop/api/users/1", data).then(res => {
+				console.log("성공");
+				window.location.reload();
+			}).catch(err => {
+				console.log("실패");
+			});
 		}
 		pushData();
-		setOnButton(false);
-		setTimeout(() => {
-			window.location.reload();
-		}, 1000)
 	}
 	if (loading) return <div>loading...</div>;
 	if (error) return <div>Error occured</div>;
@@ -93,7 +108,7 @@ function	ProfileBar(props)
 	return (
 		<ProfileBarC>
 			<ProfileImgC>
-				<img src="https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1"/>
+				<img src={ profile.userImage}/>
 				<label for="ChangeImg">
 					<ProfileImgModifyC>
 							<FaImage />
