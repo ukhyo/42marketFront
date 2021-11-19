@@ -6,6 +6,7 @@ import axios from 'axios';
 import { AiOutlineEye } from "react-icons/ai";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
+import { Link } from "react-router-dom";
 import Coming_soon from "../../Images/coming_soon.jpeg";
 import { Cookies } from "react-cookie";
 import GetTime from "../utils/GetTime";
@@ -142,9 +143,9 @@ function PostDetail(props) {
 							<Location>
 								<li>
 									판매자 &nbsp;
-									<b>
+									<Link to={`/mypage/${data.userId}/selllist`}>
 										{data.author}
-									</b>
+									</Link>
 								</li>
 								<li>판매상태 <span>판매중</span></li>
 								<li>거래장소 <span>{data.local}</span></li>

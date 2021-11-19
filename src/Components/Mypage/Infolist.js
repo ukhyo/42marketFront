@@ -7,18 +7,25 @@ import {DropdownButton, DropDown} from "react-bootstrap";
 import styled from "styled-components";
 import DropdownMenu from "./DropdownMenu";
 import GetTime from "../utils/GetTime";
+import { useSelector } from "react-redux";
+import { Cookies } from "react-cookie";
 async function getList(id)
 {
+	console.log(id, "getList id");
 	const response = await axios.get(
-		`http://api.4m2d.shop/api/users/${id}`
+		`http://api.4m2d.shop/api/users/1`
 	);
 	return response.data;
 }
 
-function InfoList({url, id})
+function InfoList({id, url})
 {
+
+	const userId = 1;
+	console.log(id, "아이디");
 	const [state] = useAsync(() => getList(id), [id]);
 	let { loading, data: list, error } = state;
+
 	if (loading) return <div>Loading...</div>;
 	if (error) return <div>Error occured</div>;
 	if (!list || list.length === 0) return (
@@ -30,61 +37,123 @@ function InfoList({url, id})
 		list = list.postsList;
 	else
 		list = list.cartsList;
-	return (
-		<InfoListC>
-			{list.map((posts, index) => {
-				const location = posts.local.slice(0, 15) + "...";
-				return (
-					<PostListC key={index} flag={url === "manage"}>
-						<PostImgC>
-							<img src={posts.image} />
-						</PostImgC>
-						<PostInfosOneC>
-							<PostInfosOne__TitleC>
-								<LinkC
-									to={{
-										pathname: `/postview/${posts.id}`,
-										state: {
-											data: posts,
-											itemId: posts.id,
-											flag: true,
-										},
-									}}
-									>
-									{posts.title}
-								</LinkC>
-							</PostInfosOne__TitleC>
-							<PostInfosOne__SubtitleC>
-								<span>{posts.content}</span>
-							</PostInfosOne__SubtitleC>
-							<PostInfosOne__DateC>
-								<span>{GetTime(posts.createdAt)}</span>
-								<span>{location}</span>
-							</PostInfosOne__DateC>
-						</PostInfosOneC>
-						<PostInfosTwoC>
-							<PostInfosTwo__PriceC>
-								<span>{posts.price.toLocaleString()}원</span>
-							</PostInfosTwo__PriceC>
-							<PostInfosTwo__LookupC>
-								<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.view}</span>
-								<span><b><AiOutlineEye /></b> 30 </span>
-							</PostInfosTwo__LookupC>
-						</PostInfosTwoC>
-						<PostCategoryC>
-							{url === "selllist"  || url === "manage" ?
-								<DropdownMenu id={posts.id} status={posts.status}></DropdownMenu>
-								:
+	console.log(list,"리스트안");
+
+	if (userId === Number(id))
+	{
+		return (
+			<InfoListC>
+				{list.map((posts, index) => {
+					const location = posts.local.slice(0, 15) + "...";
+					return (
+						<PostListC key={index} flag={url === "manage"}>
+							<PostImgC>
+								<img src={posts.image} />
+							</PostImgC>
+							<PostInfosOneC>
+								<PostInfosOne__TitleC>
+									<LinkC
+										to={{
+											pathname: `/postview/${posts.id}`,
+											state: {
+												data: posts,
+												itemId: posts.id,
+												flag: true
+											},
+										}}
+										>
+										{posts.title}
+									</LinkC>
+								</PostInfosOne__TitleC>
+								<PostInfosOne__SubtitleC>
+									<span>{posts.content}</span>
+								</PostInfosOne__SubtitleC>
+								<PostInfosOne__DateC>
+									<span>{GetTime(posts.updatedAt)}</span>
+									<span>{location}</span>
+								</PostInfosOne__DateC>
+							</PostInfosOneC>
+							<PostInfosTwoC>
+								<PostInfosTwo__PriceC>
+									<span>{posts.price}원</span>
+								</PostInfosTwo__PriceC>
+								<PostInfosTwo__LookupC>
+									<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.view}</span>
+									<span><b><AiOutlineEye /></b> 30 </span>
+								</PostInfosTwo__LookupC>
+							</PostInfosTwoC>
+							<PostCategoryC>
+								{url === "selllist"  || url === "manage" ?
+									<DropdownMenu id={posts.id} status={posts.status}></DropdownMenu>
+									:
+									<PostCategoryC>
+										<span>IT/인터넷</span>
+									</PostCategoryC>
+								}
+							</PostCategoryC>
+						</PostListC>
+					);
+				})}
+			</InfoListC>
+		);
+			}
+
+	if ( userId !== Number(id) )
+	{
+		return (
+			<InfoListC>
+				{list.map((posts, index) => {
+					const location = posts.local.slice(0, 15) + "...";
+					console.log(posts.id, "id");
+					return (
+						<PostListC key={index} flag={url === "manage"}>
+							<PostImgC>
+								<img src={posts.image} />
+							</PostImgC>
+							<PostInfosOneC>
+								<PostInfosOne__TitleC>
+									<LinkC
+										to={{
+											pathname: `/postview/${posts.id}`,
+											state: {
+												data: posts,
+												itemId: posts.id,
+												flag: true,
+											},
+										}}
+										>
+										{posts.title}
+									</LinkC>
+								</PostInfosOne__TitleC>
+								<PostInfosOne__SubtitleC>
+									<span>{posts.content}</span>
+								</PostInfosOne__SubtitleC>
+								<PostInfosOne__DateC>
+									<span>{GetTime(posts.updatedAt)}</span>
+									<span>{location}</span>
+								</PostInfosOne__DateC>
+							</PostInfosOneC>
+							<PostInfosTwoC>
+								<PostInfosTwo__PriceC>
+									<span>{posts.price}원</span>
+								</PostInfosTwo__PriceC>
+								<PostInfosTwo__LookupC>
+									<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.view}</span>
+									<span><b><AiOutlineEye /></b> 30 </span>
+								</PostInfosTwo__LookupC>
+							</PostInfosTwoC>
+							<PostCategoryC>
 								<PostCategoryC>
 									<span>IT/인터넷</span>
 								</PostCategoryC>
-							}
-						</PostCategoryC>
-					</PostListC>
-				);
-			})}
-		</InfoListC>
-	);
+							</PostCategoryC>
+						</PostListC>
+					);
+				})}
+			</InfoListC>
+		);
+			}
+
 }
 
 const EmptyInfoListC = styled.div`
