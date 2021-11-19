@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { setUserId } from "../../modules/User";
 //import logoimg from "../img/logo.png";
 //import logoimg from "../img/noname.png";
 
@@ -18,6 +20,9 @@ function Header() {
 		setText("");
 	}
 	const [Login, setLogin] = useState(false);
+	const { userId } = useSelector(state => ({
+		userId: state.User.userId
+	}));
 
 	return (
 		<HeaderC>
@@ -55,7 +60,7 @@ function Header() {
 						<img src={process.env.PUBLIC_URL + "/img/bellIcon2.png"} />
 						<div>알림</div>
 					</LinkC>
-					<LinkC to="/mypage/selllist">
+					<LinkC to={`/mypage/${userId}/selllist`}>
 						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
 						<div>내정보</div>
 					</LinkC>

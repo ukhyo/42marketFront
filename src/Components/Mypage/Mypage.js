@@ -9,22 +9,24 @@ import InfoList from "./Infolist";
 
 function	MypageMain(props)
 {
+	const { name } = props;
+	console.log ("MypageMain", name);
 	return (
 		<MypageMainC>
-			<ProfileBar />
-			<InfoList url={props.name} id={1}/>
+			<ProfileBar url={name}/>
+			<InfoList url={name}/>
 		</MypageMainC>
 	);
 }
 
-function	Mypage({ match })
+function	Mypage({match})
 {
-	const { tabs } = match.params;
+	const { params }  = match;
 	return (
 		<div>
 			<Header />
-			<NaviBar name={tabs}/>
-			<MypageMain name={tabs}/>
+			<NaviBar name={params}/>
+			<MypageMain name={params}/>
 		</div>
 	);
 };

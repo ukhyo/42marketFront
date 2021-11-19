@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import axios from "axios";
 import InfoList from "./Infolist";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { setUserId } from "../../modules/User";
 import { Link, withRoute } from "react-router-dom";
 
 const NaviBar = (props) =>
 {
+	const { name } = props;
+	console.log ("nav", name.tabs);
 	return (
 		<NaviBarC>
-			<ItemC current={props.name === "selllist"}>
-				<ListC to="/mypage/selllist" current={props.name === "selllist"}>판매 목록</ListC>
+			<ItemC current={name.tabs2 === "selllist"}>
+				<ListC to={`/mypage/${name.tabs}/selllist`} current={name.tabs2 === "selllist"}>판매 목록</ListC>
 			</ItemC>
-			<ItemC current={props.name === "picklist"}>
-				<ListC to="/mypage/picklist" current={props.name === "picklist"}>찜한 목록</ListC>
+			<ItemC current={name.tabs2 === "picklist"}>
+				<ListC to={`/mypage/${name.tabs}/picklist`} current={name.tabs2 === "picklist"}>찜한 목록</ListC>
 			</ItemC>
 		</NaviBarC>
 	);

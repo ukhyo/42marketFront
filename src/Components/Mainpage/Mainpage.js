@@ -8,6 +8,8 @@ import Footer from "./Footer";
 import { Cookies } from "react-cookie";
 import { useSelector, useDispatch } from "react-redux";
 import { setToken } from "../../modules/Login";
+import { setUserId } from "../../modules/User";
+
 function Mainpage() {
 	//const test = useSelector(state => state.Login);
 	//console.log(test.isLogin, "테스트 한번 해봅시다.");
@@ -23,6 +25,13 @@ function Mainpage() {
 	console.log(id, token, sub);
 	const [HeaderState, setHeaderState] = useState(false);
 	const [ScrollY, setScrollY] = useState(0);
+	const dispatch = useDispatch();
+	const { userId } = useSelector(state => ({
+		userId: state.User.userId
+	}))
+	useEffect(() => {
+		dispatch(setUserId(1));
+	}, []) //userID 바꾸기
 	//const handleFollow  = () => {
 	//	setScrollY(window.pageYOffset);
 	//	if (ScrollY > 650)
@@ -39,7 +48,6 @@ function Mainpage() {
 	//		window.removeEventListener('scroll', handleFollow);
 	//	}
 	//})
-
 	return (
 		<SectionC>
 			{/*{HeaderState ? <Header/> : null}*/}

@@ -7,19 +7,20 @@ import awsData from "../../secret.json";
 import { FaImage } from 'react-icons/fa';
 import AWS from "aws-sdk";
 import { timeout } from "q";
+import { useSelector } from "react-redux";
 import S3 from "react-aws-s3";
 
-async function getProfile()
+async function getProfile(id)
 {
 	const response = await axios.get(
-		'http://api.4m2d.shop/api/users/1'
+		`http://api.4m2d.shop/api/users/${id}`
 	);
 	return response.data;
 }
 
-function	ProfileBar(props)
+function	ProfileBar({ url })
 {
-	console.log(props);
+	const { tabs: id } = url;
 	const ACCESS_KEY = awsData.accesskey;
 	const SECRET_ACCESS_KEY = awsData.secretkey;
 	const REGION = awsData.awsregion;
@@ -34,8 +35,10 @@ function	ProfileBar(props)
 	};
 
 	const ReactS3 = new S3(s3_config);
-
-	const [state] = useAsync(getProfile, ["profile"]);
+	const { userId } = useSelector( state => ({
+		userId: state.User.userId
+	}));
+	const [state] = useAsync(() => getProfile(id), [id]);
 	const [onButton, setOnButton] = useState(false);
 	const [intro, setIntro] = useState("");
 	const { loading, data: profile, error }  = state;
@@ -88,53 +91,104 @@ function	ProfileBar(props)
 	if (loading) return <div>loading...</div>;
 	if (error) return <div>Error occured</div>;
 	if (!profile) return null;
+	if (userId === id)
+		return (
+			<ProfileBarC>
+				<ProfileImgC>
+					<img src="https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1"/>
+					<label for="ChangeImg">
+						<ProfileImgModifyC>
+								<FaImage />
+						</ProfileImgModifyC>
+					</label>
+					<input type="file"
+							id="ChangeImg"
+							onChange={onChangeImg}/>
+				</ProfileImgC>
+				<ProfileNameC>
+					<span>{profile.userIntra}</span>
+				</ProfileNameC>
+				<ProfileLevelC>
+					<span>Level: {profile.userLevel}</span>
+					<ProfileLevelBarC>
+						<span>{profile.userExperience}%</span>
+						<ProgressBarC percent={profile.userLevel}>
+						</ProgressBarC>
+					</ProfileLevelBarC>
+				</ProfileLevelC>
+				<ProfileContentsC>
+					<span>{profile.introduce}</span>
+				</ProfileContentsC>
+				{
 
-	return (
-		<ProfileBarC>
-			<ProfileImgC>
-				<img src="https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1"/>
-				<label for="ChangeImg">
-					<ProfileImgModifyC>
-							<FaImage />
-					</ProfileImgModifyC>
-				</label>
-				<input type="file"
-						id="ChangeImg"
-						onChange={onChangeImg}/>
-			</ProfileImgC>
-			<ProfileNameC>
-				<span>{profile.userIntra}</span>
-			</ProfileNameC>
-			<ProfileLevelC>
-				<span>Level: {profile.userLevel}</span>
-				<ProfileLevelBarC>
-					<span>{profile.level}%</span>
-					<ProgressBarC percent={profile.userLevel}>
-					</ProgressBarC>
-				</ProfileLevelBarC>
-			</ProfileLevelC>
-			<ProfileContentsC>
-				<span>{profile.introduce}</span>
-			</ProfileContentsC>
-			{ onButton === false ? <ProfileModifyBtnC onClick={onButtonClick}>
-				<span>Edit introduce</span>
-			</ProfileModifyBtnC> :
-			<ModifyIntroC>
-				<textarea
-					type="text"
-					cols="32"
-					rows="10"
-					value={intro}
-					onChange={inputIntro}
-				/>
-				<button  onClick={submitHandler}>등록</button>
-			</ModifyIntroC>
-			}
-			<BadgeC>
-				<img src={Coming_soon} />
-			</BadgeC>
-		</ProfileBarC>
-	)
+				}
+				{ onButton === false ? <ProfileModifyBtnC onClick={onButtonClick}>
+					<span>Edit introduce</span>
+				</ProfileModifyBtnC> :
+				<ModifyIntroC>
+					<textarea
+						type="text"
+						cols="32"
+						rows="10"
+						value={intro}
+						onChange={inputIntro}
+					/>
+					<button  onClick={submitHandler}>등록</button>
+				</ModifyIntroC>
+				}
+				<BadgeC>
+					<img src={Coming_soon} />
+				</BadgeC>
+			</ProfileBarC>
+		);
+	if (userId !== id)
+		return (
+			<ProfileBarC>
+				<ProfileImgC>
+					<img src="https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1"/>
+					{/* <label for="ChangeImg">
+						<ProfileImgModifyC>
+								<FaImage />
+						</ProfileImgModifyC>
+					</label> */}
+					{/* <input type="file"
+							id="ChangeImg"
+							onChange={onChangeImg}/> */}
+				</ProfileImgC> 
+				<ProfileNameC>
+					<span>{profile.userIntra}</span>
+				</ProfileNameC>
+				<ProfileLevelC>
+					<span>Level: {profile.userLevel}</span>
+					<ProfileLevelBarC>
+						<span>{profile.userExperience}%</span>
+						<ProgressBarC percent={profile.userLevel}>
+						</ProgressBarC>
+					</ProfileLevelBarC>
+				</ProfileLevelC>
+				<ProfileContentsC>
+					<span>{profile.introduce}</span>
+				</ProfileContentsC>
+				{/* { onButton === false ? <ProfileModifyBtnC onClick={onButtonClick}>
+					<span>Edit introduce</span>
+				</ProfileModifyBtnC> :
+				<ModifyIntroC>
+					<textarea
+						type="text"
+						cols="32"
+						rows="10"
+						value={intro}
+						onChange={inputIntro}
+					/>
+					<button  onClick={submitHandler}>등록</button>
+				</ModifyIntroC>
+				} */}
+				<BadgeC>
+					<img src={Coming_soon} />
+				</BadgeC>
+			</ProfileBarC>
+		);
+
 }
 
 const		ModifyIntroC = styled.div`
