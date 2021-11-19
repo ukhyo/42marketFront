@@ -3,8 +3,6 @@ import axios from "axios";
 import defaultAxios from "axios";
 import { useState } from "react";
 
-
-
 const useAxios = (opt, axiosInstance = defaultAxios) => {
 	const [state, setState] = useState({
 		loading: true,

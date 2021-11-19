@@ -8,7 +8,7 @@ import { Cookies } from "react-cookie";
 
 function ProductRegi(props) {
 	const cookie = new Cookies();
-	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
+	let { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
 	// Input 양식 State
 	const [title, setTitle] = useState("");
 	const [location, setLocation] = useState("");
@@ -113,9 +113,13 @@ function ProductRegi(props) {
 
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
 			// Local에선 headers를 넣어주면 안된다 => Jwt 에 널값이 들어가 오류를 뱉는거같음.
+
+			if (token === undefined)
+				token = "abcd";
 			const headers = {
-				//"Authorization": `Bearer ${token}`,
+				"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
+				"withCreadentials": true,
 			};
 			await axios
 				.post("http://api.4m2d.shop/api/posts/", fileList, {headers})

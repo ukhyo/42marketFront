@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-//import logoimg from "../img/logo.png";
-//import logoimg from "../img/noname.png";
-
+import { useHistory } from "react-router";
+import { Cookies } from "react-cookie";
 function Header() {
+	const cookie = new Cookies()
+	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
+	const history = useHistory();
 	const [text, setText] = useState("");
 	function onChange(e) {
 		setText(e.target.value);
@@ -15,9 +17,12 @@ function Header() {
 		}
 	};
 	function imgClick(e) {
+		history.push(
+			{
+				pathname: `/search/${text}`,
+			});
 		setText("");
 	}
-	const [Login, setLogin] = useState(false);
 
 	return (
 		<HeaderC>
@@ -29,14 +34,14 @@ function Header() {
 				</HeaderLogoC>
 				<HeaderSearchC>
 					<HeaderSearchInputC>
-						<a href="#">
+						<Link to={`/search/${text}`}>
 							<img
 								onClick={imgClick}
 								className="header_search_img"
 								src={process.env.PUBLIC_URL + "/img/searchIcon.png"}
 								alt="img"
 							/>
-						</a>
+						</Link>
 						<input
 							placeholder="검색어를 입력해주세요."
 							onChange={onChange}
@@ -55,54 +60,17 @@ function Header() {
 						<img src={process.env.PUBLIC_URL + "/img/bellIcon2.png"} />
 						<div>알림</div>
 					</LinkC>
+					{token ?
 					<LinkC to="/mypage/selllist">
 						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
 						<div>내정보</div>
 					</LinkC>
-					{/*<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2F52.79.76.165%2Flogin%2FgetToken&response_type=code">
+						:
+					<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
 						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
-						<div>내정보</div>
-					</a>*/}
-					{/*<a href="https://www.naver.com">*/}
-					{/*<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />*/}
-					{/*<div>내정보</div>*/}
-					{/*</a>*/}
-					{/*<span>
-						<LinkC to="/">
-							<i className="far fa-bell fa-1.5x"></i>알림
-						</LinkC>
-					</span>
-					{Login ? (
-						<span>
-							<i className="far fa-user fa-1.5x"></i>
-							<LinkC
-								to={{
-									pathname: "/mypage/buylist",
-									state: {
-										path: "buylist",
-									},
-								}}
-							>
-								{" "}
-								내정보
-							</LinkC>
-						</span>
-					) : (
-						<span>
-							<i className="far fa-user fa-1.5x"></i>
-							<LinkC
-								to={{
-									pathname: "/mypage/buylist",
-									state: {
-										path: "buylist",
-									},
-								}}
-							>
-								{" "}
-								로그인
-							</LinkC>
-						</span>
-					)}*/}
+						<div>로그인</div>
+					</AC>
+					}
 				</HeaderInfoC>
 			</HeaderLineC>
 		</HeaderC>
@@ -174,6 +142,16 @@ const HeaderSearchInputC = styled.fieldset`
 	}
 `;
 
+const AC = styled.a`
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: black;
+	> div:hover {
+		border-bottom: 2px solid rgb(100,130, 238);
+	}
+`;
+
 const LinkC = styled(Link)`
 	display: flex;
 	align-items: center;
@@ -193,13 +171,16 @@ const HeaderInfoC = styled.div`
 	& i {
 		margin-right: 5px;
 	}
-	& ${LinkC} {
+	& ${LinkC}, & ${AC} {
 		padding: 0 15px;
 	}
-	& ${LinkC}:last-child {
+	& ${LinkC}:last-child, & ${AC} {
 		padding-right: 0;
 	}
 	& > ${LinkC}:not(${LinkC}:first-child) {
+		border-left: 1px solid rgb(0, 0, 0, 0.1);
+	}
+	& > ${AC} {
 		border-left: 1px solid rgb(0, 0, 0, 0.1);
 	}
 	& div {

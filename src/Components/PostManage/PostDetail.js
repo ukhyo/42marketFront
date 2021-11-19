@@ -17,11 +17,14 @@ function PostDetail(props) {
 	const [ImgIdx, setImgIdx] = useState(0);
 	const [data, setData] = useState([]);
 	const [Loading, setLoading] = useState(false);
-	sub = "/1/";
-
+	if (sub === undefined)
+		sub = "//";
 	const ClickScribe = () => {
+		if (token === undefined)
+			token = "abcd";
 		const headers = {
-			//"Authorization": `Bearer ${token}`,
+			"Authorization": `Bearer ${token}`,
+			"withCreadentials": true,
 		};
 
 		if (sub.indexOf(`/${data.id}/`) === -1) // 구독 안되있는 상태
@@ -30,8 +33,9 @@ function PostDetail(props) {
 				const config = {
 					userId: data.userId,
 					postId: data.id,
+					subscribes: sub,
 				}
-				await axios.post("http://api.4m2d.shop/api/carts", config).then(res => {
+				await axios.post("http://api.4m2d.shop/api/carts", config, {headers}).then(res => {
 					console.log("구독 성공");
 				}).catch(err => {
 					console.log("구독 실패");
@@ -44,12 +48,16 @@ function PostDetail(props) {
 				const config = {
 					userId: data.userId,
 					postId: data.id,
+					subscribes: sub,
 				};
-				await axios.delete(`http://api.4m2d.shop/api/carts/`, config);
+				await axios.delete(`http://api.4m2d.shop/api/carts`, config).then(res => {
+					console.log("구독 해제 성공");
+				}).catch(err => {
+					console.log("구독 해제 실패");
+				});
 			}
 			ApiDelete();
 		}
-
 	};
 
 	useEffect(() => {

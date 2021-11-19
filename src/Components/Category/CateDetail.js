@@ -33,14 +33,7 @@ function CateDetail(props) {
 			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/category/${cate}`);
 			setItem(data);
 		};
-		const getData2 = async () => {
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/`);
-			setItem(data);
-		};
-		if (cate !== "0")
 		getData();
-		else
-		getData2();
 	}, [cate]);
 	return (
 		<SectionC>

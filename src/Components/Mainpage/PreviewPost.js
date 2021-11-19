@@ -7,7 +7,7 @@ import { BsSuitHeartFill } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
 import { Cookies } from "react-cookie";
 import GetTime from "../utils/GetTime";
-function PostThumbnail({ data, key}) {
+function PostThumbnail({ data, key }) {
 	let title;
 	data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
 		: title = data.title;

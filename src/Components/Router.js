@@ -6,7 +6,7 @@ import PostDetail from "./PostManage/PostDetail";
 import Product from "./Product/Product";
 import Category from "./Category/Category";
 import ProductEdit from "./Product/ProductEdit";
-import Auth from "./Token/Auth";
+import Search from "./Search/Search";
 function Router() {
 	return (
     <div>
@@ -16,7 +16,8 @@ function Router() {
         <Route path={"/postview/:id"} exact component={PostDetail}></Route>
         <Route path={"/product/edit"} exact component={ProductEdit} />
         <Route path={"/product/:tabs"} exact component={Product}></Route>
-        <Route path={"/category/:id"}  exact component={Category} />
+		<Route path={"/category/:id"} exact component={Category} />
+		<Route path={"/search/:word"}  exact component={Search} />
       </Switch>
     </div>
   );

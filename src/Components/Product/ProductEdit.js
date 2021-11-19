@@ -6,7 +6,11 @@ import { RadioRet } from "./Product";
 import axios from "axios";
 import DeleteFile from "../utils/DeleteImg";
 import { DeleteUrl } from "../utils/DeleteImg";
+import { Cookies } from "react-cookie";
+
 function ProductEdit(props) {
+	const cookie = new Cookies();
+	let { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
 	const postId = props.location.state.id;
 	const [data, setData] = useState([]);
 	const [oldFiles, setOldFiles] = useState([]);
@@ -130,8 +134,12 @@ function ProductEdit(props) {
 				oldFileList: oldFile,
 			};
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
+			if (token === undefined)
+				token = "abcd";
 			const headers = {
+				"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
+				"withCreadentials": true,
 			};
 			// Api 주소만 postId 끝에 달아주면 될 것 같음.
 			await axios
