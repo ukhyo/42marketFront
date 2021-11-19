@@ -10,9 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setToken } from "../../modules/Login";
 function Mainpage() {
 	const cookie = new Cookies()
-	console.log(cookie.getAll());
 	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
-
 	return (
 		<SectionC>
 			<Header />

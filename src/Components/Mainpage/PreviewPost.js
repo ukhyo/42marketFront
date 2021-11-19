@@ -6,7 +6,7 @@ import { FiHeart } from "react-icons/fi";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
 import { Cookies } from "react-cookie";
-
+import GetTime from "../utils/GetTime";
 function PostThumbnail({ data, key}) {
 	let title;
 	data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
@@ -24,14 +24,17 @@ function PostThumbnail({ data, key}) {
 			>
 			<BackImgC url={data.image}></BackImgC>
 			</LinkC>
-			<div>{title}</div>
+			<div>
+				{title}
+				<b>{GetTime(data.createdAt)}</b>
+			</div>
 			<div>
 				<div>
 					{data.price.toLocaleString()}
 					<b>원</b>
 				</div>
 				<div>
-					<p>{data.view}</p>
+					<p>{data.subscribes}</p>
 					<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
 						<BsSuitHeartFill size={18} />
 					</IconContext.Provider>
@@ -90,6 +93,11 @@ function PreviewPost() {
 		</PostViewC>
 	);
 }
+
+const TitleAndTTimeC = styled.section`
+	display:flex;
+	justify-content: space-between;
+`;
 
 const SectionC = styled.section`
 	width: 1200px;
@@ -180,12 +188,17 @@ const PostItemC = styled.div`
 	border: 1px solid #f0f0f0;
 	background-color: #ffffff; // image도 들어감.
 	> div { // 이미지
-
+		display: flex;
+		justify-content: space-between;
 		width: 100%;
-		margin-top: 10px;
+		margin-top: 13px;
 		font-size: 14px;
 		padding-left: 10px;
 		font-weight: 600;
+		> b {
+			margin-right: 20px;
+			text-align:right;
+		}
 	}
 	> div:nth-child(2) { // 제목
 		/*color: red;*/

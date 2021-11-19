@@ -11,16 +11,16 @@ function CateDetail(props) {
 	const onClick = () => setIsActive(!isActive);
 	let { undefined: cate } = props.match.params;
 	const catename = ["전체", "전자기기", "주변기기", "의류", "책", "나눔"];
-	console.log(catename[Number(cate)]);
-
 	const AlignBtn = (e, idx) => {
 		let url = "";
-		if (idx === 2)
-			url = "asc";
-		else if (idx === 1)
-			url = "dec";
-		else if (idx === 0)
+		if (idx === 1) // 오래된 구독 순
 			url = "subscribes";
+		else if (idx === 2) // 최신인기순 조회수
+			url = "view";
+		else if (idx === 3) // 최신
+			url = "desc";
+		else if (idx === 4) // 오래된
+			url = "asc";
 		const alignGet = async () => {
 			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/category/${cate}/${url}`);
 			setItem(data);
@@ -53,11 +53,21 @@ function CateDetail(props) {
 				<MenuC ref={dropdownRef} active={isActive}>
 					  <ul>
 						<li onClick={(e) => {
-						}}><span>인기순</span></li>
+							AlignBtn(e, 1);
+							setIsActive(!isActive);
+						}}><span>구독순</span></li>
 						<li onClick={(e) => {
-							}}><span>최신순</span></li>
+							AlignBtn(e, 2);
+							setIsActive(!isActive);
+							}}><span>조회순</span></li>
 						<li onClick={(e) => {
-							}}><span>오래된순</span></li>
+							AlignBtn(e, 3);
+							setIsActive(!isActive);
+						}}><span>최신글</span></li>
+						<li onClick={(e) => {
+							AlignBtn(e, 4);
+							setIsActive(!isActive);
+							}}><span>오래된글</span></li>
 					  </ul>
 				</MenuC>
 			</NameAndSortC>

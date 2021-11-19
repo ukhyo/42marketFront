@@ -9,12 +9,11 @@ import { Cookies } from "react-cookie";
 function ProductRegi(props) {
 	const cookie = new Cookies();
 	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
-	console.log(token, "토큰임");
 	// Input 양식 State
 	const [title, setTitle] = useState("");
 	const [location, setLocation] = useState("");
 	const [idx, setIdx] = useState(0);
-	const [price, setPrice] = useState(0);
+	const [price, setPrice] = useState();
 	const [content, setContent] = useState("");
 
 

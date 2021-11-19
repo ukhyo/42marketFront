@@ -6,7 +6,7 @@ import { AiFillHeart, AiOutlineEye } from "react-icons/ai";
 import {DropdownButton, DropDown} from "react-bootstrap";
 import styled from "styled-components";
 import DropdownMenu from "./DropdownMenu";
-
+import GetTime from "../utils/GetTime";
 async function getList(id)
 {
 	const response = await axios.get(
@@ -19,8 +19,6 @@ function InfoList({url, id})
 {
 	const [state] = useAsync(() => getList(id), [id]);
 	let { loading, data: list, error } = state;
-
-	console.log(list, "list");
 	if (loading) return <div>Loading...</div>;
 	if (error) return <div>Error occured</div>;
 	if (!list || list.length === 0) return (
@@ -32,12 +30,10 @@ function InfoList({url, id})
 		list = list.postsList;
 	else
 		list = list.cartsList;
-	console.log(list,"리스트안");
 	return (
 		<InfoListC>
 			{list.map((posts, index) => {
 				const location = posts.local.slice(0, 15) + "...";
-				console.log(location);
 				return (
 					<PostListC key={index} flag={url === "manage"}>
 						<PostImgC>
@@ -62,13 +58,13 @@ function InfoList({url, id})
 								<span>{posts.content}</span>
 							</PostInfosOne__SubtitleC>
 							<PostInfosOne__DateC>
-								<span>{posts.updatedAt}</span>
+								<span>{GetTime(posts.createdAt)}</span>
 								<span>{location}</span>
 							</PostInfosOne__DateC>
 						</PostInfosOneC>
 						<PostInfosTwoC>
 							<PostInfosTwo__PriceC>
-								<span>{posts.price}원</span>
+								<span>{posts.price.toLocaleString()}원</span>
 							</PostInfosTwo__PriceC>
 							<PostInfosTwo__LookupC>
 								<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.view}</span>
