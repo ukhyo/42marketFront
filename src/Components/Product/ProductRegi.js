@@ -15,6 +15,7 @@ function ProductRegi(props) {
 	const [idx, setIdx] = useState(0);
 	const [price, setPrice] = useState();
 	const [content, setContent] = useState("");
+	const [loading, setLoading] = useState(false);
 
 
 	// Input 양식 state 이미지 관련
@@ -119,15 +120,23 @@ function ProductRegi(props) {
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
 			// Local에선 headers를 넣어주면 안된다 => Jwt 에 널값이 들어가 오류를 뱉는거같음.
 
+<<<<<<< HEAD
+			// if (token === undefined)
+			// 	token = "abcd";
+			const headers = {
+				// "Authorization": `Bearer ${token}`,
+=======
 			if (token === undefined) {
 				token = "abcd";
 				console.log("here??");
 			}
 			const headers = {
 				//"Authorization": `Bearer ${token}`,
+>>>>>>> 6ddb4914d1d2ecb794b7f1e8ac209715e2c159e1
 				"Content-Type": `multipart/form-data`,
 				//"withCreadentials": true,
 			};
+			setLoading(true);
 			await axios
 				.post("http://api.4m2d.shop/api/posts/", fileList, {headers})
 				.then((res) => {
@@ -135,6 +144,7 @@ function ProductRegi(props) {
 					history.push("/");
 				})
 				.catch((err) => console.error(err, "에러"));
+			setLoading(false);
 			alert("상품 등록 완료!");
 		}
 		pushData();
@@ -142,11 +152,11 @@ function ProductRegi(props) {
 
 	return (
 	<div>
-	  <RegiHeaderC>
+	  <RegiHeaderC >
 		<span>기본정보</span>
 		<span> *필수항목</span>
 	  </RegiHeaderC>
-	  <RegiMainC>
+	  <RegiMainC Loading={loading}>
 		<PictureC>
 		  <SubtitleC>
 			상품 이미지<b>*</b>
@@ -310,6 +320,7 @@ const RegiMainC = styled.div`
 	margin: 0 auto;
 	margin-top: 50px;
 	font-size: 15px;
+	cursor: ${(props) => (props.Loading ? 'wait' : '')};
 	> div {
 		display: flex;
 	}
