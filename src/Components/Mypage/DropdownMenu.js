@@ -10,6 +10,14 @@ const DropdownMenu = (props) => {
 	const [isActive, setIsActive] = useState(false);
 	const onClick = () => setIsActive(!isActive);
 	const statusChange = (e, idx) => {
+		console.log("here?");
+		if (idx === 2)
+		{
+			if (window.confirm("해당 상품을 삭제하시겠습니까?") === true)
+				PostPatch();
+			else
+				return;
+		}
 		const PostPatch = async () => {
 			const headers = {
 				//"Authorization": `Bearer ${token}`,
@@ -19,7 +27,7 @@ const DropdownMenu = (props) => {
 			};
 			setStatus(idx);
 			await axios.patch(`http://api.4m2d.shop/api/posts/${props.id}`, config).then(res => {
-				console.log(res, "성공");
+				alert("상태변경에 성공했습니다.");
 			}).catch(err => {
 				console.log(err, "실패");
 			});

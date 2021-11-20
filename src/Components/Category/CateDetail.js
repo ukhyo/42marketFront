@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import CategoryBar from "../Mainpage/CategoryBar";
 import { PostThumbnail } from "../Mainpage/PreviewPost";
 function CateDetail(props) {
-	const dropdownRef = useRef(null);
 	const [isActive, setIsActive] = useState(false);
 	const [item, setItem] = useState([]);
 	const onClick = () => setIsActive(!isActive);
@@ -43,7 +42,7 @@ function CateDetail(props) {
 				<MenuTriggerC onClick={onClick} >
 					<img src={process.env.PUBLIC_URL + "/img/alignBtn.png"} />
 				</MenuTriggerC>
-				<MenuC ref={dropdownRef} active={isActive}>
+				<MenuC active={isActive}>
 					  <ul>
 						<li onClick={(e) => {
 							AlignBtn(e, 1);

@@ -57,6 +57,7 @@ const CategoryItemsC = styled.div`
 
 	display: flex;
 	width: 500px;
+	height: 50px;
 	margin: 0 auto;
 	justify-content: space-between;
 	> ${LinkC} {

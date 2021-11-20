@@ -9,23 +9,30 @@ import DropdownMenu from "./DropdownMenu";
 import GetTime from "../utils/GetTime";
 import { useSelector } from "react-redux";
 import { Cookies } from "react-cookie";
+import { BsCurrencyBitcoin } from "react-icons/bs";
+import { currentPosts } from "../utils/Pagination";
+import Pagination from "../utils/Pagination"
 async function getList(id)
 {
 	console.log(id, "getList id");
 	const response = await axios.get(
 		`http://api.4m2d.shop/api/users/1`
-	);
-	return response.data;
-}
+		);
+		return response.data;
+	}
 
 function InfoList({id, url})
 {
+
+	const [currentPage, setCurrentPage] = useState(1);
+	const [postsPerPage, setPostsPerPage] = useState(10);
+	const indexOfLast = currentPage * postsPerPage; //
+	const indexOfFirst = indexOfLast - postsPerPage; //
 
 	const userId = 1;
 	console.log(id, "아이디");
 	const [state] = useAsync(() => getList(id), [id]);
 	let { loading, data: list, error } = state;
-
 	if (loading) return <div>Loading...</div>;
 	if (error) return <div>Error occured</div>;
 	if (!list || list.length === 0) return (
@@ -43,7 +50,7 @@ function InfoList({id, url})
 	{
 		return (
 			<InfoListC>
-				{list.map((posts, index) => {
+				{currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
 					return (
 						<PostListC key={index} flag={url === "manage"}>
@@ -94,6 +101,7 @@ function InfoList({id, url})
 						</PostListC>
 					);
 				})}
+				<Pagination postsPerPage={postsPerPage} totalPosts={list.length} paginate={setCurrentPage} current={currentPage}></Pagination>
 			</InfoListC>
 		);
 			}
@@ -101,8 +109,8 @@ function InfoList({id, url})
 	if ( userId !== Number(id) )
 	{
 		return (
-			<InfoListC>
-				{list.map((posts, index) => {
+			<InfoListC flag={url === "manage"}>
+				{currentPosts(list).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
 					console.log(posts.id, "id");
 					return (
@@ -150,6 +158,7 @@ function InfoList({id, url})
 						</PostListC>
 					);
 				})}
+				<Pagination postsPerPage={postsPerPage} totalPosts={list.length} paginate={setCurrentPage} current={currentPage}></Pagination>
 			</InfoListC>
 		);
 			}
@@ -293,8 +302,45 @@ const PostInfosOne__SubtitleC = styled.div`
 `;
 
 const InfoListC = styled.div`
-	width: 910px;
+	width: ${(props) => (props.flag ? "1200px" : "910px")};
 	height: auto;
 `;
+
+
+const PageListC = styled.div`
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	> div:first-child {
+		margin-right: 5px;
+	}
+	> div:last-child {
+		margin-left: 5px;
+	}
+`;
+
+const PageNumberC = styled.div`
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	margin-right: 5px;
+	background-color: ${(props) => (props.flag ? "rgb(130, 130, 238)" : "#fdfdfd")};
+	border: 1px solid gray;
+	border-radius: 15px;
+	color: ${(props) => (props.flag ? "white " : "rgb(130, 130, 238)")};
+	&:hover {
+		background-color: ${(props) => (props.flag ? "rgb(130, 130, 238)" : "#f0f0f0")};
+		cursor: pointer;
+	}
+`;
+
+const PageBtnC = styled.div`
+	cursor: pointer;
+`;
+
 
 export default InfoList;

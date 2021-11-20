@@ -3,12 +3,9 @@ import axios from "axios";
 import Coming_soon from "../../Images/coming_soon.jpeg";
 import useAsync from "./useAsync";
 import styled from "styled-components";
-import awsData from "../../secret.json";
 import { FaImage } from 'react-icons/fa';
-import AWS from "aws-sdk";
 import { timeout } from "q";
 import { useSelector } from "react-redux";
-import S3 from "react-aws-s3";
 
 async function getProfile(id)
 {
@@ -20,15 +17,15 @@ async function getProfile(id)
 
 function	ProfileBar({ url })
 {
-	const { tabs: id } = url;
-	const userId = '1'; 
+	const { id: id } = url;
 
+	// userid 쿠키에서 가져와야함.
+	const userId = "1";
 	const [state] = useAsync(() => getProfile(id), [id]);
 	const [onButton, setOnButton] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [intro, setIntro] = useState("");
 	const { loading, data: profile, error }  = state;
-
 	const onChangeImg = (e) => {
 		const file = e.target.files[0];
 		let fileList = new FormData();
@@ -50,20 +47,6 @@ function	ProfileBar({ url })
 			setIsLoading(false);
 		};
 		ApiPost();
-		//const params = {
-		//	ACL: "public-read",
-		//	Body: file,
-		//	Bucket: S3_BUCKET_NAME,
-		//	Key: "user/1",
-		//};
-		//myBucket
-		//	.putObject(params)
-		//	.send((err) => {
-		//		if (err) console.log(err);
-		//	});
-		//setTimeout(() => {
-		//	window.location.reload();
-		//}, 2000)
 	};
 
 	const onButtonClick = () => {
@@ -95,9 +78,9 @@ function	ProfileBar({ url })
 	if (!profile) return null;
 	if (userId === id)
 		return (
-			<ProfileBarC Loading={isLoading}>
-				<ProfileImgC >
-					<img src={profile.userImage}/>
+			<ProfileBarC>
+				<ProfileImgC>
+					<img src={ profile.userImage }/>
 					<label for="ChangeImg">
 						<ProfileImgModifyC>
 								<FaImage />

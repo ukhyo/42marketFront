@@ -80,6 +80,11 @@ function ProductRegi(props) {
 				alert("제목을 입력해주세요.")
 				return;
 			}
+			else if (price < 0)
+			{
+				alert("가격이 잘못되어있습니다.");
+				return;
+			}
 			else if (price === 0 && idx !== 5) {
 				alert("가격을 입력해주세요.");
 				return;
@@ -120,7 +125,7 @@ function ProductRegi(props) {
 			const headers = {
 				// "Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
-				"withCreadentials": true,
+				//"withCreadentials": true,
 			};
 			setLoading(true);
 			await axios
