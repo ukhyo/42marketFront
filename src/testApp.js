@@ -6,7 +6,6 @@ import "./app.css";
 import { Row, Col, Button, Input, Alert } from "reactstrap";
 import uuid from "react-uuid";
 import S3 from "react-aws-s3";
-import useAxios from "./useAxios";
 
 const Posts = ({ posts, loading }) => {
 	return (

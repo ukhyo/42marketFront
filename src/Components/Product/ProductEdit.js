@@ -31,7 +31,6 @@ function ProductEdit(props) {
 			setPrice(data.price);
 			setContent(data.content);
 			setData(data.categoryId);
-			setLoading(!Loading);
 		}
 		ApiGet();
 	}, []);
@@ -137,11 +136,12 @@ function ProductEdit(props) {
 			if (token === undefined)
 				token = "abcd";
 			const headers = {
-				"Authorization": `Bearer ${token}`,
+				// "Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
 				"withCreadentials": true,
 			};
 			// Api 주소만 postId 끝에 달아주면 될 것 같음.
+			setLoading(true);
 			await axios
 				.post(`http://api.4m2d.shop/api/posts/${postId}`, fileList, { headers })
 				.then((res) => {
@@ -152,9 +152,8 @@ function ProductEdit(props) {
 			alert("상품 등록 완료!");
 		}
 		pushData();
+		setLoading(false);
 	}
-	if (!Loading)
-		return (<div>안녕</div>);
 
 	return (
 		<div>
@@ -287,7 +286,7 @@ function ProductEdit(props) {
 						></textarea>
 					</InputC>
 				</ContentC>
-				<SubmitC>
+				<SubmitC Loading={Loading}>
 					<button onClick={submitHandle}>등록하기</button>
 				</SubmitC>
 			</EditMainC>
@@ -512,6 +511,7 @@ const SubmitC = styled.div`
 	position: relative;
 	width: 100%;
 	height: 80px;
+	cursor: ${props => props.Loading ? 'wait' : ''};
 	> button {
 		width: 150px;
 		height: 60px;
