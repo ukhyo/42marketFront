@@ -24,8 +24,9 @@ function PostDetail(props) {
 		if (token === undefined)
 			token = "abcd";
 		const headers = {
-			"Authorization": `Bearer ${token}`,
+			//"Authorization": `Bearer ${token}`,
 			"withCreadentials": true,
+			"Access-Control-Allow-Origin": "http://api.4m2d.shop",
 		};
 
 		if (sub.indexOf(`/${data.id}/`) === -1) // 구독 안되있는 상태
@@ -34,7 +35,6 @@ function PostDetail(props) {
 				const config = {
 					userId: data.userId,
 					postId: data.id,
-					subscribes: sub,
 				}
 				await axios.post("http://api.4m2d.shop/api/carts", config, {headers}).then(res => {
 					console.log("구독 성공");
@@ -44,14 +44,13 @@ function PostDetail(props) {
 			}
 			ApiPost();
 		}
-		else { //구독 X
+		else { //구독 해제
 			const ApiDelete = async () => {
 				const config = {
 					userId: data.userId,
 					postId: data.id,
-					subscribes: sub,
 				};
-				await axios.delete(`http://api.4m2d.shop/api/carts`, config).then(res => {
+				await axios.delete(`http://api.4m2d.shop/api/carts`, config, { headers }).then(res => {
 					console.log("구독 해제 성공");
 				}).catch(err => {
 					console.log("구독 해제 실패");
@@ -117,14 +116,14 @@ function PostDetail(props) {
 								<div>
 									{data.title}
 								</div>
-								{/* <div>
+								<div>
 									<b>
 										판매자 &nbsp;
-										<b>
+										<Link to={`/mypage/${data.userId}/selllist`}>
 											{data.author}
-										</b>
+										</Link>
 									</b>
-								</div> */}
+								</div>
 							</TitleC>
 							<PriceAndDateC>
 								<div>{data.price.toLocaleString()}<b>원</b></div>
@@ -141,16 +140,29 @@ function PostDetail(props) {
 								</LocationArea>
 							</LocationAndViewsC>
 							<Location>
-								<li>
+								<div>
+									거래장소 <span>{data.local}</span>
+								</div>
+								<div>
+									거래장소 <span>{data.local}</span>
+								</div>
+							</Location>
+							<PostContentsC>
+								<ContentC>
+									{data.content}
+									asdknjqwkdjhgqwbjhdbgqwjkfhvckwbedfgcqiewrgndqegw
+									qwekrdgnkqghjwegrnfhjkwebgjrkfgkrgkfqwegkrdgkmejrgw
+								</ContentC>
+								{/*<div>
 									판매자 &nbsp;
 									<Link to={`/mypage/${data.userId}/selllist`}>
 										{data.author}
 									</Link>
-								</li>
-								<li>판매상태 <span>판매중</span></li>
-								<li>거래장소 <span>{data.local}</span></li>
-							</Location>
-							<PostContentsC>{data.content}</PostContentsC>
+									<p>
+										판매중
+									</p>
+								</div>*/}
+							</PostContentsC>
 							{sub.indexOf(`/${data.id}/`) === -1 ?
 							<SubscribeBtn onClick={e => {
 								ClickScribe();
@@ -331,9 +343,14 @@ const LocationAndViewsC = styled.div`
 `;
 
 const PostContentsC = styled.div`
+	display: flex;
 	margin-top: 15px;
 	line-height: 24px;
 	font-size: 18px;
+`;
+
+const ContentC = styled.div`
+	width: 80%;
 `;
 
 

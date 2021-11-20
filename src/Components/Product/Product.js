@@ -31,9 +31,9 @@ function ProductStateBar({ path }) {
 				<LinkC to="/product/manage">
 					<SpanC flag={path === "manage"}>상품관리</SpanC>
 				</LinkC>
-				<LinkC to="/product/history">
+				{/*<LinkC to="/product/history">
 					<SpanC flag={false}>구매 / 판매내역</SpanC>
-				</LinkC>
+				</LinkC>*/}
 			</ProductStateBarC>
 		</SectionC>
 	);

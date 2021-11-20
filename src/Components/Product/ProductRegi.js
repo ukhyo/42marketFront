@@ -79,6 +79,11 @@ function ProductRegi(props) {
 				alert("제목을 입력해주세요.")
 				return;
 			}
+			else if (price < 0)
+			{
+				alert("가격이 잘못되어있습니다.");
+				return;
+			}
 			else if (price === 0 && idx !== 5) {
 				alert("가격을 입력해주세요.");
 				return;
@@ -114,12 +119,14 @@ function ProductRegi(props) {
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
 			// Local에선 headers를 넣어주면 안된다 => Jwt 에 널값이 들어가 오류를 뱉는거같음.
 
-			if (token === undefined)
+			if (token === undefined) {
 				token = "abcd";
+				console.log("here??");
+			}
 			const headers = {
-				"Authorization": `Bearer ${token}`,
+				//"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
-				"withCreadentials": true,
+				//"withCreadentials": true,
 			};
 			await axios
 				.post("http://api.4m2d.shop/api/posts/", fileList, {headers})

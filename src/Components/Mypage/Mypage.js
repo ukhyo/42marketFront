@@ -13,8 +13,8 @@ function	MypageMain(props)
 	console.log(props, "gggg");
 
 	console.log("MypageMain", name);
-	const id = props.name.tabs;
-	const url = props.name.tabs2;
+	const id = props.name.id;
+	const url = props.name.url;
 	return (
 		<MypageMainC>
 			<ProfileBar url={name}/>

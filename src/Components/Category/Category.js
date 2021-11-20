@@ -14,8 +14,6 @@ function Category(props) {
 	return (
 		<SectionC>
 			<Header />
-			{console.log(test, "this")}
-			{/*<CategoryBar />*/}
 			<Route path={"/category/:" + test} exact component={CateDetail} />
 			<Footer />
 		</SectionC>

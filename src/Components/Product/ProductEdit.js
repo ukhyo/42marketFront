@@ -72,7 +72,7 @@ function ProductEdit(props) {
 		const file = e.target.files;
 		console.log("files = ", e.target.files[0]);
 		let transArr = Array.from(file);
-		if (transArr.length + Files.length > 8) {
+		if (transArr.length + Files.length + oldFiles.length > 8) {
 			alert(`사진은 최대 8개까지 가능합니다. 현재 : ${Files.length}개`);
 			return;
 		}
@@ -137,9 +137,9 @@ function ProductEdit(props) {
 			if (token === undefined)
 				token = "abcd";
 			const headers = {
-				"Authorization": `Bearer ${token}`,
+				//"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
-				"withCreadentials": true,
+				//"withCreadentials": true,
 			};
 			// Api 주소만 postId 끝에 달아주면 될 것 같음.
 			await axios
@@ -231,7 +231,7 @@ function ProductEdit(props) {
 						<RadioRet value="주변기기" idx={2} flag={idx}setIdx={setIdx} />
 						<RadioRet value="의류" idx={3} flag={idx}setIdx={setIdx} />
 						<RadioRet value="책" idx={4} flag={idx}setIdx={setIdx} />
-						<RadioRet value="나눔" idx={100} flag={ idx }setIdx={setIdx} />
+						<RadioRet value="나눔" idx={5} flag={ idx }setIdx={setIdx} />
 					</FormC>
 				</CategoryC>
 				<TradeLocationC>
@@ -380,6 +380,7 @@ const DeletePostIconC = styled.div`
 	border: 1px solid gray;
 	background-color: #fdfdfd;
 	border-radius: 3px;
+	cursor: pointer;
 `;
 
 const PictureC = styled.div`

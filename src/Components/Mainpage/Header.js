@@ -22,10 +22,17 @@ function Header() {
 		}
 	};
 	function imgClick(e) {
-		history.push(
+		if (text === "")
+		{
+			alert("검색어를 입력해주세요!");
+			return ;
+		}
+		else {
+			history.push(
 			{
 				pathname: `/search/${text}`,
 			});
+		}
 		setText("");
 	}
 	const [Login, setLogin] = useState(false);
@@ -43,14 +50,12 @@ function Header() {
 				</HeaderLogoC>
 				<HeaderSearchC>
 					<HeaderSearchInputC>
-						<Link to={`/search/${text}`}>
-							<img
-								onClick={imgClick}
-								className="header_search_img"
-								src={process.env.PUBLIC_URL + "/img/searchIcon.png"}
-								alt="img"
-							/>
-						</Link>
+						<img
+							onClick={imgClick}
+							className="header_search_img"
+							src={process.env.PUBLIC_URL + "/img/searchIcon.png"}
+							alt="img"
+						/>
 						<input
 							placeholder="검색어를 입력해주세요."
 							onChange={onChange}
@@ -146,6 +151,9 @@ const HeaderSearchInputC = styled.fieldset`
 		padding: 5px;
 	}
 	& img {
+		/*border:none;
+		outline:none;*/
+		padding-right: 8px;
 		width: 20px;
 		height: 20px;
 	}
