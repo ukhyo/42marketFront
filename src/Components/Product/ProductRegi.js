@@ -120,19 +120,12 @@ function ProductRegi(props) {
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
 			// Local에선 headers를 넣어주면 안된다 => Jwt 에 널값이 들어가 오류를 뱉는거같음.
 
-<<<<<<< HEAD
-			// if (token === undefined)
-			// 	token = "abcd";
-			const headers = {
-				// "Authorization": `Bearer ${token}`,
-=======
 			if (token === undefined) {
 				token = "abcd";
 				console.log("here??");
 			}
 			const headers = {
 				//"Authorization": `Bearer ${token}`,
->>>>>>> 6ddb4914d1d2ecb794b7f1e8ac209715e2c159e1
 				"Content-Type": `multipart/form-data`,
 				//"withCreadentials": true,
 			};

@@ -23,6 +23,7 @@ function	ProfileBar({ url })
 	const userId = "1";
 	const [state] = useAsync(() => getProfile(id), [id]);
 	const [onButton, setOnButton] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const [intro, setIntro] = useState("");
 	const { loading, data: profile, error }  = state;
 	const onChangeImg = (e) => {
@@ -35,12 +36,15 @@ function	ProfileBar({ url })
 				//"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
 			};
-			await axios.post("http://api.4m2d.shop/api/users/1", fileList, headers).then(res => {
+			setIsLoading(true);
+			await axios.post("http://api.4m2d.shop/api/users/1", fileList, {headers})
+			.then(res => { //아이디 수정해야함
 				console.log("성공");
 				window.location.reload();
 			}).catch(err => {
 				console.log("실패");
 			});
+			setIsLoading(false);
 		};
 		ApiPost();
 	};
@@ -56,16 +60,20 @@ function	ProfileBar({ url })
 			let data = {
 				introduce: intro
 			};
+			setIsLoading(true);
 			await axios.patch("http://api.4m2d.shop/api/users/1", data).then(res => {
 				console.log("성공");
-				window.location.reload();
+				setTimeout(() => {
+					window.location.reload();
+				}, 500)
+				// window.location.reload();
 			}).catch(err => {
 				console.log("실패");
 			});
+			setIsLoading(false);
 		}
 		pushData();
 	}
-	if (loading) return <div>loading...</div>;
 	if (error) return <div>Error occured</div>;
 	if (!profile) return null;
 	if (userId === id)
@@ -96,13 +104,10 @@ function	ProfileBar({ url })
 				<ProfileContentsC>
 					<span>{profile.introduce}</span>
 				</ProfileContentsC>
-				{
-
-				}
 				{ onButton === false ? <ProfileModifyBtnC onClick={onButtonClick}>
 					<span>Edit introduce</span>
 				</ProfileModifyBtnC> :
-				<ModifyIntroC>
+				<ModifyIntroC >
 					<textarea
 						type="text"
 						cols="32"
@@ -120,9 +125,9 @@ function	ProfileBar({ url })
 		);
 	if (userId !== id)
 		return (
-			<ProfileBarC>
+			<ProfileBarC >
 				<ProfileImgC>
-					<img src="https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1"/>
+					<img src={profile.userImage}/>
 					{/* <label for="ChangeImg">
 						<ProfileImgModifyC>
 								<FaImage />
@@ -169,6 +174,7 @@ function	ProfileBar({ url })
 
 const		ModifyIntroC = styled.div`
     margin: 3px 0px;
+
 	> textarea {
 		width: 100%;
 		height: 200px;
@@ -262,12 +268,14 @@ const		ProfileBarC = styled.div`
 	width: 280px;
 	height: 600px;
 	margin-top: 30px;
+	cursor: ${props => (props.Loading ? 'wait' : '')};
 `;
 
 
 const		ProfileImgC = styled.div`
 	display: flex;
 	position: relative;
+	cursor: ${props => (props.Loading ? 'wait' : '')};
 	img {
 		width: 280px;
 		height: 280px;

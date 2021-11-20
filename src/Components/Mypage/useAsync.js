@@ -39,8 +39,6 @@ function	useAsync(callback, deps = [])
 		try
 		{
 			const data = await callback();
-			console.log("useAsyncaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-			console.log("data here", data);
 			dispatch({ type: 'SUCCESS', data});
 		}
 		catch (e)
@@ -48,11 +46,9 @@ function	useAsync(callback, deps = [])
 			dispatch({ type: 'ERROR', error: e});
 		}
 	};
-	console.log(deps, "deps");
 	useEffect(() => {
-		console.log("useAsynchere");
 		fetchData();
-	}, []);
+	}, deps);
 
 	return [state, fetchData];
 }
