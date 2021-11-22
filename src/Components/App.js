@@ -44,6 +44,8 @@ const GlobalStyles = createGlobalStyle`
        url('../fonts/noto-sans-kr-v21-latin-regular.svg#NotoSansKR') format('svg'); /* Legacy iOS */
 }
 	body {
+		-ms-overflow-style: none;
+		::-webkit-scrollbar { display: none; }
 		margin: 0;
 		padding: 0;
 		background-color: #fdfdfd;

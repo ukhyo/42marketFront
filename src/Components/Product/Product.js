@@ -53,6 +53,7 @@ function Product(props) {
 }
 
 const SectionC = styled.section`
+	width: 100%;
 	margin: 0 auto;
 `;
 

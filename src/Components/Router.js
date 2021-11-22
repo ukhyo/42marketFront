@@ -17,7 +17,7 @@ function Router() {
         <Route path={"/product/edit"} exact component={ProductEdit} />
         <Route path={"/product/:tabs"} exact component={Product}></Route>
 		<Route path={"/category/:id"} exact component={Category} />
-		<Route path={"/search/:word"}  exact component={Search} />
+		<Route path={"/search/:id/:word"}  exact component={Search} />
       </Switch>
     </div>
   );

@@ -99,7 +99,12 @@ function ProductEdit(props) {
 				alert("제목을 입력해주세요.")
 				return;
 			}
-			else if (price === 0 && idx !== 100) {
+			else if (price < 0)
+			{
+				alert("가격이 잘못되어있습니다.");
+				return;
+			}
+			else if (price === 0 && idx !== 5) {
 				alert("가격을 입력해주세요.");
 				return;
 			}
@@ -111,9 +116,8 @@ function ProductEdit(props) {
 				alert("카테고리를 선택해주세요.");
 				return;
 			}
-			else if (idx === 100 && price !== 0) {
+			else if (idx === 5) {
 				alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
-				setPrice(0);
 			}
 			let fileList = new FormData();
 			Files.forEach((data) => {
@@ -132,6 +136,7 @@ function ProductEdit(props) {
 				categoryId: idx,
 				oldFileList: oldFile,
 			};
+			console.log(idx, "제대로 바뀌나요?");
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
 			if (token === undefined)
 				token = "abcd";
@@ -156,7 +161,7 @@ function ProductEdit(props) {
 	}
 
 	return (
-		<div>
+		<SectionC>
 			<Header />
 			<EditHeaderC>
 				<span>상품 수정</span>
@@ -287,14 +292,24 @@ function ProductEdit(props) {
 					</InputC>
 				</ContentC>
 				<SubmitC Loading={Loading}>
-					<button onClick={submitHandle}>등록하기</button>
+					<button onClick={() => {
+						if (!Loading)
+							submitHandle();
+						else
+							alert("상품 등록중입니다.")
+					}}>등록하기</button>
 				</SubmitC>
 			</EditMainC>
 			<Footer></Footer>
-		</div>
+		</SectionC>
 	);
 };
 
+
+const SectionC = styled.div`
+	width: 100%;
+	margin: 0 auto;
+`;
 
 const EditHeaderC = styled.div`
 	width: 1000px;

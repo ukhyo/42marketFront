@@ -4,9 +4,21 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import CategoryBar from "../Mainpage/CategoryBar";
 import { PostThumbnail } from "../Mainpage/PreviewPost";
+import { Cookies } from "react-cookie";
+
+
 function CateDetail(props) {
+	const cookie = new Cookies()
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const [isActive, setIsActive] = useState(false);
 	const [item, setItem] = useState([]);
+	const [Loading, setLoading] = useState(false);
+	const [timeFlag, setTimeFlag] = useState(true);
+	const [priceFlag, setPriceFlag] = useState(true);
+
+	console.log(userId, "d");
+	if (userId === undefined)
+		userId = "0";
 	const onClick = () => setIsActive(!isActive);
 	let { undefined: cate } = props.match.params;
 	const catename = ["전체", "전자기기", "주변기기", "의류", "책", "나눔"];
@@ -17,20 +29,28 @@ function CateDetail(props) {
 		else if (idx === 2) // 최신인기순 조회수
 			url = "view";
 		else if (idx === 3) // 최신
-			url = "desc";
-		else if (idx === 4) // 오래된
 			url = "asc";
+		else if (idx === 4) // 오래된
+			url = "desc";
+		else if (idx === 5) // 낮은가격순
+			url = "priceasc";
+		else if (idx === 6) // 높은가격순
+			url = "pricedesc";
+		else
+			return;
 		const alignGet = async () => {
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/category/${cate}/${url}`);
+			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/category/${cate}/${url}/${userId}`);
 			setItem(data);
 		};
 		alignGet();
 	}
-
 	useEffect(() => {
 		const getData = async () => {
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/category/${cate}`);
+			setLoading(false);
+			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/category/${cate}/${userId}`);
+			console.log(data, "변경된 url");
 			setItem(data);
+			setLoading(true);
 		};
 		getData();
 	}, [cate]);
@@ -51,22 +71,39 @@ function CateDetail(props) {
 						<li onClick={(e) => {
 							AlignBtn(e, 2);
 							setIsActive(!isActive);
-							}}><span>조회순</span></li>
-						<li onClick={(e) => {
-							AlignBtn(e, 3);
-							setIsActive(!isActive);
-						}}><span>최신글</span></li>
-						<li onClick={(e) => {
-							AlignBtn(e, 4);
-							setIsActive(!isActive);
+						}}><span>조회순</span></li>
+						{timeFlag ? (
+							<li onClick={(e) => {
+								AlignBtn(e, 3);
+								setIsActive(!isActive);
+								setTimeFlag(!timeFlag);
 							}}><span>오래된글</span></li>
+						) :
+							<li onClick={(e) => {
+								AlignBtn(e, 4);
+								setIsActive(!isActive);
+								setTimeFlag(!timeFlag);
+							}}><span>최신글</span></li>}
+						{priceFlag ? (
+							<li onClick={(e) => {
+							AlignBtn(e, 5);
+								setIsActive(!isActive);
+								setPriceFlag(!priceFlag);
+							}}><span>낮은가격순</span></li>
+						) : (
+							<li onClick={(e) => {
+								AlignBtn(e, 6);
+									setIsActive(!isActive);
+									setPriceFlag(!priceFlag);
+								}}><span>높은가격순</span></li>
+						) }
 					  </ul>
 				</MenuC>
 			</NameAndSortC>
 			<PostViewC>
-			{item.map((data, idx) => {
+			{Loading && item.postsThumbnailResponseDtoList.map((data, idx) => {
 				return (
-					<PostThumbnail data={data} key={idx} />
+					<PostThumbnail data={data} key={idx} subList={item.subList}/>
 				);
 			})}
 			</PostViewC>
@@ -74,10 +111,6 @@ function CateDetail(props) {
 	);
 }
 
-const MenuContainerC = styled.div`
-	position: relative;
-	cursor: pointer;
-`;
 
 const MenuTriggerC = styled.button`
 	position: absolute;
@@ -95,7 +128,7 @@ const MenuC = styled.nav`
 	position: absolute;
 	top: 55px;
 	right: -40px;
-	width: 100px;
+	width: 110px;
 	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 	opacity: ${props => (props.active ? '1' : '0')};
 	visibility: ${props => (props.active ? 'visible' : 'hidden')};
@@ -117,20 +150,16 @@ const MenuC = styled.nav`
 	}
 `;
 
-const SectionC = styled.section`
-	width: 1200px;
-	margin: 0 auto;
-`;
-
 const NameAndSortC = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	position:relative;
+	margin-bottom: 10px;
 `;
-
-const CateSortC = styled.div`
-
+const SectionC = styled.section`
+	width: 1200px;
+	margin: 0 auto;
 `;
 
 const CateNameC = styled.div`
@@ -146,7 +175,7 @@ const PostViewC = styled.div`
 	flex-wrap: wrap;
 	> div:not(:nth-child(5n))
 	{
-		margin-right: 2%;
+		margin-right: 2.25%;
 	}
 `;
 

@@ -5,14 +5,14 @@ import { useHistory } from "react-router";
 import { Cookies } from "react-cookie";
 import { useSelector } from "react-redux";
 import { setUserId } from "../../modules/User";
-//import logoimg from "../img/logo.png";
-//import logoimg from "../img/noname.png";
 
 function Header() {
 	const cookie = new Cookies()
-	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const history = useHistory();
 	const [text, setText] = useState("");
+	if (userId === undefined)
+		userId = "0";
 	function onChange(e) {
 		setText(e.target.value);
 	}
@@ -30,22 +30,18 @@ function Header() {
 		else {
 			history.push(
 			{
-				pathname: `/search/${text}`,
+				pathname: `/search/${userId}/${text}`,
 			});
 		}
 		setText("");
 	}
-	const [Login, setLogin] = useState(false);
-	const { userId } = useSelector(state => ({
-		userId: state.User.userId
-	}));
 
 	return (
 		<HeaderC>
 			<HeaderLineC>
 				<HeaderLogoC>
 					<Link to="/">
-						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/test22.png"} />
+						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/Logo1.png"} />
 					</Link>
 				</HeaderLogoC>
 				<HeaderSearchC>
@@ -66,10 +62,23 @@ function Header() {
 					</HeaderSearchInputC>
 				</HeaderSearchC>
 				<HeaderInfoC>
-					<LinkC to="/product/regi">
-						<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
-						<div>판매하기</div>
-					</LinkC>
+				<LinkC to="/product/regi">
+					<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
+					<div>판매하기</div>
+				</LinkC>
+					{/*{token ?
+						<LinkC to="/product/regi">
+							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
+							<div>판매하기</div>
+						</LinkC>
+						:
+						<AC onClick={() => {
+							alert("로그인이 필요합니다.");
+						}} href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
+							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
+							<div>판매하기</div>
+						</AC>
+					}*/}
 					<LinkC to="/">
 						<img src={process.env.PUBLIC_URL + "/img/bellIcon2.png"} />
 						<div>알림</div>
@@ -79,6 +88,10 @@ function Header() {
 						<div>내정보</div>
 					</LinkC>
 					{/*{token ?
+					<LinkC to={`/mypage/${userId}/selllist`}>
+						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
+						<div>내정보</div>
+					</LinkC>
 						:
 					<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
 						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
@@ -184,20 +197,16 @@ const HeaderInfoC = styled.div`
 	justify-content: right;
 	width: 350px;
 	font-size: 16px;
-
-	& i {
-		margin-right: 5px;
-	}
 	& ${LinkC}, & ${AC} {
 		padding: 0 15px;
 	}
-	& ${LinkC}:last-child, & ${AC} {
+	& ${LinkC}:last-child, & ${AC}:last-child {
 		padding-right: 0;
 	}
 	& > ${LinkC}:not(${LinkC}:first-child) {
 		border-left: 1px solid rgb(0, 0, 0, 0.1);
 	}
-	& > ${AC} {
+	& > ${AC}:not(${AC}:first-child) {
 		border-left: 1px solid rgb(0, 0, 0, 0.1);
 	}
 	& div {

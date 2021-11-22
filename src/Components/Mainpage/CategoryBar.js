@@ -10,28 +10,40 @@ function CategoryBar({history}) {
 			<CategoryItemsC onClick={(e) => {
 			}}>
 				<LinkC to="/category/0">
-					<img src={process.env.PUBLIC_URL + "/img/allIcon.png"}></img>
-					<span>전체</span>
+					<div>
+						<img src={process.env.PUBLIC_URL + "/img/allIcon.png"}></img>
+						<span>Total</span>
+					</div>
 				</LinkC>
 				<LinkC to="/category/1">
-					<img src={process.env.PUBLIC_URL + "/img/itIcon.png"}></img>
-					<span>전자기기</span>
+					<div>
+						<img src={process.env.PUBLIC_URL + "/img/itIcon.png"}></img>
+						<span>IT</span>
+					</div>
 				</LinkC>
 				<LinkC to="/category/2">
-					<img src={process.env.PUBLIC_URL + "/img/SubItIcon.png"}></img>
-					<span>주변기기</span>
+					<div>
+						<img src={process.env.PUBLIC_URL + "/img/SubItIcon.png"}></img>
+						<span>Support</span>
+					</div>
 				</LinkC>
 				<LinkC to="/category/3">
-					<img src={process.env.PUBLIC_URL + "/img/clothIcon.png"}></img>
-					<span>의류</span>
+					<div>
+						<img src={process.env.PUBLIC_URL + "/img/clothIcon.png"}></img>
+						<span>Cloth</span>
+					</div>
 				</LinkC>
 				<LinkC to="/category/4">
-					<img src={process.env.PUBLIC_URL + "/img/bookIcon.png"}></img>
-					<span>책</span>
+					<div>
+						<img src={process.env.PUBLIC_URL + "/img/bookIcon.png"}></img>
+						<span>Book!</span>
+					</div>
 				</LinkC>
 				<LinkC to="/category/5">
-					<img src={process.env.PUBLIC_URL + "/img/shareIcon.png"}></img>
-					<span>나눔</span>
+					<div>
+						<img src={process.env.PUBLIC_URL + "/img/shareIcon.png"}></img>
+						<span>Share</span>
+					</div>
 				</LinkC>
 			</CategoryItemsC>
 		</CategoryC>
@@ -44,11 +56,12 @@ const CategoryC = styled.div`
 	width: 1200px;
 
 	margin: auto;
-	margin-top: 30px;
+	margin-top: 60px;
 	/*padding-bottom: 20px;*/
 `;
 
 const LinkC = styled(Link)`
+	width: 80px;
 	text-decoration: none;
 	color: rgba(0, 0, 0, 0.8);
 `;
@@ -56,15 +69,18 @@ const LinkC = styled(Link)`
 const CategoryItemsC = styled.div`
 
 	display: flex;
-	width: 500px;
+	width: 600px;
 	height: 50px;
 	margin: 0 auto;
 	justify-content: space-between;
-	> ${LinkC} {
+	> ${LinkC} > div {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		&:hover {
+			color: rgb(130, 130, 238);
+		}
 		img {
 			width: 25px;
 			height: 25px;
@@ -79,11 +95,6 @@ const CategoryItemsC = styled.div`
 		span {
 			margin: 15px 0;
 			font-size: 18px;
-			box-sizing: border-box;
-		}
-		span:hover {
-			color: rgb(130, 130, 238);
-			border-bottom: 1px solid rgb(130, 130, 238);
 			box-sizing: border-box;
 		}
 	}

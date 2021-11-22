@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { FiHeart } from "react-icons/fi";
 import { BsSuitHeartFill } from "react-icons/bs";
+import { BsSuitHeart } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
-import { Cookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import GetTime from "../utils/GetTime";
-function PostThumbnail({ data, key }) {
+
+function PostThumbnail({ data, key, subList}) {
 	let title;
 	data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
 		: title = data.title;
@@ -19,6 +21,7 @@ function PostThumbnail({ data, key }) {
 					state: {
 						data: data,
 						itemId: data.id,
+						subList: subList,
 					},
 				}}
 			>
@@ -35,46 +38,28 @@ function PostThumbnail({ data, key }) {
 				</div>
 				<div>
 					<p>{data.subscribes}</p>
-					<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
-						<BsSuitHeartFill size={18} />
-					</IconContext.Provider>
+					{subList.indexOf(`/${data.id}/`) === -1 ?
+						<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
+							<BsSuitHeart size={18} />
+						</IconContext.Provider> :
+						<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
+							<BsSuitHeartFill size={18} />
+						</IconContext.Provider>
+					}
 				</div>
 			</div>
 		</PostItemC>
 	);
 }
 
-function PostViewComp({flag}) {
-	const cookie = new Cookies();
-	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
-
-
-	const [item, setItem] = useState([]);
-	const [Loading, setLoading] = useState(false);
-	useEffect(() => {
-		const ApiGet = async () => {
-			let { data: data } = await axios.get("http://api.4m2d.shop/api/").then((response) => {
-				console.log("성공?");
-				return response;
-			}).catch((res) => {
-				console.log(res, "에러");
-			});
-			if (flag === true)
-				setItem(data.subscribeList);
-			else
-				setItem(data.viewList);
-			setLoading(true);
-		};
-		ApiGet();
-	}, []);
-
+function PostViewComp({item, subList, Loading}) {
 	return (
 		<SectionC>
 			<PostViewLineC>
 				{
-				Loading && item.map((data, index) => {
+					Loading && item.length > 0 && item.map((data, index) => {
 					return (
-						<PostThumbnail key={index}data={data}/>
+						<PostThumbnail key={index} data={data} subList={ subList }/>
 						);
 					})
 				}
@@ -84,12 +69,35 @@ function PostViewComp({flag}) {
 }
 
 function PreviewPost() {
+	const cookie = new Cookies();
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+
+	const [item, setItem] = useState([]);
+	const [Loading, setLoading] = useState(false);
+	useEffect(() => {
+		const ApiGet = async () => {
+			setLoading(false);
+			if (userId === undefined)
+				userId = "0";
+			let data = await axios.get(`http://api.4m2d.shop/api/${userId}`).then((response) => {
+				console.log("성공?");
+				return response.data;
+			}).catch((res) => {
+				console.log(res, "에러");
+			});
+			setItem(data);
+			setLoading(true);
+		};
+		ApiGet();
+	}, []);
+	if (!Loading)
+		return <div> Loading...</div>
 	return (
 		<PostViewC>
-			<h3>인기 게시글</h3>
-			<PostViewComp flag={true} />
-			<h3>전체 게시글</h3>
-			<PostViewComp flag={false} />
+			<h2>인기상품!</h2>
+			<PostViewComp item={item.subscribeList} subList={item.subList} Loading={ Loading}/>
+			<h2>새 상품!</h2>
+			<PostViewComp item={item.viewList} subList={item.subList} Loading={ Loading}/>
 		</PostViewC>
 	);
 }
@@ -106,10 +114,11 @@ const SectionC = styled.section`
 
 const PostViewC = styled.div`
 	width: 1200px;
-	/*height: 1280px;*/
 	margin: 0px auto;
-	> h3 {
-		font-size: 20px;
+	> h2 {
+		font: italic 1em "Fira Sans", serif;
+		font-size: 28px;
+		font-weight: 600;
 		margin-top: 40px;
 		margin-bottom: 10px;
 	}
@@ -118,8 +127,8 @@ const PostViewC = styled.div`
 	}
 	> div:nth-child(2) {
 		height: 100px;
-			> h3 {
-			font-size: 20px;
+			> h2 {
+			/*font-size: 24px;*/
 			margin-top: 40px;
 			margin-bottom: 10px;
 		}
@@ -134,12 +143,13 @@ const PostViewLineC = styled.div`
 	margin: 10px auto;
 	margin-bottom: 20px;
 	display: flex;
+	box-sizing: border-box;
 	/*justify-content: space-between;*/
 	align-items: center;
 	flex-wrap: wrap;
 	> div:not(:nth-child(5n))
 	{
-		margin-right: 2%;
+		margin-right: 2.25%;
 	}
 `;
 

@@ -12,12 +12,12 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, current }) => {
 			behavior: "smooth",
 		})
 	}
+	// pageNumber에 5개만 들어가면 될지도.
 	const pageNumbers = [];
 	for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
 		pageNumbers.push(i);
 	}
 	const currentPage = current;
-	// 4 일때 6보다작음.
 	if (Math.ceil(totalPosts / postsPerPage) < 6)
 		current = 0;
 	else {

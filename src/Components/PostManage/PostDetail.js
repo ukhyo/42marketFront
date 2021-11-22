@@ -14,31 +14,31 @@ function PostDetail(props) {
 	const cookie = new Cookies();
 	let  { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const { location } = props;
-	const { location: { state: { itemId: id} } } = props;
+	const { location: { state: { itemId: id } } } = props;
+	const { location: { state: { subList: subList } } } = props;
 	const [ImgIdx, setImgIdx] = useState(0);
 	const [data, setData] = useState([]);
 	const [Loading, setLoading] = useState(false);
-	if (sub === undefined)
-		sub = "//";
+	if (userId === undefined)
+		userId = "0";
 	const ClickScribe = () => {
-		if (token === undefined)
-			token = "abcd";
 		const headers = {
 			//"Authorization": `Bearer ${token}`,
 			"withCreadentials": true,
-			"Access-Control-Allow-Origin": "http://api.4m2d.shop",
+			//'Access-Control-Allow-Origin' : '*',
+ 			//'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
 		};
-
-		if (sub.indexOf(`/${data.id}/`) === -1) // 구독 안되있는 상태
+		if (subList.indexOf(`/${data.id}/`) === -1) // 구독 안되있는 상태
 		{
 			const ApiPost = async () => {
 				const config = {
-					userId: data.userId,
+					userId: userId,
 					postId: data.id,
 				}
 				await axios.post("http://api.4m2d.shop/api/carts", config, {headers}).then(res => {
 					console.log("구독 성공");
 				}).catch(err => {
+					console.log(err);
 					console.log("구독 실패");
 				});
 			}
@@ -47,7 +47,7 @@ function PostDetail(props) {
 		else { //구독 해제
 			const ApiDelete = async () => {
 				const config = {
-					userId: data.userId,
+					userId: userId,
 					postId: data.id,
 				};
 				await axios.delete(`http://api.4m2d.shop/api/carts`, config, { headers }).then(res => {
@@ -59,13 +59,17 @@ function PostDetail(props) {
 			ApiDelete();
 		}
 	};
-
 	useEffect(() => {
 		if (location.state === undefined) props.history.push('/');
 		const ApiGet = async () => {
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}`)
+			setLoading(false);
+			const data = await axios.get(`http://api.4m2d.shop/api/posts/${id}`).then(res => {
+				return res.data;
+			}).catch(err => {
+				console.log("상세보기 실패");
+			})
 			setData(data);
-			setLoading(!Loading);
+			setLoading(true);
 		}
 		ApiGet();
 	}, [])
@@ -86,7 +90,7 @@ function PostDetail(props) {
 	return (
 		<div>
 			<Header />
-			<PostDetailC>
+			<PostDetailC flag={Loading}>
 				{Loading && (
 					<PostDetailHeaderC>
 						<PostDetailMainC>
@@ -143,35 +147,25 @@ function PostDetail(props) {
 								<div>
 									거래장소 <span>{data.local}</span>
 								</div>
-								<div>
-									거래장소 <span>{data.local}</span>
-								</div>
 							</Location>
 							<PostContentsC>
 								<ContentC>
 									{data.content}
-									asdknjqwkdjhgqwbjhdbgqwjkfhvckwbedfgcqiewrgndqegw
-									qwekrdgnkqghjwegrnfhjkwebgjrkfgkrgkfqwegkrdgkmejrgw
 								</ContentC>
-								{/*<div>
-									판매자 &nbsp;
-									<Link to={`/mypage/${data.userId}/selllist`}>
-										{data.author}
-									</Link>
-									<p>
-										판매중
-									</p>
-								</div>*/}
 							</PostContentsC>
-							{sub.indexOf(`/${data.id}/`) === -1 ?
-							<SubscribeBtn onClick={e => {
-								ClickScribe();
-							}}>구독</SubscribeBtn>
+							{userId === "0" ?
+								<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code"><SubscribeBtn>로그인</SubscribeBtn></a>
 								:
-							<SubscribeBtn onClick={e => {
-								ClickScribe();
-							}}>구독해제</SubscribeBtn>
-						}
+								(subList.indexOf(`/${data.id}/`) === -1 ?
+								<SubscribeBtn onClick={e => {
+									ClickScribe();
+								}}>구독</SubscribeBtn>
+									:
+								<SubscribeBtn onClick={e => {
+									ClickScribe();
+									}}>구독해제</SubscribeBtn>
+
+								)}
 						</PostDetailInfoC>
 					</PostDetailHeaderC>
 				)}
@@ -199,6 +193,7 @@ const PostDetailC = styled.div`
 	height: 900px;
 	margin: 0 auto;
 	margin-top: 80px;
+	cursor: ${(props ) => props.flag ? "" : "wait"};
 `;
 
 const PostDetailHeaderC = styled.div`

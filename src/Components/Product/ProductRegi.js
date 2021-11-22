@@ -15,7 +15,7 @@ function ProductRegi(props) {
 	const [idx, setIdx] = useState(0);
 	const [price, setPrice] = useState();
 	const [content, setContent] = useState("");
-	const [loading, setLoading] = useState(false);
+	const [Loading, setLoading] = useState(false);
 
 
 	// Input 양식 state 이미지 관련
@@ -118,7 +118,6 @@ function ProductRegi(props) {
 			};
 
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
-			// Local에선 headers를 넣어주면 안된다 => Jwt 에 널값이 들어가 오류를 뱉는거같음.
 
 			if (token === undefined) {
 				token = "abcd";
@@ -149,7 +148,7 @@ function ProductRegi(props) {
 		<span>기본정보</span>
 		<span> *필수항목</span>
 	  </RegiHeaderC>
-	  <RegiMainC Loading={loading}>
+	  <RegiMainC Loading={Loading}>
 		<PictureC>
 		  <SubtitleC>
 			상품 이미지<b>*</b>
@@ -284,7 +283,12 @@ function ProductRegi(props) {
 		  </InputC>
 		</ContentC>
 		<SubmitC>
-		  <button onClick={submitHandle}>등록하기</button>
+					<button onClick={() => {
+						if (!Loading)
+							submitHandle();
+						else
+							alert("상품 등록중입니다");
+					}}>등록하기</button>
 		</SubmitC>
 	  </RegiMainC>
 	</div>

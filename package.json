@@ -8,6 +8,8 @@
 
   "homepage": "/",
 
+  "proxy": "http://4m2d.shop",
+
   "dependencies": {
 
     "@testing-library/jest-dom": "^5.14.1",

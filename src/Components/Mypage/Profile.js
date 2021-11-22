@@ -27,6 +27,8 @@ function	ProfileBar({ url })
 	const [intro, setIntro] = useState("");
 	const { loading, data: profile, error }  = state;
 	const onChangeImg = (e) => {
+		if (isLoading)
+			return ;
 		const file = e.target.files[0];
 		let fileList = new FormData();
 		fileList.append("image", file);
@@ -56,6 +58,8 @@ function	ProfileBar({ url })
 		setIntro(e.target.value);
 	};
 	const submitHandler = (e) => {
+		if (isLoading)
+			return;
 		const pushData = async () => {
 			let data = {
 				introduce: intro
@@ -78,8 +82,8 @@ function	ProfileBar({ url })
 	if (!profile) return null;
 	if (userId === id)
 		return (
-			<ProfileBarC>
-				<ProfileImgC>
+			<ProfileBarC Loading={isLoading}>
+				<ProfileImgC Loading={isLoading}>
 					<img src={ profile.userImage }/>
 					<label for="ChangeImg">
 						<ProfileImgModifyC>
@@ -125,8 +129,8 @@ function	ProfileBar({ url })
 		);
 	if (userId !== id)
 		return (
-			<ProfileBarC >
-				<ProfileImgC>
+			<ProfileBarC Loading={isLoading}>
+				<ProfileImgC Loading={isLoading}>
 					<img src={profile.userImage}/>
 					{/* <label for="ChangeImg">
 						<ProfileImgModifyC>
