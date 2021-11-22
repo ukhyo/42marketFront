@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import Coming_soon from "../../Images/coming_soon.jpeg";
 import { Cookies } from "react-cookie";
 import GetTime from "../utils/GetTime";
+import Comments from "./Comments";
+
 function PostDetail(props) {
 	const cookie = new Cookies();
 	let  { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
@@ -18,6 +20,10 @@ function PostDetail(props) {
 	const [ImgIdx, setImgIdx] = useState(0);
 	const [data, setData] = useState([]);
 	const [Loading, setLoading] = useState(false);
+	const [Error, setError] = useState(null);
+	const [Comment, setComment] = useState([]);
+
+	userId = 1; //나중에 지울 것
 	if (sub === undefined)
 		sub = "//";
 	const ClickScribe = () => {
@@ -63,12 +69,19 @@ function PostDetail(props) {
 	useEffect(() => {
 		if (location.state === undefined) props.history.push('/');
 		const ApiGet = async () => {
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}`)
-			setData(data);
-			setLoading(!Loading);
-		}
+				const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}`)
+				setData(data);
+				setLoading(!Loading);
+				setComment(data.commentsList);
+		};
 		ApiGet();
 	}, [])
+
+	const refreshFunction = (newComment) => {
+		console.log("refreshFunction");
+		console.log(newComment, "newComment");
+		setComment(Comment.concat(newComment));
+	};
 
 	const SelectPicture = (e, flag) => {
 		if (flag == 0) {
@@ -82,7 +95,7 @@ function PostDetail(props) {
 			setImgIdx(ImgIdx + 1);
 		}
 	};
-
+	// if (Error) return <div>error occured</div>
 	return (
 		<div>
 			<Header />
@@ -176,12 +189,11 @@ function PostDetail(props) {
 					</PostDetailHeaderC>
 				)}
 				<CommentArea>
-					<RegiHeaderC>
-						<span>댓글</span>
-					</RegiHeaderC>
-					<CommentMain>
-					<img src={Coming_soon} />
-					</CommentMain>
+					<Comments userId={userId}
+						postId={data.id}
+						commentsList={Comment} 
+						refreshFunction={refreshFunction}>
+					</Comments>
 				</CommentArea>
 			</PostDetailC>
 
@@ -196,7 +208,7 @@ function PostDetail(props) {
 
 const PostDetailC = styled.div`
 	width: 1200px;
-	height: 900px;
+	height: 100%;
 	margin: 0 auto;
 	margin-top: 80px;
 `;
