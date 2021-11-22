@@ -20,7 +20,6 @@ async function getList(id)
 		);
 		return response.data;
 	}
-
 function InfoList({id, url})
 {
 
@@ -65,7 +64,7 @@ function InfoList({id, url})
 											state: {
 												data: posts,
 												itemId: posts.id,
-												flag: true
+												subList: "0",
 											},
 										}}
 										>
@@ -110,7 +109,7 @@ function InfoList({id, url})
 	{
 		return (
 			<InfoListC flag={url === "manage"}>
-				{currentPosts(list).map((posts, index) => {
+				{currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
 					console.log(posts.id, "id");
 					return (
@@ -126,7 +125,7 @@ function InfoList({id, url})
 											state: {
 												data: posts,
 												itemId: posts.id,
-												flag: true,
+												subList: "0",
 											},
 										}}
 										>

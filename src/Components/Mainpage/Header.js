@@ -62,11 +62,11 @@ function Header() {
 					</HeaderSearchInputC>
 				</HeaderSearchC>
 				<HeaderInfoC>
-				<LinkC to="/product/regi">
+				{/*<LinkC to="/product/regi">
 					<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
 					<div>판매하기</div>
-				</LinkC>
-					{/*{token ?
+				</LinkC>*/}
+					{token ?
 						<LinkC to="/product/regi">
 							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
 							<div>판매하기</div>
@@ -78,16 +78,16 @@ function Header() {
 							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
 							<div>판매하기</div>
 						</AC>
-					}*/}
+					}
 					<LinkC to="/">
 						<img src={process.env.PUBLIC_URL + "/img/bellIcon2.png"} />
 						<div>알림</div>
 					</LinkC>
-					<LinkC to={`/mypage/${userId}/selllist`}>
+					{/*<LinkC to={`/mypage/${userId}/selllist`}>
 						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
 						<div>내정보</div>
-					</LinkC>
-					{/*{token ?
+					</LinkC>*/}
+					{token ?
 					<LinkC to={`/mypage/${userId}/selllist`}>
 						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
 						<div>내정보</div>
@@ -97,7 +97,7 @@ function Header() {
 						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
 						<div>로그인</div>
 					</AC>
-					}*/}
+					}
 				</HeaderInfoC>
 			</HeaderLineC>
 		</HeaderC>

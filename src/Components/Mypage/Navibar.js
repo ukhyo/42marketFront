@@ -9,14 +9,13 @@ import { Link, withRoute } from "react-router-dom";
 const NaviBar = (props) =>
 {
 	const { name } = props;
-	console.log ("nav", name.tabs);
 	return (
 		<NaviBarC>
-			<ItemC current={name.tabs2 === "selllist"}>
-				<ListC to={`/mypage/${name.tabs}/selllist`} current={name.tabs2 === "selllist"}>판매 목록</ListC>
+			<ItemC current={name.url === "selllist"}>
+				<ListC to={`/mypage/${name.id}/selllist`} current={name.url === "selllist"}>판매 목록</ListC>
 			</ItemC>
-			<ItemC current={name.tabs2 === "picklist"}>
-				<ListC to={`/mypage/${name.tabs}/picklist`} current={name.tabs2 === "picklist"}>찜한 목록</ListC>
+			<ItemC current={name.url === "picklist"}>
+				<ListC to={`/mypage/${name.id}/picklist`} current={name.url === "picklist"}>찜한 목록</ListC>
 			</ItemC>
 		</NaviBarC>
 	);
@@ -49,7 +48,7 @@ const		ListC = styled(Link)`
 	vertical-align: middle;
 	text-decoration-line: none;
 	color : ${props => (props.current ? "rgb(99, 178, 225);" : "rgba(0, 0, 0, 0.2)")};
-	
+
 `;
 
 export default NaviBar;

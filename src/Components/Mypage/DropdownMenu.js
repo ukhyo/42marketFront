@@ -6,6 +6,7 @@ import { Iot } from 'aws-sdk';
 const DropdownMenu = (props) => {
 	const dropdownRef = useRef(null);
 	const [status, setStatus] = useState(props.status);
+	console.log(status,"why?");
 	const statusArr = ["판매중", "판매완료"];
 	const [isActive, setIsActive] = useState(false);
 	const onClick = () => setIsActive(!isActive);

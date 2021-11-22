@@ -10,17 +10,22 @@ import { Link } from "react-router-dom";
 import Coming_soon from "../../Images/coming_soon.jpeg";
 import { Cookies } from "react-cookie";
 import GetTime from "../utils/GetTime";
+import Comments from "./Comments";
+
 function PostDetail(props) {
 	const cookie = new Cookies();
 	let  { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const { location } = props;
+	console.log(props, "props");
 	const { location: { state: { itemId: id } } } = props;
 	const { location: { state: { subList: subList } } } = props;
 	const [ImgIdx, setImgIdx] = useState(0);
 	const [data, setData] = useState([]);
 	const [Loading, setLoading] = useState(false);
 	if (userId === undefined)
-		userId = "0";
+		userId = 0;
+	const [Error, setError] = useState(null);
+	const [Comment, setComment] = useState([]);
 	const ClickScribe = () => {
 		const headers = {
 			//"Authorization": `Bearer ${token}`,
@@ -63,16 +68,24 @@ function PostDetail(props) {
 		if (location.state === undefined) props.history.push('/');
 		const ApiGet = async () => {
 			setLoading(false);
-			const data = await axios.get(`http://api.4m2d.shop/api/posts/${id}`).then(res => {
-				return res.data;
-			}).catch(err => {
-				console.log("상세보기 실패");
+			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}/${userId}`).then(res => {
+				return res;
+			}).catch(error => {
+				console.log("err? ", error);
 			})
-			setData(data);
+			console.log(data, "data here?");
+				setData(data);
+			setComment(data.commentsList);
 			setLoading(true);
-		}
+		};
 		ApiGet();
 	}, [])
+
+	const refreshFunction = (newComment) => {
+		console.log("refreshFunction");
+		console.log(newComment, "newComment");
+		setComment(Comment.concat(newComment));
+	};
 
 	const SelectPicture = (e, flag) => {
 		if (flag == 0) {
@@ -86,12 +99,15 @@ function PostDetail(props) {
 			setImgIdx(ImgIdx + 1);
 		}
 	};
+	if (!Loading)
+		<div>error</div>
 
+	// if (Error) return <div>error occured</div>
 	return (
 		<div>
 			<Header />
 			<PostDetailC flag={Loading}>
-				{Loading && (
+				{Loading &&
 					<PostDetailHeaderC>
 						<PostDetailMainC>
 							<BackImg url={data.image[ImgIdx]} />
@@ -154,29 +170,28 @@ function PostDetail(props) {
 								</ContentC>
 							</PostContentsC>
 							{userId === "0" ?
-								<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code"><SubscribeBtn>로그인</SubscribeBtn></a>
-								: (userId === data.userId)
+								(<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code"><SubscribeBtn>로그인</SubscribeBtn></a>)
+								:
 								(subList.indexOf(`/${data.id}/`) === -1 ?
-								<SubscribeBtn onClick={e => {
-									ClickScribe();
-								}}>구독</SubscribeBtn>
+									<SubscribeBtn onClick={e => {
+										ClickScribe();
+									}}>구독</SubscribeBtn>
 									:
-								<SubscribeBtn onClick={e => {
-									ClickScribe();
+									<SubscribeBtn onClick={e => {
+										ClickScribe();
 									}}>구독해제</SubscribeBtn>
 
 								)}
 						</PostDetailInfoC>
-					</PostDetailHeaderC>
-				)}
+					</PostDetailHeaderC>}
 				<CommentArea>
-					<RegiHeaderC>
-						<span>댓글</span>
-					</RegiHeaderC>
-					<CommentMain>
-					<img src={Coming_soon} />
-					</CommentMain>
+					<Comments userId={userId}
+						postId={data.id}
+						commentsList={Comment}
+						refreshFunction={refreshFunction}>
+					</Comments>
 				</CommentArea>
+
 			</PostDetailC>
 
 			<Footer />
@@ -190,7 +205,7 @@ function PostDetail(props) {
 
 const PostDetailC = styled.div`
 	width: 1200px;
-	height: 900px;
+	height: 100%;
 	margin: 0 auto;
 	margin-top: 80px;
 	cursor: ${(props ) => props.flag ? "" : "wait"};
