@@ -155,7 +155,7 @@ function PostDetail(props) {
 							</PostContentsC>
 							{userId === "0" ?
 								<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code"><SubscribeBtn>로그인</SubscribeBtn></a>
-								:
+								: (userId === data.userId)
 								(subList.indexOf(`/${data.id}/`) === -1 ?
 								<SubscribeBtn onClick={e => {
 									ClickScribe();
