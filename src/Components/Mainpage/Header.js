@@ -43,15 +43,15 @@ function Header() {
 		<HeaderC>
 			<HeaderLineC>
 				<HeaderLogoC>
-					<Link to="/" onClick={() => {
+					<a href="http://4m2d.shop/" onClick={() => {
 						setLoading(!Loading);
 						window.scrollTo({
-							top: 100,
+							top: 0,
 							behavior: "smooth",
 						})
 					}}>
 						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/Logo1.png"} />
-					</Link>
+					</a>
 				</HeaderLogoC>
 				<HeaderSearchC>
 					<HeaderSearchInputC>
