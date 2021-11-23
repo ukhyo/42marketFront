@@ -18,7 +18,7 @@ function Header() {
 	if (userId === undefined)
 		userId = "0";
 	function onChange(e) {
-		console.log(this.props);
+		console.log(document.cookie);
 		setText(e.target.value);
 	}
 	const check = (e) => {
