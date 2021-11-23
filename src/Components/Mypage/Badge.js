@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import Coming_soon from "../../Images/coming_soon.jpeg";
 import useAsync from './useAsync';
 
 async function getBadge(userId)
@@ -16,32 +17,38 @@ function Badge(pros) {
 	const [CheckBadge, setCheckBadge] = useState(false);
 	// const { loading, data: badges, error }  = state;
 
-	if (loading) return <div>Loading</div>;
-	if (error) return <div>Error occured</div>
-	if (!badges) return null;
+	// if (loading) return <div>Loading</div>;
+	// if (error) return <div>Error occured</div>
+	// if (!badges) return null;
 	return (
 		<BadgeC>
-			<span>칭호</span>
+			<BadgeHeaderC>
+				<span>칭호</span>
+			</BadgeHeaderC>
+			<img src={Coming_soon} />
 			{
-				badges.map((badge, index) => {
-					return (<ShowBadgeC>
-						<img src={badge.image} />
-					</ShowBadgeC>);
-				})
+
+				// badges.map((badge, index) => {
+				// 	return (<ShowBadgeC>
+				// 		<img src={badge.image} />
+				// 	</ShowBadgeC>);
+				// })
 			}
-			<CheckBadgeC>Check Badges</CheckBadgeC>
+			{/* <CheckBadgeC>Check Badges</CheckBadgeC> */}
 		</BadgeC>
     )
 }
 
-
+const	BadgeHeaderC = styled.div`
+	margin: 20px 0px;
+	color: rgb()
+`;
 
 const	BadgeC = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
 

@@ -34,9 +34,7 @@ function InfoList({id, url})
 	const indexOfFirst = indexOfLast - postsPerPage; //
 	const [state] = useAsync(() => getList(id), [id]);
 	let { loading, data: list, error } = state;
-	console.log(list, "list");
-	if (loading) return <div>Loading...</div>;
-	if (error) return <div>Error occured</div>;
+
 	if (!list || list.length === 0) return (
 		<EmptyInfoListC>
 			<h1>아직 활동내역이 없습니다.</h1>
@@ -46,9 +44,8 @@ function InfoList({id, url})
 		list = list.postsList;
 	else
 		list = list.cartsList;
-	console.log(list, "리스트안");
-	console.log(url, "유알엘 비교");
-	console.log(userId, id, "두개 비겨");
+	if (loading) return <div>Loading...</div>;
+	if (error) return <div>Error occured</div>;
 	if (userId === id)
 	{
 		return (
@@ -97,14 +94,21 @@ function InfoList({id, url})
 									<DropdownMenu id={posts.id} status={posts.status}></DropdownMenu>
 									:
 									<PostCategoryC>
-										<span>IT/인터넷</span>
+										<span>{posts.categoryName}</span>
 									</PostCategoryC>
 								}
 							</PostCategoryC>
 						</PostListC>
 					);
 				})}
-				<Pagination postsPerPage={postsPerPage} totalPosts={list.length} paginate={setCurrentPage} current={currentPage}></Pagination>
+				{
+					list.length > 0 ?
+						<Pagination postsPerPage={postsPerPage} totalPosts={list.length} paginate={setCurrentPage} current={currentPage}></Pagination>
+						: 
+					<EmptyInfoListC>
+						<h1>아직 활동내역이 없습니다.</h1>
+					</EmptyInfoListC>
+				}
 			</InfoListC>
 		);
 			}
@@ -154,13 +158,20 @@ function InfoList({id, url})
 							</PostInfosTwoC>
 							<PostCategoryC>
 								<PostCategoryC>
-									<span>IT/인터넷</span>
+										<span>{posts.categoryName}</span>
 								</PostCategoryC>
 							</PostCategoryC>
 						</PostListC>
 					);
 				})}
-				<Pagination postsPerPage={postsPerPage} totalPosts={list.length} paginate={setCurrentPage} current={currentPage}></Pagination>
+				{
+					list.length > 0 ?
+						<Pagination postsPerPage={postsPerPage} totalPosts={list.length} paginate={setCurrentPage} current={currentPage}></Pagination>
+						: 
+					<EmptyInfoListC>
+						<h1>아직 활동내역이 없습니다.</h1>
+					</EmptyInfoListC>
+				}
 			</InfoListC>
 		);
 			}
@@ -290,7 +301,7 @@ const LinkC = styled(Link)`
 
 const PostInfosOne__SubtitleC = styled.div`
 	width: 80%;
-	height: 40px;
+	height: 45px;
 	margin: 12px 0px;
 	white-space: nowrap;
 	overflow: hidden;
