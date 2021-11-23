@@ -45,6 +45,10 @@ function Header() {
 				<HeaderLogoC>
 					<Link to="/" onClick={() => {
 						setLoading(!Loading);
+						window.scrollTo({
+							top: 100,
+							behavior: "smooth",
+						})
 					}}>
 						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/Logo1.png"} />
 					</Link>
