@@ -31,7 +31,7 @@ function PostDetail(props) {
 	const [Comment, setComment] = useState([]);
 	const ClickScribe = () => {
 		const headers = {
-			//"Authorization": `Bearer ${token}`,
+			"Authorization": `Bearer ${token}`,
 			"withCreadentials": true,
 			"Content-Type": "application/json",
 		};
@@ -175,11 +175,11 @@ function PostDetail(props) {
 								(data.subList.indexOf(`/${data.id}/`) === -1 ?
 									<SubscribeBtn onClick={e => {
 										ClickScribe();
-									}}>구독</SubscribeBtn>
+									}}>찜</SubscribeBtn>
 									:
 									<SubscribeBtn onClick={e => {
 										ClickScribe();
-									}}>구독해제</SubscribeBtn>
+									}}>찜 해제</SubscribeBtn>
 
 								)}
 						</PostDetailInfoC>

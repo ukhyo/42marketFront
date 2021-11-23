@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Iot } from 'aws-sdk';
+import { Cookies } from "react-cookie";
 const DropdownMenu = (props) => {
+	const cookie = new Cookies()
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const dropdownRef = useRef(null);
 	const [status, setStatus] = useState(props.status);
 	console.log(status,"why?");
@@ -21,13 +24,13 @@ const DropdownMenu = (props) => {
 		}
 		const PostPatch = async () => {
 			const headers = {
-				//"Authorization": `Bearer ${token}`,
+				"Authorization": `Bearer ${token}`,
 			};
 			const config = {
 				status: idx,
 			};
 			setStatus(idx);
-			await axios.patch(`http://api.4m2d.shop/api/posts/${props.id}`, config).then(res => {
+			await axios.patch(`http://api.4m2d.shop/api/posts/${props.id}`, config, {headers}).then(res => {
 				alert("상태변경에 성공했습니다.");
 			}).catch(err => {
 				console.log(err, "실패");

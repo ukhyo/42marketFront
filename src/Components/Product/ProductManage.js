@@ -24,7 +24,7 @@ function ProductManage() {
 	const [Loading, setLoading] = useState(false);
 	useEffect(() => {
 		const getData = async () => {
-			const { data } = await axios.get("http://api.4m2d.shop/api/posts/user/1");
+			const { data } = await axios.get(`http://api.4m2d.shop/api/posts/user/${userId}`);
 			console.log(data, "체크");
 			setData(data);
 			setLoading(!Loading);

@@ -19,9 +19,8 @@ async function getProfile(id)
 function	ProfileBar({ url })
 {
 	const { id: id } = url;
-
-	// userid 쿠키에서 가져와야함.
-	const userId = "2";
+	const cookie = new Cookies();
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const [state] = useAsync(() => getProfile(id), [id]);
 	const [onButton, setOnButton] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
@@ -36,11 +35,11 @@ function	ProfileBar({ url })
 		// 수정 필요함 id 유저아이디로.
 		const ApiPost = async () => {
 			const headers = {
-				//"Authorization": `Bearer ${token}`,
+				"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
 			};
 			setIsLoading(true);
-			await axios.post("http://api.4m2d.shop/api/users/2", fileList, {headers})
+			await axios.post(`http://api.4m2d.shop/api/users/${userId}`, fileList, {headers})
 			.then(res => { //아이디 수정해야함
 				console.log("성공");
 				window.location.reload();
@@ -51,6 +50,8 @@ function	ProfileBar({ url })
 		};
 		ApiPost();
 	};
+	if (userId === undefined)
+		userId = "0";
 	console.log('experience', profile);
 	const onButtonClick = () => {
 		setOnButton(true);
@@ -66,7 +67,7 @@ function	ProfileBar({ url })
 				introduce: intro
 			};
 			setIsLoading(true);
-			await axios.patch("http://api.4m2d.shop/api/users/2", data).then(res => {
+			await axios.patch(`http://api.4m2d.shop/api/users/${userId}`, data).then(res => {
 				console.log("성공");
 				setTimeout(() => {
 					window.location.reload();

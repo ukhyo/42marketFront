@@ -24,7 +24,7 @@ export default function SingleComment(props) {
     const onSubmit = (event) => {
         event.preventDefault();
         const headers = {
-			//"Authorization": `Bearer ${token}`,
+			"Authorization": `Bearer ${token}`,
 			"withCreadentials": true,
 			"Access-Control-Allow-Origin": "http://api.4m2d.shop"
 		};
