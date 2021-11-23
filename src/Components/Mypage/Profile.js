@@ -20,7 +20,7 @@ function	ProfileBar({ url })
 	const { id: id } = url;
 
 	// userid 쿠키에서 가져와야함.
-	const userId = "1";
+	const userId = "2";
 	const [state] = useAsync(() => getProfile(id), [id]);
 	const [onButton, setOnButton] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +39,7 @@ function	ProfileBar({ url })
 				"Content-Type": `multipart/form-data`,
 			};
 			setIsLoading(true);
-			await axios.post("http://api.4m2d.shop/api/users/1", fileList, {headers})
+			await axios.post("http://api.4m2d.shop/api/users/2", fileList, {headers})
 			.then(res => { //아이디 수정해야함
 				console.log("성공");
 				window.location.reload();
@@ -50,7 +50,7 @@ function	ProfileBar({ url })
 		};
 		ApiPost();
 	};
-
+	console.log('experience', profile);
 	const onButtonClick = () => {
 		setOnButton(true);
 	};
@@ -101,7 +101,7 @@ function	ProfileBar({ url })
 					<span>Level: {profile.userLevel}</span>
 					<ProfileLevelBarC>
 						<span>{profile.userExperience}%</span>
-						<ProgressBarC percent={profile.userLevel}>
+						<ProgressBarC percent={profile.userExperience}>
 						</ProgressBarC>
 					</ProfileLevelBarC>
 				</ProfileLevelC>
@@ -148,7 +148,7 @@ function	ProfileBar({ url })
 					<span>Level: {profile.userLevel}</span>
 					<ProfileLevelBarC>
 						<span>{profile.userExperience}%</span>
-						<ProgressBarC percent={profile.userLevel}>
+						<ProgressBarC percent={profile.userExperience}>
 						</ProgressBarC>
 					</ProfileLevelBarC>
 				</ProfileLevelC>
@@ -272,6 +272,7 @@ const		ProfileBarC = styled.div`
 	width: 280px;
 	height: 600px;
 	margin-top: 30px;
+	margin-right: 50px;
 	cursor: ${props => (props.Loading ? 'wait' : '')};
 `;
 
@@ -317,7 +318,7 @@ const		ProfileLevelBarC = styled.div`
 `;
 
 const		ProgressBarC = styled.div`
-  	background-color: rgb(199, 230, 232);
+  	background-color: rgb(103, 157, 125);
 	width: ${({ percent }) => percent}%;
   	height: 500px;
 `;

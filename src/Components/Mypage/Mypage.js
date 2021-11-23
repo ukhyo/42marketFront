@@ -27,16 +27,21 @@ function	Mypage({match})
 {
 	const { params }  = match;
 	return (
-		<div>
+		<MypageC>
 			<Header />
 			<NaviBar name={params}/>
 			<MypageMain name={params}/>
-		</div>
+		</MypageC>
 	);
 };
 
+const		MypageC = styled.div`
+	width: 100%;
+`;
+
 const		MypageMainC = styled.div`
-	margin: 30px 0px;
+	height: 100%;
+	margin: 50px 0px;
 	display: flex;
 	justify-content: center;
 	align-content: center;

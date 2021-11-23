@@ -167,7 +167,6 @@ function InfoList({id, url})
 const EmptyInfoListC = styled.div`
 	width: 880px;
 	height: 160px;
-	margin: 0px 50px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
@@ -220,8 +219,6 @@ const PostCategoryC = styled.div`
 `;
 
 const PostInfosOne__DateC = styled.div`
-	position: absolute;
-	bottom: 10px;
 	font-size: 12px;
 	color: rgba(0, 0, 0, 0.5);
 	& > span:nth-child(1){
@@ -239,7 +236,7 @@ const PostListC = styled.div`
 	position: relative;
 	width: ${(props) => (props.flag ? "1000px" : "880px")};
 	height: 160px;
-	margin: ${(props) => (props.flag ? "0" : "0px 50px")};
+	/* margin: ${(props) => (props.flag ? "0" : "0px 50px")}; */
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
@@ -266,16 +263,22 @@ const PostInfosOneC = styled.div`
 `;
 
 const PostInfosOne__TitleC = styled.div`
+	/* display: flex;
+	justify-content: center;
+	align-items: center; */
+	line-height: 20px;
+	vertical-align: middle;
+	height: 20px;
 	margin: 0px 0px;
 `;
 
 const LinkC = styled(Link)`
 	display: inline-block;
-	width: 270px;
+	width: 100%;
 	font-weight: 600;
-	font-size: 18px;
+	font-size: 17px;
 	text-decoration: none;
-	color: rgb(99, 178, 225);
+	color: rgb(75, 75, 75);
 	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -283,8 +286,8 @@ const LinkC = styled(Link)`
 `;
 
 const PostInfosOne__SubtitleC = styled.div`
-	width: 240px;
-	height: 50px;
+	width: 80%;
+	height: 40px;
 	margin: 12px 0px;
 	white-space: nowrap;
 	overflow: hidden;

@@ -29,10 +29,9 @@ const NaviBarC = styled.ul `
 `;
 
 const		ItemC = styled.li`
+	position: fiexd;
 	width: 130px;
 	height: 70px;
-	position: relative;
-	right: -623px;
 	border-bottom: 4px solid
 		${props => (props.current ? "rgb(99, 178, 225);" : "transparent")};
 	transition: border-bottom 0.5s ease-in-out;

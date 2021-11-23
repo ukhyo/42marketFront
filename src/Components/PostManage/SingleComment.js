@@ -1,5 +1,6 @@
 import React, {useState}from "react";
 import axios from "axios";
+import styled from "styled-components";
 import "antd/dist/antd.css"
 import { Comment, Avatar, Button, Input} from 'antd';
 
@@ -40,7 +41,6 @@ export default function SingleComment(props) {
 			console.log("댓글 올리기 실패");
 		});
 	}
-	console.log(props.comment.userIntraId, "아이디");
     return (
         <div>
             <Comment
@@ -51,19 +51,38 @@ export default function SingleComment(props) {
             />
             {OpenReply &&
                 <form style={{ display: 'flex' }} onSubmit={onSubmit}>
-                    <textarea
-                        style={{ width: '100%', borderRadius: '5px' }}
+                    <InputCommentC
                         onChange={onHandleChange}
                         value={CommentValue}
                         placeholder="코멘트를 작성해 주세요"
                     />
                     <br />
-                    <button style={{ width: '20%', height: '52px' }} onClick={onSubmit}>
-                    Submit
-                    </button>
+                    <SubmitButtonC onClick={onSubmit}>
+                        댓글
+                    </SubmitButtonC>
+                    {/* textarea에 글자 들어왔을 때 버튼색 파란색으로 바꾸고 싶다 */}
                 </form>
             }
         </div>
     )
 
 }
+
+const InputCommentC = styled.textarea`
+	width: 90%;
+	height: 52px;
+	border-radius: 5px;
+	outline: none;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+`;
+
+const SubmitButtonC = styled.button`
+	width: 6%;
+	height: 56px;
+	margin-left: 20px;
+	color: rgb(150, 150, 150);
+	background-color: rgb(236, 236, 236);
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 13px;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+`;

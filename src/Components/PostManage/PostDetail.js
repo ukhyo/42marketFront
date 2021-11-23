@@ -11,12 +11,12 @@ import Coming_soon from "../../Images/coming_soon.jpeg";
 import { Cookies } from "react-cookie";
 import GetTime from "../utils/GetTime";
 import Comments from "./Comments";
+import { HiOutlineClock } from 'react-icons/hi';
 
 function PostDetail(props) {
 	const cookie = new Cookies();
 	let  { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const { location } = props;
-	console.log(props, "props");
 	const { location: { state: { itemId: id } } } = props;
 	const { location: { state: { subList: subList } } } = props;
 	const [ImgIdx, setImgIdx] = useState(0);
@@ -99,6 +99,7 @@ function PostDetail(props) {
 			setImgIdx(ImgIdx + 1);
 		}
 	};
+	console.log(data, "data");
 	if (!Loading)
 		<div>error</div>
 
@@ -136,18 +137,18 @@ function PostDetail(props) {
 								<div>
 									{data.title}
 								</div>
-								<div>
+								{/* <div>
 									<b>
 										판매자 &nbsp;
 										<Link to={`/mypage/${data.userId}/selllist`}>
 											{data.author}
 										</Link>
 									</b>
-								</div>
+								</div> */}
 							</TitleC>
 							<PriceAndDateC>
 								<div>{data.price.toLocaleString()}<b>원</b></div>
-								<DateC>{GetTime(data.createdAt)}</DateC>
+								<DateC><HiOutlineClock />  <span>{GetTime(data.createdAt)}</span></DateC>
 							</PriceAndDateC>
 							<LocationAndViewsC>
 								<LocationArea>
@@ -160,15 +161,16 @@ function PostDetail(props) {
 								</LocationArea>
 							</LocationAndViewsC>
 							<Location>
-								<div>
-									거래장소 <span>{data.local}</span>
-								</div>
+								<li>판매자 &nbsp; &nbsp; &nbsp; &nbsp;<Link to={`/mypage/${data.userId}/selllist`}>{data.author}</Link></li>
+								<li>거래장소 &nbsp; &nbsp;<span>{data.local}</span></li>
+								<li>판매상태 &nbsp; &nbsp;<span>판매중</span></li>
+								<li>카테고리 &nbsp; &nbsp;<span>{data.category_name}</span></li>
 							</Location>
-							<PostContentsC>
+							{/* <PostContentsC>
 								<ContentC>
 									{data.content}
 								</ContentC>
-							</PostContentsC>
+							</PostContentsC> */}
 							{userId === "0" ?
 								(<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code"><SubscribeBtn>로그인</SubscribeBtn></a>)
 								:
@@ -184,6 +186,12 @@ function PostDetail(props) {
 								)}
 						</PostDetailInfoC>
 					</PostDetailHeaderC>}
+				<PostContentsC>
+					<PostContentsInfoC>상품정보</PostContentsInfoC>
+					<ContentC>
+						{data.content}
+					</ContentC>
+				</PostContentsC>
 				<CommentArea>
 					<Comments userId={userId}
 						postId={data.id}
@@ -191,7 +199,6 @@ function PostDetail(props) {
 						refreshFunction={refreshFunction}>
 					</Comments>
 				</CommentArea>
-
 			</PostDetailC>
 
 			<Footer />
@@ -202,6 +209,12 @@ function PostDetail(props) {
 
 // CSS style ----------------------------------------------------
 
+
+const PostContentsInfoC = styled.div`
+	font-size: 18px;
+	padding: 48px 0px 16px;
+	border-bottom: 1px solid rgb(238, 238, 238);
+`;
 
 const PostDetailC = styled.div`
 	width: 1200px;
@@ -214,9 +227,8 @@ const PostDetailC = styled.div`
 const PostDetailHeaderC = styled.div`
 	display: flex;
 	/*position: absolute;*/
-	margin-bottom: 50px;
 	padding-bottom: 30px;
-	border-bottom: 1px solid #c0c0c0;
+	border-bottom: 1px solid rgb(238, 238, 238);
 `;
 const LeftRightBtnC = styled.div`
 	bottom: 0px;
@@ -254,7 +266,7 @@ const BackImg = styled.div`
 const PostDetailInfoC = styled.div`
 	position: relative;
 	width: 60%;
-	margin-left: 50px;
+	margin: 30px 0px 30px 50px;
 	> div:first-child { // 제목
 		font-size: 24px;
 		margin-bottom: 20px;
@@ -264,7 +276,7 @@ const PostDetailInfoC = styled.div`
 		font-size: 30px;
 		/*font-weight: bold;*/
 		padding-bottom: 15px;
-		border-bottom: 1px solid #c0c0c0;
+		border-bottom: 1px solid rgb(238, 238, 238);
 		div > b {
 			margin-left: 3px;
 			font-size: 20px;
@@ -276,10 +288,14 @@ const Location = styled.ul` // 거래장소
 	padding-bottom: 15px;
 	padding-top: 15px;
 	font-size: 17px;
-	border-bottom: 1px solid #c0c0c0;
+	border-bottom: 1px solid rgb(238, 238, 238);
 	list-style: inside;
 	> li {
 		padding: 10px 0px;
+		color: rgb(153, 153, 153);
+		> span {
+			color: rgba(0, 0, 0, 0.8);
+		}
 	}
 `;
 
@@ -304,16 +320,26 @@ const TitleC = styled.div`
 `;
 
 const DateC = styled.div`
-	font-size: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+	font-size: 15px;
+	color: rgba(0, 0, 0, 0.5);
+	> span {
+		display: inline-block;
+		margin: 0px 5px;
+	}
 `;
 
 const PriceAndDateC = styled.div`
 	display: flex;
+	margin-top: 50px;
 	justify-content: space-between;
 	align-items: center;
-	> div {
+	> div:nth-child(1) {
 		color: rgba(0, 0, 0, 0.8);
-		font-weight: 800;
+		font-weight: 700;
+		font-size: 35px;
 	}
 	/* > div:last-child {
 		font-weight: normal;
@@ -354,13 +380,15 @@ const LocationAndViewsC = styled.div`
 
 const PostContentsC = styled.div`
 	display: flex;
+	flex-direction: column;
 	margin-top: 15px;
 	line-height: 24px;
-	font-size: 18px;
 `;
 
 const ContentC = styled.div`
-	width: 80%;
+	margin: 30px 0px;
+	padding: 0px 0px;
+	white-space: pre-wrap;
 `;
 
 
@@ -368,7 +396,7 @@ const SubscribeBtn = styled.button`
 	position: absolute;
 	width: 160px;
 	height: 50px;
-	bottom: 0px;
+	bottom: 37px;
 	border: none;
 	background-color: rgb(255, 67, 46);
 	color :white;
