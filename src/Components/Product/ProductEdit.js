@@ -136,16 +136,11 @@ function ProductEdit(props) {
 				categoryId: idx,
 				oldFileList: oldFile,
 			};
-			console.log(idx, "제대로 바뀌나요?");
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
-			if (token === undefined)
-				token = "abcd";
 			const headers = {
 				 "Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
-				//"withCreadentials": true,
 			};
-			// Api 주소만 postId 끝에 달아주면 될 것 같음.
 			setLoading(true);
 			await axios
 				.post(`http://api.4m2d.shop/api/posts/${postId}`, fileList, { headers })
