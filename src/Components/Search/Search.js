@@ -4,7 +4,7 @@ import Footer from "../Mainpage/Footer";
 import CategoryBar from "../Mainpage/CategoryBar";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { PostThumbnail } from "../Mainpage/PreviewPost";
+import { PostViewComp } from "../Mainpage/PreviewPost";
 import axios from "axios";
 import { Cookies } from "react-cookie";
 function Searc(props) {
@@ -62,11 +62,8 @@ function Searc(props) {
 				<CateNameC>검색결과</CateNameC>
 			</NameAndSortC>
 			<PostViewC>
-				{item.postsThumbnailResponseDtoList.length !== 0 && item.postsThumbnailResponseDtoList.map((data, index) => {
-					return (
-						<PostThumbnail key={index} data={data} subList={ item.subList}/>
-					);
-				})
+				{item.postsThumbnailResponseDtoList.length !== 0 &&
+					<PostViewComp item={item.postsThumbnailResponseDtoList} subList={"0"} Loading={Loading} flag={true} />
 			}
 			</PostViewC>
 			{item.postsThumbnailResponseDtoList.length === 0 &&
