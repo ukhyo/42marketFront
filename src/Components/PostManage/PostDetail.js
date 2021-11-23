@@ -193,6 +193,7 @@ function PostDetail(props) {
 				<CommentArea>
 					<Comments userId={userId}
 						postId={data.id}
+						token={token}
 						commentsList={Comment}
 						refreshFunction={refreshFunction}>
 					</Comments>

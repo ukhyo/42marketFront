@@ -7,6 +7,7 @@ import Badge from "./Badge";
 import { FaImage } from 'react-icons/fa';
 import { timeout } from "q";
 import { useSelector } from "react-redux";
+import { Cookies } from "react-cookie";
 
 async function getProfile(id)
 {
@@ -80,6 +81,7 @@ function	ProfileBar({ url })
 		}
 		pushData();
 	}
+	console.log(profile, "profile");
 	if (error) return <div>Error occured</div>;
 	if (!profile) return null;
 	if (userId === id)
@@ -124,7 +126,11 @@ function	ProfileBar({ url })
 					<button  onClick={submitHandler}>등록</button>
 				</ModifyIntroC>
 				}
-				<Badge profile={profile}/>
+				{
+					profile &&
+						<Badge profile={profile}/>
+				}
+
 			</ProfileBarC>
 		);
 
@@ -243,6 +249,7 @@ const		ProfileContentsC = styled.div`
       font-family: "Devanagari Sangam MN";
 	}
 `;
+
 
 const		ProfileNameC = styled.div`
 	width: 260px;

@@ -20,6 +20,10 @@ function ShowData() {
 }
 
 function ProductManage() {
+	const cookie = new Cookies()
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+	if (userId === undefined)
+		userId = "0";
 	const [data, setData] = useState([]);
 	const [Loading, setLoading] = useState(false);
 	useEffect(() => {

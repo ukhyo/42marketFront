@@ -14,27 +14,28 @@ import { currentPosts } from "../utils/Pagination";
 import Pagination from "../utils/Pagination"
 async function getList(id)
 {
-	console.log(id, "getList id");
 	const response = await axios.get(
-		`http://api.4m2d.shop/api/users/1`
+		`http://api.4m2d.shop/api/users/${id}`
 		);
 		return response.data;
 	}
 function InfoList({id, url})
 {
+	const cookie = new Cookies();
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage, setPostsPerPage] = useState(8);
 	const indexOfLast = currentPage * postsPerPage; //
 	const indexOfFirst = indexOfLast - postsPerPage; //
-	let userId = 1;
 	const [state] = useAsync(() => getList(id), [id]);
 	let { loading, data: list, error } = state;
+	console.log(list, "list");
 	if (loading) return <div>Loading...</div>;
 	if (error) return <div>Error occured</div>;
 	if (!list || list.length === 0) return (
-	<EmptyInfoListC>
-		<h1>아직 활동내역이 없습니다.</h1>
-	</EmptyInfoListC>
+		<EmptyInfoListC>
+			<h1>아직 활동내역이 없습니다.</h1>
+		</EmptyInfoListC>
 	);
 	if (url === "manage" || url === "selllist")
 		list = list.postsList;
@@ -232,7 +233,7 @@ const PostListC = styled.div`
 	position: relative;
 	width: ${(props) => (props.flag ? "1000px" : "880px")};
 	height: 160px;
-	/* margin: ${(props) => (props.flag ? "0" : "0px 50px")}; */
+	margin: ${(props) => (props.flag ? "0" : "0px 50px")};
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;

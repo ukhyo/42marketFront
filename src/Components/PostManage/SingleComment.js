@@ -6,25 +6,26 @@ import { Comment, Avatar, Button, Input} from 'antd';
 
 const { TextArea } = Input;
 
+//reply 부분 나중에 만들거기 때문에 주석 절대 지우지 마시오
 export default function SingleComment(props) {
 
     const [OpenReply, setOpenReply] = useState(false);
     const [CommentValue, setCommentValue] = useState("");
-    const onClickReply = () => {
-        setOpenReply(!OpenReply);
-    }
+    // const onClickReply = () => {
+    //     setOpenReply(!OpenReply);
+    // }
 
     const onHandleChange = (event) => {
         setCommentValue(event.currentTarget.CommentValue);
     }
 
-    const actions = [
-        <span onClick={onClickReply} key="comment-basic-reply-to">Reply to</span>
-    ]
+    // const actions = [
+    //     <span onClick={onClickReply} key="comment-basic-reply-to">Reply to</span>
+    // ]
     const onSubmit = (event) => {
         event.preventDefault();
         const headers = {
-			"Authorization": `Bearer ${token}`,
+			"Authorization": `Bearer ${props.token}`,
 			"withCreadentials": true,
 			"Access-Control-Allow-Origin": "http://api.4m2d.shop"
 		};
@@ -44,12 +45,12 @@ export default function SingleComment(props) {
     return (
         <div>
             <Comment
-                actions={actions}
+                // actions={actions}
                 author={props.comment.userIntraId}
-                avatar={<Avatar src='#' alt />}
+                avatar={<Avatar src='#' alt />} //유저 이미지 추가해야돼
                 content={ <p>{props.comment.content}</p> }
             />
-            {OpenReply &&
+            {/* {OpenReply &&
                 <form style={{ display: 'flex' }} onSubmit={onSubmit}>
                     <InputCommentC
                         onChange={onHandleChange}
@@ -60,9 +61,8 @@ export default function SingleComment(props) {
                     <SubmitButtonC onClick={onSubmit}>
                         댓글
                     </SubmitButtonC>
-                    {/* textarea에 글자 들어왔을 때 버튼색 파란색으로 바꾸고 싶다 */}
                 </form>
-            }
+            } */}
         </div>
     )
 
