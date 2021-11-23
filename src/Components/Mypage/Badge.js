@@ -34,6 +34,8 @@ function Badge(pros) {
     )
 }
 
+
+
 const	BadgeC = styled.div`
 	width: 100%;
 	display: flex;
