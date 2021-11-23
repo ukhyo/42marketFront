@@ -78,6 +78,7 @@ function currentPosts(tmp, first, last) {
 
 const PageListC = styled.div`
 	width: 100%;
+	/*line-height: 20px;*/
 	text-align: center;
 	margin: 0 auto;
 	display: flex;
@@ -97,8 +98,9 @@ const PageListC = styled.div`
 const PageNumberC = styled.div`
 	width: 30px;
 	height: 30px;
-	line-height: 24px;
-	/*align-items:center;*/
+	line-height: 20px;
+	box-sizing: border-box;
+	text-align: center;
 	margin-right: 5px;
 	background-color: ${(props) => (props.flag ? "rgb(130, 130, 238)" : "#fdfdfd")};
 	border: 1px solid gray;
