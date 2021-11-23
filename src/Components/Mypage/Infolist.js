@@ -78,7 +78,7 @@ function InfoList({id, url})
 									</LinkC>
 								</PostInfosOne__TitleC>
 								<PostInfosOne__SubtitleC>
-									<span>{posts.content}</span>
+									<span>{content}</span>
 								</PostInfosOne__SubtitleC>
 								<PostInfosOne__DateC>
 									<span>{GetTime(posts.updatedAt)}</span>
@@ -124,6 +124,11 @@ function InfoList({id, url})
 			<InfoListC flag={url === "manage"}>
 				{list.length >= 1 && currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
+					let content = "";
+					if (posts.content.length >= 30)
+						content = posts.content.slice(0, 29) + "...";
+					else
+						content = posts.content;
 					return (
 						<PostListC key={index} flag={url === "manage"}>
 							<PostImgC>
@@ -145,7 +150,7 @@ function InfoList({id, url})
 									</LinkC>
 								</PostInfosOne__TitleC>
 								<PostInfosOne__SubtitleC>
-									<span>{posts.content}</span>
+									<span>{content}</span>
 								</PostInfosOne__SubtitleC>
 								<PostInfosOne__DateC>
 									<span>{GetTime(posts.updatedAt)}</span>
