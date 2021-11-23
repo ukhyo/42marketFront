@@ -52,6 +52,11 @@ function InfoList({id, url})
 			<InfoListC>
 				{list.length >= 1 && currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
+					let content = "";
+					if (posts.content.length >= 30)
+						content = posts.content.slice(0, 29) + "...";
+					else
+						content = posts.content;
 					return (
 						<PostListC key={index} flag={url === "manage"}>
 							<PostImgC>
@@ -104,7 +109,7 @@ function InfoList({id, url})
 				{
 					list.length > 0 ?
 						<Pagination postsPerPage={postsPerPage} totalPosts={list.length} paginate={setCurrentPage} current={currentPage}></Pagination>
-						: 
+						:
 					<EmptyInfoListC>
 						<h1>아직 활동내역이 없습니다.</h1>
 					</EmptyInfoListC>
@@ -167,7 +172,7 @@ function InfoList({id, url})
 				{
 					list.length > 0 ?
 						<Pagination postsPerPage={postsPerPage} totalPosts={list.length} paginate={setCurrentPage} current={currentPage}></Pagination>
-						: 
+						:
 					<EmptyInfoListC>
 						<h1>아직 활동내역이 없습니다.</h1>
 					</EmptyInfoListC>

@@ -81,7 +81,7 @@ function Searc(props) {
 }
 const CateNameC = styled.div`
 	margin-top: 30px;
-	/*margin-bottom: 20px;*/
+	margin-bottom: 20px;
 	font-size: 20px;
 	line-height: 10px;
 	font-weight: 600;
