@@ -53,8 +53,8 @@ function InfoList({id, url})
 				{list.length >= 1 && currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
 					let content = "";
-					if (posts.content.length >= 30)
-						content = posts.content.slice(0, 29) + "...";
+					if (posts.content.length >= 45)
+						content = posts.content.slice(0, 44) + "...";
 					else
 						content = posts.content;
 					return (
@@ -125,8 +125,8 @@ function InfoList({id, url})
 				{list.length >= 1 && currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
 					let content = "";
-					if (posts.content.length >= 30)
-						content = posts.content.slice(0, 29) + "...";
+					if (posts.content.length >= 45)
+						content = posts.content.slice(0, 44) + "...";
 					else
 						content = posts.content;
 					return (
