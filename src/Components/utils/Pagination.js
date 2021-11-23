@@ -49,7 +49,9 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, current }) => {
 				paginate(number);
 				ScrollToTop();
 			}}>
-			  {number}
+				<div>
+			  		{number}
+				</div>
 			</PageNumberC>
 		))}
 			<PageBtnC onClick={() => {
@@ -78,7 +80,6 @@ function currentPosts(tmp, first, last) {
 
 const PageListC = styled.div`
 	width: 100%;
-	/*line-height: 20px;*/
 	text-align: center;
 	margin: 0 auto;
 	display: flex;
@@ -96,9 +97,9 @@ const PageListC = styled.div`
 `;
 
 const PageNumberC = styled.div`
+	position: relative;
 	width: 30px;
 	height: 30px;
-	line-height: 20px;
 	box-sizing: border-box;
 	text-align: center;
 	margin-right: 5px;
@@ -109,6 +110,11 @@ const PageNumberC = styled.div`
 	&:hover {
 		background-color: ${(props) => (props.flag ? "rgb(130, 130, 238)" : "#f0f0f0")};
 		cursor: pointer;
+	}
+	> div {
+		position: absolute;
+		top: 4px;
+		left: 9px;
 	}
 `;
 
