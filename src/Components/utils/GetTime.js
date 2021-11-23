@@ -1,7 +1,7 @@
 
 
 function GetTime(before) {
-	let time = ((Date.now() - Date.parse(before)) / 1000) / 60 - 540; // 분단위
+	let time = ((Date.now() - Date.parse(before)) / 1000) / 60; // 분단위
 	time = Math.floor(time); // Date.now와 updatedAt 차이가 18시간정도 남.
 	if (time < 1)
 		return "방금 전";
