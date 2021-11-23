@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import rootReducer from './modules';
 import ReactDOM from "react-dom";
 import App from "./Components/App";
+import "./app.css";
 //import App from "./testApp";
 
 
