@@ -11,7 +11,7 @@ import axios from "axios";
 function Header() {
 	const cookie = new Cookies()
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
-
+	const [Loading, setLoading] = useState(true);
 	const history = useHistory();
 	const [text, setText] = useState("");
 	if (userId === undefined)
@@ -43,7 +43,9 @@ function Header() {
 		<HeaderC>
 			<HeaderLineC>
 				<HeaderLogoC>
-					<Link to="/">
+					<Link to="/" onClick={() => {
+						setLoading(!Loading);
+					}}>
 						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/Logo1.png"} />
 					</Link>
 				</HeaderLogoC>

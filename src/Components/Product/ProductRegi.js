@@ -13,7 +13,7 @@ function ProductRegi(props) {
 	const [title, setTitle] = useState("");
 	const [location, setLocation] = useState("");
 	const [idx, setIdx] = useState(0);
-	const [price, setPrice] = useState();
+	const [price, setPrice] = useState(0);
 	const [content, setContent] = useState("");
 	const [Loading, setLoading] = useState(false);
 
