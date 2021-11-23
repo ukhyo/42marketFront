@@ -124,9 +124,8 @@ function ProductRegi(props) {
 				console.log("here??");
 			}
 			const headers = {
-				//"Authorization": `Bearer ${token}`,
+				"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
-				//"withCreadentials": true,
 			};
 			setLoading(true);
 			await axios
@@ -217,18 +216,26 @@ function ProductRegi(props) {
 		  </InputC>
 		</TitleC>
 		<CategoryC>
-		  <SubtitleC>
+		<SubtitleC>
 			카테고리<b>*</b>
-		  </SubtitleC>
-		  <FormC>
-			{/* Json 다 받으면 한줄로 줄어들 예정 */}
-			<RadioRet value="전자기기" idx={1} flag={idx} setIdx={setIdx} />
-			<RadioRet value="주변기기" idx={2} flag={idx} setIdx={setIdx} />
-			<RadioRet value="의류" idx={3} flag={idx} setIdx={setIdx} />
-			<RadioRet value="책" idx={4} flag={idx} setIdx={setIdx} />
-			<RadioRet value="나눔" idx={5} flag={idx} setIdx={setIdx} />
-		  </FormC>
+		</SubtitleC>
+		<FormC>
+			<div>
+				<RadioRet value="전자" idx={1} flag={idx} setIdx={setIdx} />
+				<RadioRet value="생활" idx={2} flag={idx} setIdx={setIdx} />
+				<RadioRet value="레저" idx={3} flag={idx} setIdx={setIdx} />
+				<RadioRet value="패션" idx={4} flag={idx} setIdx={setIdx} />
+				<RadioRet value="음악/악기" idx={5} flag={idx} setIdx={setIdx} />
+			</div>
+			<div>
+				<RadioRet value="뷰티" idx={6} flag={idx} setIdx={setIdx} />
+				<RadioRet value="도서" idx={7} flag={idx} setIdx={setIdx} />
+				<RadioRet value="나눔" idx={8} flag={idx} setIdx={setIdx} />
+				<RadioRet value="기타" idx={9} flag={idx} setIdx={setIdx} />
+			</div>
+		</FormC>
 		</CategoryC>
+
 		<TradeLocationC>
 		  <SubtitleC>
 			거래장소<b>*</b>
@@ -268,7 +275,7 @@ function ProductRegi(props) {
 		  </InputC>
 		</PriceC>
 		<ContentC>
-		  <SubtitleC>설명</SubtitleC>
+		  <ContentSub>설명</ContentSub>
 		  <InputC>
 			<textarea
 			  type="text"
@@ -276,10 +283,15 @@ function ProductRegi(props) {
 			  rows="5"
 			  placeholder="상품 설명을 입력해주세요."
 			  value={content}
-			  onChange={(e) => {
+							onChange={(e) => {
+								if (e.target.value.length > 200) {
+									e.target.value = e.target.value.slice(0, 199);
+									return;
+								}
 				setContent(e.target.value);
 			  }}
-			></textarea>
+						></textarea>
+						<div> {content.length}/150</div>
 		  </InputC>
 		</ContentC>
 		<SubmitC>
@@ -412,18 +424,11 @@ const SubtitleC = styled.div`
 `;
 
 
-const FormC = styled.form`
-	width: 80%;
-	> span {
-		margin-right: 50px;
-	}
-`;
 
 const TitleC = styled.div`
 	width: 100%;
 	height: 100px;
 	line-height: 96px;
-
 	> ${InputC} {
 		> input {
 			margin-right: 10px;
@@ -433,17 +438,24 @@ const TitleC = styled.div`
 		}
 	}
 
+	`;
+const FormC = styled.div`
+	width: 80%;
+	/*min-width: 960px;*/
+	> div > span {
+		margin-right: 50px;
+	}
+	> div {
+		height: 60px;
+	}
+	/*display: flex;*/
+	/*justify-content: space-between;*/
 `;
 
 const CategoryC = styled.div`
 	width: 100%;
-	height: 110px;
+	height: 160px;
 	line-height: 110px;
-
-
-	> div > span {
-		margin-right: 50px;
-	}
 `;
 
 const TradeLocationC = styled.div`
@@ -496,18 +508,34 @@ const PriceC = styled.div`
 	}
 `;
 
+const ContentSub = styled.div`
+	width: 20%;
+	line-height: 70px;
+`;
+
 const ContentC = styled.div`
 	width: 100%;
-	height: 205px;
-	line-height: 100px;
+	height: 160px;
+	position: relative;
+	> ${SubtitleC} {
+		position: static;
+		top: 30px;
+		left: 30px;
+	}
 	> ${InputC} {
+		position: relative;
 		margin-top: 20px;
 		> textarea {
 			resize: none;
 			padding: 10px;
 			width: 80%;
-			height: 160px;
+			height: 120px;
 			margin-right: 10px;
+		}
+		>  div {
+			position: absolute;
+			top: 53px;
+			right: 100px;
 		}
 	}
 	padding-bottom: 15px;
