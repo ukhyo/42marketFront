@@ -249,6 +249,7 @@ const		ProfileContentsC = styled.div`
 	}
 `;
 
+
 const		ProfileNameC = styled.div`
 	width: 260px;
   	height: 30px;
