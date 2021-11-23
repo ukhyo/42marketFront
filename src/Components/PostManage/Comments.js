@@ -21,7 +21,7 @@ export default function Comments(props) {
 				return;
 		}
 		const headers = {
-			//"Authorization": `Bearer ${token}`,
+			"Authorization": `Bearer ${props.token}`,
 			"withCreadentials": true,
 			"Access-Control-Allow-Origin": "http://api.4m2d.shop"
 		};
@@ -47,6 +47,7 @@ export default function Comments(props) {
 	  </CommentHeaderC>
 	<form style={{ display: 'flex' }} onSubmit={onSubmit}>
 		<InputCommentC
+			cols="30" rows="10"
 			onChange={handleChange}
 			value={commentValue}
 			placeholder="코멘트를 작성해 주세요"

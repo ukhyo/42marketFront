@@ -31,7 +31,7 @@ function PostDetail(props) {
 	const [Comment, setComment] = useState([]);
 	const ClickScribe = () => {
 		const headers = {
-			//"Authorization": `Bearer ${token}`,
+			"Authorization": `Bearer ${token}`,
 			"withCreadentials": true,
 			"Content-Type": "application/json",
 		};
@@ -193,6 +193,7 @@ function PostDetail(props) {
 				<CommentArea>
 					<Comments userId={userId}
 						postId={data.id}
+						token={token}
 						commentsList={Comment}
 						refreshFunction={refreshFunction}>
 					</Comments>
