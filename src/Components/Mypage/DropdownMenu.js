@@ -16,7 +16,7 @@ const DropdownMenu = (props) => {
 		console.log("here?");
 		if (idx === 2)
 		{
-			if (window.confirm("해당 상품을 삭제하시겠습니까?") === true)
+			if (window.confirm("해당 상품을 삭제하시겠습니까?"))
 				PostPatch();
 			else
 				return;
