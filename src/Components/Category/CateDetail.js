@@ -21,7 +21,7 @@ function CateDetail(props) {
 		userId = "0";
 	const onClick = () => setIsActive(!isActive);
 	let { undefined: cate } = props.match.params;
-	const catename = ["전체", "전자기기", "주변기기", "의류", "책", "나눔"];
+	const catename = ["전체", "전자", "생활", "레저", "패션", "음악/악기", "뷰티", "도서", "나눔", "기타"];
 	const AlignBtn = (e, idx) => {
 		let url = "";
 		if (idx === 1) // 오래된 구독 순
@@ -203,6 +203,7 @@ const CateNameC = styled.div`
 	margin-top: 10px;
 	margin-bottom: 20px;
 	font-size: 20px;
+	line-height: 10px;
 	font-weight: 600;
 `;
 
