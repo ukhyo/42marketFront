@@ -6,7 +6,7 @@ import useAsync from './useAsync';
 async function getBadge(userId)
 {
 	const response = await axios.get(
-		`http://api.4m2d.shop/api/titles/${Number(userId)}`
+		`http://api.4m2d.shop/api/titles/${userId}`
 	);
 	return response.data;
 }
@@ -26,7 +26,7 @@ function Badge({profile}) {
 				badges.map((badge, index) => {
 					return (<ShowBadgeC>
 						<img src={badge.image} />
-					</ShowBadgeC>); 
+					</ShowBadgeC>);
 				})
 			}
 			<CheckBadgeC>Check Badges</CheckBadgeC>
