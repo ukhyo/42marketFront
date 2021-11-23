@@ -47,7 +47,7 @@ function InfoList({id, url})
 	{
 		return (
 			<InfoListC>
-				{currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
+				{list.length >= 1 && currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
 					return (
 						<PostListC key={index} flag={url === "manage"}>
@@ -107,7 +107,7 @@ function InfoList({id, url})
 	{
 		return (
 			<InfoListC flag={url === "manage"}>
-				{currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
+				{list.length >= 1 && currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
 					return (
 						<PostListC key={index} flag={url === "manage"}>

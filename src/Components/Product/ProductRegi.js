@@ -85,7 +85,7 @@ function ProductRegi(props) {
 				alert("가격이 잘못되어있습니다.");
 				return;
 			}
-			else if (price === 0 && idx !== 5) {
+			else if (price === 0 && idx !== 8) {
 				alert("가격을 입력해주세요.");
 				return;
 			}
@@ -97,7 +97,7 @@ function ProductRegi(props) {
 				alert("카테고리를 선택해주세요.");
 				return;
 			}
-			else if (idx === 5) {
+			else if (idx === 8) {
 				alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
 			}
 			let fileList = new FormData();
