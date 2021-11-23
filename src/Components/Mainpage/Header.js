@@ -110,12 +110,12 @@ function Header() {
 							}
 							LogOut();
 					}}>
-						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
+						<img src={process.env.PUBLIC_URL + "/img/logoutIcon.png"} />
 						<div>로그아웃</div>
 					</LinkC>
 						:
 					<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
-						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
+						<img src={process.env.PUBLIC_URL + "/img/loginIcon.png"} />
 						<div>로그인</div>
 					</AC>
 					}

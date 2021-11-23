@@ -70,13 +70,15 @@ function	ProfileBar({ url })
 			let data = {
 				introduce: intro
 			};
+			const headers = {
+				"Authorization": `Bearer ${token}`,
+			};
 			setIsLoading(true);
-			await axios.patch(`http://api.4m2d.shop/api/users/${userId}`, data).then(res => {
+			await axios.patch(`http://api.4m2d.shop/api/users/${userId}`, data, {headers}).then(res => {
 				console.log("성공");
 				setTimeout(() => {
 					window.location.reload();
 				}, 500)
-				// window.location.reload();
 			}).catch(err => {
 				console.log("실패");
 			});
@@ -142,14 +144,6 @@ function	ProfileBar({ url })
 			<ProfileBarC Loading={isLoading}>
 				<ProfileImgC Loading={isLoading}>
 					<img src={profile.userImage}/>
-					{/* <label for="ChangeImg">
-						<ProfileImgModifyC>
-								<FaImage />
-						</ProfileImgModifyC>
-					</label> */}
-					{/* <input type="file"
-							id="ChangeImg"
-							onChange={onChangeImg}/> */}
 				</ProfileImgC>
 				<ProfileNameC>
 					<span>{profile.userIntra}</span>
@@ -165,21 +159,6 @@ function	ProfileBar({ url })
 				<ProfileContentsC>
 					<span>{profile.introduce}</span>
 				</ProfileContentsC>
-				{/* { onButton === false ? <ProfileModifyBtnC onClick={onButtonClick}>
-					<span>Edit introduce</span>
-				</ProfileModifyBtnC> :
-				<ModifyIntroC>
-					<textarea
-						type="text"
-						cols="32"
-						rows="10"
-						value={intro}
-						onChange={inputIntro}
-					/>
-					<button  onClick={submitHandler}>등록</button>
-				</ModifyIntroC>
-				} */}
-				{/* <Badge /> */}
 			</ProfileBarC>
 		);
 }
@@ -283,6 +262,9 @@ const		ProfileImgC = styled.div`
 		height: 280px;
 		border-radius: 150px;
 		border: 1px solid rgba(0, 0, 0, 0.2);
+	}
+	> input {
+		display: none;
 	}
 `;
 

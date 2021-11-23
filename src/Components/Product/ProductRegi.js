@@ -287,7 +287,7 @@ function ProductRegi(props) {
 				setContent(e.target.value);
 			  }}
 						></textarea>
-						<div> {content.length}/150</div>
+						<div> {content.length}/200</div>
 		  </InputC>
 		</ContentC>
 		<SubmitC>

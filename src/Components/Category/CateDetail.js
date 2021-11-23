@@ -102,18 +102,27 @@ function CateDetail(props) {
 				</MenuC>
 			</NameAndSortC>
 			<PostViewC>
-			{/*{Loading && item.postsThumbnailResponseDtoList.map((data, idx) => {
-				return (
-					<PostThumbnail data={data} key={idx} subList={item.subList}/>
-				);
-			})}*/}
-				{Loading &&
-						<PostViewComp item={item.postsThumbnailResponseDtoList} subList={"0"} Loading={Loading} flag={true}/ >
+				{Loading && item.postsThumbnailResponseDtoList.length >= 1 ?
+					<PostViewComp item={item.postsThumbnailResponseDtoList} subList={"0"} Loading={Loading} flag={true} />
+					:
+					<NotFoundC>
+						해당 카테고리 상품이 없습니다!
+					</NotFoundC>
 				}
 			</PostViewC>
 		</SectionC>
 	);
 }
+
+
+const NotFoundC = styled.div`
+	width: 1200px;
+	margin: 0 auto;
+	font-size: 40px;
+	text-align: center;
+	margin-top: 100px;
+	margin-bottom: 200px;
+`;
 
 
 const MenuTriggerC = styled.button`
@@ -178,6 +187,7 @@ const MenuC = styled.nav`
 `;
 
 const NameAndSortC = styled.div`
+	margin-top: 40px;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -192,8 +202,8 @@ const SectionC = styled.section`
 const CateNameC = styled.div`
 	margin-top: 10px;
 	margin-bottom: 20px;
-	font-size: 2em;
-
+	font-size: 20px;
+	font-weight: 600;
 `;
 
 const PostViewC = styled.div`

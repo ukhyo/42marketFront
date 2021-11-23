@@ -10,7 +10,7 @@ import { Cookies } from "react-cookie";
 
 function ProductEdit(props) {
 	const cookie = new Cookies();
-	let { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const postId = props.location.state.id;
 	const [data, setData] = useState([]);
 	const [oldFiles, setOldFiles] = useState([]);
@@ -22,7 +22,11 @@ function ProductEdit(props) {
 	const [Loading, setLoading] = useState(false);
 	useEffect(() => {
 		const ApiGet = async () => {
-			const { data } = await axios.get(`http://api.4m2d.shop/api/posts/${postId}`);
+			const data = await axios.get(`http://api.4m2d.shop/api/posts/${postId}/${userId}`).then(res => {
+				return res.data;
+			}).catch(err => {
+				console.log(err, "상품 못가져옴.")
+			});
 			console.log(data, "데이터");
 			setOldFiles(data.image);
 			setTitle(data.title);
@@ -138,9 +142,10 @@ function ProductEdit(props) {
 			};
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
 			const headers = {
-				 "Authorization": `Bearer ${token}`,
+				"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
 			};
+			console.log(postId, "상품 아이디");
 			setLoading(true);
 			await axios
 				.post(`http://api.4m2d.shop/api/posts/${postId}`, fileList, { headers })
@@ -150,9 +155,9 @@ function ProductEdit(props) {
 				})
 				.catch((err) => console.error(err, "에러"));
 			alert("상품 등록 완료!");
+			setLoading(false);
 		}
 		pushData();
-		setLoading(false);
 	}
 
 	return (
@@ -162,7 +167,7 @@ function ProductEdit(props) {
 				<span>상품 수정</span>
 				<span> *필수항목</span>
 			</EditHeaderC>
-			<EditMainC>
+			<EditMainC Loading={Loading}>
 				<PictureC>
 					<SubtitleC>
 						상품 이미지<b>*</b>
@@ -275,11 +280,11 @@ function ProductEdit(props) {
 							}}
 							required
 						></input>
-						<span>원</span>
+						<div>원</div>
 					</InputC>
 				</PriceC>
 				<ContentC>
-					<SubtitleC>설명</SubtitleC>
+					<ContentSub>설명</ContentSub>
 					<InputC>
 			<textarea
 			  type="text"
@@ -295,7 +300,7 @@ function ProductEdit(props) {
 				setContent(e.target.value);
 			  }}
 						></textarea>
-						<div> {content.length}/150</div>
+						<div> {content.length}/200</div>
 		  </InputC>
 				</ContentC>
 				<SubmitC Loading={Loading}>
@@ -339,6 +344,7 @@ const EditMainC = styled.div`
 	margin: 0 auto;
 	margin-top: 50px;
 	font-size: 15px;
+	cursor: ${(props) => (props.Loading ? 'wait' : '')};
 	> div {
 		display: flex;
 	}
@@ -432,6 +438,20 @@ const SubtitleC = styled.div`
 		color: red;
 	}
 `;
+const TitleC = styled.div`
+	width: 100%;
+	height: 100px;
+	line-height: 96px;
+
+	> ${InputC} {
+		> input {
+			margin-right: 10px;
+			width: 80%;
+			height: 40px;
+			border: 1px solid black;
+		}
+	}
+`;
 
 const FormC = styled.div`
 	width: 80%;
@@ -447,20 +467,6 @@ const FormC = styled.div`
 `;
 
 
-const TitleC = styled.div`
-	width: 100%;
-	height: 100px;
-	line-height: 96px;
-
-	> ${InputC} {
-		> input {
-			margin-right: 10px;
-			width: 80%;
-			height: 40px;
-			border: 1px solid black;
-		}
-	}
-`;
 
 const CategoryC = styled.div`
 	width: 100%;
@@ -517,18 +523,34 @@ const PriceC = styled.div`
 	}
 `;
 
+const ContentSub = styled.div`
+	width: 20%;
+	line-height: 70px;
+`;
+
 const ContentC = styled.div`
 	width: 100%;
-	height: 205px;
-	line-height: 100px;
+	height: 160px;
+	position: relative;
+	> ${SubtitleC} {
+		position: static;
+		top: 30px;
+		left: 30px;
+	}
 	> ${InputC} {
+		position: relative;
 		margin-top: 20px;
 		> textarea {
 			resize: none;
 			padding: 10px;
 			width: 80%;
-			height: 160px;
+			height: 120px;
 			margin-right: 10px;
+		}
+		>  div {
+			position: absolute;
+			top: 53px;
+			right: 100px;
 		}
 	}
 	padding-bottom: 15px;

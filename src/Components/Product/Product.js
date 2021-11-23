@@ -16,7 +16,7 @@ function RadioRet({ idx, value, setIdx, flag }) {
 			) : (
 				<input onClick={ClickEvt} name="select" type="radio" value={value}/>
 			)}
-			<label for="select">{value}</label>
+			<label for="select"> {value}</label>
 		</span>
 	);
 }

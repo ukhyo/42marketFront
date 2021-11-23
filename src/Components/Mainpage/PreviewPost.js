@@ -80,7 +80,7 @@ function PostViewComp({ item, subList, Loading, flag }) {
 						);
 					})
 				}
-				{flag &&
+				{flag && item.length / postsPerPage >= 1 &&
 					<Pagination postsPerPage={postsPerPage} totalPosts={item.length} paginate={setCurrentPage} current={currentPage}></Pagination>
 				}
 			</PostViewLineC>
@@ -159,7 +159,7 @@ const PostViewC = styled.div`
 
 const PostViewLineC = styled.div`
 	width: 100%;
-	height: ${(props) => props.flag ? "" : "600px"};
+	height: ${(props) => props.flag ? "" : ""};
 	margin: 10px auto;
 	margin-bottom: 20px;
 	display: flex;

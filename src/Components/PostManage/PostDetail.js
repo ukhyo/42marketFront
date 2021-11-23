@@ -146,7 +146,7 @@ function PostDetail(props) {
 							</TitleC>
 							<PriceAndDateC>
 								<div>{data.price.toLocaleString()}<b>원</b></div>
-								<DateC><HiOutlineClock />  <span>{GetTime(data.createdAt)}</span></DateC>
+								<DateC><HiOutlineClock />  <span>{GetTime(data.updatedAt)}</span></DateC>
 							</PriceAndDateC>
 							<LocationAndViewsC>
 								<LocationArea>

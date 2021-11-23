@@ -9,7 +9,6 @@ const DropdownMenu = (props) => {
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const dropdownRef = useRef(null);
 	const [status, setStatus] = useState(props.status);
-	console.log(status,"why?");
 	const statusArr = ["판매중", "판매완료"];
 	const [isActive, setIsActive] = useState(false);
 	const onClick = () => setIsActive(!isActive);

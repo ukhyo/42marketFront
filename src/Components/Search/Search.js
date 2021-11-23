@@ -122,7 +122,7 @@ function Searc(props) {
 const CateNameC = styled.div`
 	margin-top: 30px;
 	margin-bottom: 20px;
-	font-size: 2em;
+	font-size: 20px;
 `;
 
 const MenuTriggerC = styled.button`
