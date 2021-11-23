@@ -111,7 +111,6 @@ function InfoList({id, url})
 			<InfoListC flag={url === "manage"}>
 				{currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
-					console.log(posts.id, "id");
 					return (
 						<PostListC key={index} flag={url === "manage"}>
 							<PostImgC>

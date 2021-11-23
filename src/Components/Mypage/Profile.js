@@ -3,6 +3,7 @@ import axios from "axios";
 import Coming_soon from "../../Images/coming_soon.jpeg";
 import useAsync from "./useAsync";
 import styled from "styled-components";
+import Badge from "./Badge";
 import { FaImage } from 'react-icons/fa';
 import { timeout } from "q";
 import { useSelector } from "react-redux";
@@ -65,7 +66,7 @@ function	ProfileBar({ url })
 				introduce: intro
 			};
 			setIsLoading(true);
-			await axios.patch("http://api.4m2d.shop/api/users/1", data).then(res => {
+			await axios.patch("http://api.4m2d.shop/api/users/2", data).then(res => {
 				console.log("성공");
 				setTimeout(() => {
 					window.location.reload();
@@ -122,11 +123,10 @@ function	ProfileBar({ url })
 					<button  onClick={submitHandler}>등록</button>
 				</ModifyIntroC>
 				}
-				<BadgeC>
-					<img src={Coming_soon} />
-				</BadgeC>
+				<Badge profile={profile}/>
 			</ProfileBarC>
 		);
+
 	if (userId !== id)
 		return (
 			<ProfileBarC Loading={isLoading}>
@@ -169,9 +169,7 @@ function	ProfileBar({ url })
 					<button  onClick={submitHandler}>등록</button>
 				</ModifyIntroC>
 				} */}
-				<BadgeC>
-					<img src={Coming_soon} />
-				</BadgeC>
+				<Badge />
 			</ProfileBarC>
 		);
 }
@@ -200,18 +198,6 @@ const		ModifyIntroC = styled.div`
 	}
 `;
 
-const		BadgeC = styled.div`
-	width: 100%;
-	height: 150px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
-	> img {
-		position: relative;
-		bottom: -50px;
-	}
-`;
 
 const		ProfileModifyBtnC = styled.button`
 	width: 280px;

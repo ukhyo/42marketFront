@@ -22,14 +22,15 @@ const NaviBar = (props) =>
 };
 
 const NaviBarC = styled.ul `
-	width: 100%;
 	height: 70px;
+	margin: 0 auto;
 	display: flex;
+	justify-content: center;
+	align-content: center;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const		ItemC = styled.li`
-	position: fiexd;
 	width: 130px;
 	height: 70px;
 	border-bottom: 4px solid

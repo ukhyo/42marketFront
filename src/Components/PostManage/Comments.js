@@ -33,6 +33,7 @@ export default function Comments(props) {
 		axios.post('http://api.4m2d.shop/api/comments/', variables, {headers}).then((response) => {
 			console.log('댓글 올리기 성공');
 			console.log(variables.commentValue, 'comment value') //response. data안들어옴
+			setcommentValue("");
 			props.refreshFunction(variables);
 		}).catch(err => {
 			console.log("댓글 올리기 실패");
