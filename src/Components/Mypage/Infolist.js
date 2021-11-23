@@ -47,7 +47,7 @@ function InfoList({id, url})
 	else
 		list = list.cartsList;
 	console.log(list,"리스트안");
-
+	console.log(userId, id, "두개 비겨");
 	if (userId === Number(id))
 	{
 		return (
