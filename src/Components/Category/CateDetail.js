@@ -127,7 +127,7 @@ const NotFoundC = styled.div`
 
 const MenuTriggerC = styled.button`
 	position: absolute;
-	top: -10px;
+	top: -12px;
 	right: 20px;
 	cursor: pointer;
 	background-color: transparent;
