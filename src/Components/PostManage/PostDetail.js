@@ -86,6 +86,7 @@ function PostDetail(props) {
 		console.log("refreshFunction");
 		console.log(newComment, "newComment");
 		setComment(Comment.concat(newComment));
+		setReLoad(!reLoad);
 	};
 
 	const SelectPicture = (flag) => {
