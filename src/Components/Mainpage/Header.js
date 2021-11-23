@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import { Cookies } from "react-cookie";
+import { useCookies, Cookies } from "react-cookie";
 import { useSelector } from "react-redux";
 import { setUserId } from "../../modules/User";
+import { FiLogOut } from "react-icons/fi";
+import axios from "axios";
 
 function Header() {
 	const cookie = new Cookies()
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+
 	const history = useHistory();
 	const [text, setText] = useState("");
 	if (userId === undefined)
@@ -63,9 +66,9 @@ function Header() {
 				</HeaderSearchC>
 				<HeaderInfoC>
 				{/*<LinkC to="/product/regi">
-					<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
-					<div>판매하기</div>
-				</LinkC>*/}
+							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
+							<div>판매하기</div>
+						</LinkC>*/}
 					{token ?
 						<LinkC to="/product/regi">
 							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
@@ -79,18 +82,36 @@ function Header() {
 							<div>판매하기</div>
 						</AC>
 					}
-					<LinkC to="/">
-						<img src={process.env.PUBLIC_URL + "/img/bellIcon2.png"} />
-						<div>알림</div>
-					</LinkC>
-					{/*<LinkC to={`/mypage/${userId}/selllist`}>
-						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
-						<div>내정보</div>
-					</LinkC>*/}
 					{token ?
 					<LinkC to={`/mypage/${userId}/selllist`}>
 						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
 						<div>내정보</div>
+					</LinkC>
+						:
+						<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code" onClick={() => {
+							alert("로그인이 필요합니다.")
+						}}>
+							<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
+						<div>내정보</div>
+					</AC>
+				}
+					{token ?
+						<LinkC onClick={() => {
+							const LogOut = async () => {
+								cookie.remove('Authorization', {
+									path: '/',
+									domain: '.4m2d.shop',
+								});
+								cookie.remove('userId', {
+									path: '/',
+									domain: '.4m2d.shop',
+								});
+								window.location.reload();
+							}
+							LogOut();
+					}}>
+						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
+						<div>로그아웃</div>
 					</LinkC>
 						:
 					<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
@@ -166,7 +187,7 @@ const HeaderSearchInputC = styled.fieldset`
 	& img {
 		/*border:none;
 		outline:none;*/
-		padding-right: 8px;
+		margin-right: 8px;
 		width: 20px;
 		height: 20px;
 	}

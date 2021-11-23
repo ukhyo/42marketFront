@@ -8,7 +8,7 @@ import { Cookies } from "react-cookie";
 
 function ProductRegi(props) {
 	const cookie = new Cookies();
-	let { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	// Input 양식 State
 	const [title, setTitle] = useState("");
 	const [location, setLocation] = useState("");
@@ -114,7 +114,7 @@ function ProductRegi(props) {
 				price: temp,
 				local: location,
 				categoryId: idx,
-				userId: 1,
+				userId: userId,
 			};
 
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
@@ -456,6 +456,7 @@ const TradeLocationC = styled.div`
 			> button {
 				width: 100px;
 				height: 48px;
+				line-height: 48px;
 				margin-right: 20px;
 				background-color: white;
 				border: 1px solid black;
@@ -470,6 +471,7 @@ const TradeLocationC = styled.div`
 				width: 80%;
 				height: 40px;
 			}
+
 		}
 	}
 `;

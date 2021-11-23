@@ -468,6 +468,7 @@ const TradeLocationC = styled.div`
 			> button {
 				width: 100px;
 				height: 48px;
+				line-height: 48px;
 				margin-right: 20px;
 				background-color: white;
 				border: 1px solid black;

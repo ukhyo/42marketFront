@@ -84,6 +84,8 @@ const PageListC = styled.div`
 	justify-content: center;
 	align-items: center;
 	margin-top: 20px;
+	margin-bottom: 30px;
+
 	> div:first-child {
 		margin-right: 5px;
 	}
@@ -95,7 +97,7 @@ const PageListC = styled.div`
 const PageNumberC = styled.div`
 	width: 30px;
 	height: 30px;
-	line-height: 30px;
+	line-height: 25px;
 	margin-right: 5px;
 	background-color: ${(props) => (props.flag ? "rgb(130, 130, 238)" : "#fdfdfd")};
 	border: 1px solid gray;

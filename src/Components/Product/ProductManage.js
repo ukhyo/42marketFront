@@ -6,11 +6,15 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import PostDelete from "../utils/PostDelete";
 import InfoList from "../Mypage/Infolist";
-
+import { Cookies } from "react-cookie";
 function ShowData() {
+	const cookie = new Cookies()
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+	if (userId === undefined)
+		userId = 1;
 	return (
 		<ShowDataC>
-			<InfoList url={"manage"} id={1} />
+			<InfoList url={"manage"} id={userId} />
 		</ShowDataC>
 	);
 }

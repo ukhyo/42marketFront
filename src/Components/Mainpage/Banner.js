@@ -8,124 +8,132 @@ import testBanner from "../img/testBanner.png";
 import banner from "../img/test123.jpg";
 import BannerHeader from "./BannerHeader";
 import Header from "./Header";
+import image1 from "../img/1.jpg";
+import image2 from "../img/2.jpg";
+import image3 from "../img/3.jpg";
+
+
 function MainBanner() {
-	// const [text, setText] = useState("");
-	// function onChange(e) {
-	// 	setText(e.target.value);
-	// }
-	// const check = (e) => {
-	// 	if (e.key == "Enter") {
-	// 		imgClick();
-	// 	}
-	// };
-	// function imgClick(e) {
-	// 	setText("");
-	// }
-	// const [Login, setLogin] = useState(false);
+	const [idx, setIdx] = useState(0);
+	const images = [image1, image2, image3];
+	setTimeout(() => {
+		let temp = idx;
+		console.log(temp);
+		if (temp >= 2)
+			temp = -1;
+		setIdx(temp + 1);
+	}, 5000)
 	return (
 		<MainC>
-			<MainBannerC>
-					{/* <BannerHeader /> */}
-					<img alt="img" src={Samyun} />
-					{/* <span>세계 유일 카뎃 중고거래 플랫폼</span>
-					<h1>어서오세요, 사면이득입니다</h1> */}
-					{/* <HeaderSearchC>
-						<HeaderSearchInputC>
-							<a href="#">
-								<img
-									onClick={imgClick}
-									className="header_search_img"
-									src={process.env.PUBLIC_URL + "/img/searchIcon.png"}
-									alt="img"
-								/>
-							</a>
-							<input
-								placeholder="검색어를 입력해주세요."
-								onChange={onChange}
-								onKeyDown={check}
-								type="text"
-								value={text}
-							/>
-						</a>
-						<input
-							placeholder="검색어를 입력해주세요."
-							onChange={onChange}
-							onKeyDown={check}
-							type="text"
-							value={text}
-						/>
-					</HeaderSearchInputC>
-				</HeaderSearchC> */}
-			</MainBannerC>
+			<ImagesC>
+				<DivC>
+					<ImageC url={images[idx]} flag={0 === idx}/>
+				</DivC>
+			</ImagesC>
 		</MainC>
 	);
 }
 
-const MainC = styled.main`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	width:100%;
-`;
-
-const MainBannerC = styled.div`
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-content: center;
-	padding: 0;
-	margin: 0 auto;
+const DivC = styled.div`
 	width: 1200px;
 	height: 460px;
-	/*margin-bottom: 30px;*/
-	& > div {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-		position: relative;
-		height: 100%;
-		& > img {
-			z-index: 1;
-			width: 1780px;
-			height: 650px;
-			position: absolute;
-		}
-		/* & > img:nth-child(2) {
-			position: absolute;
-			top: 80px;
-			left: -150px;
-			width: 70px;
-			height: 70px;
-		}
-		& > img:nth-child(3) {
-			position: absolute;
-			top: 60px;
-			left: 100px;
-			width: 60px;
-			height: 60px;
-		} */
-		& > span {
-			position: relative;
-			display: block;
-			color: rgb(49, 52, 64);
-			font-weight: 600;
-			font-size: 20px;
-			padding: 25px;
-			z-index: 2;
-		}
-		& > h1 {
-			position: relative;
-			display: block;
-			text-align: center;
-			z-index: 2;
-			color: rgb(49, 52, 64);
-			font-weight: 700;
-			font-size: 35px;
+`;
+
+const ImageC = styled.div`
+	width: 1200px;
+	height: 460px;
+	background-image: url("${(props) => props.url}");
+	transition: background-image 1s ease-out;
+	background-position: center;
+	background-size: cover;
+`;
+
+const ImagesC = styled.div`
+	display:flex;
+	width: 1200px;
+	height: 460px;
+	overflow: hidden;
+	> div {
+		width: 1200px;
+		height: 460px;
+		> img {
+		/*display: none;*/
+		width: 1200px;
+		height: 460px;
+
+		/*transition: 1s ease-in-out;*/
 		}
 	}
 `;
+
+const MainC = styled.main`
+	display: flex;
+	/*overflow: hidden;*/
+	margin: 0 auto;
+	width: 1200px;
+	height: 460px;
+`;
+
+
+
+//const MainBannerC = styled.div`
+//	position: relative;
+//	display: flex;
+//	justify-content: center;
+//	align-content: center;
+//	padding: 0;
+//	margin: 0 auto;
+//	width: 1200px;
+//	height: 460px;
+//	/*margin-bottom: 30px;*/
+//	& > div {
+//		width: 100%;
+//		display: flex;
+//		justify-content: center;
+//		align-items: center;
+//		flex-direction: column;
+//		position: relative;
+//		height: 100%;
+//		& > img {
+//			z-index: 1;
+//			width: 1780px;
+//			height: 650px;
+//			position: absolute;
+//		}
+//		/* & > img:nth-child(2) {
+//			position: absolute;
+//			top: 80px;
+//			left: -150px;
+//			width: 70px;
+//			height: 70px;
+//		}
+//		& > img:nth-child(3) {
+//			position: absolute;
+//			top: 60px;
+//			left: 100px;
+//			width: 60px;
+//			height: 60px;
+//		} */
+//		& > span {
+//			position: relative;
+//			display: block;
+//			color: rgb(49, 52, 64);
+//			font-weight: 600;
+//			font-size: 20px;
+//			padding: 25px;
+//			z-index: 2;
+//		}
+//		& > h1 {
+//			position: relative;
+//			display: block;
+//			text-align: center;
+//			z-index: 2;
+//			color: rgb(49, 52, 64);
+//			font-weight: 700;
+//			font-size: 35px;
+//		}
+//	}
+//`;
 
 // const HeaderSearchC = styled.div`
 // 	width: 650px;
