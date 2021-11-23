@@ -156,7 +156,8 @@ function ProductRegi(props) {
 				<span>- 비율이 1:1인 사진을 올리시면 짤리지 않습니다.</span>
 				<span>
 				  - 이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.
-				</span>
+								</span>
+								<span>- 사진은 Jpeg, Png 형식만 동륵 가능합니다.</span>
 			  </div>
 			</LabelAndManualC>
 			<ul>
@@ -168,6 +169,7 @@ function ProductRegi(props) {
 				  onChange={(e) => {
 					onChangeImg(e, setFileUrl, setFiles, Files);
 				  }}
+				  accept="image/png, image/jpeg"
 				  required
 				></input>
 			  </li>

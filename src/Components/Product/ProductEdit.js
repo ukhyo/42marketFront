@@ -179,6 +179,7 @@ function ProductEdit(props) {
 								<span>- 상품 이미지는 640x640에 최적화 되어 있습니다.</span>
 								<span>- 비율이 1:1인 사진을 올리시면 짤리지 않습니다.</span>
 								<span>- 이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.</span>
+								<span>- 사진은 Jpeg, Png 형식만 동륵 가능합니다.</span>
 							</div>
 						</LabelAndManualC>
 						<ul>
@@ -190,6 +191,7 @@ function ProductEdit(props) {
 									onChange={(e) => {
 										onChangeImg(e);
 									}}
+									accept="image/png, image/jpeg"
 									required
 								></input>
 							</li>
