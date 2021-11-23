@@ -46,7 +46,8 @@ function InfoList({id, url})
 		list = list.postsList;
 	else
 		list = list.cartsList;
-	console.log(list,"리스트안");
+	console.log(list, "리스트안");
+	console.log(url, "유알엘 비교");
 	console.log(userId, id, "두개 비겨");
 	if (userId === Number(id))
 	{
