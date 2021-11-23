@@ -60,46 +60,6 @@ function Searc(props) {
 			<CategoryBar />
 			<NameAndSortC>
 				<CateNameC>검색결과</CateNameC>
-				<MenuTriggerC onClick={onClick} >
-					<img src={process.env.PUBLIC_URL + "/img/alignBtn.png"} />
-				</MenuTriggerC>
-				<MenuC active={isActive}>
-					  <ul>
-						<li onClick={(e) => {
-							AlignBtn(e, 1);
-							setIsActive(!isActive);
-						}}><span>구독순</span></li>
-						<li onClick={(e) => {
-							AlignBtn(e, 2);
-							setIsActive(!isActive);
-						}}><span>조회순</span></li>
-						{timeFlag ? (
-							<li onClick={(e) => {
-								AlignBtn(e, 3);
-								setIsActive(!isActive);
-								setTimeFlag(!timeFlag);
-							}}><span>오래된글</span></li>
-						) :
-							<li onClick={(e) => {
-								AlignBtn(e, 4);
-								setIsActive(!isActive);
-								setTimeFlag(!timeFlag);
-							}}><span>최신글</span></li>}
-						{priceFlag ? (
-							<li onClick={(e) => {
-							AlignBtn(e, 5);
-								setIsActive(!isActive);
-								setPriceFlag(!priceFlag);
-							}}><span>낮은가격순</span></li>
-						) : (
-							<li onClick={(e) => {
-								AlignBtn(e, 6);
-									setIsActive(!isActive);
-									setPriceFlag(!priceFlag);
-								}}><span>높은가격순</span></li>
-						) }
-					  </ul>
-				</MenuC>
 			</NameAndSortC>
 			<PostViewC>
 				{item.postsThumbnailResponseDtoList.length !== 0 && item.postsThumbnailResponseDtoList.map((data, index) => {
@@ -120,9 +80,11 @@ function Searc(props) {
 	);
 }
 const CateNameC = styled.div`
-	margin-top: 30px;
-	margin-bottom: 20px;
+	margin-top: 50px;
+	/*margin-bottom: 20px;*/
 	font-size: 20px;
+	line-height: 10px;
+	font-weight: 600;
 `;
 
 const MenuTriggerC = styled.button`
@@ -165,19 +127,19 @@ const MenuC = styled.nav`
 `;
 
 const NameAndSortC = styled.div`
-	width: 100%;
+	width: 1200px;
 	display: flex;
 	justify-content: space-between;
 	position:relative;
 `;
 
 const SectionC = styled.section`
-	width: 1200px;
+	width: 100%;
 	margin: 0 auto;
 `;
 
 const PostViewC = styled.div`
-	width: 100%;
+	width: 1200px;
 	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;

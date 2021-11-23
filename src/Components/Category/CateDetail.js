@@ -200,8 +200,8 @@ const SectionC = styled.section`
 `;
 
 const CateNameC = styled.div`
-	margin-top: 10px;
-	margin-bottom: 20px;
+	margin-top: 50px;
+	/*margin-bottom: 20px;*/
 	font-size: 20px;
 	line-height: 10px;
 	font-weight: 600;
