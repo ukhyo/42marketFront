@@ -10,8 +10,6 @@ import axios from "axios";
 
 function Header() {
 	const cookie = new Cookies()
-	const [cookies, setCookie, removeCookie] = useCookies(["Authorization"]);
-
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 
 
@@ -20,9 +18,10 @@ function Header() {
 	if (userId === undefined)
 		userId = "0";
 	function onChange(e) {
-		console.log(cookies);
-		removeCookie("Authorization");
-		console.log(cookies);
+		cookie.remove('Authorization', {
+			path: '/',
+			domain: '.4m2d.shop',
+		});
 		setText(e.target.value);
 	}
 	const check = (e) => {
