@@ -106,6 +106,7 @@ function Header() {
 									path: '/',
 									domain: '.4m2d.shop',
 								});
+								window.location.reload();
 							}
 							LogOut();
 					}}>
