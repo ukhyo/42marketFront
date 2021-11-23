@@ -18,6 +18,7 @@ function Header() {
 	if (userId === undefined)
 		userId = "0";
 	function onChange(e) {
+		console.log(this.props);
 		setText(e.target.value);
 	}
 	const check = (e) => {
