@@ -31,18 +31,18 @@ function ScrollToTop() {
 
 const GlobalStyles = createGlobalStyle`
  ${reset}
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/noto-sans-kr-v21-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local(''),
-       url('../fonts/noto-sans-kr-v21-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../fonts/noto-sans-kr-v21-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../fonts/noto-sans-kr-v21-latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('../fonts/noto-sans-kr-v21-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('../fonts/noto-sans-kr-v21-latin-regular.svg#NotoSansKR') format('svg'); /* Legacy iOS */
-}
+	@font-face {
+		font-family: 'Noto Sans KR';
+		font-style: normal;
+		font-weight: 400;
+		src: url('../fonts/noto-sans-kr-v21-latin-regular.eot'); /* IE9 Compat Modes */
+		src: local(''),
+		   url('../fonts/noto-sans-kr-v21-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		   url('../fonts/noto-sans-kr-v21-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+		   url('../fonts/noto-sans-kr-v21-latin-regular.woff') format('woff'), /* Modern Browsers */
+		   url('../fonts/noto-sans-kr-v21-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+		   url('../fonts/noto-sans-kr-v21-latin-regular.svg#NotoSansKR') format('svg'); /* Legacy iOS */
+	}
 	body {
 		-ms-overflow-style: none;
 		::-webkit-scrollbar { display: none; }
@@ -50,7 +50,11 @@ const GlobalStyles = createGlobalStyle`
 		padding: 0;
 		background-color: #fdfdfd;
 		/*background-color: #dbf3f5;*/
-		font-family: 'Noto Sans KR';
+		/*font-family: var(---font-face);*/
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+	:root {
+		--font-face: 'Noto SansKR';
 	}
 `;
 

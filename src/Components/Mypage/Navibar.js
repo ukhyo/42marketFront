@@ -22,6 +22,7 @@ const NaviBar = (props) =>
 };
 
 const NaviBarC = styled.ul `
+	margin: 0 auto;
 	width: 100%;
 	height: 70px;
 	display: flex;

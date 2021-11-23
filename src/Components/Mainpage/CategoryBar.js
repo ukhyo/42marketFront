@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 function CategoryBar({history}) {
-	const [Loading, setLoading] = useState(true);
 	return (
 		<CategoryC>
 			<CategoryItemsC onClick={(e) => {
@@ -12,37 +11,37 @@ function CategoryBar({history}) {
 				<LinkC to="/category/0">
 					<div>
 						<img src={process.env.PUBLIC_URL + "/img/allIcon.png"}></img>
-						<span>Total</span>
+						<span>전체보기</span>
 					</div>
 				</LinkC>
 				<LinkC to="/category/1">
 					<div>
 						<img src={process.env.PUBLIC_URL + "/img/itIcon.png"}></img>
-						<span>IT</span>
+						<span>전자기기</span>
 					</div>
 				</LinkC>
 				<LinkC to="/category/2">
 					<div>
 						<img src={process.env.PUBLIC_URL + "/img/SubItIcon.png"}></img>
-						<span>Support</span>
+						<span>주변기기</span>
 					</div>
 				</LinkC>
 				<LinkC to="/category/3">
 					<div>
 						<img src={process.env.PUBLIC_URL + "/img/clothIcon.png"}></img>
-						<span>Cloth</span>
+						<span>의류</span>
 					</div>
 				</LinkC>
 				<LinkC to="/category/4">
 					<div>
 						<img src={process.env.PUBLIC_URL + "/img/bookIcon.png"}></img>
-						<span>Book!</span>
+						<span>책</span>
 					</div>
 				</LinkC>
 				<LinkC to="/category/5">
 					<div>
-						<img src={process.env.PUBLIC_URL + "/img/shareIcon.png"}></img>
-						<span>Share</span>
+						<img src={process.env.PUBLIC_URL + "/img/handShake.png"}></img>
+						<span>나눔</span>
 					</div>
 				</LinkC>
 			</CategoryItemsC>
@@ -94,7 +93,7 @@ const CategoryItemsC = styled.div`
 		}
 		span {
 			margin: 15px 0;
-			font-size: 18px;
+			font-size: 14px;
 			box-sizing: border-box;
 		}
 	}

@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import CategoryBar from "../Mainpage/CategoryBar";
 import { PostThumbnail } from "../Mainpage/PreviewPost";
 import { Cookies } from "react-cookie";
-
-
+import { PostViewComp } from "../Mainpage/PreviewPost";
+import Footer from "../Mainpage/Footer";
 function CateDetail(props) {
 	const cookie = new Cookies()
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
@@ -60,7 +60,8 @@ function CateDetail(props) {
 			<NameAndSortC>
 				<CateNameC>{catename[Number(cate)]}</CateNameC>
 				<MenuTriggerC onClick={onClick} >
-					<img src={process.env.PUBLIC_URL + "/img/alignBtn.png"} />
+					<span>정렬</span>
+					{/*<img src={process.env.PUBLIC_URL + "/img/alignBtn.png"} />*/}
 				</MenuTriggerC>
 				<MenuC active={isActive}>
 					  <ul>
@@ -101,11 +102,14 @@ function CateDetail(props) {
 				</MenuC>
 			</NameAndSortC>
 			<PostViewC>
-			{Loading && item.postsThumbnailResponseDtoList.map((data, idx) => {
+			{/*{Loading && item.postsThumbnailResponseDtoList.map((data, idx) => {
 				return (
 					<PostThumbnail data={data} key={idx} subList={item.subList}/>
 				);
-			})}
+			})}*/}
+				{Loading &&
+						<PostViewComp item={item.postsThumbnailResponseDtoList} subList={"0"} Loading={Loading} flag={true}/ >
+				}
 			</PostViewC>
 		</SectionC>
 	);
@@ -118,7 +122,30 @@ const MenuTriggerC = styled.button`
 	right: 20px;
 	cursor: pointer;
 	background-color: transparent;
-	border:none;
+	/*border:none;*/
+	background: #ffffff;
+	border-radius: 90px;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 4px 6px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	border: none;
+	vertical-align: middle;
+	transition: box-shadow 0.4s ease;
+	text-align: center;
+	> span {
+		width: 80px;
+		height: 30px;
+		line-height:30px;
+		font-weight: 700;
+		vertical-align: middle;
+		font-size: 14px;
+		color: rgba(0, 0, 0, 0.7);
+		margin: 0 10px;
+		text-align: center;
+	}
 `;
 
 const MenuC = styled.nav`
@@ -127,7 +154,7 @@ const MenuC = styled.nav`
 	border-radius: 8px;
 	position: absolute;
 	top: 55px;
-	right: -40px;
+	right: -20px;
 	width: 110px;
 	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 	opacity: ${props => (props.active ? '1' : '0')};
@@ -166,6 +193,7 @@ const CateNameC = styled.div`
 	margin-top: 10px;
 	margin-bottom: 20px;
 	font-size: 2em;
+
 `;
 
 const PostViewC = styled.div`

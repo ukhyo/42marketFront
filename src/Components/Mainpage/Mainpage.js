@@ -11,13 +11,8 @@ import { setToken } from "../../modules/Login";
 import { setUserId } from "../../modules/User";
 
 function Mainpage() {
-	const cookie = new Cookies()
-	const { userId: id, Authorization: token, subscribes: sub } = cookie.getAll();
-	console.log(id, token, sub);
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(setUserId(1));
-	}, []);
+	const name = "";
+	document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
 	return (
 		<SectionC>
 			<Header />

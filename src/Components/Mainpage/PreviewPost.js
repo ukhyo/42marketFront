@@ -8,13 +8,21 @@ import { BsSuitHeart } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
 import { Cookies, useCookies } from "react-cookie";
 import GetTime from "../utils/GetTime";
+import { currentPosts } from "../utils/Pagination";
+import Pagination from "../utils/Pagination"
 
-function PostThumbnail({ data, key, subList}) {
+function PostThumbnail({ data, key, subList, flag}) {
 	let title;
-	data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
+	data.title.length > 10 ? title = data.title.slice(0, 10) + "..."
 		: title = data.title;
+	console.log(flag, "플래그체크");
 	return (
 		<PostItemC key={key}>
+			{flag &&
+			<CoverImgC>
+				판매완료
+			</CoverImgC>
+			}
 			<LinkC
 				to={{
 					pathname: `/postview/${data.id}`,
@@ -25,11 +33,11 @@ function PostThumbnail({ data, key, subList}) {
 					},
 				}}
 			>
-			<BackImgC url={data.image}></BackImgC>
+				<BackImgC url={data.image}></BackImgC>
 			</LinkC>
 			<div>
 				{title}
-				<b>{GetTime(data.createdAt)}</b>
+				<b>{GetTime(data.updatedAt)}</b>
 			</div>
 			<div>
 				<div>
@@ -52,16 +60,28 @@ function PostThumbnail({ data, key, subList}) {
 	);
 }
 
-function PostViewComp({item, subList, Loading}) {
+function PostViewComp({ item, subList, Loading, flag }) {
+	const [currentPage, setCurrentPage] = useState(1);
+	const [postsPerPage, setPostsPerPage] = useState(10);
+	const indexOfLast = currentPage * postsPerPage; //
+	const indexOfFirst = indexOfLast - postsPerPage; //
+	useEffect(() => {
+		if (flag)
+			setPostsPerPage(40);
+	},[])
 	return (
+
 		<SectionC>
-			<PostViewLineC>
+			<PostViewLineC flag={flag}>
 				{
-					Loading && item.length > 0 && item.map((data, index) => {
+					Loading && item.length > 0 && currentPosts(item ,indexOfFirst, indexOfLast).map((data, index) => {
 					return (
-						<PostThumbnail key={index} data={data} subList={ subList }/>
+						<PostThumbnail key={index} data={data} subList={subList} flag={data.status === 1}/>
 						);
 					})
+				}
+				{flag &&
+					<Pagination postsPerPage={postsPerPage} totalPosts={item.length} paginate={setCurrentPage} current={currentPage}></Pagination>
 				}
 			</PostViewLineC>
 		</SectionC>
@@ -94,10 +114,10 @@ function PreviewPost() {
 		return <div> Loading...</div>
 	return (
 		<PostViewC>
-			<h2>인기상품!</h2>
-			<PostViewComp item={item.subscribeList} subList={item.subList} Loading={ Loading}/>
-			<h2>새 상품!</h2>
-			<PostViewComp item={item.viewList} subList={item.subList} Loading={ Loading}/>
+			<h2>인기상품</h2>
+			<PostViewComp item={item.subscribeList} subList={item.subList} Loading={Loading} flag={false}/>
+			<h2>새 상품</h2>
+			<PostViewComp item={item.viewList} subList={item.subList} Loading={ Loading} flag={false} />
 		</PostViewC>
 	);
 }
@@ -116,8 +136,8 @@ const PostViewC = styled.div`
 	width: 1200px;
 	margin: 0px auto;
 	> h2 {
-		font: italic 1em "Fira Sans", serif;
-		font-size: 28px;
+		font: Nanum Gothic;
+		font-size: 20px;
 		font-weight: 600;
 		margin-top: 40px;
 		margin-bottom: 10px;
@@ -139,7 +159,7 @@ const PostViewC = styled.div`
 
 const PostViewLineC = styled.div`
 	width: 100%;
-	height: 600px;
+	height: ${(props) => props.flag ? "" : "600px"};
 	margin: 10px auto;
 	margin-bottom: 20px;
 	display: flex;
@@ -153,6 +173,22 @@ const PostViewLineC = styled.div`
 	}
 `;
 
+const CoverImgC = styled.div`
+	position: absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 50px;
+	margin-top: 150px;
+	line-height: 50px;
+	text-align: center;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.4);
+`;
+
+
 
 const BackImgC = styled.div`
 	position: static;
@@ -165,28 +201,10 @@ const BackImgC = styled.div`
 	border-radius: 15px;
 	box-sizing: border-box;
 	background-image: url("${(props) => props.url}");
-	&:hover {
-		z-index: 0;
-		opacity: 0.8;
-	}
 	`;
 
-const HoverImgC = styled.div`
-	position: static;
-	top: 0;
-	left: 0;
-	display: none;
-	background-color: #000000;
-	width: 100%;
-	height: 200px;
-	z-index: 5;
-	&:hover {
-		display:block;
-	}
-`;
 
 const LinkC = styled(Link)`
-	/*position: relative;*/
 `;
 
 const PostItemC = styled.div`
@@ -197,7 +215,7 @@ const PostItemC = styled.div`
 	margin-bottom: 20px;
 	border: 1px solid #f0f0f0;
 	background-color: #ffffff; // image도 들어감.
-	> div { // 이미지
+	> div:not(${CoverImgC}) { // 제목
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
@@ -209,10 +227,6 @@ const PostItemC = styled.div`
 			margin-right: 20px;
 			text-align:right;
 		}
-	}
-	> div:nth-child(2) { // 제목
-		/*color: red;*/
-		color: rgba(0, 0, 0, 0.7);
 	}
 	> div:last-child { // 나머지
 		margin-top: 10px;
@@ -235,8 +249,13 @@ const PostItemC = styled.div`
 	b {
 		font-size: 0.8em;
 	}
+	&:hover {
+		z-index: 0;
+		opacity: 0.8;
+	}
 `;
 
-export {PostThumbnail}
+export { PostThumbnail }
+export { PostViewComp }
 export default PreviewPost;
 //{/*<HoverImgC url={data.subThumbnailList[0]}>안녕</HoverImgC>*/}

@@ -11,7 +11,8 @@ import Coming_soon from "../../Images/coming_soon.jpeg";
 import { Cookies } from "react-cookie";
 import GetTime from "../utils/GetTime";
 import Comments from "./Comments";
-
+import { BsArrowLeftShort } from "react-icons/bs";
+import { BsArrowRightShort } from "react-icons/bs";
 function PostDetail(props) {
 	const cookie = new Cookies();
 	let  { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
@@ -19,47 +20,46 @@ function PostDetail(props) {
 	console.log(props, "props");
 	const { location: { state: { itemId: id } } } = props;
 	const { location: { state: { subList: subList } } } = props;
-	const [ImgIdx, setImgIdx] = useState(0);
+	let [ImgIdx, setImgIdx] = useState(0);
 	const [data, setData] = useState([]);
 	const [Loading, setLoading] = useState(false);
+	const [reLoad, setReLoad] = useState(false);
 	if (userId === undefined)
-		userId = 0;
+		userId = "0";
 	const [Error, setError] = useState(null);
 	const [Comment, setComment] = useState([]);
 	const ClickScribe = () => {
 		const headers = {
 			//"Authorization": `Bearer ${token}`,
 			"withCreadentials": true,
-			//'Access-Control-Allow-Origin' : '*',
- 			//'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+			"Content-Type": "application/json",
 		};
-		if (subList.indexOf(`/${data.id}/`) === -1) // 구독 안되있는 상태
+		const config = {
+			userId: userId,
+			postId: data.id,
+		}
+		if (data.subList.indexOf(`/${data.id}/`) === -1) // 구독 안되있는 상태
 		{
 			const ApiPost = async () => {
-				const config = {
-					userId: userId,
-					postId: data.id,
-				}
 				await axios.post("http://api.4m2d.shop/api/carts", config, {headers}).then(res => {
 					console.log("구독 성공");
 				}).catch(err => {
-					console.log(err);
 					console.log("구독 실패");
 				});
+				setReLoad(!reLoad);
 			}
 			ApiPost();
 		}
 		else { //구독 해제
+			console.log(userId, "구독 유저ID");
+			console.log(data.id, "구독 상품ID");
 			const ApiDelete = async () => {
-				const config = {
-					userId: userId,
-					postId: data.id,
-				};
-				await axios.delete(`http://api.4m2d.shop/api/carts`, config, { headers }).then(res => {
+				await axios.delete(`http://api.4m2d.shop/api/carts/${userId}/${data.id}`,{ headers }).then(res => {
 					console.log("구독 해제 성공");
 				}).catch(err => {
 					console.log("구독 해제 실패");
 				});
+				setReLoad(!reLoad);
 			}
 			ApiDelete();
 		}
@@ -79,7 +79,7 @@ function PostDetail(props) {
 			setLoading(true);
 		};
 		ApiGet();
-	}, [])
+	}, [reLoad])
 
 	const refreshFunction = (newComment) => {
 		console.log("refreshFunction");
@@ -87,17 +87,8 @@ function PostDetail(props) {
 		setComment(Comment.concat(newComment));
 	};
 
-	const SelectPicture = (e, flag) => {
-		if (flag == 0) {
-			if (ImgIdx <= 0)
-				return;
-			setImgIdx(ImgIdx - 1)
-		}
-		else {
-			if (ImgIdx + 1 >= data.image.length)
-				return;
-			setImgIdx(ImgIdx + 1);
-		}
+	const SelectPicture = (flag) => {
+		setImgIdx(flag);
 	};
 	if (!Loading)
 		<div>error</div>
@@ -111,25 +102,31 @@ function PostDetail(props) {
 					<PostDetailHeaderC>
 						<PostDetailMainC>
 							<BackImg url={data.image[ImgIdx]} />
-							<LeftRightBtnC>
-								<div
-									onClick={(e) => {
-										SelectPicture(e, 0);
-									}}
-								>
-									<img src={process.env.PUBLIC_URL + "/img/LeftArrow.png"} />
-								</div>
-								<div>
-									{ImgIdx + 1}/{data.image.length}
-								</div>
-								<div
-									onClick={(e) => {
-										SelectPicture(e, 1);
-									}}
-								>
-									<img src={process.env.PUBLIC_URL + "/img/RightArrow.png"} />
-								</div>
+						<LeftRightBtnC>
+							<div>
+
+								<BsArrowLeftShort size={25} onClick={() => {
+									if (ImgIdx === 0)
+									ImgIdx = 1;
+									SelectPicture(ImgIdx - 1);
+								}} />
+							</div>
+							{data.image.map((data, idx) => {
+								console.log("hi");
+								return (<ChangeBtnC flag={idx === ImgIdx }onClick={() => {
+										SelectPicture(idx);
+									}}></ChangeBtnC>)
+							})}
+							<div>
+
+								<BsArrowRightShort size={25} onClick={() => {
+									if (ImgIdx >= data.image.length)
+										ImgIdx = data.image.length - 1;
+									SelectPicture(ImgIdx + 1);
+								} }/>
+							</div>
 							</LeftRightBtnC>
+
 						</PostDetailMainC>
 						<PostDetailInfoC>
 							<TitleC>
@@ -147,7 +144,7 @@ function PostDetail(props) {
 							</TitleC>
 							<PriceAndDateC>
 								<div>{data.price.toLocaleString()}<b>원</b></div>
-								<DateC>{GetTime(data.createdAt)}</DateC>
+								<DateC>{GetTime(data.updatedAt)}</DateC>
 							</PriceAndDateC>
 							<LocationAndViewsC>
 								<LocationArea>
@@ -172,7 +169,7 @@ function PostDetail(props) {
 							{userId === "0" ?
 								(<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code"><SubscribeBtn>로그인</SubscribeBtn></a>)
 								:
-								(subList.indexOf(`/${data.id}/`) === -1 ?
+								(data.subList.indexOf(`/${data.id}/`) === -1 ?
 									<SubscribeBtn onClick={e => {
 										ClickScribe();
 									}}>구독</SubscribeBtn>
@@ -202,6 +199,16 @@ function PostDetail(props) {
 
 // CSS style ----------------------------------------------------
 
+const StatusBar = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 250px;
+	margin-top: 125px;
+	margin-bottom: 125px;
+	background-color: rgba(0,0,0, 0.5);
+`;
 
 const PostDetailC = styled.div`
 	width: 1200px;
@@ -218,17 +225,32 @@ const PostDetailHeaderC = styled.div`
 	padding-bottom: 30px;
 	border-bottom: 1px solid #c0c0c0;
 `;
+
+const ChangeBtnC = styled.div`
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	margin-right: 10px;
+	border: 1px solid #c0c0c0;
+	cursor: pointer;
+	background-color: ${(props) => props.flag ? "rgba(0,0,0,0.1)" : "white"};
+`;
+
 const LeftRightBtnC = styled.div`
+	margin: 0 auto;
 	bottom: 0px;
 	padding: 0;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
 	margin-top: 20px;
-	> div {
+	> div:not(${ChangeBtnC}) {
+		margin-right: 10px;
 		cursor: pointer;
 	}
 `;
+
 const PostDetailMainC = styled.div`
 
 	display: flex;

@@ -22,14 +22,11 @@ async function getList(id)
 	}
 function InfoList({id, url})
 {
-
 	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage, setPostsPerPage] = useState(10);
+	const [postsPerPage, setPostsPerPage] = useState(8);
 	const indexOfLast = currentPage * postsPerPage; //
 	const indexOfFirst = indexOfLast - postsPerPage; //
-
-	const userId = 1;
-	console.log(id, "아이디");
+	let userId = 1;
 	const [state] = useAsync(() => getList(id), [id]);
 	let { loading, data: list, error } = state;
 	if (loading) return <div>Loading...</div>;
@@ -275,7 +272,7 @@ const LinkC = styled(Link)`
 	font-weight: 600;
 	font-size: 18px;
 	text-decoration: none;
-	color: rgb(99, 178, 225);
+	/*color: black;*/
 	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
