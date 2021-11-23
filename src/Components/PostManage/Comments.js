@@ -28,7 +28,7 @@ export default function Comments(props) {
 		const variables = {
 			userId: props.userId,
 			postId: props.postId,
-			content: commentValue,
+			content: commentValue
 		};
 		axios.post('http://api.4m2d.shop/api/comments/', variables, {headers}).then((response) => {
 			console.log('댓글 올리기 성공');
