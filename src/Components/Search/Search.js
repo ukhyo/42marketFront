@@ -80,54 +80,16 @@ function Searc(props) {
 	);
 }
 const CateNameC = styled.div`
-	margin-top: 50px;
+	margin-top: 30px;
 	/*margin-bottom: 20px;*/
 	font-size: 20px;
 	line-height: 10px;
 	font-weight: 600;
 `;
 
-const MenuTriggerC = styled.button`
-	position: absolute;
-	top: 35px;
-	right: 20px;
-	cursor: pointer;
-	background-color: transparent;
-	border:none;
-`;
-
-
-const MenuC = styled.nav`
-	z-index: 5;
-	background: #ffffff;
-	border-radius: 8px;
-	position: absolute;
-	top: 55px;
-	right: -40px;
-	width: 110px;
-	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-	opacity: ${props => (props.active ? '1' : '0')};
-	visibility: ${props => (props.active ? 'visible' : 'hidden')};
-	transform: ${props => (props.active ? 'translateY(0)' : 'translateY(-20px)')};
-	transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-	> ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		> li {
-			border-bottom: 1px solid #dddddd;
-			> span {
-				text-decoration: none;
-				color: rgba(0, 0, 0, 0.7);
-				padding: 10px 15px;
-				display: block;
-			}
-		}
-	}
-`;
-
 const NameAndSortC = styled.div`
 	width: 1200px;
+	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
 	position:relative;
