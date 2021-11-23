@@ -49,7 +49,7 @@ function InfoList({id, url})
 	console.log(list, "리스트안");
 	console.log(url, "유알엘 비교");
 	console.log(userId, id, "두개 비겨");
-	if (userId === Number(id))
+	if (userId === id)
 	{
 		return (
 			<InfoListC>
@@ -109,7 +109,7 @@ function InfoList({id, url})
 		);
 			}
 
-	if ( userId !== Number(id) )
+	if ( userId !== id )
 	{
 		return (
 			<InfoListC flag={url === "manage"}>
