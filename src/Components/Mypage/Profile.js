@@ -3,7 +3,7 @@ import axios from "axios";
 import Coming_soon from "../../Images/coming_soon.jpeg";
 import useAsync from "./useAsync";
 import styled from "styled-components";
-import Badge from "./Badge";
+// import Badge from "./Badge";
 import { FaImage } from 'react-icons/fa';
 import { timeout } from "q";
 import { useSelector } from "react-redux";
@@ -23,10 +23,13 @@ function	ProfileBar({ url })
 	const cookie = new Cookies();
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const [state] = useAsync(() => getProfile(id), [id]);
+	console.log(id, "id");
+	console.log(state, "state");
 	const [onButton, setOnButton] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [intro, setIntro] = useState("");
 	const { loading, data: profile, error }  = state;
+
 	const onChangeImg = (e) => {
 		if (isLoading)
 			return ;
@@ -126,10 +129,10 @@ function	ProfileBar({ url })
 					<button  onClick={submitHandler}>등록</button>
 				</ModifyIntroC>
 				}
-				{
+				{/* {
 					profile &&
 						<Badge profile={profile}/>
-				}
+				} */}
 
 			</ProfileBarC>
 		);
@@ -176,7 +179,7 @@ function	ProfileBar({ url })
 					<button  onClick={submitHandler}>등록</button>
 				</ModifyIntroC>
 				} */}
-				<Badge />
+				{/* <Badge /> */}
 			</ProfileBarC>
 		);
 }

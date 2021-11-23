@@ -11,10 +11,10 @@ async function getBadge(userId)
 	return response.data;
 }
 
-function Badge({profile}) {
-	const [state] = useAsync(() => getBadge(profile.id), [profile.id]);
+function Badge(pros) {
+	// const [state] = useAsync(() => getBadge(profile.id), [profile.id]);
 	const [CheckBadge, setCheckBadge] = useState(false);
-	const { loading, data: badges, error }  = state;
+	// const { loading, data: badges, error }  = state;
 
 	if (loading) return <div>Loading</div>;
 	if (error) return <div>Error occured</div>
