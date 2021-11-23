@@ -16,7 +16,12 @@ async function getList(id)
 {
 	const response = await axios.get(
 		`http://api.4m2d.shop/api/users/${id}`
-		);
+	).then(res => {
+		console.log(res, "성공?");
+		return res;
+	}).catch(err => {
+		console.log(err, "실패");
+		});
 		return response.data;
 	}
 function InfoList({id, url})
