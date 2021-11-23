@@ -97,7 +97,7 @@ const PageListC = styled.div`
 const PageNumberC = styled.div`
 	width: 30px;
 	height: 30px;
-	line-height: 25px;
+	align-items:center;
 	margin-right: 5px;
 	background-color: ${(props) => (props.flag ? "rgb(130, 130, 238)" : "#fdfdfd")};
 	border: 1px solid gray;

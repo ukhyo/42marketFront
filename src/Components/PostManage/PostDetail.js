@@ -123,9 +123,12 @@ function PostDetail(props) {
 							<div>
 
 								<BsArrowRightShort size={25} onClick={() => {
-									if (ImgIdx >= data.image.length - 1)
-										ImgIdx = data.image.length - 2;
-									SelectPicture(ImgIdx + 1);
+									if (ImgIdx >= data.image.length - 1) {
+										ImgIdx = data.image.length - 1;
+										SelectPicture(ImgIdx);
+									}
+									else
+										SelectPicture(ImgIdx + 1)
 								} }/>
 							</div>
 							</LeftRightBtnC>
