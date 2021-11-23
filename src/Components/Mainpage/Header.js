@@ -47,7 +47,6 @@ function Header() {
 						setLoading(!Loading);
 						window.scrollTo({
 							top: 0,
-							behavior: "smooth",
 						})
 					}}>
 						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/Logo1.png"} />
