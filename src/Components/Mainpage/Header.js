@@ -12,16 +12,11 @@ function Header() {
 	const cookie = new Cookies()
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 
-
 	const history = useHistory();
 	const [text, setText] = useState("");
 	if (userId === undefined)
 		userId = "0";
 	function onChange(e) {
-		cookie.remove('Authorization', {
-			path: '/',
-			domain: '.4m2d.shop',
-		});
 		setText(e.target.value);
 	}
 	const check = (e) => {
@@ -103,7 +98,14 @@ function Header() {
 					{token ?
 						<LinkC onClick={() => {
 							const LogOut = async () => {
-								await axios.get("http://api.4m2d.shop/api/logout");
+								cookie.remove('Authorization', {
+									path: '/',
+									domain: '.4m2d.shop',
+								});
+								cookie.remove('userId', {
+									path: '/',
+									domain: '.4m2d.shop',
+								});
 							}
 							LogOut();
 					}}>
