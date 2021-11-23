@@ -77,9 +77,9 @@ function Searc(props) {
 	);
 }
 const CateNameC = styled.div`
-	margin-top: 30px;
+	/*margin-top: 30px;*/
 	margin-bottom: 20px;
-	font-size: 20px;
+	font-size: 24px;
 	line-height: 10px;
 	font-weight: 600;
 `;
@@ -90,6 +90,7 @@ const NameAndSortC = styled.div`
 	display: flex;
 	justify-content: space-between;
 	position:relative;
+	margin-top: 65px;
 `;
 
 const SectionC = styled.section`

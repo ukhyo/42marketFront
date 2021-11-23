@@ -135,6 +135,7 @@ const SectionC = styled.section`
 const PostViewC = styled.div`
 	width: 1200px;
 	margin: 0px auto;
+	margin-top: 55px;
 	> h2 {
 		font: Nanum Gothic;
 		font-size: 20px;

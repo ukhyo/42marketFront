@@ -127,7 +127,7 @@ const NotFoundC = styled.div`
 
 const MenuTriggerC = styled.button`
 	position: absolute;
-	top: 15px;
+	top: -10px;
 	right: 20px;
 	cursor: pointer;
 	background-color: transparent;
@@ -187,12 +187,12 @@ const MenuC = styled.nav`
 `;
 
 const NameAndSortC = styled.div`
-	margin-top: 40px;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	position:relative;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+	margin-top: 65px;
 `;
 const SectionC = styled.section`
 	width: 1200px;
@@ -200,9 +200,9 @@ const SectionC = styled.section`
 `;
 
 const CateNameC = styled.div`
-	margin-top: 40px;
+	/*margin-top: 30px;*/
 	/*margin-bottom: 20px;*/
-	font-size: 20px;
+	font-size: 24px;
 	line-height: 10px;
 	font-weight: 600;
 `;
