@@ -123,8 +123,8 @@ function PostDetail(props) {
 							<div>
 
 								<BsArrowRightShort size={25} onClick={() => {
-									if (ImgIdx >= data.image.length)
-										ImgIdx = data.image.length - 1;
+									if (ImgIdx >= data.image.length - 1)
+										ImgIdx = data.image.length - 2;
 									SelectPicture(ImgIdx + 1);
 								} }/>
 							</div>
