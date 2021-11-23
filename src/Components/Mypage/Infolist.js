@@ -16,7 +16,12 @@ async function getList(id)
 {
 	const response = await axios.get(
 		`http://api.4m2d.shop/api/users/${id}`
-		);
+	).then(res => {
+		console.log(res, "성공?");
+		return res;
+	}).catch(err => {
+		console.log(err, "실패");
+		});
 		return response.data;
 	}
 function InfoList({id, url})
@@ -47,7 +52,7 @@ function InfoList({id, url})
 	{
 		return (
 			<InfoListC>
-				{currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
+				{list.length >= 1 && currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
 					return (
 						<PostListC key={index} flag={url === "manage"}>
@@ -107,7 +112,7 @@ function InfoList({id, url})
 	{
 		return (
 			<InfoListC flag={url === "manage"}>
-				{currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
+				{list.length >= 1 && currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
 					return (
 						<PostListC key={index} flag={url === "manage"}>
