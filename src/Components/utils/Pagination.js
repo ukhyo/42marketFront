@@ -8,7 +8,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 const Pagination = ({ postsPerPage, totalPosts, paginate, current }) => {
 	const ScrollToTop = () => {
 		window.scrollTo({
-			top: 100,
+			top: 0,
 			behavior: "smooth",
 		})
 	}
