@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import { Cookies } from "react-cookie";
+import { useCookies, Cookies } from "react-cookie";
 import { useSelector } from "react-redux";
 import { setUserId } from "../../modules/User";
 import { FiLogOut } from "react-icons/fi";
@@ -10,6 +10,8 @@ import axios from "axios";
 
 function Header() {
 	const cookie = new Cookies()
+	const [cookies, setCookie, removeCookie] = useCookies(["Authorization"]);
+
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 
 
@@ -18,8 +20,7 @@ function Header() {
 	if (userId === undefined)
 		userId = "0";
 	function onChange(e) {
-		console.log(document.cookie);
-		console.log('debug');
+		console.log(cookies);
 		setText(e.target.value);
 	}
 	const check = (e) => {
