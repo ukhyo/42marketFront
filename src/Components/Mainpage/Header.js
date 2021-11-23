@@ -21,6 +21,8 @@ function Header() {
 		userId = "0";
 	function onChange(e) {
 		console.log(cookies);
+		removeCookie("Authorization");
+		console.log(cookies);
 		setText(e.target.value);
 	}
 	const check = (e) => {
