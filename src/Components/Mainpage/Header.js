@@ -19,6 +19,7 @@ function Header() {
 		userId = "0";
 	function onChange(e) {
 		console.log(document.cookie);
+		console.log('debug');
 		setText(e.target.value);
 	}
 	const check = (e) => {
