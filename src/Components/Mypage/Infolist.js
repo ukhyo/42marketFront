@@ -88,8 +88,8 @@ function InfoList({id, url})
 									<span>{posts.price}원</span>
 								</PostInfosTwo__PriceC>
 								<PostInfosTwo__LookupC>
-									<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.view}</span>
-									<span><b><AiOutlineEye /></b> 30 </span>
+									<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.subscribes}</span>
+									<span><b><AiOutlineEye /></b> {posts.view} </span>
 								</PostInfosTwo__LookupC>
 							</PostInfosTwoC>
 							<PostCategoryC>
@@ -148,8 +148,8 @@ function InfoList({id, url})
 									<span>{posts.price}원</span>
 								</PostInfosTwo__PriceC>
 								<PostInfosTwo__LookupC>
-									<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.view}</span>
-									<span><b><AiOutlineEye /></b> 30 </span>
+									<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.subscribes}</span>
+									<span><b><AiOutlineEye /></b> {posts.view} </span>
 								</PostInfosTwo__LookupC>
 							</PostInfosTwoC>
 							<PostCategoryC>
