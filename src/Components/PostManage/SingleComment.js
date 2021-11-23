@@ -47,7 +47,7 @@ export default function SingleComment(props) {
             <Comment
                 // actions={actions}
                 author={props.comment.userIntraId}
-                avatar={<Avatar src='#' alt />} //유저 이미지 추가해야돼
+                avatar={<Avatar src={props.comment.image} alt />} //유저 이미지 추가해야돼
                 content={ <p>{props.comment.content}</p> }
             />
             {/* {OpenReply &&
