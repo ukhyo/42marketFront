@@ -9,7 +9,7 @@ const DropdownMenu = (props) => {
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const dropdownRef = useRef(null);
 	const [status, setStatus] = useState(props.status);
-	const statusArr = ["판매중", "판매완료"];
+	const statusArr = ["판매중", "판매완료", "삭제중"];
 	const [isActive, setIsActive] = useState(false);
 	const onClick = () => setIsActive(!isActive);
 	const statusChange = (e, idx) => {
@@ -22,6 +22,7 @@ const DropdownMenu = (props) => {
 				return;
 		}
 		const PostPatch = async () => {
+			console.log(idx, "삭제가되니?");
 			const headers = {
 				"Authorization": `Bearer ${token}`,
 			};
@@ -31,6 +32,8 @@ const DropdownMenu = (props) => {
 			setStatus(idx);
 			await axios.patch(`http://api.4m2d.shop/api/posts/${props.id}`, config, {headers}).then(res => {
 				alert("상태변경에 성공했습니다.");
+				if (idx === 2)
+					window.location.reload();
 			}).catch(err => {
 				console.log(err, "실패");
 			});
