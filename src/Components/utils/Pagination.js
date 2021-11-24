@@ -113,7 +113,7 @@ const PageNumberC = styled.div`
 	}
 	> div {
 		position: absolute;
-		top: 4px;
+		top: 9px;
 		left: 9px;
 	}
 `;
