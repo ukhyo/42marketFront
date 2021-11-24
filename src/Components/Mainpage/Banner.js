@@ -11,7 +11,7 @@ import Header from "./Header";
 import image1 from "../img/1.jpg";
 import image2 from "../img/2.jpg";
 import image3 from "../img/3.jpg";
-
+//import image4 from "../img/ban.png";
 
 function MainBanner() {
 	const [idx, setIdx] = useState(0);
@@ -27,7 +27,7 @@ function MainBanner() {
 		<MainC>
 			<ImagesC>
 				<DivC>
-					<ImageC url={images[idx]} flag={0 === idx}/>
+					<ImageC url={process.env.PUBLIC_URL + "/img/ban.png"} />
 				</DivC>
 			</ImagesC>
 		</MainC>
