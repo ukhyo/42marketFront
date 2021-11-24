@@ -56,10 +56,6 @@ const ImagesC = styled.div`
 	> div {
 		width: 1200px;
 		height: 700px;
-		> img {
-		/*display: none;*/
-		width: 1200px;
-		height: 460px;
 
 		/*transition: 1s ease-in-out;*/
 		}
@@ -71,7 +67,7 @@ const MainC = styled.main`
 	/*overflow: hidden;*/
 	margin: 0 auto;
 	width: 1200px;
-	height: 460px;
+	height: 700px;
 `;
 
 
