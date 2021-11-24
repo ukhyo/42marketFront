@@ -13,7 +13,7 @@ import Pagination from "../utils/Pagination"
 
 function PostThumbnail({ data, key, subList, flag}) {
 	let title;
-	data.title.length > 10 ? title = data.title.slice(0, 10) + "..."
+	data.title.length > 9 ? title = data.title.slice(0, 8) + "..."
 		: title = data.title;
 	console.log(flag, "플래그체크");
 	return (
