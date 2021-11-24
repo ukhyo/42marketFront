@@ -114,7 +114,7 @@ const PageNumberC = styled.div`
 	> div {
 		position: absolute;
 		top: 9px;
-		left: 9px;
+		left: 11px;
 	}
 `;
 
