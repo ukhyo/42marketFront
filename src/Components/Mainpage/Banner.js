@@ -36,12 +36,12 @@ function MainBanner() {
 
 const DivC = styled.div`
 	width: 1200px;
-	height: 460px;
+	height: 700px;
 `;
 
 const ImageC = styled.div`
 	width: 1200px;
-	height: 460px;
+	height: 700px;
 	background-image: url("${(props) => props.url}");
 	transition: background-image 1s ease-out;
 	background-position: center;
