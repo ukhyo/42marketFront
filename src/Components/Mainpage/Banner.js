@@ -8,9 +8,9 @@ import testBanner from "../img/testBanner.png";
 import banner from "../img/test123.jpg";
 import BannerHeader from "./BannerHeader";
 import Header from "./Header";
-import image1 from "../img/1.jpg";
-import image2 from "../img/2.jpg";
-import image3 from "../img/3.jpg";
+import image1 from "../img/ban.png";
+import image2 from "../img/ban2.png";
+import image3 from "../img/ban3.png";
 //import image4 from "../img/ban.png";
 
 function MainBanner() {
@@ -27,7 +27,7 @@ function MainBanner() {
 		<MainC>
 			<ImagesC>
 				<DivC>
-					<ImageC url={process.env.PUBLIC_URL + "/img/ban.png"} />
+					<ImageC url={images[idx]}/ >
 				</DivC>
 			</ImagesC>
 		</MainC>
