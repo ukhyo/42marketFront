@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import "antd/dist/antd.css"
 import { Comment, Avatar, Button, Input} from 'antd';
-
+import GetTime from "../utils/GetTime";
 const { TextArea } = Input;
 
 //reply 부분 나중에 만들거기 때문에 주석 절대 지우지 마시오
@@ -49,6 +49,7 @@ export default function SingleComment(props) {
                 author={props.comment.userIntraId}
                 avatar={<Avatar src={props.comment.image} alt />} //유저 이미지 추가해야돼
                 content={ <p>{props.comment.content}</p> }
+                datetime= {GetTime(props.comment.createdAt)}
             />
             {/* {OpenReply &&
                 <form style={{ display: 'flex' }} onSubmit={onSubmit}>
