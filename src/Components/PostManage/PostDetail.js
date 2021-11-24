@@ -17,6 +17,7 @@ import { BsArrowLeftShort } from "react-icons/bs";
 import { BsArrowRightShort } from "react-icons/bs";
 function PostDetail(props) {
 	const cookie = new Cookies();
+	const statusName = ["판매중", "판매완료"];
 	let  { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const { location } = props;
 	const { location: { state: { itemId: id } } } = props;
@@ -165,7 +166,7 @@ function PostDetail(props) {
 							<Location>
 								<li>판매자 &nbsp; &nbsp; &nbsp; &nbsp;<Link to={`/mypage/${data.userId}/selllist`}>{data.author}</Link></li>
 								<li>거래장소 &nbsp; &nbsp;<span>{data.local}</span></li>
-								<li>판매상태 &nbsp; &nbsp;<span>판매중</span></li>
+							<li>판매상태 &nbsp; &nbsp;<span>{statusName[data.status]}</span></li>
 								<li>카테고리 &nbsp; &nbsp;<span>{data.category_name}</span></li>
 							</Location>
 							{/* <PostContentsC>
