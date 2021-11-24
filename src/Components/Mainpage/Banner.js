@@ -51,11 +51,11 @@ const ImageC = styled.div`
 const ImagesC = styled.div`
 	display:flex;
 	width: 1200px;
-	height: 460px;
+	height: 700px;
 	overflow: hidden;
 	> div {
 		width: 1200px;
-		height: 460px;
+		height: 700px;
 		> img {
 		/*display: none;*/
 		width: 1200px;
