@@ -49,7 +49,7 @@ export default function SingleComment(props) {
                 author={props.comment.userIntraId}
                 avatar={<Avatar src={props.comment.image} alt />} //유저 이미지 추가해야돼
 				content={<p>{props.comment.content}</p>}
-				datetime={GetTime(props.comment.updatedAt)}
+				datetime={GetTime(props.comment.createdAt)}
             />
             {/* {OpenReply &&
                 <form style={{ display: 'flex' }} onSubmit={onSubmit}>
