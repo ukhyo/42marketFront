@@ -5,31 +5,29 @@ import "./app.css";
 import { Row, Col, Button, Input, Alert } from "reactstrap";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useMediaQuery } from 'react-responsive'
 import Slider from "react-slick";
 
 const App = () => {
-	const setting = {
-		dots: true,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 1,
-		slidesToScroll: 1
-	};
+	const DesktopOrLaptop = useMediaQuery(
+		{ minDeviceWidth: 1200 },
+	)
 	return (
-		<div>
-			<Slider {...setting}>
-				<div>1</div>
-				<div>2</div>
-				<div>3</div>
-				<div>4</div>
-				<div>5</div>
+		<TestC>
+			{DesktopOrLaptop ?
+				<div>안녕하세요</div> :
+			<TestC>반갑습니다.</TestC>}
 
-
-			</Slider>
-
-		</div>
+		</TestC>
 	);
 }
 
+
+const TestC = styled.div`
+	color: red;
+	@media screen and (max-width: 720px) {
+		color :blue;
+	}
+`;
 
 export default App;

@@ -170,7 +170,7 @@ const PostViewLineC = styled.div`
 	flex-wrap: wrap;
 	> div:not(:nth-child(5n))
 	{
-		margin-right: 2.25%;
+		margin-right: 2.5%;
 	}
 `;
 
@@ -202,7 +202,7 @@ const BackImgC = styled.div`
 	border-radius: 15px;
 	box-sizing: border-box;
 	background-image: url("${(props) => props.url}");
-	`;
+`;
 
 
 const LinkC = styled(Link)`
