@@ -13,7 +13,7 @@ import Pagination from "../Components/utils/Pagination"
 
 function M_PostThumbnail({ data, key, subList, flag}) {
 	let title;
-	data.title.length > 8 ? title = data.title.slice(0, 7) + "..."
+	data.title.length >= 7 ? title = data.title.slice(0, 6) + "..."
 		: title = data.title;
 	return (
 		<PostItemC key={key}>
@@ -61,7 +61,7 @@ function M_PostThumbnail({ data, key, subList, flag}) {
 
 function M_PostViewComp({ item, subList, Loading, flag }) {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage, setPostsPerPage] = useState(2);
+	const [postsPerPage, setPostsPerPage] = useState(10);
 	const indexOfLast = currentPage * postsPerPage; //
 	const indexOfFirst = indexOfLast - postsPerPage; //
 	useEffect(() => {
@@ -128,7 +128,6 @@ const TitleAndTTimeC = styled.section`
 
 const SectionC = styled.section`
 	width: 100%;
-	height: 300px;
 `;
 
 const PostViewC = styled.div`
