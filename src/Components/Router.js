@@ -10,16 +10,17 @@ import Search from "./Search/Search";
 import { useMediaQuery } from "react-responsive";
 import { exact } from "prop-types";
 import ABC from "../qqqq";
+import M_Mainpage from "../M_Components/M_Mainpage";
 function Router() {
 	const mobileWidth = useMediaQuery(
-		{maxWidth: 1000}
+		{maxWidth: 600}
 	)
 	console.log(mobileWidth, "width");
 	return (
     <div>
 			{mobileWidth ?
 				<Switch>
-					<Route path={"/"} exact component={ABC}></Route>
+					<Route path={"/"} exact component={M_Mainpage}></Route>
 				</Switch>
 					: <Switch>
 

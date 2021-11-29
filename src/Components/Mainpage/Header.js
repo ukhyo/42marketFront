@@ -70,10 +70,6 @@ function Header() {
 					</HeaderSearchInputC>
 				</HeaderSearchC>
 				<HeaderInfoC>
-				{/*<LinkC to="/product/regi">
-							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
-							<div>판매하기</div>
-						</LinkC>*/}
 					{token ?
 						<LinkC to="/product/regi">
 							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />

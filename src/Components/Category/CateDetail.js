@@ -15,11 +15,11 @@ function CateDetail(props) {
 	const [Loading, setLoading] = useState(false);
 	const [timeFlag, setTimeFlag] = useState(true);
 	const [priceFlag, setPriceFlag] = useState(true);
+	const onClick = () => setIsActive(!isActive);
 
 	console.log(userId, "d");
 	if (userId === undefined)
 		userId = "0";
-	const onClick = () => setIsActive(!isActive);
 	let { undefined: cate } = props.match.params;
 	const catename = ["전체", "전자", "생활", "레저", "패션", "음악/악기", "뷰티", "도서", "나눔", "기타"];
 	const AlignBtn = (e, idx) => {
@@ -103,7 +103,7 @@ function CateDetail(props) {
 			</NameAndSortC>
 			<PostViewC>
 				{Loading && item.postsThumbnailResponseDtoList.length >= 1 ?
-					<PostViewComp item={item.postsThumbnailResponseDtoList} subList={"0"} Loading={Loading} flag={true} />
+					<PostViewComp item={item.postsThumbnailResponseDtoList} subList={item.subList} Loading={Loading} flag={true} />
 					:
 					<NotFoundC>
 						해당 카테고리 상품이 없습니다!

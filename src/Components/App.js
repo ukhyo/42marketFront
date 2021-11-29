@@ -51,10 +51,22 @@ const GlobalStyles = createGlobalStyle`
 		/*background-color: #dbf3f5;*/
 		/*font-family: var(---font-face);*/
 		font-family: 'Noto Sans KR', sans-serif;
+		--color-hover: "rgb(130, 130, 238)";
+		--BackColor: "#fdfdfd";
+		--LineColor: "#c0c0c0";
+		--MintColor: "rgb(178, 232, 229)";
+
+	}
+	html {
+		--color-hover: "rgb(130, 130, 238)";
+		--BackColor: "#fdfdfd";
+		--LineColor: "#c0c0c0";
+		--MintColor: "rgb(178, 232, 229)";
 
 	}
 	:root {
-		--font-size: 16px;
+		font-size: 16px;
+		--color-hover: "rgb(130, 130, 238)";
 		--font-face: 'Noto SansKR';
 	}
 
