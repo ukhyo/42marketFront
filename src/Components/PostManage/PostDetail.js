@@ -68,21 +68,6 @@ function PostDetail(props) {
 	useEffect(() => {
 
 		if (location.state === undefined) props.history.push('/');
-		if (view !== undefined)
-		{
-			if (view.indexOf(`/${id}/`) === -1) // 못찾음.
-			{
-				const temp = view;
-				cookie.remove("view");
-				cookie.set("view", temp + `/${id}/`);
-				viewUpdate();
-			}
-		}
-		else
-		{
-			cookie.set("view", `/${id}/`);
-			viewUpdate();
-		}
 		const ApiGet = async () => {
 			setLoading(false);
 			let flag = "";
