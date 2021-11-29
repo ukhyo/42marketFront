@@ -13,7 +13,7 @@ import Pagination from "../utils/Pagination"
 
 function PostThumbnail({ data, key, subList, flag}) {
 	let title;
-	data.title.length > 10 ? title = data.title.slice(0, 10) + "..."
+	data.title.length > 10 ? title = data.title.slice(0, 9) + "..."
 		: title = data.title;
 	console.log(flag, "플래그체크");
 	return (
@@ -170,7 +170,7 @@ const PostViewLineC = styled.div`
 	flex-wrap: wrap;
 	> div:not(:nth-child(5n))
 	{
-		margin-right: 2.25%;
+		margin-right: 2.5%;
 	}
 `;
 
@@ -202,7 +202,7 @@ const BackImgC = styled.div`
 	border-radius: 15px;
 	box-sizing: border-box;
 	background-image: url("${(props) => props.url}");
-	`;
+`;
 
 
 const LinkC = styled(Link)`

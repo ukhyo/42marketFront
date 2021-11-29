@@ -22,6 +22,7 @@ function Category(props) {
 
 const SectionC = styled.section`
 	width: 100%;
+	min-width: 1200px;
 `;
 
 export default Category;

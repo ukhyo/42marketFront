@@ -11,8 +11,6 @@ import { setToken } from "../../modules/Login";
 import { setUserId } from "../../modules/User";
 
 function Mainpage() {
-	const name = "";
-	document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
 	return (
 		<SectionC>
 			<Header />
@@ -26,6 +24,7 @@ function Mainpage() {
 
 const SectionC = styled.section`
 	width: 100%;
+	min-width: 1200px;
 	margin: 0 auto;
 `;
 

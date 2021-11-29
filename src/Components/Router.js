@@ -7,18 +7,31 @@ import Product from "./Product/Product";
 import Category from "./Category/Category";
 import ProductEdit from "./Product/ProductEdit";
 import Search from "./Search/Search";
+import { useMediaQuery } from "react-responsive";
+import { exact } from "prop-types";
+import ABC from "../qqqq";
 function Router() {
+	const mobileWidth = useMediaQuery(
+		{maxWidth: 1000}
+	)
+	console.log(mobileWidth, "width");
 	return (
     <div>
-      <Switch>
-        <Route path={"/"} exact component={Mainpage}></Route>
-        <Route path={"/mypage/:id/:url"} component={Mypage}></Route>
-        <Route path={"/postview/:id"} exact component={PostDetail}></Route>
-        <Route path={"/product/edit"} exact component={ProductEdit} />
-        <Route path={"/product/:tabs"} exact component={Product}></Route>
-		<Route path={"/category/:id"} exact component={Category} />
-		<Route path={"/search/:id/:word"}  exact component={Search} />
-      </Switch>
+			{mobileWidth ?
+				<Switch>
+					<Route path={"/"} exact component={ABC}></Route>
+				</Switch>
+					: <Switch>
+
+						<Route path={"/"} exact component={Mainpage}></Route>
+						<Route path={"/mypage/:id/:url"} component={Mypage}></Route>
+						<Route path={"/postview/:id"} exact component={PostDetail}></Route>
+						<Route path={"/product/edit"} exact component={ProductEdit} />
+						<Route path={"/product/:tabs"} exact component={Product}></Route>
+						<Route path={"/category/:id"} exact component={Category} />
+						<Route path={"/search/:id/:word"}  exact component={Search} />
+					</Switch>
+		}
     </div>
   );
 }

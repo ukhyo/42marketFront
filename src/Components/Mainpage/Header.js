@@ -43,7 +43,7 @@ function Header() {
 		<HeaderC>
 			<HeaderLineC>
 				<HeaderLogoC>
-					<a href="http://4m2d.shop/" onClick={() => {
+					<a href="http://www.4m2d.shop/" onClick={() => {
 						setLoading(!Loading);
 						window.scrollTo({
 							top: 0,
@@ -133,6 +133,7 @@ function Header() {
 // Header style
 const HeaderC = styled.header`
 	width: 100%;
+	min-width: 1200px;
 	position: sticky;
 	top: 0;
 	z-index: 10;
@@ -143,11 +144,11 @@ const HeaderC = styled.header`
 `;
 
 const HeaderLineC = styled.div`
+	position: relative;
 	width: 1200px;
-	max-width: 1200px;
 	height: 100px;
 	display: flex;
-	justify-content: space-between;
+	/*justify-content: space-between;*/
 	align-items: center;
 `;
 
@@ -161,7 +162,11 @@ const HeaderLogoImgC = styled.img`
 `;
 
 const HeaderSearchC = styled.div`
-	width: 600px;
+	margin-left: 30px;
+	width: 650px;
+	padding-left: 25px;
+	padding-right: 25px;
+	height: 0;
 `;
 
 const HeaderSearchInputC = styled.fieldset`
@@ -219,6 +224,9 @@ const LinkC = styled(Link)`
 `;
 
 const HeaderInfoC = styled.div`
+	position: relative;
+	top: 15px;
+	right:0;
 	display: flex;
 	justify-content: right;
 	width: 350px;
@@ -236,7 +244,6 @@ const HeaderInfoC = styled.div`
 		border-left: 1px solid rgb(0, 0, 0, 0.1);
 	}
 	& div {
-		height: 16px;
 		margin-left: 10px;
 	}
 `;

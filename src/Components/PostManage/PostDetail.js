@@ -12,12 +12,12 @@ import { Cookies } from "react-cookie";
 import GetTime from "../utils/GetTime";
 import Comments from "./Comments";
 import { HiOutlineClock } from 'react-icons/hi';
-
 import { BsArrowLeftShort } from "react-icons/bs";
 import { BsArrowRightShort } from "react-icons/bs";
 function PostDetail(props) {
 	const cookie = new Cookies();
-	let  { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+	const statusName = ["판매중", "판매완료"];
+	let { userId: userId, Authorization: token, view: view } = cookie.getAll();
 	const { location } = props;
 	const { location: { state: { itemId: id } } } = props;
 	const { location: { state: { subList: subList } } } = props;
@@ -66,16 +66,35 @@ function PostDetail(props) {
 		}
 	};
 	useEffect(() => {
+
 		if (location.state === undefined) props.history.push('/');
 		const ApiGet = async () => {
 			setLoading(false);
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}/${userId}`).then(res => {
+			let flag = "";
+			if (view !== undefined)
+			{
+				if (view.indexOf(`/${id}/`) === -1) // 못찾음.
+				{
+					const temp = view;
+					cookie.remove("view");
+					cookie.set("view", temp + `/${id}/`);
+					flag = "1";
+				}
+				else
+					flag = "0";
+			}
+			else
+			{
+				cookie.set("view", `/${id}/`);
+				flag = "1";
+			}
+			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}/${userId}/${flag}`).then(res => {
 				return res;
 			}).catch(error => {
 				console.log("err? ", error);
 			})
 			console.log(data, "data here?");
-				setData(data);
+			setData(data);
 			setComment(data.commentsList);
 			setLoading(true);
 		};
@@ -165,7 +184,7 @@ function PostDetail(props) {
 							<Location>
 								<li>판매자 &nbsp; &nbsp; &nbsp; &nbsp;<Link to={`/mypage/${data.userId}/selllist`}>{data.author}</Link></li>
 								<li>거래장소 &nbsp; &nbsp;<span>{data.local}</span></li>
-								<li>판매상태 &nbsp; &nbsp;<span>판매중</span></li>
+							<li>판매상태 &nbsp; &nbsp;<span>{statusName[data.status]}</span></li>
 								<li>카테고리 &nbsp; &nbsp;<span>{data.category_name}</span></li>
 							</Location>
 							{/* <PostContentsC>

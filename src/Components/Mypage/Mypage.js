@@ -37,6 +37,7 @@ function	Mypage({match})
 
 const		MypageC = styled.div`
 	width: 100%;
+	min-width: 1200px;
 `;
 
 const		MypageMainC = styled.div`
