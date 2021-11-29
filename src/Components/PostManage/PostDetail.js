@@ -12,13 +12,12 @@ import { Cookies } from "react-cookie";
 import GetTime from "../utils/GetTime";
 import Comments from "./Comments";
 import { HiOutlineClock } from 'react-icons/hi';
-
 import { BsArrowLeftShort } from "react-icons/bs";
 import { BsArrowRightShort } from "react-icons/bs";
 function PostDetail(props) {
 	const cookie = new Cookies();
 	const statusName = ["판매중", "판매완료"];
-	let  { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+	let { userId: userId, Authorization: token, view: view } = cookie.getAll();
 	const { location } = props;
 	const { location: { state: { itemId: id } } } = props;
 	const { location: { state: { subList: subList } } } = props;
@@ -68,6 +67,23 @@ function PostDetail(props) {
 	};
 	useEffect(() => {
 		if (location.state === undefined) props.history.push('/');
+		if (view !== undefined)
+		{
+			if (view.indexOf(`/${id}/`) === -1) // 못찾음.
+			{
+				const viewUpdate = async () => {
+					await axios.put(`http://api.4m2d.shop/api/posts/${id}`);
+				};
+				const temp = view;
+				cookie.remove("view");
+				cookie.set("view", temp + `/${id}/`);
+				viewUpdate();
+			}
+		}
+		else
+		{
+			cookie.set("view", `/${id}/`);
+		}
 		const ApiGet = async () => {
 			setLoading(false);
 			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}/${userId}`).then(res => {
@@ -76,7 +92,8 @@ function PostDetail(props) {
 				console.log("err? ", error);
 			})
 			console.log(data, "data here?");
-				setData(data);
+
+			setData(data);
 			setComment(data.commentsList);
 			setLoading(true);
 		};

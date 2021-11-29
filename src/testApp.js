@@ -7,11 +7,20 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useMediaQuery } from 'react-responsive'
 import Slider from "react-slick";
+import { Cookies } from "react-cookie";
 
 const App = () => {
+	let cookie = new Cookies();
+	cookie.set("view", "/21/");
+	let test = cookie.getAll();
+	console.log(test, "get all");
+	cookie.remove("view");
+	cookie.set("view", "/21//22/");
+	test = cookie.getAll();
 	const DesktopOrLaptop = useMediaQuery(
 		{ minDeviceWidth: 1200 },
-	)
+		)
+	console.log(test, "get all");
 	return (
 		<TestC>
 			{DesktopOrLaptop ?
