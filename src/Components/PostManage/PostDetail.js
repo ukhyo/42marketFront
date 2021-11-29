@@ -68,13 +68,6 @@ function PostDetail(props) {
 	useEffect(() => {
 
 		if (location.state === undefined) props.history.push('/');
-		const viewUpdate = async () => {
-			await axios.put(`http://api.4m2d.shop/api/posts/${id}`).then(res => {
-				console.log(res, "잘되고있나요?");
-			}).catch(err => {
-				console.log(err, "에러부분");
-			});
-		};
 		if (view !== undefined)
 		{
 			if (view.indexOf(`/${id}/`) === -1) // 못찾음.
@@ -92,13 +85,30 @@ function PostDetail(props) {
 		}
 		const ApiGet = async () => {
 			setLoading(false);
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}/${userId}`).then(res => {
+			let flag = "";
+			if (view !== undefined)
+			{
+				if (view.indexOf(`/${id}/`) === -1) // 못찾음.
+				{
+					const temp = view;
+					cookie.remove("view");
+					cookie.set("view", temp + `/${id}/`);
+					flag = "1";
+				}
+				else
+					flag = "0";
+			}
+			else
+			{
+				cookie.set("view", `/${id}/`);
+				flag = "1";
+			}
+			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}/${userId}/${flag}`).then(res => {
 				return res;
 			}).catch(error => {
 				console.log("err? ", error);
 			})
 			console.log(data, "data here?");
-
 			setData(data);
 			setComment(data.commentsList);
 			setLoading(true);
