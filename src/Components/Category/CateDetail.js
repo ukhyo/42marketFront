@@ -68,7 +68,7 @@ function CateDetail(props) {
 						<li onClick={(e) => {
 							AlignBtn(e, 1);
 							setIsActive(!isActive);
-						}}><span>구독순</span></li>
+						}}><span>좋아요순</span></li>
 						<li onClick={(e) => {
 							AlignBtn(e, 2);
 							setIsActive(!isActive);

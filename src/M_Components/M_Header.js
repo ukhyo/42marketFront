@@ -138,7 +138,7 @@ const HeaderC = styled.header`
 `;
 
 const HeaderLineC = styled.div`
-	width: 100%;
+	width: 90%;
 	height: 80px;
 	display: flex;
 	align-items: center;

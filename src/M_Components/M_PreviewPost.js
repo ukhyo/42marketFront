@@ -13,9 +13,8 @@ import Pagination from "../Components/utils/Pagination"
 
 function M_PostThumbnail({ data, key, subList, flag}) {
 	let title;
-	data.title.length > 10 ? title = data.title.slice(0, 9) + "..."
+	data.title.length > 8 ? title = data.title.slice(0, 7) + "..."
 		: title = data.title;
-	console.log(flag, "플래그체크");
 	return (
 		<PostItemC key={key}>
 			{flag &&
@@ -138,7 +137,7 @@ const PostViewC = styled.div`
 	margin-top: 55px;
 	> h2 {
 		font: Nanum Gothic;
-		font-size: 20px;
+		font-size: 1.2rem;
 		font-weight: 600;
 		margin-top: 40px;
 		margin-bottom: 10px;
