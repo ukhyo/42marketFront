@@ -128,11 +128,12 @@ const TitleAndTTimeC = styled.section`
 
 const SectionC = styled.section`
 	width: 100%;
-	/*height: 300px;*/
+	height: 300px;
 `;
 
 const PostViewC = styled.div`
 	width: 80%;
+	max-width: 400px;
 	margin: 0px auto;
 	margin-top: 55px;
 	> h2 {
@@ -167,9 +168,9 @@ const PostViewLineC = styled.div`
 	/*justify-content: space-between;*/
 	align-items: center;
 	flex-wrap: wrap;
-	> div:not(:nth-child(5n))
+	> div:not(:nth-child(2n))
 	{
-		margin-right: 2.5%;
+		margin-right: 10%;
 	}
 `;
 

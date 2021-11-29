@@ -22,6 +22,7 @@ function M_Mainpage() {
 
 const SectionC = styled.section`
 	width: 100%;
+	max-width: 400px;
 	margin: 0 auto;
 `;
 

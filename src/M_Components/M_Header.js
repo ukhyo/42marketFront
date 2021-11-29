@@ -138,7 +138,7 @@ const HeaderC = styled.header`
 `;
 
 const HeaderLineC = styled.div`
-	width: 90%;
+	width: 80%;
 	height: 80px;
 	display: flex;
 	align-items: center;
@@ -147,7 +147,7 @@ const HeaderLineC = styled.div`
 const HeaderLogoC = styled.div`
 	/*width: 25%;*/
 	margin: 0 auto;
-	width: 100%;
+	width: 80%;
 	height: 100%;
 `;
 
@@ -209,13 +209,13 @@ const HeaderSearchC = styled.div`
 	`;
 
 const HeaderSearchInputC = styled.fieldset`
-	display: flex;
-	justify-content: space-between;
+	margin: 0 auto;
 	margin-top: 30px;
 	height: 40px;
+	display: flex;
 	align-items: center;
 	padding: 0;
-	width: 100%;
+	width: 80%;
 	border-radius: 15px;
 	border: 1.5px solid ${({ theme }) => theme.color.mintColor};
 	color: var(--color-hover, "red");
@@ -226,13 +226,13 @@ const HeaderSearchInputC = styled.fieldset`
 	}
 	& > input {
 		background-color: #fdfdfd;
-		width: 100%;
+		width: 80%;
 		font-size: 1rem;
 		border: none;
 		outline: none;
 	}
 	& > input:hover {
-		width: 100%;
+		width: 80%;
 		outline: none;
 	}
 	& a {

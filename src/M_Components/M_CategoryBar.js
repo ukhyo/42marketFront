@@ -86,7 +86,7 @@ const CategoryC = styled.div`
 `;
 
 const NameAndSortC = styled.div`
-	width: 100%;
+	width: 80%;
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
