@@ -54,6 +54,7 @@ const GlobalStyles = createGlobalStyle`
 
 	}
 	:root {
+		--font-size: 16px;
 		--font-face: 'Noto SansKR';
 	}
 
