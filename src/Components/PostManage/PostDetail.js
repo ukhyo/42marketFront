@@ -66,14 +66,19 @@ function PostDetail(props) {
 		}
 	};
 	useEffect(() => {
+
 		if (location.state === undefined) props.history.push('/');
+		const viewUpdate = async () => {
+			await axios.put(`http://api.4m2d.shop/api/posts/${id}`).then(res => {
+				console.log(res, "잘되고있나요?");
+			}).catch(err => {
+				console.log(err, "에러부분");
+			});
+		};
 		if (view !== undefined)
 		{
 			if (view.indexOf(`/${id}/`) === -1) // 못찾음.
 			{
-				const viewUpdate = async () => {
-					await axios.put(`http://api.4m2d.shop/api/posts/${id}`);
-				};
 				const temp = view;
 				cookie.remove("view");
 				cookie.set("view", temp + `/${id}/`);
@@ -83,6 +88,7 @@ function PostDetail(props) {
 		else
 		{
 			cookie.set("view", `/${id}/`);
+			viewUpdate();
 		}
 		const ApiGet = async () => {
 			setLoading(false);
