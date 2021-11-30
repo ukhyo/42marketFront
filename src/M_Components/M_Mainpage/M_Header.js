@@ -17,7 +17,7 @@ const M_HeaderInfo = (cookie) => {
 						<InfoNameC onClick={() => {
 								setIsActive(!isActive);
 						}} >
-							<div>내정보</div>
+							<span>Icon? UserId</span>
 						</InfoNameC>
 						<MenuC active={isActive}>
 							  <ul>
@@ -154,8 +154,6 @@ const HeaderLogoC = styled.div`
 	justify-content: space-between;
 	margin: 0 auto;
 	width: ${({ theme }) => theme.widthSize.margin};
-	/*width: 80%;*/
-	/*height: 100%;*/
 	> div:first-child() {
 		/*position: absolute;*/
 		/*top: 0;*/
@@ -209,14 +207,15 @@ const InfoNameC = styled.button`
 	font-weight: 700;
 		font-size: 1rem;
 	/*transition: box-shadow 0.4s ease;*/
-	> div {
-		width: 80px;
-		height: 30px;
-		border-radius: 90px;
-		line-height:35px;
-		font-weight: 700;
+	> span {
 		font-size: 1rem;
-		color: rgba(0, 0, 0, 0.7);
+			/*width: 80px;
+			height: 30px;
+			border-radius: 90px;
+			line-height:35px;
+			font-weight: 700;
+			font-size: 1rem;
+			color: rgba(0, 0, 0, 0.7);*/
 
 	}
 	> a > div {

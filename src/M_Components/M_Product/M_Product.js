@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import Header from "../Mainpage/Header";
-import Footer from "../Mainpage/Footer";
+
 import { Link, Route } from "react-router-dom";
-import ProductRegi from "./ProductRegi";
-import ProductManage from "./ProductManage";
-import ProductEdit from "./ProductEdit";
-function RadioRet({ idx, value, setIdx, flag }) {
+//import M_ProductRegi from "./ProductRegi";
+//import M_ProductManage from "./ProductManage";
+//import M_ProductEdit from "./ProductEdit";
+import M_Header from "../M_Mainpage/M_Header";
+import M_ProductRegi from "./M_ProductRegi";
+import theme from "../../Styles/theme";
+function M_RadioRet({ idx, value, setIdx, flag }) {
 	const ClickEvt = () => {
 		setIdx(idx);
 	}
@@ -20,40 +22,37 @@ function RadioRet({ idx, value, setIdx, flag }) {
 		</span>
 	);
 }
-function ProductStateBar({ path }) {
+function M_ProductStateBar({ path }) {
 	console.log("statebar", path);
 	return (
 		<SectionC>
-			<ProductStateBarC>
+			<ProductStateBarC theme={theme}>
 				<LinkC to="/product/regi">
 					<SpanC flag={path === "regi"}>상품등록</SpanC>
 				</LinkC>
 				<LinkC to="/product/manage">
 					<SpanC flag={path === "manage"}>상품관리</SpanC>
 				</LinkC>
-				{/*<LinkC to="/product/history">
-					<SpanC flag={false}>구매 / 판매내역</SpanC>
-				</LinkC>*/}
 			</ProductStateBarC>
 		</SectionC>
 	);
 }
 
-function Product(props) {
+function M_Product(props) {
 	return (
 		<SectionC>
-			<Header />
-			<ProductStateBar path={props.location.pathname.split("/").pop()} />
-			<Route path={"/product/regi"} component={ProductRegi} />
-			<Route path={"/product/manage"} component={ProductManage} />
+			<M_Header />
+			<M_ProductStateBar path={props.location.pathname.split("/").pop()} />
+			<Route path={"/product/regi"} component={M_ProductRegi} />
+			{/*<Route path={"/product/manage"} component={ProductManage} />*/}
 			{/*<Route path={"/product/edit"} component={ProductEdit} />*/}
-			<Footer />
 		</SectionC>
 	);
 }
 
 const SectionC = styled.section`
 	width: 100%;
+	max-width: 400px;
 	margin: 0 auto;
 `;
 
@@ -68,24 +67,23 @@ const SpanC = styled.span`
 `;
 
 const ProductStateBarC = styled.div`
-	width: 1000px;
+	width: ${({theme}) => theme.widthSize.margin};
 	margin: 0 auto;
 	height: 70px;
 	line-height: 70px;
 	margin-bottom: 60px;
-	${LinkC}:first-child, ${LinkC}:nth-child(2) {
+	${LinkC}:first-child {
 		border-right: 1px solid #c0c0c0;
-		margin-right: 60px;
-		padding-right: 60px;
-		padding-left: 10px;
+		padding-right: 25px;
+		margin-right: 25px;
 	}
 
-	> div {
+	/*> div {
 		width: 505px;
 		/*border-bottom: 1px solid #c0c0c0;*/
-	}
+	}*/
 `;
 
-export { RadioRet }
-export { ProductStateBar };
-export default Product;
+export { M_RadioRet }
+export { M_ProductStateBar };
+export default M_Product;

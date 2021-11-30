@@ -9,11 +9,17 @@ const color = {
 
 const widthSize = {
 	margin: "90%",
+	half: "50%",
+	full: "100%",
 }
 
+const heightSize = {
+	banner: "100px",
+}
 const theme = {
 	color,
 	widthSize,
+	heightSize,
 }
 
 export default theme;
