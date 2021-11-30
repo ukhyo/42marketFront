@@ -159,6 +159,7 @@ const MenuC = styled.nav`
 	border-radius: 8px;
 	position: absolute;
 	top: 35px;
+	right: 0;
 	width: 100px;
 	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 	opacity: ${props => (props.active ? '1' : '0')};
@@ -172,7 +173,8 @@ const MenuC = styled.nav`
 		padding: 0;
 		margin: 0;
 		> li {
-			height: 20px;
+			height: 30px;
+			line-height: 30px;
 			border-bottom: 1px solid #dddddd;
 			> span {
 				text-decoration: none;
