@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { useCookies, Cookies } from "react-cookie";
 import { useSelector } from "react-redux";
-import { setUserId } from "../modules/User";
+import { setUserId } from "../../modules/User";
 import { FiLogOut } from "react-icons/fi";
 import axios from "axios";
-import theme from "../Styles/theme";
+import theme from "../../Styles/theme";
 function M_Header() {
 	const cookie = new Cookies()
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();

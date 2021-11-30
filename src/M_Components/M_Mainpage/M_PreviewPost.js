@@ -7,13 +7,13 @@ import { BsSuitHeartFill } from "react-icons/bs";
 import { BsSuitHeart } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
 import { Cookies, useCookies } from "react-cookie";
-import { currentPosts } from "../Components/utils/Pagination";
-import GetTime from "../Components/utils/GetTime";
-import Pagination from "../Components/utils/Pagination"
+import { currentPosts } from "../../Components/utils/Pagination";
+import GetTime from "../../Components/utils/GetTime";
+import Pagination from "../../Components/utils/Pagination";
 
 function M_PostThumbnail({ data, key, subList, flag}) {
 	let title;
-	data.title.length >= 7 ? title = data.title.slice(0, 6) + "..."
+	data.title.length >= 8 ? title = data.title.slice(0, 7) + "..."
 		: title = data.title;
 	return (
 		<PostItemC key={key}>
@@ -61,26 +61,39 @@ function M_PostThumbnail({ data, key, subList, flag}) {
 
 function M_PostViewComp({ item, subList, Loading, flag }) {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage, setPostsPerPage] = useState(10);
+	const [postsPerPage, setPostsPerPage] = useState(2);
 	const indexOfLast = currentPage * postsPerPage; //
 	const indexOfFirst = indexOfLast - postsPerPage; //
+	const [beforePos, setBeforPos] = useState(0);
+	const mouseDowntHandler = (e) => {
+		setBeforPos(e.clientX);
+	}
+	const mouseUpHandler = (e) => {
+		if (beforePos >= e.clientX)
+		{
+			if (currentPage < 5)
+				setCurrentPage(currentPage + 1);
+		}
+		else
+		{
+			if (currentPage > 1)
+				setCurrentPage(currentPage - 1);
+
+		}
+	}
 	useEffect(() => {
 		if (flag)
 			setPostsPerPage(40);
 	},[])
 	return (
-
 		<SectionC>
-			<PostViewLineC flag={flag}>
+			<PostViewLineC flag={flag} onMouseDown={mouseDowntHandler} onMouseUp={mouseUpHandler}>
 				{
 					Loading && item.length > 0 && currentPosts(item ,indexOfFirst, indexOfLast).map((data, index) => {
 					return (
 						<M_PostThumbnail key={index} data={data} subList={subList} flag={data.status === 1}/>
 						);
 					})
-				}
-				{flag && item.length / postsPerPage >= 1 &&
-					<Pagination postsPerPage={postsPerPage} totalPosts={item.length} paginate={setCurrentPage} current={currentPage}></Pagination>
 				}
 			</PostViewLineC>
 		</SectionC>
@@ -158,6 +171,7 @@ const PostViewC = styled.div`
 
 
 const PostViewLineC = styled.div`
+	cursor: move;
 	width: 100%;
 	height: ${(props) => props.flag ? "" : ""};
 	margin: 10px auto;
@@ -222,10 +236,10 @@ const PostItemC = styled.div`
 		width: 100%;
 		margin-top: 13px;
 
-		padding-left: 10px;
+		padding-left: 8px;
 		font-weight: 600;
 		> b {
-			margin-right: 20px;
+			margin-right: 8px;
 			text-align:right;
 		}
 	}
@@ -237,7 +251,7 @@ const PostItemC = styled.div`
 		justify-content: space-between;
 		align-items: center;
 		> div:last-child {
-			padding-right: 20px;
+			padding-right: 8px;
 			display: flex;
 			> p {
 				margin-right: 5px;

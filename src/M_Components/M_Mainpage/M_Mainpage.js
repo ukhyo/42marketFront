@@ -2,8 +2,6 @@ import styled from "styled-components";
 import React, { useEffect, useState, Component } from "react";
 import { Cookies } from "react-cookie";
 import { useSelector, useDispatch } from "react-redux";
-import { setToken } from "../modules/Login";
-import { setUserId } from "../modules/User";
 import M_Header from "./M_Header";
 import M_CategoryBar from "./M_CategoryBar";
 import M_PreviewPost from "./M_PreviewPost";

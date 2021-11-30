@@ -10,10 +10,10 @@ import Search from "./Search/Search";
 import { useMediaQuery } from "react-responsive";
 import { exact } from "prop-types";
 import ABC from "../qqqq";
-import M_Mainpage from "../M_Components/M_Mainpage";
+import M_Mainpage from "../M_Components/M_Mainpage/M_Mainpage";
 function Router() {
 	const mobileWidth = useMediaQuery(
-		{maxWidth: 600}
+		{maxWidth: 510}
 	)
 	console.log(mobileWidth, "width");
 	return (
@@ -21,6 +21,12 @@ function Router() {
 			{mobileWidth ?
 				<Switch>
 					<Route path={"/"} exact component={M_Mainpage}></Route>
+					{/*<Route path={"/category/:id"} exact component={M_Category} />*/}
+					{/*<Route path={"/mypage/:id/:url"} component={Mypage}></Route>*/}
+					{/*<Route path={"/postview/:id"} exact component={PostDetail}></Route>*/}
+					{/*<Route path={"/product/edit"} exact component={ProductEdit} />*/}
+					{/*<Route path={"/product/:tabs"} exact component={Product}></Route>*/}
+					{/*<Route path={"/search/:id/:word"}  exact component={Search} />*/}
 				</Switch>
 					: <Switch>
 
