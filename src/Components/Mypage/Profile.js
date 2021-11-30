@@ -76,9 +76,8 @@ function	ProfileBar({ url })
 			setIsLoading(true);
 			await axios.patch(`http://api.4m2d.shop/api/users/${userId}`, data, {headers}).then(res => {
 				console.log("성공");
-				setTimeout(() => {
-					window.location.reload();
-				}, 500)
+
+				window.location.reload();
 			}).catch(err => {
 				console.log("실패");
 			});
