@@ -63,7 +63,7 @@ function Searc(props) {
 			</NameAndSortC>
 			<PostViewC>
 				{item.postsThumbnailResponseDtoList.length !== 0 &&
-					<PostViewComp item={item.postsThumbnailResponseDtoList} subList={"0"} Loading={Loading} flag={true} />
+					<PostViewComp item={item.postsThumbnailResponseDtoList} subList={item.subList} Loading={Loading} flag={true} />
 			}
 			</PostViewC>
 			{item.postsThumbnailResponseDtoList.length === 0 &&

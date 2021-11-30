@@ -138,26 +138,23 @@ function ProductRegi(props) {
 	}
 
 	return (
-	<SectionC>
-	  <RegiHeaderC >
+	<SectionC theme={theme} Loading={Loading}>
+	  <RegiHeaderC theme={theme}>
 		<span>기본정보</span>
 		<span> *필수항목</span>
 	  </RegiHeaderC>
-	  <RegiMainC Loading={Loading}>
-		<PictureC>
-		  <SubtitleC>
+	  <RegiMainC theme={theme} Loading={Loading}>
+		<PictureC theme={theme}>
+		  <SubtitleC theme={theme}>
 			상품 이미지<b>*</b>
 		  </SubtitleC>
-		  <InputC>
-			<LabelAndManualC>
+		  <InputC theme={theme}>
+			<LabelAndManualC theme={theme}>
 			  <label for="test12">이미지 등록</label>
 			  <div>
 				<span>- 상품 이미지는 640x640에 최적화 되어 있습니다.</span>
 				<span>- 비율이 1:1인 사진을 올리시면 짤리지 않습니다.</span>
-				<span>
-				  - 이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.
-								</span>
-								<span>- 사진은 Jpeg, Png 형식만 동륵 가능합니다.</span>
+				<span>- 사진은 Jpeg, Png 형식만 동륵 가능합니다.</span>
 			  </div>
 			</LabelAndManualC>
 			<ul>
@@ -198,11 +195,11 @@ function ProductRegi(props) {
 			</ul>
 		  </InputC>
 		</PictureC>
-		<TitleC>
-		  <SubtitleC>
+		<TitleC theme={theme}>
+		  <SubtitleC theme={theme}>
 			제목<b>*</b>
 		  </SubtitleC>
-		  <InputC>
+		  <InputC theme={theme}>
 			<input
 			  onChange={inputChange}
 			  type="text"
@@ -213,32 +210,33 @@ function ProductRegi(props) {
 			<span> {title.length}/40</span>
 		  </InputC>
 		</TitleC>
-		<CategoryC>
-		<SubtitleC>
+		<CategoryC theme={theme}>
+		<SubtitleC theme={theme}>
 			카테고리<b>*</b>
 		</SubtitleC>
-		<FormC>
+		<FormC theme={theme}>
 			<div>
 				<M_RadioRet value="전자" idx={1} flag={idx} setIdx={setIdx} />
 				<M_RadioRet value="생활" idx={2} flag={idx} setIdx={setIdx} />
 				<M_RadioRet value="레저" idx={3} flag={idx} setIdx={setIdx} />
-				<M_RadioRet value="패션" idx={4} flag={idx} setIdx={setIdx} />
-				<M_RadioRet value="음악/악기" idx={5} flag={idx} setIdx={setIdx} />
 			</div>
 			<div>
+				<M_RadioRet value="패션" idx={4} flag={idx} setIdx={setIdx} />
+				<M_RadioRet value="음악/악기" idx={5} flag={idx} setIdx={setIdx} />
 				<M_RadioRet value="뷰티" idx={6} flag={idx} setIdx={setIdx} />
+			</div>
+			<div>
 				<M_RadioRet value="도서" idx={7} flag={idx} setIdx={setIdx} />
 				<M_RadioRet value="나눔" idx={8} flag={idx} setIdx={setIdx} />
 				<M_RadioRet value="기타" idx={9} flag={idx} setIdx={setIdx} />
 			</div>
 		</FormC>
 		</CategoryC>
-
-		<TradeLocationC>
-		  <SubtitleC>
+		<TradeLocationC theme={theme}>
+		  <SubtitleC theme={theme}>
 			거래장소<b>*</b>
 		  </SubtitleC>
-		  <InputC>
+		  <InputC theme={theme}>
 			<div>
 			  <button onClick={GaepoClick}>개포</button>
 			  <button onClick={SeochoClick}>서초</button>
@@ -255,11 +253,11 @@ function ProductRegi(props) {
 			</div>
 		  </InputC>
 		</TradeLocationC>
-		<PriceC>
-		  <SubtitleC>
+		<PriceC theme={theme}>
+		  <SubtitleC theme={theme}>
 			가격<b>*</b>
 		  </SubtitleC>
-		  <InputC>
+		  <InputC theme={theme}>
 			<input
 			  type="number"
 			  placeholder="숫자만 입력해주세요."
@@ -272,14 +270,14 @@ function ProductRegi(props) {
 			<span>원</span>
 		  </InputC>
 		</PriceC>
-		<ContentC>
+		<ContentC theme={theme}>
 		  <ContentSub>설명</ContentSub>
-		  <InputC>
+		  <InputC theme={theme}>
 			<textarea
 			  type="text"
 			  cols="40"
 			  rows="5"
-			  placeholder="상품 설명을 입력해주세요."
+			  placeholder="최대 200글자까지 가능합니다."
 			  value={content}
 							onChange={(e) => {
 								if (e.target.value.length > 200) {
@@ -289,8 +287,8 @@ function ProductRegi(props) {
 				setContent(e.target.value);
 			  }}
 						></textarea>
-						<div> {content.length}/200</div>
-		  </InputC>
+				<div>{content.length}/200</div>
+			</InputC>
 		</ContentC>
 		<SubmitC>
 					<button onClick={() => {
@@ -308,28 +306,29 @@ function ProductRegi(props) {
 // width: 1000, 1200 비교해보기. 팀원들한테 상의 후 결정 => 수정시 Product.js stateBar 수정해야함
 
 const RegiHeaderC = styled.div`
-	width: 1000px;
+	width: ${({theme}) => theme.widthSize.margin};
 	margin: 0 auto;
-	height: 65px;
+	height: 30px;
 	> span:first-child {
-		font-size: 30px;
+		font-size: 1.5rem;
 		margin-right: 50px;
 	}
 	> span:last-child {
-		font-size: 20px;
+		font-size: 1rem;
 		color: red;
 	}
 	border-bottom: 1px solid black;
 `;
 
 const RegiMainC = styled.div`
-	width: 1000px;
+	width: ${({theme}) => theme.widthSize.margin};
 	margin: 0 auto;
-	margin-top: 50px;
+	max-width: 400px;
+	margin-top: 10px;
 	font-size: 15px;
 	cursor: ${(props) => (props.Loading ? 'wait' : '')};
 	> div {
-		display: flex;
+		/*display: flex;*/
 	}
 	> div:not(div:last-child) {
 		border-bottom: 1px solid #c0c0c0;
@@ -340,14 +339,14 @@ const RegiMainC = styled.div`
 	`;
 
 const InputC = styled.div`
-		width: 80%;
+	margin-top: ${({theme}) => theme.heightSize.ten};
+	width: ${({theme}) => theme.widthSize.full};
 `;
 
 const LabelAndManualC = styled.div`
-	display: flex;
-	align-items: center;
 
 	> label {
+		margin-top: 20px;
 		display: inline-block;
 		line-height: 100px;
 		text-align: center;
@@ -359,8 +358,8 @@ const LabelAndManualC = styled.div`
 	> div {
 		display: flex;
 		flex-direction: column;
-		width: 600px;
-		margin-left: 50px;
+		width: ${({theme}) => theme.widthSize.full};
+		margin-top: 10px;
 		> span {
 			font-size: 14px;
 			line-height: 1.5;
@@ -393,7 +392,7 @@ const DeletePostIconC = styled.div`
 `;
 
 const PictureC = styled.div`
-	width: 100%;
+	width: ${({theme}) => theme.widthSize.full};
 	> ${InputC} {
 		input[type="file"] {
 			padding: 0;
@@ -415,59 +414,60 @@ const PictureC = styled.div`
 `;
 
 const SubtitleC = styled.div`
-	width: 20%;
+	width: ${({ theme }) => theme.widthSize.full};
+	margin-top: ${({theme}) => theme.heightSize.twenty};
 	> b {
 		color: red;
 	}
 `;
 
 
-
 const TitleC = styled.div`
-	width: 100%;
+	width: ${({theme}) => theme.widthSize.full};
 	height: 100px;
-	line-height: 96px;
+	line-height: 30px;
 	> ${InputC} {
 		> input {
 			margin-right: 10px;
-			width: 80%;
+			width: ${({theme}) => theme.widthSize.eighty};
 			height: 40px;
 			border: 1px solid black;
 		}
 	}
+`;
 
-	`;
+
+const CategoryC = styled.div`
+	width: ${({theme}) => theme.widthSize.full};
+	height: 160px;
+	line-height: 30px;
+`;
+
 const FormC = styled.div`
-	width: 80%;
-	/*min-width: 960px;*/
+	margin-top: ${({theme}) => theme.heightSize.ten};
+	width: ${({theme}) => theme.widthSize.full};
 	> div > span {
-		margin-right: 50px;
+		margin-right: 15px;
 	}
 	> div {
-		height: 60px;
+		height: 40px;
 	}
 	/*display: flex;*/
 	/*justify-content: space-between;*/
 `;
 
-const CategoryC = styled.div`
-	width: 100%;
-	height: 160px;
-	line-height: 110px;
-`;
-
 const TradeLocationC = styled.div`
-	width: 100%;
+	width: ${({theme}) => theme.widthSize.full};
 	height: 160px;
-	line-height: 90px;
 	> ${InputC} {
 		> div:first-child {
 			height: 50px;
 			> button {
-				width: 100px;
+				width: ${({ theme }) => theme.widthSize.quarter};
+				font-size: 0.8rem;
 				height: 48px;
 				line-height: 48px;
-				margin-right: 20px;
+				margin-right: 10px;
 				background-color: white;
 				border: 1px solid black;
 				&:hover {
@@ -478,7 +478,7 @@ const TradeLocationC = styled.div`
 		> div:last-child {
 			margin-top: 22px;
 			> input {
-				width: 80%;
+				width: ${({theme}) => theme.widthSize.eighty};
 				height: 40px;
 			}
 
@@ -487,13 +487,13 @@ const TradeLocationC = styled.div`
 `;
 
 const PriceC = styled.div`
-	width: 100%;
+	width: ${({theme}) => theme.widthSize.full};
 	height: 100px;
-	line-height: 100px;
+	line-height: 30px;
 	> ${InputC} {
 		> input {
 			border: 1px solid black;
-			width: 30%;
+			width: ${({theme}) => theme.widthSize.eighty};
 			height: 40px;
 			margin-right: 10px;
 			-webkit-appearance: none;
@@ -506,14 +506,12 @@ const PriceC = styled.div`
 	}
 `;
 
-const ContentSub = styled.div`
-	width: 20%;
-	line-height: 70px;
-`;
+
 
 const ContentC = styled.div`
-	width: 100%;
-	height: 160px;
+	width: ${({ theme }) => theme.widthSize.full};
+	margin-top: ${({theme}) => theme.heightSize.twenty};
+	height: 200px;
 	position: relative;
 	> ${SubtitleC} {
 		position: static;
@@ -521,7 +519,7 @@ const ContentC = styled.div`
 		left: 30px;
 	}
 	> ${InputC} {
-		position: relative;
+		display: flex;
 		margin-top: 20px;
 		> textarea {
 			resize: none;
@@ -531,12 +529,18 @@ const ContentC = styled.div`
 			margin-right: 10px;
 		}
 		>  div {
-			position: absolute;
-			top: 53px;
-			right: 100px;
+			line-height: 120px;
 		}
 	}
+	> div:last-child {
+		margin-top: 5px;
+	}
 	padding-bottom: 15px;
+`;
+
+const ContentSub = styled.div`
+	width: 100%;
+	line-height: 30px;
 `;
 
 const SubmitC = styled.div`
@@ -563,9 +567,10 @@ const SubmitC = styled.div`
 //background-color: rgb(178, 236, 238);
 
 const SectionC = styled.section`
-	width: 100%;
+	width: ${({theme}) => theme.widthSize.full};
 	max-width: 400px;
 	margin: 0 auto;
+	cursor: ${(props) => (props.Loading ? "wait" : "")};
 `;
 
 export default ProductRegi;

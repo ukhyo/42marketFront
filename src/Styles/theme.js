@@ -11,10 +11,15 @@ const widthSize = {
 	margin: "90%",
 	half: "50%",
 	full: "100%",
+	thirds: "33%",
+	quarter: "25%",
+	eighty: "80%",
 }
 
 const heightSize = {
 	banner: "100px",
+	ten: "10px",
+	twenty: "20px",
 }
 const theme = {
 	color,

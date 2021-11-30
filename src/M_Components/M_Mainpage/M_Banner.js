@@ -31,7 +31,8 @@ const DivC = styled.div`
 `;
 
 const ImageC = styled.div`
-	width: ${({theme}) => theme.widthSize.full};
+	margin: 0 auto;
+	width: ${({theme}) => theme.widthSize.margin};
 	height: ${({theme}) => theme.heightSize.banner};
 	background-image: url("${(props) => props.url}");
 	transition: background-image 1s ease-out;
@@ -42,7 +43,7 @@ const ImageC = styled.div`
 const ImagesC = styled.div`
 	display:flex;
 	margin : 0 auto;
-	width: ${({theme}) => theme.widthSize.margin};
+	width: ${({theme}) => theme.widthSize.full};
 	height: ${({theme}) => theme.heightSize.banner};
 	overflow: hidden;
 	> div {
