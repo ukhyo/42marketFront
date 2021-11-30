@@ -19,7 +19,7 @@ function	MypageMain(props)
 			<NaviBar name={name}/>
 			{
 				url === "profile" ?
-					<ProfileBar url={name}/> : 
+					<ProfileBar url={name}/> :
 					<InfoList id={id} url={url} />
 			}
 		</MypageMainC>
@@ -45,7 +45,7 @@ const		MypageC = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-content: center;
-	max-width: 500px;
+	max-width: 400px;
 
 `;
 
