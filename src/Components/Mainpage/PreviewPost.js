@@ -16,6 +16,8 @@ function PostThumbnail({ data, key, subList, flag}) {
 	data.title.length > 10 ? title = data.title.slice(0, 9) + "..."
 		: title = data.title;
 	console.log(flag, "플래그체크");
+	if (subList === undefined)
+		subList = "//";
 	return (
 		<PostItemC key={key}>
 			{flag &&

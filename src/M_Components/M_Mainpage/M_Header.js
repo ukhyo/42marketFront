@@ -136,10 +136,8 @@ function M_Header() {
 const HeaderC = styled.header`
 	width: 100%;
 	max-width: 400px;
-	/*position: sticky;*/
 	margin: 0 auto;
 	margin-top: 20px;
-	/*top: 0;*/
 	z-index: 10;
 	background-color: var(--BackColor);
 `;
@@ -155,8 +153,6 @@ const HeaderLogoC = styled.div`
 	margin: 0 auto;
 	width: ${({ theme }) => theme.widthSize.margin};
 	> div:first-child() {
-		/*position: absolute;*/
-		/*top: 0;*/
 	}
 `;
 
@@ -206,16 +202,8 @@ const InfoNameC = styled.button`
 	text-align: right;
 	font-weight: 700;
 		font-size: 1rem;
-	/*transition: box-shadow 0.4s ease;*/
 	> span {
 		font-size: 1rem;
-			/*width: 80px;
-			height: 30px;
-			border-radius: 90px;
-			line-height:35px;
-			font-weight: 700;
-			font-size: 1rem;
-			color: rgba(0, 0, 0, 0.7);*/
 
 	}
 	> a > div {

@@ -173,6 +173,9 @@ const PostViewC = styled.div`
 
 
 const PostViewLineC = styled.div`
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: ${({flag}) => flag ? "wrap" : ""};
 	white-space:nowrap;
 	overflow:auto;
 	cursor: move;
@@ -180,13 +183,14 @@ const PostViewLineC = styled.div`
 	height: ${(props) => props.flag ? "" : ""};
 	margin: 10px auto;
 	margin-bottom: 20px;
-	display: flex;
-	justify-content: space-between;
 	box-sizing: border-box;
 	align-items: center;
 	> div
 	{
-		margin-right: 5%;
+		margin-right: ${({flag}) => flag ? "0px" : "5%"};
+	}
+	> div:nth-child(2n) {
+		margin-left: ${({flag}) => flag ? "5%" : "0px"};
 	}
 `;
 
@@ -196,7 +200,7 @@ const CoverImgC = styled.div`
 	left:0;
 	width: 100%;
 	height: 50px;
-	margin-top: 150px;
+	margin-top: 100px;
 	line-height: 50px;
 	text-align: center;
 	border-bottom-left-radius: 15px;
@@ -232,6 +236,7 @@ const PostItemC = styled.div`
 	border-radius: 15px;
 	margin-bottom: 20px;
 	border: 1px solid #f0f0f0;
+	box-sizing: border-box;
 	font-size: 0.6rem;
 	background-color: #ffffff; // image도 들어감.
 	> div:not(${CoverImgC}) { // 제목

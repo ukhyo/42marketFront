@@ -12,6 +12,7 @@ import { exact } from "prop-types";
 import ABC from "../qqqq";
 import M_Mainpage from "../M_Components/M_Mainpage/M_Mainpage";
 import M_Product from "../M_Components/M_Product/M_Product";
+import M_Category from "../M_Components/M_Category/M_Category";
 function Router() {
 	const mobileWidth = useMediaQuery(
 		{maxWidth: 510}
@@ -23,8 +24,8 @@ function Router() {
 				<Switch>
 					<Route path={"/"} exact component={M_Mainpage}></Route>
 					<Route path={"/product/:tabs"} exact component={M_Product}></Route>
+					<Route path={"/category/:id"} exact component={M_Category} />
 					{/*<Route path={"/product/edit"} exact component={ProductEdit} />*/}
-					{/*<Route path={"/category/:id"} exact component={M_Category} />*/}
 					{/*<Route path={"/mypage/:id/:url"} component={Mypage}></Route>*/}
 					{/*<Route path={"/postview/:id"} exact component={PostDetail}></Route>*/}
 					{/*<Route path={"/search/:id/:word"}  exact component={Search} />*/}
