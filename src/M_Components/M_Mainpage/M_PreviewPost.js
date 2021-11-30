@@ -88,7 +88,7 @@ function M_PostViewComp({ item, subList, Loading, flag }) {
 	},[])
 	return (
 		<SectionC>
-			<PostViewLineC flag={flag} onPointerDown={mouseDowntHandler} onPointerUp={mouseUpHandler}>
+			<PostViewLineC flag={flag} onTouchStart={mouseDowntHandler} onTouchEnd={mouseUpHandler}>
 				{
 					Loading && item.length > 0 && currentPosts(item ,indexOfFirst, indexOfLast).map((data, index) => {
 					return (
