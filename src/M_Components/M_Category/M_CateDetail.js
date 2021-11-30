@@ -62,7 +62,7 @@ function M_CateDetail(props) {
 			<NameAndSortC theme={theme}>
 				<CateNameC>{catename[Number(cate)]}</CateNameC>
 				<MenuTriggerC onClick={onClick} >
-					<span>정렬</span>
+					<div>정렬</div>
 					<MenuC theme={theme} active={isActive}>
 						  <ul>
 							<li onClick={(e) => {
@@ -128,34 +128,28 @@ const NotFoundC = styled.div`
 
 const MenuTriggerC = styled.button`
 	position: relative;
-	top: -12px;
-	right: 20px;
 	cursor: pointer;
 	background-color: transparent;
-	width: 70px;
-	height: 30px;
 	background: #ffffff;
-	border-radius: 5px;
+	border-radius: 20px;
 	cursor: pointer;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 4px 6px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 	border: none;
 	vertical-align: middle;
 	transition: box-shadow 0.4s ease;
 	text-align: center;
+	width: 80px;
+	height: 30px;
 	> div {
 		width: 80px;
 		height: 30px;
 		line-height:30px;
 		font-weight: 600;
-		vertical-align: middle;
 		font-size: 14px;
 		color: rgba(0, 0, 0, 0.7);
-		margin: 0 10px;
-		text-align: center;
 	}
 `;
 
@@ -202,6 +196,8 @@ const NameAndSortC = styled.div`
 
 const CateNameC = styled.div`
 	font-size: 1.2rem;
+	height: 30px;
+	line-height: 36px;
 	font-weight: 600;
 `;
 
