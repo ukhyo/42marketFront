@@ -10,7 +10,7 @@ import { Cookies, useCookies } from "react-cookie";
 import { currentPosts } from "../../Components/utils/Pagination";
 import GetTime from "../../Components/utils/GetTime";
 import Pagination from "../../Components/utils/Pagination";
-
+import ScrollMenu from 'react-horizontal-scrolling-menu';
 function M_PostThumbnail({ data, key, subList, flag}) {
 	let title;
 	data.title.length >= 8 ? title = data.title.slice(0, 7) + "..."
@@ -61,7 +61,7 @@ function M_PostThumbnail({ data, key, subList, flag}) {
 
 function M_PostViewComp({ item, subList, Loading, flag }) {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage, setPostsPerPage] = useState(2);
+	const [postsPerPage, setPostsPerPage] = useState(10);
 	const indexOfLast = currentPage * postsPerPage; //
 	const indexOfFirst = indexOfLast - postsPerPage; //
 	const [beforePos, setBeforPos] = useState(0);
@@ -88,17 +88,14 @@ function M_PostViewComp({ item, subList, Loading, flag }) {
 	},[])
 	return (
 		<SectionC>
-			<PostViewLineC flag={flag} onTouchStart={mouseDowntHandler} onTouchEnd={mouseUpHandler}>
+			<PostViewLineC flag={flag} >
 				{
 					Loading && item.length > 0 && currentPosts(item ,indexOfFirst, indexOfLast).map((data, index) => {
-					return (
-						<M_PostThumbnail key={index} data={data} subList={subList} flag={data.status === 1}/>
+						return (
+							<M_PostThumbnail key={index} data={data} subList={subList} flag={data.status === 1}/>
 						);
 					})
 				}
-				{/*{mapArr.map(data = () => {
-
-				})}*/}
 			</PostViewLineC>
 		</SectionC>
 	);
@@ -175,19 +172,20 @@ const PostViewC = styled.div`
 
 
 const PostViewLineC = styled.div`
+	white-space:nowrap;
+	overflow:auto;
 	cursor: move;
 	width: 100%;
 	height: ${(props) => props.flag ? "" : ""};
 	margin: 10px auto;
 	margin-bottom: 20px;
 	display: flex;
+	justify-content: space-between;
 	box-sizing: border-box;
-	/*justify-content: space-between;*/
 	align-items: center;
-	flex-wrap: wrap;
-	> div:not(:nth-child(2n))
+	> div
 	{
-		margin-right: 10%;
+		margin-right: 5%;
 	}
 `;
 
@@ -228,6 +226,7 @@ const LinkC = styled(Link)`
 const PostItemC = styled.div`
 	position: relative;
 	width: 45%;
+	min-width: 150px;
 	height: 200px;
 	border-radius: 15px;
 	margin-bottom: 20px;
