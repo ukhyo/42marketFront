@@ -75,11 +75,6 @@ const ProductStateBarC = styled.div`
 		padding-right: 25px;
 		margin-right: 25px;
 	}
-
-	/*> div {
-		width: 505px;
-		/*border-bottom: 1px solid #c0c0c0;*/
-	}*/
 `;
 
 export { M_RadioRet }

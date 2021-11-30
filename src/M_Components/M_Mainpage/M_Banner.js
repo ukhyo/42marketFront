@@ -42,15 +42,14 @@ const ImageC = styled.div`
 const ImagesC = styled.div`
 	display:flex;
 	margin : 0 auto;
-	width: ${({theme}) => theme.widthSize.full};
-	height: ${({theme}) => theme.heightSize.banner};
+	width: ${({ theme }) => theme.widthSize.full};
+	height: ${({ theme }) => theme.heightSize.banner};
 	overflow: hidden;
 	> div {
-		width: ${({theme}) => theme.widthSize.full};
-		height: ${({theme}) => theme.heightSize.banner};
+		width: ${({ theme }) => theme.widthSize.full};
+		height: ${({ theme }) => theme.heightSize.banner};
 
 		/*transition: 1s ease-in-out;*/
-		}
 	}
 `;
 

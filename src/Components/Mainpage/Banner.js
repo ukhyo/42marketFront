@@ -55,9 +55,6 @@ const ImagesC = styled.div`
 	> div {
 		width: 1200px;
 		height: 700px;
-
-		/*transition: 1s ease-in-out;*/
-		}
 	}
 `;
 
