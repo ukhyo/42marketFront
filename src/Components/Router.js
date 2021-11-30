@@ -21,11 +21,11 @@ function Router() {
 			{mobileWidth ?
 				<Switch>
 					<Route path={"/"} exact component={M_Mainpage}></Route>
+					<Route path={"/product/:tabs"} exact component={Product}></Route>
+					{/*<Route path={"/product/edit"} exact component={ProductEdit} />*/}
 					{/*<Route path={"/category/:id"} exact component={M_Category} />*/}
 					{/*<Route path={"/mypage/:id/:url"} component={Mypage}></Route>*/}
 					{/*<Route path={"/postview/:id"} exact component={PostDetail}></Route>*/}
-					{/*<Route path={"/product/edit"} exact component={ProductEdit} />*/}
-					{/*<Route path={"/product/:tabs"} exact component={Product}></Route>*/}
 					{/*<Route path={"/search/:id/:word"}  exact component={Search} />*/}
 				</Switch>
 					: <Switch>

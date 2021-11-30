@@ -98,7 +98,7 @@ function M_Header() {
 						</a>
 					</div>
 					<HeaderInfoC>
-					{token ?
+					{!token ?
 							<M_HeaderInfo cookie={cookie}/>
 						:
 						<InfoAreaC>
