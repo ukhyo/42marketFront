@@ -226,7 +226,7 @@ const LinkC = styled(Link)`
 const PostItemC = styled.div`
 	position: relative;
 	width: 45%;
-	min-width: 150px;
+	min-width: 45%;
 	height: 200px;
 	border-radius: 15px;
 	margin-bottom: 20px;
