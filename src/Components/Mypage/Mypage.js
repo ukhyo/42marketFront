@@ -10,9 +10,6 @@ import InfoList from "./Infolist";
 function	MypageMain(props)
 {
 	const { name } = props;
-	console.log(props, "gggg");
-
-	console.log("MypageMain", name);
 	const id = props.name.id;
 	const url = props.name.url;
 	return (

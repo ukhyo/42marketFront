@@ -15,7 +15,6 @@ function PostThumbnail({ data, key, subList, flag}) {
 	let title;
 	data.title.length > 10 ? title = data.title.slice(0, 9) + "..."
 		: title = data.title;
-	console.log(flag, "플래그체크");
 	if (subList === undefined)
 		subList = "//";
 	return (
@@ -102,10 +101,7 @@ function PreviewPost() {
 			if (userId === undefined)
 				userId = "0";
 			let data = await axios.get(`http://api.4m2d.shop/api/${userId}`).then((response) => {
-				console.log("성공?");
 				return response.data;
-			}).catch((res) => {
-				console.log(res, "에러");
 			});
 			setItem(data);
 			setLoading(true);

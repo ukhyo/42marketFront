@@ -42,24 +42,14 @@ function PostDetail(props) {
 		if (data.subList.indexOf(`/${data.id}/`) === -1) // 구독 안되있는 상태
 		{
 			const ApiPost = async () => {
-				await axios.post("http://api.4m2d.shop/api/carts", config, {headers}).then(res => {
-					console.log("구독 성공");
-				}).catch(err => {
-					console.log("구독 실패");
-				});
+				await axios.post("http://api.4m2d.shop/api/carts", config, { headers });
 				setReLoad(!reLoad);
 			}
 			ApiPost();
 		}
 		else { //구독 해제
-			console.log(userId, "구독 유저ID");
-			console.log(data.id, "구독 상품ID");
 			const ApiDelete = async () => {
-				await axios.delete(`http://api.4m2d.shop/api/carts/${userId}/${data.id}`,{ headers }).then(res => {
-					console.log("구독 해제 성공");
-				}).catch(err => {
-					console.log("구독 해제 실패");
-				});
+				await axios.delete(`http://api.4m2d.shop/api/carts/${userId}/${data.id}`, { headers });
 				setReLoad(!reLoad);
 			}
 			ApiDelete();
@@ -88,12 +78,7 @@ function PostDetail(props) {
 				cookie.set("view", `/${id}/`);
 				flag = "1";
 			}
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}/${userId}/${flag}`).then(res => {
-				return res;
-			}).catch(error => {
-				console.log("err? ", error);
-			})
-			console.log(data, "data here?");
+			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}/${userId}/${flag}`);
 			setData(data);
 			setComment(data.commentsList);
 			setLoading(true);

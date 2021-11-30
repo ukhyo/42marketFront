@@ -7,10 +7,7 @@ import CategoryBar from "../Mainpage/CategoryBar";
 
 
 function Category(props) {
-	console.log(props, "this is props");
 	const { test } = props.match.params;
-
-	console.log(test, "this is test");
 	return (
 		<SectionC>
 			<Header />

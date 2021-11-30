@@ -17,7 +17,6 @@ function CateDetail(props) {
 	const [priceFlag, setPriceFlag] = useState(true);
 	const onClick = () => setIsActive(!isActive);
 
-	console.log(userId, "d");
 	if (userId === undefined)
 		userId = "0";
 	let { undefined: cate } = props.match.params;
@@ -48,7 +47,6 @@ function CateDetail(props) {
 		const getData = async () => {
 			setLoading(false);
 			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/category/${cate}/${userId}`);
-			console.log(data, "변경된 url");
 			setItem(data);
 			setLoading(true);
 		};

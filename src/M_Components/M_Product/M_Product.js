@@ -1,12 +1,11 @@
 import styled from "styled-components";
-
 import { Link, Route } from "react-router-dom";
-//import M_ProductRegi from "./ProductRegi";
-//import M_ProductManage from "./ProductManage";
-//import M_ProductEdit from "./ProductEdit";
 import M_Header from "../M_Mainpage/M_Header";
+import M_ProductEdit from "./M_ProductEdit";
+import M_ProductManage from "./M_ProductManage";
 import M_ProductRegi from "./M_ProductRegi";
 import theme from "../../Styles/theme";
+
 function M_RadioRet({ idx, value, setIdx, flag }) {
 	const ClickEvt = () => {
 		setIdx(idx);
@@ -23,7 +22,6 @@ function M_RadioRet({ idx, value, setIdx, flag }) {
 	);
 }
 function M_ProductStateBar({ path }) {
-	console.log("statebar", path);
 	return (
 		<SectionC>
 			<ProductStateBarC theme={theme}>
@@ -44,8 +42,8 @@ function M_Product(props) {
 			<M_Header />
 			<M_ProductStateBar path={props.location.pathname.split("/").pop()} />
 			<Route path={"/product/regi"} component={M_ProductRegi} />
-			{/*<Route path={"/product/manage"} component={ProductManage} />*/}
-			{/*<Route path={"/product/edit"} component={ProductEdit} />*/}
+			<Route path={"/product/manage"} component={M_ProductManage} />
+			<Route path={"/product/edit"} component={M_ProductEdit} />
 		</SectionC>
 	);
 }
@@ -71,7 +69,7 @@ const ProductStateBarC = styled.div`
 	margin: 0 auto;
 	height: 70px;
 	line-height: 70px;
-	margin-bottom: 60px;
+	margin-bottom: 30px;
 	${LinkC}:first-child {
 		border-right: 1px solid #c0c0c0;
 		padding-right: 25px;

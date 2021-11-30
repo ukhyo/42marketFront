@@ -16,7 +16,6 @@ export default function Comments(props) {
 		event.preventDefault();
 		if (commentValue === '')
 		{
-			console.log("empty comment");
 			alert("댓글을 입력해주세요.")
 				return;
 		}
@@ -30,14 +29,10 @@ export default function Comments(props) {
 			postId: props.postId,
 			content: commentValue
 		};
-		axios.post('http://api.4m2d.shop/api/comments/', variables, {headers}).then((response) => {
-			console.log('댓글 올리기 성공');
-			console.log(variables.commentValue, 'comment value') //response. data안들어옴
-			setcommentValue("");
-			props.refreshFunction(variables);
-		}).catch(err => {
-			console.log("댓글 올리기 실패");
-		});
+	  axios.post('http://api.4m2d.shop/api/comments/', variables, { headers }).then((response) => {
+		  setcommentValue("");
+		  props.refreshFunction(variables);
+	  });
 	}
   return (
     <div>

@@ -7,7 +7,6 @@ import M_CategoryBar from "./M_CategoryBar";
 import M_PreviewPost from "./M_PreviewPost";
 import M_Banner from "./M_Banner";
 function M_Mainpage() {
-	console.log("hi");
 	return (
 		<SectionC>
 			<M_Header />

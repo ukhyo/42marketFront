@@ -23,8 +23,6 @@ function	ProfileBar({ url })
 	const cookie = new Cookies();
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const [state] = useAsync(() => getProfile(id), [id]);
-	console.log(id, "id");
-	console.log(state, "state");
 	const [onButton, setOnButton] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [intro, setIntro] = useState("");
@@ -43,20 +41,17 @@ function	ProfileBar({ url })
 				"Content-Type": `multipart/form-data`,
 			};
 			setIsLoading(true);
-			await axios.post(`http://api.4m2d.shop/api/users/${userId}`, fileList, {headers})
-			.then(res => { //아이디 수정해야함
-				console.log("성공");
-				window.location.reload();
-			}).catch(err => {
-				console.log("실패");
-			});
+			await axios.post(`http://api.4m2d.shop/api/users/${userId}`, fileList, { headers })
+				.then(res => { //아이디 수정해야함
+
+					window.location.reload();
+				});
 			setIsLoading(false);
 		};
 		ApiPost();
 	};
 	if (userId === undefined)
 		userId = "0";
-	console.log('experience', profile);
 	const onButtonClick = () => {
 		setOnButton(true);
 	};
@@ -74,18 +69,13 @@ function	ProfileBar({ url })
 				"Authorization": `Bearer ${token}`,
 			};
 			setIsLoading(true);
-			await axios.patch(`http://api.4m2d.shop/api/users/${userId}`, data, {headers}).then(res => {
-				console.log("성공");
-
+			await axios.patch(`http://api.4m2d.shop/api/users/${userId}`, data, { headers }).then(res => {
 				window.location.reload();
-			}).catch(err => {
-				console.log("실패");
 			});
 			setIsLoading(false);
 		}
 		pushData();
 	}
-	console.log(profile, "profile");
 	if (error) return <div>Error occured</div>;
 	if (!profile) return null;
 	if (userId === id)

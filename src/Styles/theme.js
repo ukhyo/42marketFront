@@ -14,6 +14,7 @@ const widthSize = {
 	thirds: "33%",
 	quarter: "25%",
 	eighty: "80%",
+	max: "400px",
 }
 
 const heightSize = {

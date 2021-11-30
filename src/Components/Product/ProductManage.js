@@ -20,21 +20,6 @@ function ShowData() {
 }
 
 function ProductManage() {
-	const cookie = new Cookies()
-	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
-	if (userId === undefined)
-		userId = "0";
-	const [data, setData] = useState([]);
-	const [Loading, setLoading] = useState(false);
-	useEffect(() => {
-		const getData = async () => {
-			const { data } = await axios.get(`http://api.4m2d.shop/api/posts/user/${userId}`);
-			console.log(data, "체크");
-			setData(data);
-			setLoading(!Loading);
-		}
-		getData();
-	}, [])
 	return (
 		<SectionC>
 			<MainC>

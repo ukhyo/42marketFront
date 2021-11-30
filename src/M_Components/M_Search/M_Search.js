@@ -16,7 +16,6 @@ function M_Search(props) {
 	const [Loading, setLoading] = useState(false);
 
 	let word = props.match.params.word;
-	console.log(userId, "d");
 	if (userId === undefined)
 		userId = "0";
 	let { undefined: cate } = props.match.params;

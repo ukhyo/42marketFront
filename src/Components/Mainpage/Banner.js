@@ -18,7 +18,6 @@ function MainBanner() {
 	const images = [image1, image2, image3];
 	setTimeout(() => {
 		let temp = idx;
-		console.log(temp);
 		if (temp >= 2)
 			temp = -1;
 		setIdx(temp + 1);

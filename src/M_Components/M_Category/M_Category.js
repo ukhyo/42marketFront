@@ -6,10 +6,7 @@ import M_CategoryBar from "../M_Mainpage/M_CategoryBar";
 
 
 function M_Category(props) {
-	console.log(props, "this is props");
 	const { test } = props.match.params;
-
-	console.log(test, "this is test");
 	return (
 		<SectionC>
 			<M_Header />

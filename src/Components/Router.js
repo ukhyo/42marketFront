@@ -18,7 +18,6 @@ function Router() {
 	const mobileWidth = useMediaQuery(
 		{maxWidth: 510}
 	)
-	console.log(mobileWidth, "width");
 	return (
     <div>
 			{mobileWidth ?

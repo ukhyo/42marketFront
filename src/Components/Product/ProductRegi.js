@@ -106,7 +106,7 @@ function ProductRegi(props) {
 			});
 
 			let temp = price;
-			if (idx === 5)
+			if (idx === 8)
 				temp = 0;
 			let data = {
 				title: title,
@@ -127,7 +127,6 @@ function ProductRegi(props) {
 			await axios
 				.post("http://api.4m2d.shop/api/posts/", fileList, {headers})
 				.then((res) => {
-					console.log(res, "post 성공");
 					history.push("/");
 				})
 				.catch((err) => console.error(err, "에러"));

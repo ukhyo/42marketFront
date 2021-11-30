@@ -114,10 +114,7 @@ function M_PreviewPost() {
 			if (userId === undefined)
 				userId = "0";
 			let data = await axios.get(`http://api.4m2d.shop/api/${userId}`).then((response) => {
-				console.log("성공?");
 				return response.data;
-			}).catch((res) => {
-				console.log(res, "에러");
 			});
 			setItem(data);
 			setLoading(true);

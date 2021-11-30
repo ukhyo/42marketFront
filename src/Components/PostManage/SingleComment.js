@@ -34,12 +34,8 @@ export default function SingleComment(props) {
 			postId: props.postId,
 			content: CommentValue
 		};
-		axios.post('http://api.4m2d.shop/api/comments/', variables, {headers}).then((response) => {
-			console.log('댓글 올리기 성공');
-			console.log(response.data, 'response');
+		axios.post('http://api.4m2d.shop/api/comments/', variables, { headers }).then((response) => {
 			props.refreshFunction(variables);
-		}).catch(err => {
-			console.log("댓글 올리기 실패");
 		});
 	}
     return (

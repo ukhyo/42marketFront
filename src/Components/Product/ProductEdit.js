@@ -24,10 +24,7 @@ function ProductEdit(props) {
 		const ApiGet = async () => {
 			const data = await axios.get(`http://api.4m2d.shop/api/posts/${postId}/${userId}/0`).then(res => {
 				return res.data;
-			}).catch(err => {
-				console.log(err, "상품 못가져옴.")
-			});
-			console.log(data, "데이터");
+			});;
 			setOldFiles(data.image);
 			setTitle(data.title);
 			setLocation(data.local);
@@ -65,7 +62,6 @@ function ProductEdit(props) {
 	}
 
 	function ChangeLocation(e) {
-		console.log(location);
 		setLocation(e.target.value);
 	}
 
@@ -73,7 +69,6 @@ function ProductEdit(props) {
 
 	const onChangeImg = (e) => {
 		const file = e.target.files;
-		console.log("files = ", e.target.files[0]);
 		let transArr = Array.from(file);
 		if (transArr.length + Files.length + oldFiles.length > 8) {
 			alert(`사진은 최대 8개까지 가능합니다. 현재 : ${Files.length}개`);
@@ -131,11 +126,13 @@ function ProductEdit(props) {
 			let oldFile = oldFiles.map((data) => {
 				return data.slice(data.length - 1, data.length);
 			});
-			console.log(oldFile, "oleFile");
+			let temp = price;
+			if (idx === 8)
+				temp = 0;
 			let data = {
 				title: title,
 				content: content,
-				price: price,
+				price: temp,
 				local: location,
 				categoryId: idx,
 				oldFileList: oldFile,
@@ -145,16 +142,13 @@ function ProductEdit(props) {
 				"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
 			};
-			console.log(postId, "상품 아이디");
 			setLoading(true);
 			await axios
 				.post(`http://api.4m2d.shop/api/posts/${postId}`, fileList, { headers })
 				.then((res) => {
-					console.log(res, "post 성공");
+					alert("상품 등록 완료!");
 					history.push("/");
-				})
-				.catch((err) => console.error(err, "에러"));
-			alert("상품 등록 완료!");
+				});
 			setLoading(false);
 		}
 		pushData();
@@ -164,7 +158,7 @@ function ProductEdit(props) {
 		<SectionC>
 			<Header />
 			<EditHeaderC>
-				<span>상품 수정</span>
+				<span>상품수정</span>
 				<span> *필수항목</span>
 			</EditHeaderC>
 			<EditMainC Loading={Loading}>

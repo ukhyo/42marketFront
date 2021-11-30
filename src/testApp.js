@@ -13,14 +13,12 @@ const App = () => {
 	let cookie = new Cookies();
 	cookie.set("view", "/21/");
 	let test = cookie.getAll();
-	console.log(test, "get all");
 	cookie.remove("view");
 	cookie.set("view", "/21//22/");
 	test = cookie.getAll();
 	const DesktopOrLaptop = useMediaQuery(
 		{ minDeviceWidth: 1200 },
 		)
-	console.log(test, "get all");
 	return (
 		<TestC>
 			{DesktopOrLaptop ?
