@@ -22,7 +22,7 @@ function ProductEdit(props) {
 	const [Loading, setLoading] = useState(false);
 	useEffect(() => {
 		const ApiGet = async () => {
-			const data = await axios.get(`http://api.4m2d.shop/api/posts/${postId}/${userId}`).then(res => {
+			const data = await axios.get(`http://api.4m2d.shop/api/posts/${postId}/${userId}/0`).then(res => {
 				return res.data;
 			}).catch(err => {
 				console.log(err, "상품 못가져옴.")

@@ -93,8 +93,8 @@ function	ProfileBar({ url })
 		return (
 			<ProfileBarC Loading={isLoading}>
 				<ProfileImgC Loading={isLoading}>
-					{/*<img src={profile.userImage} />*/}
-					<img src="https://4m2d.s3.ap-northeast-2.amazonaws.com/user/4" />
+					<img src={ profile.userImage }/>
+
 					<label for="ChangeImg">
 						<ProfileImgModifyC>
 								<FaImage />
