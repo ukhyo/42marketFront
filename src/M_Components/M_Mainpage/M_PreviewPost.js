@@ -65,6 +65,7 @@ function M_PostViewComp({ item, subList, Loading, flag }) {
 	const indexOfLast = currentPage * postsPerPage; //
 	const indexOfFirst = indexOfLast - postsPerPage; //
 	const [beforePos, setBeforPos] = useState(0);
+	const mapArr = [1, 2, 3, 4, 5];
 	const mouseDowntHandler = (e) => {
 		setBeforPos(e.clientX);
 	}
@@ -87,7 +88,7 @@ function M_PostViewComp({ item, subList, Loading, flag }) {
 	},[])
 	return (
 		<SectionC>
-			<PostViewLineC flag={flag} onMouseDown={mouseDowntHandler} onMouseUp={mouseUpHandler}>
+			<PostViewLineC flag={flag} onPointerDown={mouseDowntHandler} onPointerUp={mouseUpHandler}>
 				{
 					Loading && item.length > 0 && currentPosts(item ,indexOfFirst, indexOfLast).map((data, index) => {
 					return (
@@ -95,6 +96,9 @@ function M_PostViewComp({ item, subList, Loading, flag }) {
 						);
 					})
 				}
+				{/*{mapArr.map(data = () => {
+
+				})}*/}
 			</PostViewLineC>
 		</SectionC>
 	);
