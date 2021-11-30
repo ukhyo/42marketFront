@@ -12,35 +12,7 @@ function Searc(props) {
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	const [item, setItem] = useState([]);
 	const [Loading, setLoading] = useState(false);
-	const [isActive, setIsActive] = useState(false);
-	const [timeFlag, setTimeFlag] = useState(true);
-	const [priceFlag, setPriceFlag] = useState(true);
-	const onClick = () => setIsActive(!isActive);
 	let word = props.match.params.word;
-	const AlignBtn = (e, idx) => {
-		let url = "";
-		if (idx === 1) // 오래된 구독 순
-			url = "subscribes";
-		else if (idx === 2) // 최신인기순 조회수
-			url = "view";
-		else if (idx === 3) // 최신
-			url = "asc";
-		else if (idx === 4) // 오래된
-			url = "desc";
-		else if (idx === 5) // 낮은가격순
-			url = "priceasc";
-		else if (idx === 6) // 높은가격순
-			url = "pricedesc";
-		else
-			return;
-		const alignGet = async () => {
-			setLoading(false);
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/search/${userId}/${word}/${url}`);
-			setItem(data);
-			setLoading(true);
-		};
-		alignGet();
-	}
 	if (userId === undefined)
 		userId = "0";
 	useEffect(() => {

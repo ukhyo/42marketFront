@@ -13,6 +13,7 @@ import ABC from "../qqqq";
 import M_Mainpage from "../M_Components/M_Mainpage/M_Mainpage";
 import M_Product from "../M_Components/M_Product/M_Product";
 import M_Category from "../M_Components/M_Category/M_Category";
+import M_Search from "../M_Components/M_Search/M_Search";
 function Router() {
 	const mobileWidth = useMediaQuery(
 		{maxWidth: 510}
@@ -28,7 +29,7 @@ function Router() {
 					{/*<Route path={"/product/edit"} exact component={ProductEdit} />*/}
 					{/*<Route path={"/mypage/:id/:url"} component={Mypage}></Route>*/}
 					{/*<Route path={"/postview/:id"} exact component={PostDetail}></Route>*/}
-					{/*<Route path={"/search/:id/:word"}  exact component={Search} />*/}
+					<Route path={"/search/:id/:word"}  exact component={M_Search} />
 				</Switch>
 					: <Switch>
 
