@@ -3,11 +3,12 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Cookies } from "react-cookie";
+import theme from "../../Styles/theme";
 function M_CategoryBar(props) {
 	const [isActive, setIsActive] = useState(false);
 	return (
 		<CategoryC>
-			<NameAndSortC>
+			<NameAndSortC theme={theme}>
 				<CateNameC onClick={() => {
 						setIsActive(!isActive);
 				}} >
@@ -86,18 +87,16 @@ const CategoryC = styled.div`
 `;
 
 const NameAndSortC = styled.div`
-	width: 80%;
+	width: ${({theme}) => theme.widthSize.margin};
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
 	position:relative;
-	margin-bottom: 20px;
-	margin-top: 20px;
 `;
 
 
 const CateNameC = styled.button`
-	width: 100px;
+	width: 120px;
 	max-width: 400px;
 	height: 30px;
 	border-radius: 30px;
@@ -114,7 +113,7 @@ const CateNameC = styled.button`
 		width: 80px;
 		height: 30px;
 		border-radius: 90px;
-		line-height:35px;
+		line-height:30px;
 		font-weight: 700;
 		vertical-align: middle;
 		font-size: 1rem;

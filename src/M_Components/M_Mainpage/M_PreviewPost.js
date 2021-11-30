@@ -11,6 +11,7 @@ import { currentPosts } from "../../Components/utils/Pagination";
 import GetTime from "../../Components/utils/GetTime";
 import Pagination from "../../Components/utils/Pagination";
 import ScrollMenu from 'react-horizontal-scrolling-menu';
+import theme from "../../Styles/theme";
 function M_PostThumbnail({ data, key, subList, flag}) {
 	let title;
 	data.title.length >= 8 ? title = data.title.slice(0, 7) + "..."
@@ -126,7 +127,7 @@ function M_PreviewPost() {
 	if (!Loading)
 		return <div> Loading...</div>
 	return (
-		<PostViewC>
+		<PostViewC theme={theme}>
 			<h2>인기상품</h2>
 			<M_PostViewComp item={item.subscribeList} subList={item.subList} Loading={Loading} flag={false}/>
 			<h2>새 상품</h2>
@@ -145,10 +146,10 @@ const SectionC = styled.section`
 `;
 
 const PostViewC = styled.div`
-	width: 80%;
+	width: ${({theme}) => theme.widthSize.margin};
 	max-width: 400px;
 	margin: 0px auto;
-	margin-top: 55px;
+	margin-top: 0px;
 	> h2 {
 		font: Nanum Gothic;
 		font-size: 1.2rem;
@@ -225,8 +226,8 @@ const LinkC = styled(Link)`
 
 const PostItemC = styled.div`
 	position: relative;
-	width: 45%;
-	min-width: 45%;
+	width: 47.5%;
+	min-width: 47.5%;
 	height: 200px;
 	border-radius: 15px;
 	margin-bottom: 20px;

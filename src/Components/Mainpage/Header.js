@@ -98,7 +98,7 @@ function Header() {
 				}
 					{token ?
 						<LinkC onClick={() => {
-							const LogOut = async () => {
+							const LogOut = () => {
 								cookie.remove('Authorization', {
 									path: '/',
 									domain: '.4m2d.shop',

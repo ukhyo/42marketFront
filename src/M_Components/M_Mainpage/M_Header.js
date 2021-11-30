@@ -8,6 +8,51 @@ import { setUserId } from "../../modules/User";
 import { FiLogOut } from "react-icons/fi";
 import axios from "axios";
 import theme from "../../Styles/theme";
+
+const M_HeaderInfo = (cookie) => {
+	const [isActive, setIsActive] = useState(false);
+	return (
+		<div>
+			<InfoAreaC>
+						<InfoNameC onClick={() => {
+								setIsActive(!isActive);
+						}} >
+							<div>내정보</div>
+						</InfoNameC>
+						<MenuC active={isActive}>
+							  <ul>
+								<li onClick={(e) => {
+									setIsActive(!isActive);
+								}}><Link to={"/product/regi"}>
+									<div>판매하기</div>
+									</Link>
+								</li>
+								<li onClick={(e) => {
+									setIsActive(!isActive);
+								}}><Link onClick={() => {
+									const LogOut = () => {
+										cookie.remove('Authorization', {
+											path: '/',
+											domain: '.4m2d.shop',
+										});
+										cookie.remove('userId', {
+											path: '/',
+											domain: '.4m2d.shop',
+										});
+										window.location.reload();
+									}
+									LogOut();
+								}}>
+									<div>로그아웃</div>
+									</Link>
+								</li>
+							  </ul>
+						</MenuC>
+					</InfoAreaC>
+		</div>
+	)
+}
+
 function M_Header() {
 	const cookie = new Cookies()
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
@@ -41,68 +86,29 @@ function M_Header() {
 	return (
 		<HeaderC>
 			<HeaderLineC>
-				<HeaderLogoC>
-					<a href="http://www.4m2d.shop/" onClick={() => {
-						setLoading(!Loading);
-						window.scrollTo({
-							top: 0,
-						})
-					}}>
-						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/logoDefault.png"} />
-					</a>
-				</HeaderLogoC>
-				{/*<HeaderInfoC>
-					{token ?
-						<LinkC to="/product/regi">
-							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
-							<div>판매하기</div>
-						</LinkC>
-						:
-						<AC onClick={() => {
-							alert("로그인이 필요합니다.");
-						}} href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
-							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
-							<div>판매하기</div>
-						</AC>
-					}
-					{token ?
-					<LinkC to={`/mypage/${userId}/selllist`}>
-						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
-						<div>내정보</div>
-					</LinkC>
-						:
-						<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code" onClick={() => {
-							alert("로그인이 필요합니다.")
+				<HeaderLogoC theme={theme}>
+					<div>
+						<a href="http://www.4m2d.shop/" onClick={() => {
+							setLoading(!Loading);
+							window.scrollTo({
+								top: 0,
+							})
 						}}>
-							<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
-						<div>내정보</div>
-					</AC>
-				}
+							<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/logoText.png"} />
+						</a>
+					</div>
+					<HeaderInfoC>
 					{token ?
-						<LinkC onClick={() => {
-							const LogOut = async () => {
-								cookie.remove('Authorization', {
-									path: '/',
-									domain: '.4m2d.shop',
-								});
-								cookie.remove('userId', {
-									path: '/',
-									domain: '.4m2d.shop',
-								});
-								window.location.reload();
-							}
-							LogOut();
-					}}>
-						<img src={process.env.PUBLIC_URL + "/img/logoutIcon.png"} />
-						<div>로그아웃</div>
-					</LinkC>
+							<M_HeaderInfo cookie={cookie}/>
 						:
-					<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
-						<img src={process.env.PUBLIC_URL + "/img/loginIcon.png"} />
-						<div>로그인</div>
-					</AC>
-					}
-				</HeaderInfoC>*/}
+						<InfoAreaC>
+						<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
+							<InfoNameC>로그인</InfoNameC>
+						</AC>
+					</InfoAreaC>
+				}
+				</HeaderInfoC>
+				</HeaderLogoC>
 			</HeaderLineC>
 			<HeaderSearchC>
 					<HeaderSearchInputC theme={theme}>
@@ -132,38 +138,42 @@ const HeaderC = styled.header`
 	max-width: 400px;
 	/*position: sticky;*/
 	margin: 0 auto;
+	margin-top: 20px;
 	/*top: 0;*/
 	z-index: 10;
 	background-color: var(--BackColor);
 `;
 
 const HeaderLineC = styled.div`
-	width: 80%;
-	height: 80px;
-	display: flex;
-	align-items: center;
+	width: 100%;
+	height: 40px;
 	`;
 
 const HeaderLogoC = styled.div`
-	/*width: 25%;*/
+	display: flex;
+	justify-content: space-between;
 	margin: 0 auto;
-	width: 80%;
-	height: 100%;
+	width: ${({ theme }) => theme.widthSize.margin};
+	/*width: 80%;*/
+	/*height: 100%;*/
+	> div:first-child() {
+		/*position: absolute;*/
+		/*top: 0;*/
+	}
 `;
 
 const HeaderLogoImgC = styled.img`
-	width: 30%;
-	height: 100px;
 	`;
+
+const HeaderInfoC = styled.div`
+	/*width: 13%;*/
+`;
 
 const AC = styled.a`
 	display: flex;
 	align-items: center;
 	text-decoration: none;
 	color: black;
-	> div:hover {
-		border-bottom: 1px solid rgb(130, 130, 238);
-	}
 `;
 
 const LinkC = styled(Link)`
@@ -176,32 +186,81 @@ const LinkC = styled(Link)`
 	}
 `;
 
-const HeaderInfoC = styled.div`
-	position: relative;
-	top: 15px;
-	right:0;
+
+const InfoAreaC = styled.div`
+	width: 100%;
+	margin: 0 auto;
 	display: flex;
-	justify-content: right;
-	/*width: 75%;*/
-	font-size: 1rem;
-	& ${LinkC}, & ${AC} {
-		padding: 0 15px;
-	}
-	& ${LinkC}:last-child, & ${AC}:last-child {
-		padding-right: 0;
-	}
-	& > ${LinkC}:not(${LinkC}:first-child) {
-		border-left: 1px solid rgb(0, 0, 0, 0.1);
-	}
-	& > ${AC}:not(${AC}:first-child) {
-		border-left: 1px solid rgb(0, 0, 0, 0.1);
-	}
-	& div {
-		margin-left: 10px;
-	}
+	justify-content: space-between;
+	position:relative;
 `;
 
 
+const InfoNameC = styled.button`
+	height: 40px;
+	/*border-radius: 30px;*/
+	cursor: pointer;
+	background: transparent;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	border: none;
+	text-align: right;
+	font-weight: 700;
+		font-size: 1rem;
+	/*transition: box-shadow 0.4s ease;*/
+	> div {
+		width: 80px;
+		height: 30px;
+		border-radius: 90px;
+		line-height:35px;
+		font-weight: 700;
+		font-size: 1rem;
+		color: rgba(0, 0, 0, 0.7);
+
+	}
+	> a > div {
+		width: 80px;
+		height: 30px;
+		border-radius: 90px;
+		line-height:30px;
+		font-weight: 700;
+		font-size: 1rem;
+		color: rgba(0, 0, 0, 0.7);
+	}
+`;
+
+const MenuC = styled.nav`
+	z-index: 5;
+	background: #ffffff;
+	border-radius: 8px;
+	position: absolute;
+	top: 35px;
+	right: 0;
+	width: 80px;
+	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+	opacity: ${props => (props.active ? '1' : '0')};
+	visibility: ${props => (props.active ? 'visible' : 'hidden')};
+	transform: ${props => (props.active ? 'translateY(0)' : 'translateY(-20px)')};
+	transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+	> ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		> li {
+			border-bottom: 1px solid #dddddd;
+			margin-top: 10px;
+			height: 20px;
+			padding-left: 8px;
+			> div {
+				text-decoration: none;
+				color: rgba(0, 0, 0, 0.7);
+				padding: 10px 15px;
+				display: block;
+			}
+		}
+	}
+`;
 
 const HeaderSearchC = styled.div`
 	margin: 0 auto;
@@ -210,15 +269,15 @@ const HeaderSearchC = styled.div`
 
 const HeaderSearchInputC = styled.fieldset`
 	margin: 0 auto;
-	margin-top: 30px;
+	margin-top: 15px;
 	height: 40px;
 	display: flex;
 	align-items: center;
 	padding: 0;
-	width: 80%;
-	border-radius: 15px;
-	border: 1.5px solid ${({ theme }) => theme.color.mintColor};
-	color: var(--color-hover, "red");
+	width: ${({theme}) => theme.widthSize.margin};
+	border: 1.5px solid ${({theme}) => theme.color.black};
+	color: ${({ theme }) => theme.color.black};
+	box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.3);
 	font-size: 2rem;
 	background-color: #fdfdfd;
 	& > input::placeholder {
@@ -226,13 +285,13 @@ const HeaderSearchInputC = styled.fieldset`
 	}
 	& > input {
 		background-color: #fdfdfd;
-		width: 80%;
+		width: ${({theme}) => theme.widthSize.margin};
 		font-size: 1rem;
 		border: none;
 		outline: none;
 	}
 	& > input:hover {
-		width: 80%;
+		width: ${({theme}) => theme.widthSize.margin};
 		outline: none;
 	}
 	& a {
@@ -244,6 +303,8 @@ const HeaderSearchInputC = styled.fieldset`
 		height: 20px;
 	}
 	`;
+
+
 
 
 export default M_Header;
