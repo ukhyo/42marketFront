@@ -49,7 +49,7 @@ function InfoList({id, url})
 	if (userId === id)
 	{
 		return (
-			<InfoListC>
+			<InfoListC flag={url === "manage"}>
 				{list.length >= 1 && currentPosts(list,indexOfFirst, indexOfLast).map((posts, index) => {
 					const location = posts.local.slice(0, 15) + "...";
 					let content = "";
@@ -84,25 +84,23 @@ function InfoList({id, url})
 									<span>{GetTime(posts.updatedAt)}</span>
 									<span>{location}</span>
 								</PostInfosOne__DateC>
-							</PostInfosOneC>
-							<PostInfosTwoC>
 								<PostInfosTwo__PriceC>
 									<span>{posts.price}원</span>
 								</PostInfosTwo__PriceC>
 								<PostInfosTwo__LookupC>
 									<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.subscribes}</span>
 									<span><b><AiOutlineEye /></b> {posts.view} </span>
-								</PostInfosTwo__LookupC>
-							</PostInfosTwoC>
-							<PostCategoryC>
-								{url === "selllist"  || url === "manage" ?
-									<DropdownMenu id={posts.id} status={posts.status}></DropdownMenu>
-									:
 									<PostCategoryC>
-										<span>{posts.categoryName}</span>
+										{url === "selllist"  || url === "manage" ?
+											<DropdownMenu id={posts.id} status={posts.status}></DropdownMenu>
+											:
+											<PostCategoryC>
+												<span>{posts.categoryName}</span>
+											</PostCategoryC>
+										}
 									</PostCategoryC>
-								}
-							</PostCategoryC>
+								</PostInfosTwo__LookupC>
+							</PostInfosOneC>
 						</PostListC>
 					);
 				})}
@@ -156,21 +154,17 @@ function InfoList({id, url})
 									<span>{GetTime(posts.updatedAt)}</span>
 									<span>{location}</span>
 								</PostInfosOne__DateC>
-							</PostInfosOneC>
-							<PostInfosTwoC>
 								<PostInfosTwo__PriceC>
 									<span>{posts.price}원</span>
 								</PostInfosTwo__PriceC>
 								<PostInfosTwo__LookupC>
 									<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.subscribes}</span>
 									<span><b><AiOutlineEye /></b> {posts.view} </span>
+									<PostCategoryC>
+											<span>{posts.categoryName}</span>
+									</PostCategoryC>
 								</PostInfosTwo__LookupC>
-							</PostInfosTwoC>
-							<PostCategoryC>
-								<PostCategoryC>
-										<span>{posts.categoryName}</span>
-								</PostCategoryC>
-							</PostCategoryC>
+							</PostInfosOneC>
 						</PostListC>
 					);
 				})}
@@ -189,8 +183,8 @@ function InfoList({id, url})
 }
 
 const EmptyInfoListC = styled.div`
-	width: 880px;
-	height: 160px;
+	width: 100%;
+	height: 80px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
@@ -207,21 +201,20 @@ const PostInfosTwoC = styled.div`
 `;
 
 const PostInfosTwo__PriceC = styled.div`
-	position: relative;
-	top: 14px;
 	& > span
 	{
-		font-size: 20px;
+		font-size: 0.8em;
 		color: rgba(0, 0, 0, 0.5);
 	}
 `;
 
 const PostInfosTwo__LookupC = styled.div`
+	display: flex;
 	justify-content: space-between;
+	margin-top: 0.5rem;
 	& > span
 	{
-		position: relative;
-		bottom: -36px;
+		font-size: 0.8em;
 		display: inline-block;
 		padding: 3px;
 		color: rgba(0, 0, 0, 0.5);
@@ -233,34 +226,32 @@ const PostInfosTwo__LookupC = styled.div`
 `;
 
 const PostCategoryC = styled.div`
-	width: 160px;
+	width: 5rem;
 	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 14px;
+	font-size: 0.8em;
+	text-align: center;
+	padding: 0.4rem 0rem;
 	color: rgba(0, 0, 0, 0.5);
 `;
 
 const PostInfosOne__DateC = styled.div`
-	font-size: 12px;
+	font-size: 0.5em;
+	display: flex;
 	color: rgba(0, 0, 0, 0.5);
+	justify-content: space-between;
 	& > span:nth-child(1){
 		display:inline-block;
-		width: 90px;
+		width: 3rem;
 	}
 	& > span:nth-child(2) {
 		display: inline-block;
-		padding-left: 20px;
 	}
 `;
 
 const PostListC = styled.div`
 	/*width: 880px;*/
-	position: relative;
-	width: ${(props) => (props.flag ? "1000px" : "880px")};
-	height: 160px;
-	margin: ${(props) => (props.flag ? "0" : "0px 50px")};
+	width: 100%;
+	padding: 15px 0px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
@@ -268,19 +259,18 @@ const PostListC = styled.div`
 `;
 
 const PostImgC = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	img {
-		width: 140px;
-		height: 140px;
+		width: 10rem;
+		height: 10rem;
 		border-radius: 10px;
+		margin: 0px 5px;
 	}
 `;
 
 const PostInfosOneC = styled.div`
 	width: 352px;
 	height: 100%;
+	margin: 0px 10px;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -300,7 +290,7 @@ const LinkC = styled(Link)`
 	display: inline-block;
 	width: 100%;
 	font-weight: 600;
-	font-size: 17px;
+	font-size: 0.8em;
 	text-decoration: none;
 	color: rgb(75, 75, 75);
 	white-space: nowrap;
@@ -310,25 +300,23 @@ const LinkC = styled(Link)`
 `;
 
 const PostInfosOne__SubtitleC = styled.div`
-	width: 80%;
-	height: 45px;
-	margin: 12px 0px;
+	height: 30px;
+	margin: 10px 0px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: normal;
 	line-height: 1;
-/*        height: 4.8em;*/
 	text-align: left;
 	word-wrap: break-word;
 	span {
-		font-size: 13px;
+		font-size: 10px;
 		color: rgba(0, 0, 0, 0.7);
 	}
 `;
 
 const InfoListC = styled.div`
-	width: 93%;
+	width: 100%;
 	height: auto;
 `;
 

@@ -121,12 +121,13 @@ const MenuC = styled.nav`
 `;
 
 const MenuTriggerC = styled.button`
+	position: absolute;
+	left: 1.2rem;
+	top: -0.2rem;
 	background: #ffffff;
 	border-radius: 90px;
 	cursor: pointer;
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	padding: 4px 6px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 	border: none;
@@ -135,9 +136,9 @@ const MenuTriggerC = styled.button`
 	> span {
 		font-weight: 700;
 		vertical-align: middle;
-		font-size: 14px;
+		font-size: 0.5em;
 		color: rgba(0, 0, 0, 0.7);
-		margin: 0 10px;
+		margin: 0 5px;
 	}
 `;
 

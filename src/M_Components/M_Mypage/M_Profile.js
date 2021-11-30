@@ -173,16 +173,20 @@ function	ProfileBar({ url })
 }
 
 const		ProfileInfoC = styled.div`
+	margin: 20px 0px;
 	display: flex;
+	flex-direction: column;
 	span {
-	  font-size: 15px;
-	  font-family: "Devanagari Sangam MN";
-	  opacity: 0.7;
+		padding: 5px 0px;
+		display: inline-block;
+		font-size: 15px;
+		font-family: "Devanagari Sangam MN";
+		opacity: 0.7;
 	}
 `;
 
 const		ModifyIntroC = styled.div`
-    margin: 3px 0px;
+	margin: 3px 0px;
 
 	> textarea {
 		width: 100%;
@@ -229,8 +233,8 @@ const		ProfileImgModifyC = styled.div`
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	background-color: #fdfdfd;
 	border-radius: 15px;
-	left: 50px;
-	top: 50px;
+	left: 28 0px;
+	top: 250px;
 	> label {
 		display: flex;
 		top: 30px;
@@ -252,8 +256,10 @@ const		ProfileContentsC = styled.div`
 
 
 const		ProfileNameC = styled.div`
-	width: 50%;
 	margin: 10px 30px;
+	justify-content: center;
+	align-content: center;
+	text-align: center;
   	h1 {
 	  opacity: 0.9;
 	  font-weight: 600;
@@ -268,19 +274,20 @@ const		ProfileNameC = styled.div`
 
 const		ProfileBarC = styled.div`
 	width: 100%;
-	margin: 20px;
 	cursor: ${props => (props.Loading ? 'wait' : '')};
 `;
 
 
 const		ProfileImgC = styled.div`
 	display: flex;
-	position: relative;
+	justify-content: center;
+	align-content: center;
 	cursor: ${props => (props.Loading ? 'wait' : '')};
 	img {
-		width: 5rem;
-		height: 5rem;
-		border-radius: 5rem;
+		box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+		width: 15rem;
+		height: 15rem;
+		border-radius: 10rem;
 		border: 1px solid rgba(0, 0, 0, 0.2);
 	}
 	> input {
@@ -303,7 +310,7 @@ const		ProfileLevelBarC = styled.div`
   	display: flex;
   	align-items: center;
   	overflow: hidden;
-  	border-radius: 7px;
+  	border-radius: 15px;
 	span {
 		position: absolute;
 		left: 50%;
@@ -316,7 +323,9 @@ const		ProfileLevelBarC = styled.div`
 const		ProgressBarC = styled.div`
   	background-color: rgb(103, 157, 125);
 	width: ${({ percent }) => percent}%;
-  	height: 500px;
+  	height: 20px;
+	margin: 0px 5px;
+	border-radius: 10px;
 `;
 
 

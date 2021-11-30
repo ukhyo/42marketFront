@@ -25,7 +25,7 @@ function Badge(pros) {
 			<BadgeHeaderC>
 				<span>칭호</span>
 			</BadgeHeaderC>
-			<img src={Coming_soon} />
+			<ImgC src={Coming_soon} />
 			{
 
 				// badges.map((badge, index) => {
@@ -41,7 +41,11 @@ function Badge(pros) {
 
 const	BadgeHeaderC = styled.div`
 	margin: 20px 0px;
-	color: rgb()
+`;
+
+const	ImgC = styled.img `
+	width: 60px;
+	height: 60px;
 `;
 
 const	BadgeC = styled.div`
@@ -50,10 +54,6 @@ const	BadgeC = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
-    img > {
-        width: 50px;
-        height: 50px;
-    }
 `;
 
 const	ShowBadgeC = styled.div`

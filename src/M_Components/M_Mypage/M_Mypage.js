@@ -6,6 +6,7 @@ import Header from "../../Components/Mainpage/Header"
 import ProfileBar from "./M_Profile";
 import NaviBar from "./M_Navibar";
 import InfoList from "./M_Infolist";
+import Footer from "./M_Footer";
 
 function	MypageMain(props)
 {
@@ -15,9 +16,12 @@ function	MypageMain(props)
 	const url = props.name.url;
 	return (
 		<MypageMainC>
-			<ProfileBar url={name}/>
 			<NaviBar name={name}/>
-			<InfoList id={id} url={url} />
+			{
+				url === "profile" ?
+					<ProfileBar url={name}/> : 
+					<InfoList id={id} url={url} />
+			}
 		</MypageMainC>
 	);
 }
@@ -27,21 +31,29 @@ function	M_Mypage({match})
 	const { params }  = match;
 	return (
 		<MypageC>
-			<Header />
+			{/* <Header /> */}
 			<MypageMain name={params}/>
+			<Footer />
 		</MypageC>
 	);
 };
 
 const		MypageC = styled.div`
 	width: 100%;
-	min-width: 500px;
+	margin: 0px 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	max-width: 500px;
+
 `;
 
 const		MypageMainC = styled.div`
+	width: 90%;
 	height: 100%;
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 	justify-content: center;
 	align-content: center;
 `;
