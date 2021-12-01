@@ -10,6 +10,7 @@ import axios from "axios";
 import theme from "../../Styles/theme";
 
 const M_HeaderInfo = (cookie) => {
+	let { userId: userId } = cookie.getAll();
 	const [isActive, setIsActive] = useState(false);
 	return (
 		<div>
@@ -17,7 +18,7 @@ const M_HeaderInfo = (cookie) => {
 				<InfoNameC onClick={() => {
 						setIsActive(!isActive);
 				}} >
-					<span>Icon? UserId</span>
+					<span>{userId}</span>
 				</InfoNameC>
 				<MenuC active={isActive}>
 					  <ul>
@@ -127,19 +128,23 @@ function M_Header() {
 						/>
 					</HeaderSearchInputC>
 			</HeaderSearchC>
-
+			<HeaderNav theme={theme}>
+				<div>홈</div>
+				<div>상품</div>
+				<div>나눔</div>
+			</HeaderNav>
 		</HeaderC>
 	);
 }
 
 // Header style
+
 const HeaderC = styled.header`
 	width: 100%;
 	max-width: 400px;
 	margin: 0 auto;
 	margin-top: 20px;
 	z-index: 10;
-	background-color: var(--BackColor);
 `;
 
 const HeaderLineC = styled.div`
@@ -291,6 +296,16 @@ const HeaderSearchInputC = styled.fieldset`
 	}
 	`;
 
+const HeaderNav = styled.div`
+	width: ${({ theme }) => theme.widthSize.margin};
+	display: flex;
+	margin: 0 auto;
+	margin-top: 10px;
+	justify-content: space-between;
+	> div {
+		/*border:*/
+	}
+`;
 
 
 

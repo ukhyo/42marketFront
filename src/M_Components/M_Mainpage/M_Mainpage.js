@@ -10,7 +10,7 @@ function M_Mainpage() {
 	return (
 		<SectionC>
 			<M_Header />
-			<M_Banner />
+			{/*<M_Banner />*/}
 			<M_CategoryBar />
 			<M_PreviewPost />
 			{/*<M_Footer />*/}

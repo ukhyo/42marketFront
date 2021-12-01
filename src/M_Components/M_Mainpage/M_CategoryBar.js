@@ -15,62 +15,60 @@ function M_CategoryBar(props) {
 					<div>카테고리</div>
 				</CateNameC>
 				<CateBarC>
-				<ul>
-						<li onClick={(e) => {
-							setIsActive(!isActive);
-						}}><Link to={"/category/0"}>
-							<div>전체</div>
-							</Link>
-						</li>
-						<li onClick={(e) => {
-							setIsActive(!isActive);
-						}}><Link to={"/category/1"}>
-							<div>전자</div>
-							</Link>
-						</li><li onClick={(e) => {
-							setIsActive(!isActive);
-						}}><Link to={"/category/2"}>
-							<div>생활</div>
-							</Link>
-						</li><li onClick={(e) => {
-							setIsActive(!isActive);
-						}}><Link to={"/category/3"}>
-							<div>레저</div>
-							</Link>
-						</li><li onClick={(e) => {
-							setIsActive(!isActive);
-						}}><Link to={"/category/4"}>
-							<div>패션</div>
-							</Link>
-						</li><li onClick={(e) => {
-							setIsActive(!isActive);
-						}}><Link to={"/category/5"}>
-							<div>음악/악기</div>
-							</Link>
-						</li><li onClick={(e) => {
-							setIsActive(!isActive);
-						}}><Link to={"/category/6"}>
-							<div>뷰티</div>
-							</Link>
-						</li><li onClick={(e) => {
-							setIsActive(!isActive);
-						}}><Link to={"/category/7"}>
-							<div>도서</div>
-							</Link>
-						</li>
-						<li onClick={(e) => {
-							setIsActive(!isActive);
-						}}><Link to={"/category/8"}>
-							<div>나눔</div>
-							</Link>
-						</li>
-						<li onClick={(e) => {
-							setIsActive(!isActive);
-						}}><Link to={"/category/9"}>
-							<div>기타</div>
-							</Link>
-						</li>
-					  </ul>
+					<div onClick={(e) => {
+						setIsActive(!isActive);
+					}}><Link to={"/category/0"}>
+						<div>전체</div>
+						</Link>
+					</div>
+					<div onClick={(e) => {
+						setIsActive(!isActive);
+					}}><Link to={"/category/1"}>
+						<div>전자</div>
+						</Link>
+					</div><div onClick={(e) => {
+						setIsActive(!isActive);
+					}}><Link to={"/category/2"}>
+						<div>생활</div>
+						</Link>
+					</div><div onClick={(e) => {
+						setIsActive(!isActive);
+					}}><Link to={"/category/3"}>
+						<div>레저</div>
+						</Link>
+					</div><div onClick={(e) => {
+						setIsActive(!isActive);
+					}}><Link to={"/category/4"}>
+						<div>패션</div>
+						</Link>
+					</div><div onClick={(e) => {
+						setIsActive(!isActive);
+					}}><Link to={"/category/5"}>
+						<div>음악/악기</div>
+						</Link>
+					</div><div onClick={(e) => {
+						setIsActive(!isActive);
+					}}><Link to={"/category/6"}>
+						<div>뷰티</div>
+						</Link>
+					</div><div onClick={(e) => {
+						setIsActive(!isActive);
+					}}><Link to={"/category/7"}>
+						<div>도서</div>
+						</Link>
+					</div>
+					<div onClick={(e) => {
+						setIsActive(!isActive);
+					}}><Link to={"/category/8"}>
+						<div>나눔</div>
+						</Link>
+					</div>
+					<div onClick={(e) => {
+						setIsActive(!isActive);
+					}}><Link to={"/category/9"}>
+						<div>기타</div>
+						</Link>
+					</div>
 				</CateBarC>
 				{/*<MenuC active={isActive}>
 					  <ul>
@@ -153,11 +151,12 @@ const NameAndSortC = styled.div`
 `;
 
 const CateBarC = styled.div`
-	> ul {
-		display: flex;
-		flex-wrap: wrap;
-		white-space:nowrap;
-		overflow:auto;
+	display: flex;
+	justify-content: space-between;
+	white-space:nowrap;
+	overflow:auto;
+	> div {
+		margin: 0 20px;
 	}
 `;
 
