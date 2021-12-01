@@ -90,20 +90,17 @@ function	ProfileBar({ url })
 	if (userId === id)
 		return (
 			<ProfileBarC Loading={isLoading}>
-				<ProfileImgC Loading={isLoading}>
-					<img src={ profile.userImage }/>
-					<label for="ChangeImg">
-						<ProfileImgModifyC>
-								<FaImage />
-						</ProfileImgModifyC>
-					</label>
-					<input type="file"
-							id="ChangeImg"
-							onChange={onChangeImg}/>
-				</ProfileImgC>
 				<ProfileInfoC>
 					<ProfileImgC Loading={isLoading}>
-						<img src={profile.userImage}/>
+						<img src={ profile.userImage }/>
+						<label for="ChangeImg">
+							<ProfileImgModifyC>
+									<FaImage />
+							</ProfileImgModifyC>
+						</label>
+						<input type="file"
+								id="ChangeImg"
+								onChange={onChangeImg}/>
 					</ProfileImgC>
 					<ProfileNameC>
 						<h1>{profile.userIntra}</h1>
