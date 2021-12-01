@@ -45,7 +45,7 @@ export default function Comments(props) {
 	  <CommentHeaderC>
       	<p>댓글</p>
 	  </CommentHeaderC>
-	<form style={{ display: 'flex' }} onSubmit={onSubmit}>
+	<CommentFormC onSubmit={onSubmit}>
 		<InputCommentC
 			cols="30" rows="10"
 			onChange={handleChange}
@@ -56,8 +56,7 @@ export default function Comments(props) {
 			  <SubmitButtonC flag={commentValue.length >= 1} onClick={onSubmit}>
 			댓글
 		</SubmitButtonC>
-		{/* textarea에 글자 들어왔을 때 버튼색 파란색으로 바꾸고 싶다 */}
-	</form>
+	</CommentFormC>
     {/* Comment Lists */}
 	{
 		props.commentsList && ( props.commentsList.map((comment, index) => (
@@ -77,6 +76,11 @@ export default function Comments(props) {
   );
 }
 
+const CommentFormC = styled.form`
+	display: flex;
+	flex-direction: column;
+`;
+
 const CommentHeaderC = styled.div`
 	margin-bottom: 30px;
 	padding: 20px 0px;
@@ -84,17 +88,17 @@ const CommentHeaderC = styled.div`
 `;
 
 const InputCommentC = styled.textarea`
-	width: 90%;
-	height: 52px;
+	width: 100%;
+	height: 25px;
 	border-radius: 5px;
 	outline: none;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const SubmitButtonC = styled.button`
-	width: 6%;
-	height: 56px;
-	margin-left: 20px;
+	width: 18%;
+	height: 36px;
+	margin-left: calc(100% - 70px);
 	color: ${(props) => props.flag ? "white" : "rgb(150, 150, 150)"};
 	background-color: ${(props) => props.flag ? "rgb(130,130, 230)" : "rgb(236,236,236)"};
 	/*background-color: rgb(236, 236, 236);*/
