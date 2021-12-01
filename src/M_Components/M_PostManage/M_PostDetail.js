@@ -14,6 +14,7 @@ import Comments from "./M_Comments";
 import { HiOutlineClock } from 'react-icons/hi';
 import { BsArrowLeftShort } from "react-icons/bs";
 import { BsArrowRightShort } from "react-icons/bs";
+import M_Header from "../M_Mainpage/M_Header";
 
 function M_PostDetail(props) {
 	const cookie = new Cookies();
@@ -119,40 +120,92 @@ function M_PostDetail(props) {
 	// if (Error) return <div>error occured</div>
 	return (
 		<div>
+			<M_Header />
 			<PostDetailC flag={Loading}>
 				{Loading &&
 					<PostDetailHeaderC>
 						<PostDetailMainC>
 							<BackImg url={data.image[ImgIdx]} />
-						<LeftRightBtnC>
-							<div>
+							<LeftRightBtnC>
+								<div>
 
-								<BsArrowLeftShort size={25} onClick={() => {
-									if (ImgIdx === 0)
-									ImgIdx = 1;
-									SelectPicture(ImgIdx - 1);
-								}} />
-							</div>
-							{data.image.map((data, idx) => {
-								console.log("hi");
-								return (<ChangeBtnC flag={idx === ImgIdx }onClick={() => {
-										SelectPicture(idx);
-									}}></ChangeBtnC>)
-							})}
-							<div>
-
-								<BsArrowRightShort size={25} onClick={() => {
-									if (ImgIdx >= data.image.length - 1) {
-										ImgIdx = data.image.length - 1;
-										SelectPicture(ImgIdx);
-									}
-									else
-										SelectPicture(ImgIdx + 1)
-								} }/>
-							</div>
+									<BsArrowLeftShort size={25} onClick={() => {
+										if (ImgIdx === 0)
+										ImgIdx = 1;
+										SelectPicture(ImgIdx - 1);
+									}} />
+								</div>
+								{data.image.map((data, idx) => {
+									console.log("hi");
+									return (<ChangeBtnC flag={idx === ImgIdx }onClick={() => {
+											SelectPicture(idx);
+										}}></ChangeBtnC>)
+								})}
+								<div>
+									<BsArrowRightShort size={25} onClick={() => {
+										if (ImgIdx >= data.image.length - 1) {
+											ImgIdx = data.image.length - 1;
+											SelectPicture(ImgIdx);
+										}
+										else
+											SelectPicture(ImgIdx + 1)
+									} }/>
+								</div>
 							</LeftRightBtnC>
-
 						</PostDetailMainC>
+						<PostDetailInfoC>
+							<TitleC>
+								<div>
+									{data.title}
+								</div>
+								{/* <div>
+									<b>
+										판매자 &nbsp;
+										<Link to={`/mypage/${data.userId}/selllist`}>
+											{data.author}
+										</Link>
+									</b>
+								</div> */}
+							</TitleC>
+							<PriceAndDateC>
+								<div>{data.price.toLocaleString()}<b>원</b></div>
+								<DateC><HiOutlineClock />  <span>{GetTime(data.updatedAt)}</span></DateC>
+							</PriceAndDateC>
+							<LocationAndViewsC>
+								<LocationArea>
+									<AiOutlineEye size={18} /><b>{data.view}</b>
+								</LocationArea>
+								<LocationArea>
+									<IconContext.Provider value={{ color: "rgb(234, 123, 151)" }}>
+										<BsSuitHeartFill size={18} /><b>{data.subscribes}</b>
+									</IconContext.Provider>
+								</LocationArea>
+							</LocationAndViewsC>
+							<Location>
+								<li>판매자 &nbsp; &nbsp; &nbsp; &nbsp;<Link to={`/mypage/${data.userId}/selllist`}>{data.author}</Link></li>
+								<li>거래장소 &nbsp; &nbsp;<span>{data.local}</span></li>
+								<li>판매상태 &nbsp; &nbsp;<span>{statusName[data.status]}</span></li>
+								<li>카테고리 &nbsp; &nbsp;<span>{data.category_name}</span></li>
+							</Location>
+							{userId === "0" ?
+							(<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code"><SubscribeBtn>로그인</SubscribeBtn></a>)
+							:
+							(data.subList.indexOf(`/${data.id}/`) === -1 ?
+								<SubscribeBtn onClick={e => {
+									ClickScribe();
+								}}>찜</SubscribeBtn>
+								:
+								<SubscribeBtn onClick={e => {
+									ClickScribe();
+								}}>찜 해제</SubscribeBtn>
+
+							)}
+							{/* <PostContentsC>
+								<ContentC>
+									{data.content}
+								</ContentC>
+							</PostContentsC> */}
+						</PostDetailInfoC>
 					</PostDetailHeaderC>}
 				<PostContentsC>
 					<PostContentsInfoC>상품정보</PostContentsInfoC>
@@ -190,23 +243,24 @@ const StatusBar = styled.div`
 
 const PostContentsInfoC = styled.div`
 	font-size: 18px;
-	padding: 48px 0px 16px;
+	padding: 10px 0px 10px;
 	border-bottom: 1px solid rgb(238, 238, 238);
 `;
 
 const PostDetailC = styled.div`
-	width: 1200px;
+	width: 100%;
 	height: 100%;
+	max-width: 400px;
 	margin: 0 auto;
-	margin-top: 80px;
+	margin-top: 3rem;
 	cursor: ${(props ) => props.flag ? "" : "wait"};
 `;
 
 const PostDetailHeaderC = styled.div`
 	display: flex;
+	flex-direction: column;
 	/*position: absolute;*/
 	padding-bottom: 30px;
-	border-bottom: 1px solid rgb(238, 238, 238);
 `;
 
 const ChangeBtnC = styled.div`
@@ -235,20 +289,16 @@ const LeftRightBtnC = styled.div`
 `;
 
 const PostDetailMainC = styled.div`
-
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-
 	align-items: center;
-	width: 500px;
-	height: 500px;
-	position: relative;
+	width: 100%;
 `;
 
 const BackImg = styled.div`
-	width: 100%;
-	height: 500px;
+	width: 19rem;
+	height: 19rem;
 	background-image: url("${(props) => props.url}");
 	background-position: center;
 	background-size: cover;
@@ -257,11 +307,12 @@ const BackImg = styled.div`
 `;
 
 const PostDetailInfoC = styled.div`
-	position: relative;
-	width: 60%;
-	margin: 30px 0px 30px 50px;
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
 	> div:first-child { // 제목
-		font-size: 24px;
+		font-size: 1em;
 		margin-bottom: 20px;
 	}
 	> div:nth-child(2) { // 가격 / 시간
@@ -293,23 +344,9 @@ const Location = styled.ul` // 거래장소
 `;
 
 const TitleC = styled.div`
-	display: flex;
-	justify-content: space-between;
-	> div:nth-child(1) {
-		color: rgba(0, 0, 0, 0.7);
-		font-weight: 700;
-	}
-	> div > b { // 판매자
-		font-size: 18px;
-		> b {
-			color: rgb(130, 130, 238);
-			text-decoration: underline;
-			cursor: pointer;
-		}
-	}
-	> div:first-child {
-		width: 500px;
-	}
+	color: rgba(0, 0, 0, 0.7);
+	font-weight: 700;
+	margin: 1rem 0rem;
 `;
 
 const DateC = styled.div`
@@ -326,13 +363,13 @@ const DateC = styled.div`
 
 const PriceAndDateC = styled.div`
 	display: flex;
-	margin-top: 50px;
+	margin-top: 1rem;
 	justify-content: space-between;
 	align-items: center;
 	> div:nth-child(1) {
 		color: rgba(0, 0, 0, 0.8);
 		font-weight: 700;
-		font-size: 35px;
+		font-size: 1rem;
 	}
 	/* > div:last-child {
 		font-weight: normal;
@@ -372,9 +409,10 @@ const LocationAndViewsC = styled.div`
 `;
 
 const PostContentsC = styled.div`
+	width: 90%;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
-	margin-top: 15px;
 	line-height: 24px;
 `;
 
@@ -386,10 +424,10 @@ const ContentC = styled.div`
 
 
 const SubscribeBtn = styled.button`
-	position: absolute;
-	width: 160px;
+	position: relative;
+	width: 10rem;
 	height: 50px;
-	bottom: 37px;
+	top: 10px;
 	border: none;
 	background-color: rgb(255, 67, 46);
 	color :white;
@@ -399,7 +437,8 @@ const SubscribeBtn = styled.button`
 // 하단부
 
 const CommentArea = styled.div`
-	width: 1200px;
+	width: 90%;
+	margin: 0 auto;
 
 `;
 

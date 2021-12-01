@@ -300,7 +300,6 @@ const HeaderNav = styled.div`
 	width: ${({ theme }) => theme.widthSize.margin};
 	display: flex;
 	margin: 0 auto;
-	margin-top: 10px;
 	justify-content: space-between;
 	> div {
 		/*border:*/

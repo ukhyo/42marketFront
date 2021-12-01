@@ -46,7 +46,7 @@ function InfoList({id, url})
 		list = list.cartsList;
 	if (loading) return <div>Loading...</div>;
 	if (error) return <div>Error occured</div>;
-	if (userId === id)
+	if (userId !== id)
 	{
 		return (
 			<InfoListC flag={url === "manage"}>
@@ -88,8 +88,10 @@ function InfoList({id, url})
 									<span>{posts.price}원</span>
 								</PostInfosTwo__PriceC>
 								<PostInfosTwo__LookupC>
-									<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.subscribes}</span>
-									<span><b><AiOutlineEye /></b> {posts.view} </span>
+									<PostInfosTwo_LookupTwoC>
+										<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.subscribes}</span>
+										<span><b><AiOutlineEye /></b> {posts.view} </span>
+									</PostInfosTwo_LookupTwoC>
 									<PostCategoryC>
 										{url === "selllist"  || url === "manage" ?
 											<DropdownMenu id={posts.id} status={posts.status}></DropdownMenu>
@@ -114,9 +116,8 @@ function InfoList({id, url})
 				}
 			</InfoListC>
 		);
-			}
-
-	if ( userId !== id )
+	}
+	else
 	{
 		return (
 			<InfoListC flag={url === "manage"}>
@@ -158,8 +159,10 @@ function InfoList({id, url})
 									<span>{posts.price}원</span>
 								</PostInfosTwo__PriceC>
 								<PostInfosTwo__LookupC>
-									<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.subscribes}</span>
-									<span><b><AiOutlineEye /></b> {posts.view} </span>
+									<PostInfosTwo_LookupTwoC>
+										<span><AiFillHeart color="rgb(234, 123, 151)"/> {posts.subscribes}</span>
+										<span><b><AiOutlineEye /></b> {posts.view} </span>
+									</PostInfosTwo_LookupTwoC>
 									<PostCategoryC>
 											<span>{posts.categoryName}</span>
 									</PostCategoryC>
@@ -182,9 +185,25 @@ function InfoList({id, url})
 
 }
 
+const PostInfosTwo_LookupTwoC = styled.div`
+	& > span
+	{
+		font-size: 0.8em;
+		display: inline-block;
+		white-space: nowrap;
+		padding: 0.2rem 0.2rem 0.2rem 0px;
+		color: rgba(0, 0, 0, 0.5);
+		> b {
+			position: relative;
+			bottom: -2px;
+		}
+	}
+`;
+
 const EmptyInfoListC = styled.div`
 	width: 100%;
 	height: 80px;
+	margin: 0 auto;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
@@ -201,6 +220,7 @@ const PostInfosTwoC = styled.div`
 `;
 
 const PostInfosTwo__PriceC = styled.div`
+	margin: 0.2rem 0px;
 	& > span
 	{
 		font-size: 0.8em;
@@ -212,17 +232,6 @@ const PostInfosTwo__LookupC = styled.div`
 	display: flex;
 	justify-content: space-between;
 	margin-top: 0.5rem;
-	& > span
-	{
-		font-size: 0.8em;
-		display: inline-block;
-		padding: 3px;
-		color: rgba(0, 0, 0, 0.5);
-		> b {
-			position: relative;
-			bottom: -2px;
-		}
-	}
 `;
 
 const PostCategoryC = styled.div`
@@ -237,21 +246,27 @@ const PostCategoryC = styled.div`
 const PostInfosOne__DateC = styled.div`
 	font-size: 0.5em;
 	display: flex;
+	margin: 0.2rem 0px;
 	color: rgba(0, 0, 0, 0.5);
-	justify-content: space-between;
+	justify-content: flex-start;
 	& > span:nth-child(1){
 		display:inline-block;
 		width: 3rem;
 	}
 	& > span:nth-child(2) {
-		display: inline-block;
+		display: block;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 `;
 
 const PostListC = styled.div`
 	/*width: 880px;*/
 	width: 100%;
+	height: 100%;
 	padding: 15px 0px;
+	margin: 0 auto;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
@@ -260,17 +275,17 @@ const PostListC = styled.div`
 
 const PostImgC = styled.div`
 	img {
-		width: 10rem;
-		height: 10rem;
+		width: 7rem;
+		height: 7rem;
 		border-radius: 10px;
-		margin: 0px 5px;
+		margin: 0px 0.5rem;
 	}
 `;
 
 const PostInfosOneC = styled.div`
-	width: 352px;
+	width: calc(100% - 150px);
 	height: 100%;
-	margin: 0px 10px;
+	margin: 0 auto;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -280,36 +295,38 @@ const PostInfosOne__TitleC = styled.div`
 	/* display: flex;
 	justify-content: center;
 	align-items: center; */
-	line-height: 20px;
+	width: 90%;
 	vertical-align: middle;
-	height: 20px;
-	margin: 0px 0px;
+	margin-bottom: 0.4rem;
+	height: 13px;
 `;
 
 const LinkC = styled(Link)`
-	display: inline-block;
-	width: 100%;
+	display: block;
+	padding: 0.3rem 0px;
 	font-weight: 600;
 	font-size: 0.8em;
 	text-decoration: none;
 	color: rgb(75, 75, 75);
-	white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	overflow: hidden;
+	white-space : nowrap;
+	text-overflow : ellipsis;
+	word-wrap: break-word;
+	display: --webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 
 `;
 
 const PostInfosOne__SubtitleC = styled.div`
-	height: 30px;
-	margin: 10px 0px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: normal;
-	line-height: 1;
-	text-align: left;
-	word-wrap: break-word;
+	width: 90%;
+	margin: 0.4rem 0px;
+	height: 11px;
 	span {
+		display: block;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		font-size: 10px;
 		color: rgba(0, 0, 0, 0.7);
 	}
@@ -317,7 +334,7 @@ const PostInfosOne__SubtitleC = styled.div`
 
 const InfoListC = styled.div`
 	width: 100%;
-	height: auto;
+	height: 170px;
 `;
 
 

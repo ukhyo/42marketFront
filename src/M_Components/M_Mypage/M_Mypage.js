@@ -2,7 +2,7 @@ import React, { useState, useReducer } from "react";
 import axios from "axios";
 import {Route} from 'react-router-dom';
 import styled from "styled-components";
-import Header from "../../Components/Mainpage/Header"
+import M_Header from "../M_Mainpage/M_Header";
 import ProfileBar from "./M_Profile";
 import NaviBar from "./M_Navibar";
 import InfoList from "./M_Infolist";
@@ -30,25 +30,21 @@ function	M_Mypage({match})
 	const { params }  = match;
 	return (
 		<MypageC>
-			{/* <Header /> */}
+			<M_Header />
 			<MypageMain name={params}/>
-			<Footer />
+			{/* <Footer /> */}
 		</MypageC>
 	);
 };
 
 const		MypageC = styled.div`
-	width: 100%;
-	margin: 0px auto;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-content: center;
+	width: 90%;
+	margin: 0 auto;
 	max-width: 400px;
 `;
 
 const		MypageMainC = styled.div`
-	width: 90%;
+	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;

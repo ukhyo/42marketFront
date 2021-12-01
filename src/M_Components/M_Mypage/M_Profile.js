@@ -90,20 +90,17 @@ function	ProfileBar({ url })
 	if (userId === id)
 		return (
 			<ProfileBarC Loading={isLoading}>
-				<ProfileImgC Loading={isLoading}>
-					<img src={ profile.userImage }/>
-					<label for="ChangeImg">
-						<ProfileImgModifyC>
-								<FaImage />
-						</ProfileImgModifyC>
-					</label>
-					<input type="file"
-							id="ChangeImg"
-							onChange={onChangeImg}/>
-				</ProfileImgC>
 				<ProfileInfoC>
 					<ProfileImgC Loading={isLoading}>
-						<img src={profile.userImage}/>
+						<img src={ profile.userImage }/>
+						<label for="ChangeImg">
+							<ProfileImgModifyC>
+									<FaImage />
+							</ProfileImgModifyC>
+						</label>
+						<input type="file"
+								id="ChangeImg"
+								onChange={onChangeImg}/>
 					</ProfileImgC>
 					<ProfileNameC>
 						<h1>{profile.userIntra}</h1>
@@ -147,7 +144,9 @@ function	ProfileBar({ url })
 			<ProfileBarC Loading={isLoading}>
 				<ProfileInfoC>
 					<ProfileImgC Loading={isLoading}>
-						<img src={profile.userImage}/>
+						<div>
+							<img src={profile.userImage}/>
+						</div>
 					</ProfileImgC>
 					<ProfileNameC>
 						<h1>{profile.userIntra}</h1>
@@ -233,8 +232,8 @@ const		ProfileImgModifyC = styled.div`
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	background-color: #fdfdfd;
 	border-radius: 15px;
-	left: 28 0px;
-	top: 250px;
+	left: 190px;
+	top: 190px;
 	> label {
 		display: flex;
 		top: 30px;
@@ -244,7 +243,7 @@ const		ProfileImgModifyC = styled.div`
 `;
 
 const		ProfileContentsC = styled.div`
-  	width: 93%;
+  	width: 90%;
   	margin: 20px 5px;
   	span {
 		white-space: pre-wrap;
@@ -283,20 +282,23 @@ const		ProfileImgC = styled.div`
 	justify-content: center;
 	align-content: center;
 	cursor: ${props => (props.Loading ? 'wait' : '')};
-	img {
-		box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
-		width: 15rem;
-		height: 15rem;
-		border-radius: 10rem;
-		border: 1px solid rgba(0, 0, 0, 0.2);
-	}
-	> input {
-		display: none;
+	> div {
+		position: relative;
+		img {
+			box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+			width: 15rem;
+			height: 15rem;
+			border-radius: 10rem;
+			border: 1px solid rgba(0, 0, 0, 0.2);
+		}
+		> input {
+			display: none;
+		}
 	}
 `;
 
 const		ProfileLevelC = styled.div`
-	width: 93%;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-content: center;
@@ -313,7 +315,7 @@ const		ProfileLevelBarC = styled.div`
   	border-radius: 15px;
 	span {
 		position: absolute;
-		left: 50%;
+		left: 80%;
 		transform: translate(-50%);
 		opacity: 0.5;
 		font-family: "TmoneyRoundWindExtraBold";

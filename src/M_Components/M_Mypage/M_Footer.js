@@ -14,7 +14,6 @@ const FooterLineC = styled.div`
 	height: 20%;
 	margin-top: 30px;
 	text-align: center;
-	line-height: 140px;
 	color: #a8a8a8;
 `;
 
