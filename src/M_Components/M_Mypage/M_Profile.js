@@ -146,14 +146,6 @@ function	ProfileBar({ url })
 					<ProfileImgC Loading={isLoading}>
 						<div>
 							<img src={profile.userImage}/>
-							<label for="ChangeImg">
-								<ProfileImgModifyC>
-										<FaImage />
-								</ProfileImgModifyC>
-							</label>
-							<input type="file"
-									id="ChangeImg"
-									onChange={onChangeImg}/>
 						</div>
 					</ProfileImgC>
 					<ProfileNameC>
@@ -251,7 +243,7 @@ const		ProfileImgModifyC = styled.div`
 `;
 
 const		ProfileContentsC = styled.div`
-  	width: 93%;
+  	width: 90%;
   	margin: 20px 5px;
   	span {
 		white-space: pre-wrap;
@@ -306,7 +298,7 @@ const		ProfileImgC = styled.div`
 `;
 
 const		ProfileLevelC = styled.div`
-	width: 93%;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-content: center;
