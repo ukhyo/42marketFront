@@ -14,41 +14,41 @@ const M_HeaderInfo = (cookie) => {
 	return (
 		<div>
 			<InfoAreaC>
-						<InfoNameC onClick={() => {
-								setIsActive(!isActive);
-						}} >
-							<span>Icon? UserId</span>
-						</InfoNameC>
-						<MenuC active={isActive}>
-							  <ul>
-								<li onClick={(e) => {
-									setIsActive(!isActive);
-								}}><Link to={"/product/regi"}>
-									<div>판매하기</div>
-									</Link>
-								</li>
-								<li onClick={(e) => {
-									setIsActive(!isActive);
-								}}><Link onClick={() => {
-									const LogOut = () => {
-										cookie.remove('Authorization', {
-											path: '/',
-											domain: '.4m2d.shop',
-										});
-										cookie.remove('userId', {
-											path: '/',
-											domain: '.4m2d.shop',
-										});
-										window.location.reload();
-									}
-									LogOut();
-								}}>
-									<div>로그아웃</div>
-									</Link>
-								</li>
-							  </ul>
-						</MenuC>
-					</InfoAreaC>
+				<InfoNameC onClick={() => {
+						setIsActive(!isActive);
+				}} >
+					<span>Icon? UserId</span>
+				</InfoNameC>
+				<MenuC active={isActive}>
+					  <ul>
+						<li onClick={(e) => {
+							setIsActive(!isActive);
+						}}><Link to={"/product/regi"}>
+							<div>판매하기</div>
+							</Link>
+						</li>
+						<li onClick={(e) => {
+							setIsActive(!isActive);
+						}}><Link onClick={() => {
+							const LogOut = () => {
+								cookie.remove('Authorization', {
+									path: '/',
+									domain: '.4m2d.shop',
+								});
+								cookie.remove('userId', {
+									path: '/',
+									domain: '.4m2d.shop',
+								});
+								window.location.reload();
+							}
+							LogOut();
+						}}>
+							<div>로그아웃</div>
+							</Link>
+						</li>
+					  </ul>
+				</MenuC>
+			</InfoAreaC>
 		</div>
 	)
 }

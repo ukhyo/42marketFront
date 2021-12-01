@@ -21,7 +21,6 @@ function RadioRet({ idx, value, setIdx, flag }) {
 	);
 }
 function ProductStateBar({ path }) {
-	console.log("statebar", path);
 	return (
 		<SectionC>
 			<ProductStateBarC>

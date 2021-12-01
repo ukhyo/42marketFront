@@ -124,7 +124,7 @@ function ProductEdit(props) {
 			});
 
 			let oldFile = oldFiles.map((data) => {
-				return data.slice(data.length - 1, data.length);
+				return data.slice(data.indexOf("?") - 1, data.indexOf("?"));
 			});
 			let temp = price;
 			if (idx === 8)

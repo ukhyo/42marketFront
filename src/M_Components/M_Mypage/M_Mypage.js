@@ -11,7 +11,6 @@ import Footer from "./M_Footer";
 function	MypageMain(props)
 {
 	const { name } = props;
-
 	const id = props.name.id;
 	const url = props.name.url;
 	return (
@@ -40,13 +39,12 @@ function	M_Mypage({match})
 
 const		MypageC = styled.div`
 	width: 100%;
-	margin: 0px 20px;
+	margin: 0px auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-content: center;
 	max-width: 400px;
-
 `;
 
 const		MypageMainC = styled.div`

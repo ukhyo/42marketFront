@@ -18,7 +18,10 @@ const App = () => {
 	test = cookie.getAll();
 	const DesktopOrLaptop = useMediaQuery(
 		{ minDeviceWidth: 1200 },
-		)
+	)
+	const zzzz = "abcd123?=12345";
+	let t = zzzz.slice(zzzz.indexOf("?") - 1, zzzz.indexOf("?"));
+	console.log(t, "체크");
 	return (
 		<TestC>
 			{DesktopOrLaptop ?

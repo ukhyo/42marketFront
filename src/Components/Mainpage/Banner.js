@@ -26,7 +26,9 @@ function MainBanner() {
 		<MainC>
 			<ImagesC>
 				<DivC>
-					<ImageC url={images[idx]}/ >
+					{/*<ImageC url={images[idx]} />*/}
+					{/*<ImageC url="https://4m2d.s3.ap-northeast-2.amazonaws.com/post26/file1" />*/}
+					<img src="https://4m2d.s3.ap-northeast-2.amazonaws.com/post26/file1" />
 				</DivC>
 			</ImagesC>
 		</MainC>

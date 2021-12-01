@@ -104,7 +104,6 @@ function ProductRegi(props) {
 			Files.forEach((data) => {
 				fileList.append(`fileList`, data);
 			});
-
 			let temp = price;
 			if (idx === 8)
 				temp = 0;

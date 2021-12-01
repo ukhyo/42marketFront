@@ -118,7 +118,6 @@ function ProductRegi(props) {
 			};
 
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
-
 			const headers = {
 				"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
