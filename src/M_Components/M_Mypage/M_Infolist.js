@@ -46,7 +46,7 @@ function InfoList({id, url})
 		list = list.cartsList;
 	if (loading) return <div>Loading...</div>;
 	if (error) return <div>Error occured</div>;
-	if (userId !== id)
+	if (userId === id)
 	{
 		return (
 			<InfoListC flag={url === "manage"}>
