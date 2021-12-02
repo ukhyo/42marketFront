@@ -6,6 +6,7 @@ import { Cookies } from "react-cookie";
 import theme from "../../Styles/theme";
 function M_CategoryBar(props) {
 	const [isActive, setIsActive] = useState(false);
+	console.log(window.location.href.slice(window.location.href.lastIndexOf("/") + 1, window.location.href.length), "hh");
 	return (
 		<CategoryC>
 			<NameAndSortC theme={theme}>
@@ -14,6 +15,7 @@ function M_CategoryBar(props) {
 				}} >
 					<div>카테고리</div>
 				</CateNameC>*/}
+				{"8" !== window.location.href.slice(window.location.href.lastIndexOf("/") + 1, window.location.href.length) &&
 				<CateBarC>
 					<div onClick={(e) => {
 						setIsActive(!isActive);
@@ -70,6 +72,7 @@ function M_CategoryBar(props) {
 						</LinkC>
 					</div>
 				</CateBarC>
+				}
 				{/*<MenuC active={isActive}>
 					  <ul>
 						<li onClick={(e) => {
@@ -151,7 +154,7 @@ const NameAndSortC = styled.div`
 `;
 
 const CateBarC = styled.div`
-	display: flex;
+	display: ${flag => (!flag ? "none" : "flex")};
 	/*justify-content: space-between;*/
 	white-space:nowrap;
 	overflow:auto;
