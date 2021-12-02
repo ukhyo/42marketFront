@@ -138,8 +138,7 @@ function	ProfileBar({ url })
 
 			</ProfileBarC>
 		);
-
-	if (userId !== id)
+	else
 		return (
 			<ProfileBarC Loading={isLoading}>
 				<ProfileInfoC>

@@ -9,65 +9,65 @@ function M_CategoryBar(props) {
 	return (
 		<CategoryC>
 			<NameAndSortC theme={theme}>
-				<CateNameC onClick={() => {
+				{/*<CateNameC onClick={() => {
 						setIsActive(!isActive);
 				}} >
 					<div>카테고리</div>
-				</CateNameC>
+				</CateNameC>*/}
 				<CateBarC>
 					<div onClick={(e) => {
 						setIsActive(!isActive);
-					}}><Link to={"/category/0"}>
+					}}><LinkC to={"/category/0"}>
 						<div>전체</div>
-						</Link>
+						</LinkC>
 					</div>
 					<div onClick={(e) => {
 						setIsActive(!isActive);
-					}}><Link to={"/category/1"}>
+					}}><LinkC to={"/category/1"}>
 						<div>전자</div>
-						</Link>
+						</LinkC>
 					</div><div onClick={(e) => {
 						setIsActive(!isActive);
-					}}><Link to={"/category/2"}>
+					}}><LinkC to={"/category/2"}>
 						<div>생활</div>
-						</Link>
+						</LinkC>
 					</div><div onClick={(e) => {
 						setIsActive(!isActive);
-					}}><Link to={"/category/3"}>
+					}}><LinkC to={"/category/3"}>
 						<div>레저</div>
-						</Link>
+						</LinkC>
 					</div><div onClick={(e) => {
 						setIsActive(!isActive);
-					}}><Link to={"/category/4"}>
+					}}><LinkC to={"/category/4"}>
 						<div>패션</div>
-						</Link>
+						</LinkC>
 					</div><div onClick={(e) => {
 						setIsActive(!isActive);
-					}}><Link to={"/category/5"}>
+					}}><LinkC to={"/category/5"}>
 						<div>음악/악기</div>
-						</Link>
+						</LinkC>
 					</div><div onClick={(e) => {
 						setIsActive(!isActive);
-					}}><Link to={"/category/6"}>
+					}}><LinkC to={"/category/6"}>
 						<div>뷰티</div>
-						</Link>
+						</LinkC>
 					</div><div onClick={(e) => {
 						setIsActive(!isActive);
-					}}><Link to={"/category/7"}>
+					}}><LinkC to={"/category/7"}>
 						<div>도서</div>
-						</Link>
+						</LinkC>
 					</div>
-					<div onClick={(e) => {
+					{/*<div onClick={(e) => {
 						setIsActive(!isActive);
-					}}><Link to={"/category/8"}>
+					}}><LinkC to={"/category/8"}>
 						<div>나눔</div>
-						</Link>
-					</div>
+						</LinkC>
+					</div>*/}
 					<div onClick={(e) => {
 						setIsActive(!isActive);
-					}}><Link to={"/category/9"}>
+					}}><LinkC to={"/category/9"}>
 						<div>기타</div>
-						</Link>
+						</LinkC>
 					</div>
 				</CateBarC>
 				{/*<MenuC active={isActive}>
@@ -139,7 +139,7 @@ const CategoryC = styled.div`
 	width: 100%;
 	max-width: 400px;
 	margin: 0 auto;
-	margin-top: 30px;
+	/*margin-top: 30px;*/
 `;
 
 const NameAndSortC = styled.div`
@@ -152,12 +152,24 @@ const NameAndSortC = styled.div`
 
 const CateBarC = styled.div`
 	display: flex;
-	justify-content: space-between;
+	/*justify-content: space-between;*/
 	white-space:nowrap;
 	overflow:auto;
-	> div {
-		margin: 0 20px;
+	> div:not(div:first-child), > div:not(div:last-child) {
+		/*margin-right: 20px;*/
+		line-height: 40px;
 	}
+	> div:not(div:last-child) {
+		margin-right: 20px;
+	}
+	> div {
+		color :black;
+	}
+	color: black;
+`;
+
+const LinkC = styled(Link)`
+	color: rgba(0,0,0,0.8);
 `;
 
 const CateNameC = styled.button`

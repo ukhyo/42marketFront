@@ -8,12 +8,14 @@ import Category from "./Category/Category";
 import ProductEdit from "./Product/ProductEdit";
 import Search from "./Search/Search";
 import { useMediaQuery } from "react-responsive";
-import M_Mypage from "../M_Components/M_Mypage/M_Mypage";
 import { exact } from "prop-types";
+import M_Mypage from "../M_Components/M_Mypage/M_Mypage";
 import M_Mainpage from "../M_Components/M_Mainpage/M_Mainpage";
 import M_Product from "../M_Components/M_Product/M_Product";
 import M_Category from "../M_Components/M_Category/M_Category";
 import M_Search from "../M_Components/M_Search/M_Search";
+import M_PostDetail from "../M_Components/M_PostManage/M_PostDetail";
+import M_ProductEdit from "../M_Components/M_Product/M_ProductEdit";
 function Router() {
 	const mobileWidth = useMediaQuery(
 		{maxWidth: 510}
@@ -26,8 +28,8 @@ function Router() {
 					<Route path={"/product/:tabs"} exact component={M_Product}></Route>
 					<Route path={"/category/:id"} exact component={M_Category} />
 					<Route path={"/mypage/:id/:url"} component={M_Mypage}></Route>
-					{/*<Route path={"/product/edit"} exact component={ProductEdit} />*/}
-					{/*<Route path={"/postview/:id"} exact component={PostDetail}></Route>*/}
+					<Route path={"/product/edit"} exact component={M_ProductEdit} />
+					<Route path={"/postview/:id"} exact component={M_PostDetail}></Route>
 					<Route path={"/search/:id/:word"}  exact component={M_Search} />
 				</Switch>
 					: <Switch>

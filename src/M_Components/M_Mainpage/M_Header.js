@@ -9,8 +9,10 @@ import { FiLogOut } from "react-icons/fi";
 import axios from "axios";
 import theme from "../../Styles/theme";
 
-const M_HeaderInfo = (cookie) => {
+const M_HeaderInfo = ({ cookie }) => {
 	let { userId: userId } = cookie.getAll();
+	if (userId === undefined)
+		userId = 1;
 	const [isActive, setIsActive] = useState(false);
 	return (
 		<div>
@@ -18,19 +20,25 @@ const M_HeaderInfo = (cookie) => {
 				<InfoNameC onClick={() => {
 						setIsActive(!isActive);
 				}} >
-					<span>{userId}</span>
+					<span>ukwon</span>
 				</InfoNameC>
 				<MenuC active={isActive}>
-					  <ul>
+					<ul>
 						<li onClick={(e) => {
 							setIsActive(!isActive);
-						}}><Link to={"/product/regi"}>
-							<div>판매하기</div>
-							</Link>
+						}}><LinkC to={`/mypage/${userId}/profile`}>
+							<div>내정보</div>
+							</LinkC>
 						</li>
 						<li onClick={(e) => {
 							setIsActive(!isActive);
-						}}><Link onClick={() => {
+						}}><LinkC to={"/product/regi"}>
+							<div>판매하기</div>
+							</LinkC>
+						</li>
+						<li onClick={(e) => {
+							setIsActive(!isActive);
+						}}><LinkC onClick={() => {
 							const LogOut = () => {
 								cookie.remove('Authorization', {
 									path: '/',
@@ -45,7 +53,7 @@ const M_HeaderInfo = (cookie) => {
 							LogOut();
 						}}>
 							<div>로그아웃</div>
-							</Link>
+							</LinkC>
 						</li>
 					  </ul>
 				</MenuC>
@@ -89,7 +97,7 @@ function M_Header() {
 			<HeaderLineC>
 				<HeaderLogoC theme={theme}>
 					<div>
-						<a href="http://www.4m2d.shop/" onClick={() => {
+						<a href="http://4m2d.shop/" onClick={() => {
 							setLoading(!Loading);
 							window.scrollTo({
 								top: 0,
@@ -128,11 +136,7 @@ function M_Header() {
 						/>
 					</HeaderSearchInputC>
 			</HeaderSearchC>
-			<HeaderNav theme={theme}>
-				<div>홈</div>
-				<div>상품</div>
-				<div>나눔</div>
-			</HeaderNav>
+
 		</HeaderC>
 	);
 }
@@ -144,6 +148,7 @@ const HeaderC = styled.header`
 	max-width: 400px;
 	margin: 0 auto;
 	margin-top: 20px;
+	height: 110px;
 	z-index: 10;
 `;
 
@@ -271,6 +276,7 @@ const HeaderSearchInputC = styled.fieldset`
 	color: ${({ theme }) => theme.color.black};
 	box-shadow: 1.5px 1.5px 0 rgba(0, 0, 0, 0.3);
 	font-size: 2rem;
+	border-radius: 10px;
 	background-color: #fdfdfd;
 	& > input::placeholder {
 		color: ${({theme}) => theme.color.placeHolder};
@@ -296,15 +302,6 @@ const HeaderSearchInputC = styled.fieldset`
 	}
 	`;
 
-const HeaderNav = styled.div`
-	width: ${({ theme }) => theme.widthSize.margin};
-	display: flex;
-	margin: 0 auto;
-	justify-content: space-between;
-	> div {
-		/*border:*/
-	}
-`;
 
 
 

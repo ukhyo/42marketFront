@@ -305,7 +305,7 @@ function M_ProductEdit(props) {
 				<div>{content.length}/200</div>
 			</InputC>
 		</ContentC>
-		<SubmitC>
+		<SubmitC theme={theme}>
 					<button onClick={() => {
 						if (!Loading)
 							submitHandle();
@@ -569,7 +569,7 @@ const SubmitC = styled.div`
 		top: 10px;
 		right: 0px;
 		background-color: #fdfdfd;
-		border: 3px solid rgb(178, 236, 238);
+		border: 1px solid ${({theme}) => theme.widthSize.lineColor};
 		&:hover {
 			background-color:white;
 		}

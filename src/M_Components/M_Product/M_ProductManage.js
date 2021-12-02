@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 //import InfoList from "../Mypage/Infolist";
 import { Cookies } from "react-cookie";
 import theme from "../../Styles/theme";
+import InfoList from "../M_Mypage/M_Infolist";
 function ShowData() {
 	const cookie = new Cookies()
 	let { userId: userId } = cookie.getAll();
@@ -12,7 +13,7 @@ function ShowData() {
 		userId = 1;
 	return (
 		<ShowDataC theme={theme}>
-			{/*<InfoList url={"manage"} id={userId} />*/}
+			<InfoList url={"manage"} id={userId} />
 		</ShowDataC>
 	);
 }

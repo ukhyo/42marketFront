@@ -3,13 +3,14 @@ import M_Header from "../M_Mainpage/M_Header";
 import { Route } from "react-router-dom";
 import M_CateDetail from "./M_CateDetail";
 import M_CategoryBar from "../M_Mainpage/M_CategoryBar";
-
+import M_Navbar from "../M_Mainpage/M_Navbar";
 
 function M_Category(props) {
 	const { test } = props.match.params;
 	return (
 		<SectionC>
 			<M_Header />
+			<M_Navbar />
 			<Route path={"/category/:" + test} exact component={M_CateDetail} />
 		</SectionC>
 	);

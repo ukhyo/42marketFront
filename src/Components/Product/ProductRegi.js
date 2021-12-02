@@ -548,7 +548,7 @@ const SubmitC = styled.div`
 		top: 10px;
 		right: 0px;
 		background-color: #fdfdfd;
-		border: 3px solid rgb(178, 236, 238);
+		border: 1px solid #c0c0c0;
 		&:hover {
 			background-color:white;
 		}
