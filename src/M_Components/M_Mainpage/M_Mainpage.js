@@ -7,6 +7,7 @@ import M_CategoryBar from "./M_CategoryBar";
 import M_PreviewPost from "./M_PreviewPost";
 import M_Banner from "./M_Banner";
 import M_Navbar from "./M_Navbar";
+import M_Footer from "../M_Mypage/M_Footer";
 function M_Mainpage() {
 	return (
 		<SectionC>
@@ -14,7 +15,7 @@ function M_Mainpage() {
 			{/*<M_Banner />*/}
 			<M_Navbar />
 			<M_PreviewPost />
-			{/*<M_Footer />*/}
+			<M_Footer />
 		</SectionC>
 	);
 }
