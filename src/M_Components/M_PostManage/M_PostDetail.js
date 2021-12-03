@@ -335,6 +335,10 @@ const Location = styled.ul` // 거래장소
 	border-bottom: 1px solid rgb(238, 238, 238);
 	list-style: inside;
 	> li {
+		display: block;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
 		padding: 10px 0px;
 		color: rgb(153, 153, 153);
 		> span {

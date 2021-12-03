@@ -43,7 +43,7 @@ function InfoList({id, url})
 		list = list.cartsList;
 	if (loading) return <div>Loading...</div>;
 	if (error) return <div>Error occured</div>;
-	if (userId === id)
+	if (userId !== id)
 	{
 		return (
 			<InfoListC>
@@ -58,6 +58,13 @@ function InfoList({id, url})
 						<PostListC key={index} flag={url === "manage"}>
 							<PostImgC>
 								<img src={posts.image} />
+									{
+										posts.status ? 
+										<CoverImgC>
+											판매완료
+										</CoverImgC>
+										: null
+									}
 							</PostImgC>
 							<PostInfosOneC>
 								<PostInfosOne__TitleC>
@@ -115,7 +122,7 @@ function InfoList({id, url})
 		);
 			}
 
-	if ( userId !== id )
+	if ( userId === id )
 	{
 		return (
 			<InfoListC flag={url === "manage"}>
@@ -130,6 +137,13 @@ function InfoList({id, url})
 						<PostListC key={index} flag={url === "manage"}>
 							<PostImgC>
 								<img src={posts.image} />
+								{
+									posts.status ? 
+									<CoverImgC>
+										판매완료
+									</CoverImgC>
+									: null
+								}
 							</PostImgC>
 							<PostInfosOneC>
 								<PostInfosOne__TitleC>
@@ -184,6 +198,22 @@ function InfoList({id, url})
 			}
 
 }
+
+const CoverImgC = styled.div`
+	position: absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 50px;
+	margin-top: 90px;
+	line-height: 50px;
+	text-align: center;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.4);
+`;
+
 
 const EmptyInfoListC = styled.div`
 	width: 880px;
@@ -268,6 +298,7 @@ const PostImgC = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
 	img {
 		width: 140px;
 		height: 140px;
