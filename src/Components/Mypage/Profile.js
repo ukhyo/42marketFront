@@ -83,7 +83,6 @@ function	ProfileBar({ url })
 			<ProfileBarC Loading={isLoading}>
 				<ProfileImgC Loading={isLoading}>
 					<img src={ profile.userImage }/>
-
 					<label for="ChangeImg">
 						<ProfileImgModifyC>
 								<FaImage />

@@ -61,6 +61,11 @@ function InfoList({id, url})
 						<PostListC key={index} flag={url === "manage"}>
 							<PostImgC>
 								<img src={posts.image} />
+								{posts.status ?
+									<CoverImgC>
+										판매완료
+									</CoverImgC> : null
+								}
 							</PostImgC>
 							<PostInfosOneC>
 								<PostInfosOne__TitleC>
@@ -132,6 +137,11 @@ function InfoList({id, url})
 						<PostListC key={index} flag={url === "manage"}>
 							<PostImgC>
 								<img src={posts.image} />
+								{posts.status ?
+									<CoverImgC>
+										판매완료
+									</CoverImgC> : null
+								}
 							</PostImgC>
 							<PostInfosOneC>
 								<PostInfosOne__TitleC>
@@ -184,6 +194,21 @@ function InfoList({id, url})
 			}
 
 }
+
+const CoverImgC = styled.div`
+	position: absolute;
+	top:0;
+	left:7px;
+	width: 88%;
+	height: 40px;
+	margin-top: 70px;
+	line-height: 50px;
+	text-align: center;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.4);
+`;
 
 const PostInfosTwo_LookupTwoC = styled.div`
 	& > span
@@ -274,12 +299,16 @@ const PostListC = styled.div`
 `;
 
 const PostImgC = styled.div`
-	img {
-		width: 7rem;
-		height: 7rem;
-		border-radius: 10px;
-		margin: 0px 0.5rem;
-	}
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		img {
+			width: 7rem;
+			height: 7rem;
+			border-radius: 10px;
+			margin: 0px 0.5rem;
+		}
 `;
 
 const PostInfosOneC = styled.div`
