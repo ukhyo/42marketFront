@@ -20,7 +20,7 @@ const M_HeaderInfo = ({ cookie }) => {
 				<InfoNameC onClick={() => {
 						setIsActive(!isActive);
 				}} >
-					<span>{userId}</span>
+					<span>내정보</span>
 				</InfoNameC>
 				<MenuC active={isActive}>
 					<ul>
