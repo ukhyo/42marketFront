@@ -1,5 +1,6 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.js": "/static/js/main.52cca76b.chunk.js",
     "main.js.map": "/static/js/main.52cca76b.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c56e5636.js",
@@ -10,6 +11,28 @@
     "static/js/2.f67d559f.chunk.js.LICENSE.txt": "/static/js/2.f67d559f.chunk.js.LICENSE.txt",
     "static/media/mainBanner.21cb0f48.png": "/static/media/mainBanner.21cb0f48.png",
     "static/media/nongdam.49cb8d39.png": "/static/media/nongdam.49cb8d39.png",
+=======
+    "main.css": "/static/css/main.49999074.chunk.css",
+    "main.js": "/static/js/main.8ae9bd2a.chunk.js",
+    "main.js.map": "/static/js/main.8ae9bd2a.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c56e5636.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c56e5636.js.map",
+    "static/css/2.a95be28f.chunk.css": "/static/css/2.a95be28f.chunk.css",
+    "static/js/2.544a27ba.chunk.js": "/static/js/2.544a27ba.chunk.js",
+    "static/js/2.544a27ba.chunk.js.map": "/static/js/2.544a27ba.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.a95be28f.chunk.css.map": "/static/css/2.a95be28f.chunk.css.map",
+    "static/css/main.49999074.chunk.css.map": "/static/css/main.49999074.chunk.css.map",
+    "static/js/2.544a27ba.chunk.js.LICENSE.txt": "/static/js/2.544a27ba.chunk.js.LICENSE.txt",
+    "static/media/M_Banner1.e073dd7b.png": "/static/media/M_Banner1.e073dd7b.png",
+    "static/media/M_Banner2.657a490a.png": "/static/media/M_Banner2.657a490a.png",
+    "static/media/M_Banner3.d1a1e915.png": "/static/media/M_Banner3.d1a1e915.png",
+    "static/media/ban.387ef9ab.png": "/static/media/ban.387ef9ab.png",
+    "static/media/ban2.94362c1f.png": "/static/media/ban2.94362c1f.png",
+    "static/media/ban3.3806d4c2.png": "/static/media/ban3.3806d4c2.png",
+    "static/media/mainBanner.21cb0f48.png": "/static/media/mainBanner.21cb0f48.png",
+    "static/media/main_page_ver2.04f735f4.png": "/static/media/main_page_ver2.04f735f4.png",
+>>>>>>> 416a86a3b235df9658352eeca6bca39fd7a1935b
     "static/media/pleasebuy.f81732e5.png": "/static/media/pleasebuy.f81732e5.png",
     "static/media/test1.aacb690d.jpeg": "/static/media/test1.aacb690d.jpeg",
     "static/media/test123.66174b0a.jpg": "/static/media/test123.66174b0a.jpg",
@@ -17,7 +40,14 @@
   },
   "entrypoints": [
     "static/js/runtime-main.c56e5636.js",
+<<<<<<< HEAD
     "static/js/2.f67d559f.chunk.js",
     "static/js/main.52cca76b.chunk.js"
+=======
+    "static/css/2.a95be28f.chunk.css",
+    "static/js/2.544a27ba.chunk.js",
+    "static/css/main.49999074.chunk.css",
+    "static/js/main.8ae9bd2a.chunk.js"
+>>>>>>> 416a86a3b235df9658352eeca6bca39fd7a1935b
   ]
 }

@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-//import logoimg from "../img/logo.png";
-//import logoimg from "../img/noname.png";
+import { useHistory } from "react-router";
+import { useCookies, Cookies } from "react-cookie";
+import { useSelector } from "react-redux";
+import { setUserId } from "../../modules/User";
+import { FiLogOut } from "react-icons/fi";
+import axios from "axios";
 
 function Header() {
+	const cookie = new Cookies()
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+	const [Loading, setLoading] = useState(true);
+	const history = useHistory();
 	const [text, setText] = useState("");
+	if (userId === undefined)
+		userId = "0";
 	function onChange(e) {
 		setText(e.target.value);
 	}
@@ -15,29 +25,41 @@ function Header() {
 		}
 	};
 	function imgClick(e) {
+		if (text === "")
+		{
+			alert("검색어를 입력해주세요!");
+			return ;
+		}
+		else {
+			history.push(
+			{
+				pathname: `/search/${userId}/${text}`,
+			});
+		}
 		setText("");
 	}
-	const [Login, setLogin] = useState(false);
 
 	return (
 		<HeaderC>
-			<img src="https://d15s1x1wlyvaud.cloudfront.net/post5/file" />
 			<HeaderLineC>
 				<HeaderLogoC>
-					<Link to="/">
-						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/test22.png"} />
-					</Link>
+					<a href="http://www.4m2d.shop/" onClick={() => {
+						setLoading(!Loading);
+						window.scrollTo({
+							top: 0,
+						})
+					}}>
+						<HeaderLogoImgC src={process.env.PUBLIC_URL + "/img/Logo1.png"} />
+					</a>
 				</HeaderLogoC>
 				<HeaderSearchC>
 					<HeaderSearchInputC>
-						<a href="#">
-							<img
-								onClick={imgClick}
-								className="header_search_img"
-								src={process.env.PUBLIC_URL + "/img/searchIcon.png"}
-								alt="img"
-							/>
-						</a>
+						<img
+							onClick={imgClick}
+							className="header_search_img"
+							src={process.env.PUBLIC_URL + "/img/searchIcon.png"}
+							alt="img"
+						/>
 						<input
 							placeholder="검색어를 입력해주세요."
 							onChange={onChange}
@@ -48,62 +70,56 @@ function Header() {
 					</HeaderSearchInputC>
 				</HeaderSearchC>
 				<HeaderInfoC>
-					<LinkC to="/product/regi">
-						<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
-						<div>판매하기</div>
-					</LinkC>
-					<LinkC to="/">
-						<img src={process.env.PUBLIC_URL + "/img/bellIcon2.png"} />
-						<div>알림</div>
-					</LinkC>
-					<LinkC to="/mypage/buylist">
-						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
-						<div>내정보</div>
-					</LinkC>
-					{/*<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2F52.79.76.165%2Flogin%2FgetToken&response_type=code">
-						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
-						<div>내정보</div>
-					</a>*/}
-					{/*<a href="https://www.naver.com">*/}
-					{/*<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />*/}
-					{/*<div>내정보</div>*/}
-					{/*</a>*/}
-					{/*<span>
-						<LinkC to="/">
-							<i className="far fa-bell fa-1.5x"></i>알림
+					{token ?
+						<LinkC to="/product/regi">
+							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
+							<div>판매하기</div>
 						</LinkC>
-					</span>
-					{Login ? (
-						<span>
-							<i className="far fa-user fa-1.5x"></i>
-							<LinkC
-								to={{
-									pathname: "/mypage/buylist",
-									state: {
-										path: "buylist",
-									},
-								}}
-							>
-								{" "}
-								내정보
-							</LinkC>
-						</span>
-					) : (
-						<span>
-							<i className="far fa-user fa-1.5x"></i>
-							<LinkC
-								to={{
-									pathname: "/mypage/buylist",
-									state: {
-										path: "buylist",
-									},
-								}}
-							>
-								{" "}
-								로그인
-							</LinkC>
-						</span>
-					)}*/}
+						:
+						<AC onClick={() => {
+							alert("로그인이 필요합니다.");
+						}} href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
+							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
+							<div>판매하기</div>
+						</AC>
+					}
+					{token ?
+					<LinkC to={`/mypage/${userId}/selllist`}>
+						<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
+						<div>내정보</div>
+					</LinkC>
+						:
+						<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code" onClick={() => {
+							alert("로그인이 필요합니다.")
+						}}>
+							<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
+						<div>내정보</div>
+					</AC>
+				}
+					{token ?
+						<LinkC onClick={() => {
+							const LogOut = () => {
+								cookie.remove('Authorization', {
+									path: '/',
+									domain: '.4m2d.shop',
+								});
+								cookie.remove('userId', {
+									path: '/',
+									domain: '.4m2d.shop',
+								});
+								window.location.reload();
+							}
+							LogOut();
+					}}>
+						<img src={process.env.PUBLIC_URL + "/img/logoutIcon.png"} />
+						<div>로그아웃</div>
+					</LinkC>
+						:
+					<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
+						<img src={process.env.PUBLIC_URL + "/img/loginIcon.png"} />
+						<div>로그인</div>
+					</AC>
+					}
 				</HeaderInfoC>
 			</HeaderLineC>
 		</HeaderC>
@@ -113,21 +129,22 @@ function Header() {
 // Header style
 const HeaderC = styled.header`
 	width: 100%;
+	min-width: 1200px;
 	position: sticky;
 	top: 0;
 	z-index: 10;
 	display: flex;
 	justify-content: center;
 	background-color: #fdfdfd;
-	border-bottom: 1px solid #c0c0c0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const HeaderLineC = styled.div`
+	position: relative;
 	width: 1200px;
-	max-width: 1200px;
 	height: 100px;
 	display: flex;
-	justify-content: space-between;
+	/*justify-content: space-between;*/
 	align-items: center;
 `;
 
@@ -141,7 +158,11 @@ const HeaderLogoImgC = styled.img`
 `;
 
 const HeaderSearchC = styled.div`
-	width: 600px;
+	margin-left: 30px;
+	width: 650px;
+	padding-left: 25px;
+	padding-right: 25px;
+	height: 0;
 `;
 
 const HeaderSearchInputC = styled.fieldset`
@@ -170,8 +191,21 @@ const HeaderSearchInputC = styled.fieldset`
 		padding: 5px;
 	}
 	& img {
+		/*border:none;
+		outline:none;*/
+		margin-right: 8px;
 		width: 20px;
 		height: 20px;
+	}
+`;
+
+const AC = styled.a`
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: black;
+	> div:hover {
+		border-bottom: 2px solid rgb(100,130, 238);
 	}
 `;
 
@@ -186,25 +220,26 @@ const LinkC = styled(Link)`
 `;
 
 const HeaderInfoC = styled.div`
+	position: relative;
+	top: 15px;
+	right:0;
 	display: flex;
 	justify-content: right;
 	width: 350px;
 	font-size: 16px;
-
-	& i {
-		margin-right: 5px;
-	}
-	& ${LinkC} {
+	& ${LinkC}, & ${AC} {
 		padding: 0 15px;
 	}
-	& ${LinkC}:last-child {
+	& ${LinkC}:last-child, & ${AC}:last-child {
 		padding-right: 0;
 	}
 	& > ${LinkC}:not(${LinkC}:first-child) {
 		border-left: 1px solid rgb(0, 0, 0, 0.1);
 	}
+	& > ${AC}:not(${AC}:first-child) {
+		border-left: 1px solid rgb(0, 0, 0, 0.1);
+	}
 	& div {
-		height: 16px;
 		margin-left: 10px;
 	}
 `;

@@ -5,106 +5,28 @@ import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PostDelete from "../utils/PostDelete";
-function ShowData({ data }) {
-	const [showState, setShowState] = useState("판매중");
-	const [show, setShow] = useState(false);
-	const DropBtn = (e) => {
-		setShow(!show);
-	}
-	useEffect(() => {
-		if (data.state === 1) setShowState("판매 완료");
-	}, [])
-	const stateSet = async (e, choice, msg) => {
-		alert(msg);
-		const config = {
-		  "title": data.title,
-		  "subtitle": data.subtitle,
-		  "likes": data.likes,
-		  "price": data.price,
-		  "img": data.img,
-		  "date": Date.now(),
-		  "location": data.location,
-		  "category": data.category,
-		  "state" : choice,
-		}
-		await axios.put(`http://localhost:3001/posts/${data.id}`, config);
-		console.log("수정 Clikc!");
-		if (choice === 1)
-			setShowState("판매 완료");
-		else
-			setShowState("판매 중");
-	}
+import InfoList from "../Mypage/Infolist";
+import { Cookies } from "react-cookie";
+function ShowData() {
+	const cookie = new Cookies()
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+	if (userId === undefined)
+		userId = 1;
 	return (
 		<ShowDataC>
-			<SellImgC>
-				<BackImgC url={data.img[0]} />
-			</SellImgC>
-			<TitlePriceC>
-				<div>{data.title}</div>
-				<div>{data.price}원</div>
-			</TitlePriceC>
-			<StateManageC>
-				<SellDropBtnC onClick={DropBtn}>
-					<div>
-						{showState}<img src={process.env.PUBLIC_URL + "/img/DropBtn.png"} />
-					{show && (
-						<ul>
-							<li>
-								<button onClick={(e) => {
-									stateSet(e, 1, "상품 상태가 변경되었습니다.");
-								}}>판매완료</button>
-							</li>
-							<li>
-								<button onClick={(e) => {
-									stateSet(e, 0, "상품 상태가 변경되었습니다.");
-								}}>판매중</button>
-							</li>
-							<li>
-								<button>
-									<Link to={{
-											pathname: `/product/edit`,
-											state: {
-												data: data,
-											},
-										}}>
-										수정
-									</Link>
-								</button>
-							</li>
-							<li>
-									<button onClick={(e) => {
-										PostDelete(e, data.id);
-								}}>삭제</button>
-							</li>
-						</ul>
-					)}
-					</div>
-				</SellDropBtnC>
-			</StateManageC>
+			<InfoList url={"manage"} id={userId} />
 		</ShowDataC>
 	);
 }
 
 function ProductManage() {
-	const [PostList, setPostList] = useState([]);
-
-	useEffect(() => {
-		const getData = async () => {
-			const { data } = await axios.get("http://localhost:3001/posts/");
-			setPostList(data);
-		}
-		getData();
-	}, [])
 	return (
 		<SectionC>
 			<MainC>
-				<MainHeaderC>
-					<input type="text" placeholder="상품명을 입력해주세요." />
-					<img src={process.env.PUBLIC_URL + "/img/searchIcon.png"} />
-				</MainHeaderC>
-				{PostList.map((data, idx) => {
-					return <ShowData key={idx} data={data} />
-				})}
+			<RegiHeaderC>
+				<span>상품관리</span>
+			</RegiHeaderC>
+			<ShowData />
 			</MainC>
 		</SectionC>
 	);
@@ -116,38 +38,16 @@ const MainC = styled.div`
 
 `;
 
-const MainHeaderC = styled.fieldset`
-	width: 400px;
-	display: flex;
-	align-items: center;
-	border: 1px solid black;
-	height: 50px;
-	margin-top: 35px;
-	> input {
-		outline: none;
-		border:none;
-		background-color: #fdfdfd;
-		width: 400px;
-		height: 40px;
+const RegiHeaderC = styled.div`
+	width: 1000px;
+	margin: 0 auto;
+	height: 65px;
+	> span:first-child {
+		font-size: 30px;
+		margin-right: 50px;
 	}
-	img {
-		padding-right: 10px;
-		width: 30px;
-		height: 20px;
-	}
-	margin-bottom: 20px;
-`;
 
-const BackImgC = styled.div`
-	width: 160px;
-	height: 160px;
-	background-image: url("${(props) => props.url}");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	border-radius: 15px;
-	margin-right: 30px;
-	margin-top: 10px;
+	border-bottom: 1px solid black;
 `;
 
 const ShowDataC = styled.div`
@@ -157,75 +57,7 @@ const ShowDataC = styled.div`
 	align-items: center;
 	margin-bottom: 10px;
 	padding-bottom: 10px;
-	border-bottom: 1px solid #c0c0c0;
-`;
-
-const SellImgC = styled.div`
-	width: 16%;
-	> img {
-		width: 160px;
-		height: 160px;
-	}
-`;
-
-const TitlePriceC = styled.div`
-	margin-left: 20px;
-	width: 74%;
-	> div:first-child {
-		padding-bottom: 20px;
-	}
-	> div:last-child {
-		font-weight: bold;
-	}
-`;
-
-const StateManageC = styled.div`
-	text-align: right;
-	display:flex;
-`;
-
-const SellDropBtnC = styled.div`
-	position: relative;
-	display: flex;
-	align-items: center;
-	flex-direction:column;
-	border: 1px solid rgb(130, 130, 238);
-	margin: 0;
-	padding: 0;
-	> div {
-		width: 95px;
-		position: relative;
-		display: flex;
-		align-items: center;
-	}
-	> div >  ul {
-		position:absolute;
-		right: -100%;
-		width: 98%;
-		box-sizing: border-box;
-		text-align: left;
-		margin: 0;
-		padding: 0;
-		background-color: #fdfdfd;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: left;
-		> li:not(li:first-child) {
-			margin-top: 5px;
-		}
-		> li {
-			> button {
-				width: 100%;
-				background-color: transparent;
-				border: 1px solid rgb(130,130, 238);
-				&hover {
-					color: rgb(130, 130, 238);
-				}
-			}
-
-		}
-	}
+	/*border-bottom: 1px solid #c0c0c0;*/
 `;
 
 const SectionC = styled.div`

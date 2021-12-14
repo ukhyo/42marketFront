@@ -1,4 +1,9 @@
 [ZoneTransfer]
 ZoneId=3
+<<<<<<< HEAD
 ReferrerUrl=https://www.remove.bg/
 HostUrl=https://o.remove.bg/downloads/70d42e58-4b4f-463c-a5e5-2dc001c13f18/test222-removebg-preview.png
+=======
+ReferrerUrl=https://raw.githubusercontent.com/ukhyo/42marketFront/master/public/img/test22.png?token=AQNKJIWTHHRUXW5WMX4FAHDBRFDIK
+HostUrl=https://raw.githubusercontent.com/ukhyo/42marketFront/master/public/img/test22.png?token=AQNKJIWTHHRUXW5WMX4FAHDBRFDIK
+>>>>>>> 416a86a3b235df9658352eeca6bca39fd7a1935b

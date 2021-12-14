@@ -3,16 +3,19 @@ import React, { useState, } from "react";
 import { RadioRet } from "./Product";
 import { Route } from "react-router-dom";
 import axios from "axios";
-
+import { DeleteUrl } from "../utils/DeleteImg";
+import { Cookies } from "react-cookie";
 
 function ProductRegi(props) {
-
+	const cookie = new Cookies();
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
 	// Input 양식 State
 	const [title, setTitle] = useState("");
 	const [location, setLocation] = useState("");
 	const [idx, setIdx] = useState(0);
 	const [price, setPrice] = useState(0);
 	const [content, setContent] = useState("");
+	const [Loading, setLoading] = useState(false);
 
 
 	// Input 양식 state 이미지 관련
@@ -69,185 +72,235 @@ function ProductRegi(props) {
 
 	const submitHandle = (e) => {
 		const pushData = async () => {
-			//if (!Files) {
-			//	alert("사진을 넣어주세요");
-			//	return;
-			//}
-			//if (title === "") {
-			//	alert("제목을 입력해주세요.")
-			//	return;
-			//}
-			//else if (price === 0 && idx !== 100) {
-			//	alert("가격을 입력해주세요.");
-			//	return;
-			//}
-			//else if (location === "") {
-			//	alert("거래장소를 입력해주세요.");
-			//	return;
-			//}
-			//else if (idx === 0) {
-			//	alert("카테고리를 선택해주세요.");
-			//	return;
-			//}
-			//else if (idx === 100 && price !== 0) {
-			//	alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
-			//	setPrice(0);
-			//}
+			if (!Files) {
+				alert("사진을 넣어주세요");
+				return;
+			}
+			if (title === "") {
+				alert("제목을 입력해주세요.")
+				return;
+			}
+			else if (price < 0)
+			{
+				alert("가격이 잘못되어있습니다.");
+				return;
+			}
+			else if (price === 0 && idx !== 8) {
+				alert("가격을 입력해주세요.");
+				return;
+			}
+			else if (location === "") {
+				alert("거래장소를 입력해주세요.");
+				return;
+			}
+			else if (idx === 0) {
+				alert("카테고리를 선택해주세요.");
+				return;
+			}
+			else if (idx === 8) {
+				alert("나눔을 선택하셔서 자동으로 0원으로 변경됩니다.")
+			}
 			let fileList = new FormData();
 			Files.forEach((data) => {
 				fileList.append(`fileList`, data);
 			});
+
+			let temp = price;
+			if (idx === 8)
+				temp = 0;
 			let data = {
 				title: title,
-				content: "안녕",
-				price: 123456,
+				content: content,
+				price: temp,
 				local: location,
-				categoryId: 1,
-				userId: 1,
+				categoryId: idx,
+				userId: userId,
 			};
 
 			fileList.append("data", new Blob([JSON.stringify(data)], { type: "application/json" }));
 			const headers = {
+				"Authorization": `Bearer ${token}`,
 				"Content-Type": `multipart/form-data`,
 			};
-
+			setLoading(true);
 			await axios
-				.post("http://13.124.164.7:8080/api/posts", fileList, { headers })
+				.post("http://api.4m2d.shop/api/posts/", fileList, {headers})
 				.then((res) => {
-					console.log(res, "post 성공");
 					history.push("/");
 				})
 				.catch((err) => console.error(err, "에러"));
+			setLoading(false);
 			alert("상품 등록 완료!");
 		}
 		pushData();
 	}
 
 	return (
-		<div>
-			<RegiHeaderC>
-				<span>기본정보</span>
-				<span> *필수항목</span>
-			</RegiHeaderC>
-			<RegiMainC>
-				<PictureC>
-					<SubtitleC>
-						상품 이미지<b>*</b>
-					</SubtitleC>
-					<InputC>
-						<LabelAndManualC>
-							<label for="test12">이미지 등록</label>
-							<div>
-								<span>- 상품 이미지는 640x640에 최적화 되어 있습니다.</span>
-								<span>- 비율이 1:1인 사진을 올리시면 짤리지 않습니다.</span>
-								<span>- 이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.</span>
-							</div>
-						</LabelAndManualC>
-						<ul>
-							<li>
-								<input
-									type="file"
-									id="test12"
-									multiple
-									onChange={(e) => {
-										onChangeImg(e, setFileUrl, setFiles, Files);
-									}}
-									required
-								></input>
-							</li>
-							{FileUrl
-								? FileUrl.map((img, idx) => {
-										return (
-											<li key={idx}>
-												<BackImgC url={img}></BackImgC>
-											</li>
-										);
-								  })
-								: ""}
-						</ul>
-					</InputC>
-				</PictureC>
-				<TitleC>
-					<SubtitleC>
-						제목<b>*</b>
-					</SubtitleC>
-					<InputC>
-						<input onChange={inputChange} type="text" placeholder="상품 제목을 입력하세요." value={title} required />
-						<span> {title.length}/40</span>
-					</InputC>
-				</TitleC>
-				<CategoryC>
-					<SubtitleC>
-						카테고리<b>*</b>
-					</SubtitleC>
-					<FormC>
-						{/* Json 다 받으면 한줄로 줄어들 예정 */}
-						<RadioRet value="전자기기" idx={1} flag={idx} setIdx={setIdx} />
-						<RadioRet value="주변기기" idx={2} flag={idx} setIdx={setIdx} />
-						<RadioRet value="의류" idx={3} flag={idx} setIdx={setIdx} />
-						<RadioRet value="책" idx={4} flag={idx} setIdx={setIdx} />
-						<RadioRet value="나눔" idx={100} flag={idx} setIdx={setIdx} />
-					</FormC>
-				</CategoryC>
-				<TradeLocationC>
-					<SubtitleC>
-						거래장소<b>*</b>
-					</SubtitleC>
-					<InputC>
-						<div>
-							<button onClick={GaepoClick}>개포</button>
-							<button onClick={SeochoClick}>서초</button>
-							<button onClick={DirectLocation}>직접입력</button>
-						</div>
-						<div>
-							<input
-								onChange={ChangeLocation}
-								type="text"
-								placeholder="상세주소를 적어주세요."
-								value={location}
-								required
-							></input>
-						</div>
-					</InputC>
-				</TradeLocationC>
-				<PriceC>
-					<SubtitleC>
-						가격<b>*</b>
-					</SubtitleC>
-					<InputC>
-						<input
-							type="number"
-							placeholder="숫자만 입력해주세요."
-							value={price}
+	<div>
+	  <RegiHeaderC >
+		<span>기본정보</span>
+		<span> *필수항목</span>
+	  </RegiHeaderC>
+	  <RegiMainC Loading={Loading}>
+		<PictureC>
+		  <SubtitleC>
+			상품 이미지<b>*</b>
+		  </SubtitleC>
+		  <InputC>
+			<LabelAndManualC>
+			  <label for="test12">이미지 등록</label>
+			  <div>
+				<span>- 상품 이미지는 640x640에 최적화 되어 있습니다.</span>
+				<span>- 비율이 1:1인 사진을 올리시면 짤리지 않습니다.</span>
+				<span>
+				  - 이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.
+								</span>
+								<span>- 사진은 Jpeg, Png 형식만 동륵 가능합니다.</span>
+			  </div>
+			</LabelAndManualC>
+			<ul>
+			  <li>
+				<input
+				  type="file"
+				  id="test12"
+				  multiple
+				  onChange={(e) => {
+					onChangeImg(e, setFileUrl, setFiles, Files);
+				  }}
+				  accept="image/png, image/jpeg"
+				  required
+				></input>
+			  </li>
+			  {FileUrl &&
+				FileUrl.map((img, idx) => {
+				  return (
+					<li key={idx}>
+					  <BackImgC url={img}></BackImgC>
+					  <DeletePostIconC
+						onClick={(e) => {
+						  DeleteUrl(
+							e,
+							idx,
+							Files,
+							setFiles,
+							FileUrl,
+							setFileUrl
+						  );
+						}}
+					  >
+						X
+					  </DeletePostIconC>
+					</li>
+				  );
+				})}
+			</ul>
+		  </InputC>
+		</PictureC>
+		<TitleC>
+		  <SubtitleC>
+			제목<b>*</b>
+		  </SubtitleC>
+		  <InputC>
+			<input
+			  onChange={inputChange}
+			  type="text"
+			  placeholder="상품 제목을 입력하세요."
+			  value={title}
+			  required
+			/>
+			<span> {title.length}/40</span>
+		  </InputC>
+		</TitleC>
+		<CategoryC>
+		<SubtitleC>
+			카테고리<b>*</b>
+		</SubtitleC>
+		<FormC>
+			<div>
+				<RadioRet value="전자" idx={1} flag={idx} setIdx={setIdx} />
+				<RadioRet value="생활" idx={2} flag={idx} setIdx={setIdx} />
+				<RadioRet value="레저" idx={3} flag={idx} setIdx={setIdx} />
+				<RadioRet value="패션" idx={4} flag={idx} setIdx={setIdx} />
+				<RadioRet value="음악/악기" idx={5} flag={idx} setIdx={setIdx} />
+			</div>
+			<div>
+				<RadioRet value="뷰티" idx={6} flag={idx} setIdx={setIdx} />
+				<RadioRet value="도서" idx={7} flag={idx} setIdx={setIdx} />
+				<RadioRet value="나눔" idx={8} flag={idx} setIdx={setIdx} />
+				<RadioRet value="기타" idx={9} flag={idx} setIdx={setIdx} />
+			</div>
+		</FormC>
+		</CategoryC>
+
+		<TradeLocationC>
+		  <SubtitleC>
+			거래장소<b>*</b>
+		  </SubtitleC>
+		  <InputC>
+			<div>
+			  <button onClick={GaepoClick}>개포</button>
+			  <button onClick={SeochoClick}>서초</button>
+			  <button onClick={DirectLocation}>직접입력</button>
+			</div>
+			<div>
+			  <input
+				onChange={ChangeLocation}
+				type="text"
+				placeholder="상세주소를 적어주세요."
+				value={location}
+				required
+			  ></input>
+			</div>
+		  </InputC>
+		</TradeLocationC>
+		<PriceC>
+		  <SubtitleC>
+			가격<b>*</b>
+		  </SubtitleC>
+		  <InputC>
+			<input
+			  type="number"
+			  placeholder="숫자만 입력해주세요."
+			  value={price}
+			  onChange={(e) => {
+				setPrice(parseInt(e.target.value));
+			  }}
+			  required
+			></input>
+			<span>원</span>
+		  </InputC>
+		</PriceC>
+		<ContentC>
+		  <ContentSub>설명</ContentSub>
+		  <InputC>
+			<textarea
+			  type="text"
+			  cols="40"
+			  rows="5"
+			  placeholder="상품 설명을 입력해주세요."
+			  value={content}
 							onChange={(e) => {
-								setPrice(parseInt(e.target.value));
-							}}
-							required
-						></input>
-						<span>원</span>
-					</InputC>
-				</PriceC>
-				<ContentC>
-					<SubtitleC>설명</SubtitleC>
-					<InputC>
-						<textarea
-							type="text"
-							cols="40"
-							rows="5"
-							placeholder="상품 설명을 입력해주세요."
-							value={content}
-							onChange={(e) => {
-								setContent(e.target.value);
-							}}
+								if (e.target.value.length > 200) {
+									e.target.value = e.target.value.slice(0, 199);
+									return;
+								}
+				setContent(e.target.value);
+			  }}
 						></textarea>
-					</InputC>
-				</ContentC>
-				<SubmitC>
-					<button onClick={submitHandle}>등록하기</button>
-				</SubmitC>
-			</RegiMainC>
-		</div>
-	);
+						<div> {content.length}/200</div>
+		  </InputC>
+		</ContentC>
+		<SubmitC>
+					<button onClick={() => {
+						if (!Loading)
+							submitHandle();
+						else
+							alert("상품 등록중입니다");
+					}}>등록하기</button>
+		</SubmitC>
+	  </RegiMainC>
+	</div>
+  );
 }
 
 // width: 1000, 1200 비교해보기. 팀원들한테 상의 후 결정 => 수정시 Product.js stateBar 수정해야함
@@ -272,6 +325,7 @@ const RegiMainC = styled.div`
 	margin: 0 auto;
 	margin-top: 50px;
 	font-size: 15px;
+	cursor: ${(props) => (props.Loading ? 'wait' : '')};
 	> div {
 		display: flex;
 	}
@@ -323,6 +377,19 @@ const BackImgC = styled.div`
 	margin-top: 10px;
 `;
 
+const DeletePostIconC = styled.div`
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	line-height: 20px;
+	border: 1px solid gray;
+	background-color: #fdfdfd;
+	border-radius: 3px;
+`;
+
 const PictureC = styled.div`
 	width: 100%;
 	> ${InputC} {
@@ -337,6 +404,7 @@ const PictureC = styled.div`
 			flex-wrap: wrap;
 			overflow-x: hidden;
 			> li {
+				position: relative;
 				display: flex;
 			}
 		}
@@ -352,18 +420,11 @@ const SubtitleC = styled.div`
 `;
 
 
-const FormC = styled.form`
-	width: 80%;
-	> span {
-		margin-right: 50px;
-	}
-`;
 
 const TitleC = styled.div`
 	width: 100%;
 	height: 100px;
 	line-height: 96px;
-
 	> ${InputC} {
 		> input {
 			margin-right: 10px;
@@ -373,17 +434,24 @@ const TitleC = styled.div`
 		}
 	}
 
+	`;
+const FormC = styled.div`
+	width: 80%;
+	/*min-width: 960px;*/
+	> div > span {
+		margin-right: 50px;
+	}
+	> div {
+		height: 60px;
+	}
+	/*display: flex;*/
+	/*justify-content: space-between;*/
 `;
 
 const CategoryC = styled.div`
 	width: 100%;
-	height: 110px;
+	height: 160px;
 	line-height: 110px;
-
-
-	> div > span {
-		margin-right: 50px;
-	}
 `;
 
 const TradeLocationC = styled.div`
@@ -396,6 +464,7 @@ const TradeLocationC = styled.div`
 			> button {
 				width: 100px;
 				height: 48px;
+				line-height: 48px;
 				margin-right: 20px;
 				background-color: white;
 				border: 1px solid black;
@@ -410,6 +479,7 @@ const TradeLocationC = styled.div`
 				width: 80%;
 				height: 40px;
 			}
+
 		}
 	}
 `;
@@ -434,18 +504,34 @@ const PriceC = styled.div`
 	}
 `;
 
+const ContentSub = styled.div`
+	width: 20%;
+	line-height: 70px;
+`;
+
 const ContentC = styled.div`
 	width: 100%;
-	height: 205px;
-	line-height: 100px;
+	height: 160px;
+	position: relative;
+	> ${SubtitleC} {
+		position: static;
+		top: 30px;
+		left: 30px;
+	}
 	> ${InputC} {
+		position: relative;
 		margin-top: 20px;
 		> textarea {
 			resize: none;
 			padding: 10px;
 			width: 80%;
-			height: 160px;
+			height: 120px;
 			margin-right: 10px;
+		}
+		>  div {
+			position: absolute;
+			top: 53px;
+			right: 100px;
 		}
 	}
 	padding-bottom: 15px;
@@ -462,7 +548,7 @@ const SubmitC = styled.div`
 		top: 10px;
 		right: 0px;
 		background-color: #fdfdfd;
-		border: 3px solid rgb(178, 236, 238);
+		border: 1px solid #c0c0c0;
 		&:hover {
 			background-color:white;
 		}

@@ -8,7 +8,7 @@ function PostDelete(e, id) {
 				alert("상품 상태가 변경되었습니다.");
 			})
 			.catch(err => {
-				console.log("상품 상태변경이 실패하였습니다.")
+				alert("상품 상태가 변경되지 않았습니다.");
 			});
 	}
 	if (window.confirm("해당 상품을 삭제하시겠습니까?") === true)

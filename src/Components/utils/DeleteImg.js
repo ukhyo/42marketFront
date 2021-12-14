@@ -1,19 +1,20 @@
-
-
-const DeleteFile = (e, name, file, setFile) => {
-	let temp = file.filter((word) => {
-		return word != name;
+const DeleteFile = (e, idx, file, setFile) => {
+	let temp = file.filter((word, i) => {
+		return idx != i;
 	});
-	console.log(temp);
 	setFile(temp);
 };
 
-const DeleteUrl = (e, name, file, setFile, setFileUrl) => {
-	let temp = file.filter((word) => {
-		return word != name;
-	})
-	console.log(temp);
-
+const DeleteUrl = (e, idx, file, setFile, url, setUrl) => {
+	let temp = file.filter((word, i) => {
+		return idx != i;
+	});
+	setFile(temp);
+	temp = [];
+	temp = url.filter((word, i) => {
+		return idx != i;
+	});
+	setUrl(temp);
 }
 
 export {DeleteUrl}

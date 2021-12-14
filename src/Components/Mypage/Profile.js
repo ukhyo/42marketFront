@@ -3,68 +3,55 @@ import axios from "axios";
 import Coming_soon from "../../Images/coming_soon.jpeg";
 import useAsync from "./useAsync";
 import styled from "styled-components";
-import awsData from "../../secret.json";
+import Badge from "./Badge";
 import { FaImage } from 'react-icons/fa';
-import AWS from "aws-sdk";
 import { timeout } from "q";
-import S3 from "react-aws-s3";
+import { useSelector } from "react-redux";
+import { Cookies } from "react-cookie";
 
-async function getProfile()
+async function getProfile(id)
 {
 	const response = await axios.get(
-		'http://localhost:3001/profile'
+		`http://api.4m2d.shop/api/users/${id}`
 	);
 	return response.data;
 }
 
-function	ProfileBar(props)
+function	ProfileBar({ url })
 {
-	console.log(props);
-	const ACCESS_KEY = awsData.accesskey;
-	const SECRET_ACCESS_KEY = awsData.secretkey;
-	const REGION = awsData.awsregion;
-	const S3_BUCKET_NAME = awsData.s3burket;
-
-	const s3_config = {
-		bucketName: S3_BUCKET_NAME,
-		region: REGION,
-		accessKeyId: ACCESS_KEY,
-		secretAccessKey: SECRET_ACCESS_KEY,
-		dirName: "user",
-	};
-
-	const ReactS3 = new S3(s3_config);
-
-	const [state] = useAsync(getProfile, ["profile"]);
+	const { id: id } = url;
+	const cookie = new Cookies();
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+	const [state] = useAsync(() => getProfile(id), [id]);
 	const [onButton, setOnButton] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const [intro, setIntro] = useState("");
 	const { loading, data: profile, error }  = state;
-	AWS.config.update({
-		accessKeyId: ACCESS_KEY,
-		secretAccessKey: SECRET_ACCESS_KEY,
-	});
-	const myBucket = new AWS.S3({
-		params: { Bucket: S3_BUCKET_NAME },
-		region: REGION,
-	});
-	const onChangeImg = (e) => {
-		const file = e.target.files[0];
-		const params = {
-			ACL: "public-read",
-			Body: file,
-			Bucket: S3_BUCKET_NAME,
-			Key: "user/1",
-		};
-		myBucket
-			.putObject(params)
-			.send((err) => {
-				if (err) console.log(err);
-			});
-		setTimeout(() => {
-			window.location.reload();
-		}, 500)
-	};
 
+	const onChangeImg = (e) => {
+		if (isLoading)
+			return ;
+		const file = e.target.files[0];
+		let fileList = new FormData();
+		fileList.append("image", file);
+		// 수정 필요함 id 유저아이디로.
+		const ApiPost = async () => {
+			const headers = {
+				"Authorization": `Bearer ${token}`,
+				"Content-Type": `multipart/form-data`,
+			};
+			setIsLoading(true);
+			await axios.post(`http://api.4m2d.shop/api/users/${userId}`, fileList, { headers })
+				.then(res => { //아이디 수정해야함
+
+					window.location.reload();
+				});
+			setIsLoading(false);
+		};
+		ApiPost();
+	};
+	if (userId === undefined)
+		userId = "0";
 	const onButtonClick = () => {
 		setOnButton(true);
 	};
@@ -72,74 +59,106 @@ function	ProfileBar(props)
 		setIntro(e.target.value);
 	};
 	const submitHandler = (e) => {
+		if (isLoading)
+			return;
 		const pushData = async () => {
 			let data = {
-				name: profile.name,
-				level: profile.level,
-				intro: intro
+				introduce: intro
 			};
-			await axios.put("http://localhost:3001/profile/", data);
+			const headers = {
+				"Authorization": `Bearer ${token}`,
+			};
+			setIsLoading(true);
+			await axios.patch(`http://api.4m2d.shop/api/users/${userId}`, data, { headers }).then(res => {
+				window.location.reload();
+			});
+			setIsLoading(false);
 		}
 		pushData();
-		setOnButton(false);
-		setTimeout(() => {
-			window.location.reload();
-		}, 100)
 	}
-	if (loading) return <div>loading...</div>;
 	if (error) return <div>Error occured</div>;
 	if (!profile) return null;
+	if (userId === id)
+		return (
+			<ProfileBarC Loading={isLoading}>
+				<ProfileImgC Loading={isLoading}>
+					<img src={ profile.userImage }/>
+					<label for="ChangeImg">
+						<ProfileImgModifyC>
+								<FaImage />
+						</ProfileImgModifyC>
+					</label>
+					<input type="file"
+							id="ChangeImg"
+							onChange={onChangeImg}/>
+				</ProfileImgC>
+				<ProfileNameC>
+					<span>{profile.userIntra}</span>
+				</ProfileNameC>
+				<ProfileLevelC>
+					<span>Level: {profile.userLevel}</span>
+					<ProfileLevelBarC>
+						<span>{profile.userExperience}%</span>
+						<ProgressBarC percent={profile.userExperience}>
+						</ProgressBarC>
+					</ProfileLevelBarC>
+				</ProfileLevelC>
+				<ProfileContentsC>
+					<span>{profile.introduce}</span>
+				</ProfileContentsC>
+				{ onButton === false ? <ProfileModifyBtnC onClick={onButtonClick}>
+					<span>Edit introduce</span>
+				</ProfileModifyBtnC> :
+				<ModifyIntroC >
+					<textarea
+						type="text"
+						cols="32"
+						rows="10"
+						value={intro}
+						onChange={inputIntro}
+					/>
+					<button  onClick={submitHandler}>등록</button>
+				</ModifyIntroC>
+				}
+				{
+					profile &&
+						<Badge profile={profile}/>
+				}
 
-	return (
-		<ProfileBarC>
-			<ProfileImgC>
-				<img src="https://42trademarket.s3.ap-northeast-2.amazonaws.com/user/1.jpeg"/>
-				<label for="ChangeImg">
-					<ProfileImgModifyC>
-							<FaImage />
-					</ProfileImgModifyC>
-				</label>
-				<input type="file"
-						id="ChangeImg"
-						onChange={onChangeImg}/>
-			</ProfileImgC>
-			<ProfileNameC>
-				<span>{profile.name}</span>
-			</ProfileNameC>
-			<ProfileLevelC>
-				<span>Level: {profile.level}</span>
-				<ProfileLevelBarC>
-					<span>{profile.level}%</span>
-					<ProgressBarC percent={profile.level}>
-					</ProgressBarC>
-				</ProfileLevelBarC>
-			</ProfileLevelC>
-			<ProfileContentsC>
-				<span>{profile.intro}</span>
-			</ProfileContentsC>
-			{ onButton === false ? <ProfileModifyBtnC onClick={onButtonClick}>
-				<span>Edit introduce</span>
-			</ProfileModifyBtnC> :
-			<ModifyIntroC>
-				<textarea
-					type="text"
-					cols="32"
-					rows="10"
-					value={intro}
-					onChange={inputIntro}
-				/>
-				<button  onClick={submitHandler}>등록</button>
-			</ModifyIntroC>
-			}
-			<BadgeC>
-				<img src={Coming_soon} />
-			</BadgeC>
-		</ProfileBarC>
-	)
+			</ProfileBarC>
+		);
+
+	if (userId !== id)
+		return (
+			<ProfileBarC Loading={isLoading}>
+				<ProfileImgC Loading={isLoading}>
+					<img src={profile.userImage}/>
+				</ProfileImgC>
+				<ProfileNameC>
+					<span>{profile.userIntra}</span>
+				</ProfileNameC>
+				<ProfileLevelC>
+					<span>Level: {profile.userLevel}</span>
+					<ProfileLevelBarC>
+						<span>{profile.userExperience}%</span>
+						<ProgressBarC percent={profile.userExperience}>
+						</ProgressBarC>
+					</ProfileLevelBarC>
+				</ProfileLevelC>
+				<ProfileContentsC>
+					<span>{profile.introduce}</span>
+				</ProfileContentsC>
+				{
+					profile &&
+						<Badge profile={profile}/>
+				}
+			</ProfileBarC>
+		);
 }
 
 const		ModifyIntroC = styled.div`
     margin: 3px 0px;
+
 	> textarea {
 		width: 100%;
 		height: 200px;
@@ -161,25 +180,14 @@ const		ModifyIntroC = styled.div`
 	}
 `;
 
-const		BadgeC = styled.div`
-	width: 100%;
-	height: 150px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
-	> img {
-		position: relative;
-		bottom: -50px;
-	}
-`;
 
 const		ProfileModifyBtnC = styled.button`
 	width: 280px;
 	height: 45px;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 15px;
-	margin: 20px 0px;
+	margin-top: 50px;
+	margin-bottom: 10px;
 	> span {
 		font-weight: 600;
 		font-size: 15px;
@@ -208,14 +216,15 @@ const		ProfileImgModifyC = styled.div`
 `;
 
 const		ProfileContentsC = styled.div`
-  	width: 280px;
-  	margin: 20px 0px;
+  	width: 270px;
+  	margin: 20px 5px;
   	span {
 	  opacity: 0.7;
 	  font-size: 15px;
       font-family: "Devanagari Sangam MN";
 	}
 `;
+
 
 const		ProfileNameC = styled.div`
 	width: 260px;
@@ -232,17 +241,23 @@ const		ProfileBarC = styled.div`
 	width: 280px;
 	height: 600px;
 	margin-top: 30px;
+	margin-right: 50px;
+	cursor: ${props => (props.Loading ? 'wait' : '')};
 `;
 
 
 const		ProfileImgC = styled.div`
 	display: flex;
 	position: relative;
+	cursor: ${props => (props.Loading ? 'wait' : '')};
 	img {
 		width: 280px;
 		height: 280px;
 		border-radius: 150px;
 		border: 1px solid rgba(0, 0, 0, 0.2);
+	}
+	> input {
+		display: none;
 	}
 `;
 
@@ -258,6 +273,7 @@ const		ProfileLevelC = styled.div`
 const		ProfileLevelBarC = styled.div`
   	width: 280px;
   	height: 30px;
+	margin-top: 5px;
   	background-color: rgba(0, 0, 0, 0.1);
   	display: flex;
     position: relative;
@@ -274,7 +290,7 @@ const		ProfileLevelBarC = styled.div`
 `;
 
 const		ProgressBarC = styled.div`
-  	background-color: rgb(199, 230, 232);
+  	background-color: rgb(103, 157, 125);
 	width: ${({ percent }) => percent}%;
   	height: 500px;
 `;

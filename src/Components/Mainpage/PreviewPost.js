@@ -4,123 +4,189 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { FiHeart } from "react-icons/fi";
 import { BsSuitHeartFill } from "react-icons/bs";
+import { BsSuitHeart } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
-function PostViewComp({ idx }) {
-	let [item, setItem] = useState([]);
-	useEffect(() => {
-		const ApiGet = async () => {
-			// Aws EC2
+import { Cookies, useCookies } from "react-cookie";
+import GetTime from "../utils/GetTime";
+import { currentPosts } from "../utils/Pagination";
+import Pagination from "../utils/Pagination"
 
-			//const { data } = await axios.get("http://52.79.76.165/login").then((response) => {
-			//	console.log(response, "test");
-			//	return response;
-			//});
-
-			// local data
-			const { data } = await axios.get("http://localhost:3001/posts").then((response) => {
-				console.log(response, "test");
-				return response;
-			});
-			console.log(data);
-			let tempArr = [];
-			let i = 0;
-			if (data.length < idx + 5) {
-				alert("error");
-				return;
-			}
-			else {
-				console.log(data.length);
-			}
-			const limit = idx + 5;
-			for (idx; idx < limit; idx++) {
-				tempArr[i] = data[idx];
-				i++;
-			}
-			setItem(tempArr);
-		};
-		ApiGet();
-	}, []);
-
+function PostThumbnail({ data, key, subList, flag}) {
+	let title;
+	data.title.length > 10 ? title = data.title.slice(0, 9) + "..."
+		: title = data.title;
+	if (subList === undefined)
+		subList = "//";
 	return (
-			<PostViewLineC>
-			{item.map((data, index) => {
-				let title;
-				data.title.length > 12 ? title = data.title.slice(0, 12) + "..."
-					: title = data.title;
-							return (
-								<PostItemC key={index}>
-									<LinkC
-										to={{
-											pathname: `/postview/${data.id}`,
-											state: {
-												data: data,
-												itemId: data.id,
-											},
-										}}
-									>
-										<HoverImgC url={data.img[0]}>안녕</HoverImgC>
-										<BackImgC url={data.img[0]}></BackImgC>
-									</LinkC>
-									<div>{title}</div>
-									<div>
-										<div>
-											{data.price}
-											<b>원</b>
-										</div>
-										<div>
-											<p>{data.likes}</p>
-											<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
-												<BsSuitHeartFill size={18} />
-											</IconContext.Provider>
-											{/*<img src={process.env.PUBLIC_URL + "/img/heart.png"} />*/}
-										</div>
-									</div>
-								</PostItemC>
-							);
-					  })}
+		<PostItemC key={key}>
+			{flag &&
+			<CoverImgC>
+				판매완료
+			</CoverImgC>
+			}
+			<LinkC
+				to={{
+					pathname: `/postview/${data.id}`,
+					state: {
+						data: data,
+						itemId: data.id,
+						subList: subList,
+					},
+				}}
+			>
+				<BackImgC url={data.image}></BackImgC>
+			</LinkC>
+			<div>
+				{title}
+				<b>{GetTime(data.updatedAt)}</b>
+			</div>
+			<div>
+				<div>
+					{data.price.toLocaleString()}
+					<b>원</b>
+				</div>
+				<div>
+					<p>{data.subscribes}</p>
+					{subList.indexOf(`/${data.id}/`) === -1 ?
+						<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
+							<BsSuitHeart size={18} />
+						</IconContext.Provider> :
+						<IconContext.Provider value={{ color: "rgb(255, 67, 46)" }}>
+							<BsSuitHeartFill size={18} />
+						</IconContext.Provider>
+					}
+				</div>
+			</div>
+		</PostItemC>
+	);
+}
+
+function PostViewComp({ item, subList, Loading, flag }) {
+	const [currentPage, setCurrentPage] = useState(1);
+	const [postsPerPage, setPostsPerPage] = useState(10);
+	const indexOfLast = currentPage * postsPerPage; //
+	const indexOfFirst = indexOfLast - postsPerPage; //
+	useEffect(() => {
+		if (flag)
+			setPostsPerPage(40);
+	},[])
+	return (
+
+		<SectionC>
+			<PostViewLineC flag={flag}>
+				{
+					Loading && item.length > 0 && currentPosts(item ,indexOfFirst, indexOfLast).map((data, index) => {
+					return (
+						<PostThumbnail key={index} data={data} subList={subList} flag={data.status === 1}/>
+						);
+					})
+				}
+				{flag && item.length / postsPerPage >= 1 &&
+					<Pagination postsPerPage={postsPerPage} totalPosts={item.length} paginate={setCurrentPage} current={currentPage}></Pagination>
+				}
 			</PostViewLineC>
+		</SectionC>
 	);
 }
 
 function PreviewPost() {
+	const cookie = new Cookies();
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+
+	const [item, setItem] = useState([]);
+	const [Loading, setLoading] = useState(false);
+	useEffect(() => {
+		const ApiGet = async () => {
+			setLoading(false);
+			if (userId === undefined)
+				userId = "0";
+			let data = await axios.get(`http://api.4m2d.shop/api/${userId}`).then((response) => {
+				return response.data;
+			});
+			setItem(data);
+			setLoading(true);
+		};
+		ApiGet();
+	}, []);
+	if (!Loading)
+		return <div> Loading...</div>
 	return (
 		<PostViewC>
-			{console.log()}
-			<h3>인기게시글</h3>
-			<PostViewLineC><PostViewComp idx={5} /></PostViewLineC>
-			<PostViewLineC><PostViewComp idx={0} /></PostViewLineC>
-			<h3>추천게시글</h3>
-			<PostViewLineC><PostViewComp idx={10} /></PostViewLineC>
-			<PostViewLineC><PostViewComp idx={15} /></PostViewLineC>
+			<h2>인기상품</h2>
+			<PostViewComp item={item.subscribeList} subList={item.subList} Loading={Loading} flag={false}/>
+			<h2>새 상품</h2>
+			<PostViewComp item={item.viewList} subList={item.subList} Loading={ Loading} flag={false} />
 		</PostViewC>
 	);
 }
 
+const TitleAndTTimeC = styled.section`
+	display:flex;
+	justify-content: space-between;
+`;
+
+const SectionC = styled.section`
+	width: 1200px;
+	/*height: 300px;*/
+`;
 
 const PostViewC = styled.div`
 	width: 1200px;
 	margin: 0px auto;
-	> h3 {
+	margin-top: 55px;
+	> h2 {
+		font: Nanum Gothic;
 		font-size: 20px;
+		font-weight: 600;
 		margin-top: 40px;
 		margin-bottom: 10px;
 	}
 	> div:last-child {
 		margin-bottom: 50px;
 	}
+	> div:nth-child(2) {
+		height: 100px;
+			> h2 {
+			/*font-size: 24px;*/
+			margin-top: 40px;
+			margin-bottom: 10px;
+		}
+	}
 `;
+
+
 
 const PostViewLineC = styled.div`
 	width: 100%;
-	height: 270px;
-
+	height: ${(props) => props.flag ? "" : ""};
 	margin: 10px auto;
 	margin-bottom: 20px;
 	display: flex;
-	justify-content: space-between;
+	box-sizing: border-box;
+	/*justify-content: space-between;*/
 	align-items: center;
 	flex-wrap: wrap;
+	> div:not(:nth-child(5n))
+	{
+		margin-right: 2.5%;
+	}
 `;
+
+const CoverImgC = styled.div`
+	position: absolute;
+	top:0;
+	left:0;
+	width: 100%;
+	height: 50px;
+	margin-top: 150px;
+	line-height: 50px;
+	text-align: center;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.4);
+`;
+
 
 
 const BackImgC = styled.div`
@@ -134,28 +200,10 @@ const BackImgC = styled.div`
 	border-radius: 15px;
 	box-sizing: border-box;
 	background-image: url("${(props) => props.url}");
-	&:hover {
-		z-index: 0;
-		opacity: 0.8;
-	}
-	`;
-
-const HoverImgC = styled.div`
-	position: static;
-	top: 0;
-	left: 0;
-	display: none;
-	background-color: #000000;
-	width: 100%;
-	height: 200px;
-	z-index: 5;
-	&:hover {
-		display:block;
-	}
 `;
 
+
 const LinkC = styled(Link)`
-	/*position: relative;*/
 `;
 
 const PostItemC = styled.div`
@@ -165,19 +213,21 @@ const PostItemC = styled.div`
 	border-radius: 15px;
 	margin-bottom: 20px;
 	border: 1px solid #f0f0f0;
-	background-color: #ffffff;
-	> div {
+	background-color: #ffffff; // image도 들어감.
+	> div:not(${CoverImgC}) { // 제목
+		display: flex;
+		justify-content: space-between;
 		width: 100%;
-		margin-top: 10px;
+		margin-top: 13px;
 		font-size: 14px;
 		padding-left: 10px;
 		font-weight: 600;
+		> b {
+			margin-right: 20px;
+			text-align:right;
+		}
 	}
-	> div:nth-child(2) {
-		/*color: red;*/
-		color: rgba(0, 0, 0, 0.7);
-	}
-	> div:last-child {
+	> div:last-child { // 나머지
 		margin-top: 10px;
 		margin-bottom: 5px;
 		color: rgba(0, 0, 0, 0.9);
@@ -191,10 +241,20 @@ const PostItemC = styled.div`
 				margin-right: 5px;
 			}
 		}
+		> div {
+
+		}
 	}
 	b {
 		font-size: 0.8em;
 	}
+	&:hover {
+		z-index: 0;
+		opacity: 0.8;
+	}
 `;
 
+export { PostThumbnail }
+export { PostViewComp }
 export default PreviewPost;
+//{/*<HoverImgC url={data.subThumbnailList[0]}>안녕</HoverImgC>*/}

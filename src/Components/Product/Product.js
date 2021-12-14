@@ -16,12 +16,11 @@ function RadioRet({ idx, value, setIdx, flag }) {
 			) : (
 				<input onClick={ClickEvt} name="select" type="radio" value={value}/>
 			)}
-			<label for="select">{value}</label>
+			<label for="select"> {value}</label>
 		</span>
 	);
 }
 function ProductStateBar({ path }) {
-	console.log("statebar", path);
 	return (
 		<SectionC>
 			<ProductStateBarC>
@@ -31,16 +30,15 @@ function ProductStateBar({ path }) {
 				<LinkC to="/product/manage">
 					<SpanC flag={path === "manage"}>상품관리</SpanC>
 				</LinkC>
-				<LinkC to="/product/history">
+				{/*<LinkC to="/product/history">
 					<SpanC flag={false}>구매 / 판매내역</SpanC>
-				</LinkC>
+				</LinkC>*/}
 			</ProductStateBarC>
 		</SectionC>
 	);
 }
 
 function Product(props) {
-	const pathName = props.location.pathname.split("/").pop();
 	return (
 		<SectionC>
 			<Header />
@@ -54,6 +52,7 @@ function Product(props) {
 }
 
 const SectionC = styled.section`
+	width: 100%;
 	margin: 0 auto;
 `;
 

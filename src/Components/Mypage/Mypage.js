@@ -9,32 +9,40 @@ import InfoList from "./Infolist";
 
 function	MypageMain(props)
 {
+	const { name } = props;
+	const id = props.name.id;
+	const url = props.name.url;
 	return (
 		<MypageMainC>
-			<ProfileBar />
-			<InfoList url={props.name}/>
+			<ProfileBar url={name}/>
+			<InfoList id={id} url={url} />
 		</MypageMainC>
 	);
 }
 
-function	Mypage({ match })
+function	Mypage({match})
 {
-	const { tabs } = match.params;
-
+	const { params }  = match;
 	return (
-		<div>
+		<MypageC>
 			<Header />
-			<NaviBar name={tabs}/>
-			<MypageMain name={tabs}/>
-		</div>
+			<NaviBar name={params}/>
+			<MypageMain name={params}/>
+		</MypageC>
 	);
 };
 
+const		MypageC = styled.div`
+	width: 100%;
+	min-width: 1200px;
+`;
 
 const		MypageMainC = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: center;
+	height: 100%;
+	margin: 50px 0px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
 `;
 
 export default Mypage;
