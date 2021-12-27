@@ -16,6 +16,13 @@ export default function Comments(props) {
 	const sendMessage = (msg) => {
 		$websocket.current.sendMessage(`/alarm/${props.userId}`, msg);
 	};
+	const makeMessage = (type, userId) => {
+		if (type === 0)
+			return (userId + "님이 내 글에 찜을 하셨습니다.");
+		else
+			return (userId + "님이 내 글에 댓글을 남기셨습니다.")
+	}
+	console.log(props, "comments");
 	const onSubmit = (event) => {
 		event.preventDefault();
 		if (commentValue === '')
@@ -38,10 +45,16 @@ export default function Comments(props) {
 			postId: props.postId,
 			content: commentValue
 		};
-	  axios.post('http://api.4m2d.shop/api/comments/', variables, { headers }).then((response) => {
-		  sendMessage(variables);
-		  setcommentValue("");
-		  props.refreshFunction(variables);
+		axios.post('http://api.4m2d.shop/api/comments/', variables, { headers }).then((response) => {
+			const sockets = {
+				senderId: props.intraId,
+				receiverId: props.receiverId,
+				receiverIntra: props.receiverIntra,
+				messsage: makeMessage(1, props.userId)
+			}
+			sendMessage(sockets);
+			setcommentValue("");
+			props.refreshFunction(variables);
 		});
 	}
 	return (

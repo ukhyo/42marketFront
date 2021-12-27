@@ -75,10 +75,9 @@ function Header() {
 					{
 						token ? 
 						<SockJsClient
-							url="http://localhost:8080/test"
-							topics={[`alarm/${userId}`]}
-							onMessage={msg => {
-							}}
+							url="http://www.4m2d.shop/4m2d-websocket"
+							topics={[`/sub/${userId}`]}
+							onMessage={msg => { console.log (msg); }}
 							ref={$websocket}
 						/> : null
 					}

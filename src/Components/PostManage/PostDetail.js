@@ -17,7 +17,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 function PostDetail(props) {
 	const cookie = new Cookies();
 	const statusName = ["판매중", "판매완료"];
-	let { userId: userId, Authorization: token, view: view } = cookie.getAll();
+	let { userId: userId, intra: intraId, Authorization: token, view: view } = cookie.getAll();
 	const { location } = props;
 	const { location: { state: { itemId: id } } } = props;
 	const { location: { state: { subList: subList } } } = props;
@@ -200,7 +200,10 @@ function PostDetail(props) {
 				</PostContentsC>
 				<CommentArea>
 					<Comments userId={userId}
+						intraId={intraId}
 						postId={data.id}
+						receiverId={data.userId}
+						receiverIntra={data.author}
 						token={token}
 						commentsList={Comment}
 						refreshFunction={refreshFunction}>
