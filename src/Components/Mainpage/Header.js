@@ -40,6 +40,11 @@ function Header() {
 		}
 		setText("");
 	}
+	const headers = {
+		"Authorization": `Bearer ${token}`,
+		"withCreadentials": true,
+		"Content-Type": "application/json",
+	};
 
 	return (
 		<HeaderC>
@@ -77,6 +82,7 @@ function Header() {
 						<SockJsClient
 							url="http://www.4m2d.shop/4m2d-websocket"
 							topics={[`/sub/${userId}`]}
+							headers={headers}
 							onMessage={msg => { console.log (msg); }}
 							ref={$websocket}
 						/> : null
