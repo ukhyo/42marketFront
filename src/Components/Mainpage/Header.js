@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { useCookies, Cookies } from "react-cookie";
+import SockJsClient from 'react-stomp';
 import { useSelector } from "react-redux";
 import { setUserId } from "../../modules/User";
 import { FiLogOut } from "react-icons/fi";
@@ -11,6 +12,7 @@ import axios from "axios";
 function Header() {
 	const cookie = new Cookies()
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+	const $websocket = useRef (null);
 	const [Loading, setLoading] = useState(true);
 	const history = useHistory();
 	const [text, setText] = useState("");
@@ -70,6 +72,16 @@ function Header() {
 					</HeaderSearchInputC>
 				</HeaderSearchC>
 				<HeaderInfoC>
+					{
+						token ? 
+						<SockJsClient
+							url="http://localhost:8080/test"
+							topics={[`alarm/${userId}`]}
+							onMessage={msg => {
+							}}
+							ref={$websocket}
+						/> : null
+					}
 					{token ?
 						<LinkC to="/product/regi">
 							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />

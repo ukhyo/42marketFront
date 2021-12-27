@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import SingleComment from './SingleComment';
@@ -7,16 +7,25 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 
 export default function Comments(props) {
 
-  const [commentValue, setcommentValue] = useState('');
-  const user = useSelector((state) => state.user);
-  const handleChange = (event) => {
-    setcommentValue(event.currentTarget.value);
-  };
-  const onSubmit = (event) => {
+	const $websocket = useRef (null);
+	const [commentValue, setcommentValue] = useState('');
+	const user = useSelector((state) => state.user);
+	const handleChange = (event) => {
+		setcommentValue(event.currentTarget.value);
+ 	};
+	const sendMessage = (msg) => {
+		$websocket.current.sendMessage(`/alarm/${props.userId}`, msg);
+	};
+	const onSubmit = (event) => {
 		event.preventDefault();
 		if (commentValue === '')
 		{
 			alert("댓글을 입력해주세요.")
+				return;
+		}
+		if (props.userId === '0')
+		{
+			alert("로그인을 해주세요.")
 				return;
 		}
 		const headers = {
@@ -30,15 +39,16 @@ export default function Comments(props) {
 			content: commentValue
 		};
 	  axios.post('http://api.4m2d.shop/api/comments/', variables, { headers }).then((response) => {
+		  sendMessage(variables);
 		  setcommentValue("");
 		  props.refreshFunction(variables);
-	  });
+		});
 	}
-  return (
+	return (
     <div>
-      <br />
+		<br />
 	  <CommentHeaderC>
-      	<p>댓글</p>
+		<p>댓글</p>
 	  </CommentHeaderC>
 	<form style={{ display: 'flex' }} onSubmit={onSubmit}>
 		<InputCommentC
@@ -51,7 +61,6 @@ export default function Comments(props) {
 			  <SubmitButtonC flag={commentValue.length >= 1} onClick={onSubmit}>
 			댓글
 		</SubmitButtonC>
-		{/* textarea에 글자 들어왔을 때 버튼색 파란색으로 바꾸고 싶다 */}
 	</form>
     {/* Comment Lists */}
 	{
@@ -66,8 +75,6 @@ export default function Comments(props) {
 		)))
 	}
     {/* Root Comment Form */}
-
-
     </div>
   );
 }
