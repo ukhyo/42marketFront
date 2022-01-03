@@ -98,9 +98,9 @@ function InfoList({id, url})
 									<span><b><AiOutlineEye /></b> {posts.view} </span>
 								</PostInfosTwo__LookupC>
 							</PostInfosTwoC>
-								<PostCategoryC>
-									<span>{posts.categoryName}</span>
-								</PostCategoryC>
+							<PostCategoryC>
+								<span>{posts.categoryName}</span>
+							</PostCategoryC>
 						</PostListC>
 					);
 				})}
@@ -172,9 +172,11 @@ function InfoList({id, url})
 								</PostInfosTwo__LookupC>
 							</PostInfosTwoC>
 							<PostCategoryC>
-								<PostCategoryC>
-										<span>{posts.categoryName}</span>
-								</PostCategoryC>
+								{url === "selllist"  || url === "manage" ?
+									<DropdownMenu id={posts.id} status={posts.status}></DropdownMenu>
+									:
+									<span>{posts.categoryName}</span>
+								}
 							</PostCategoryC>
 						</PostListC>
 					);
