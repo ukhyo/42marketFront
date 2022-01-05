@@ -54,9 +54,13 @@ function Header() {
 	};
 
 	useEffect(() => {
-		let socket = new SockJS("4m2d-websocket");
+		let socket = new SockJS("/4m2d-websocket");
 		let stompClient = Stomp.over(socket);
 		onSetSocket(socket, stompClient);
+		stompClient.connect({}, function (frame) {
+			console.log('Connected: ' + frame);
+			stompClient.subscribe(`/sub/${userId}`, ("hello"));
+		});
 	}, [token]);
 
 	return (
