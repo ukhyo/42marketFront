@@ -54,10 +54,10 @@ function Header() {
 	};
 
 	useEffect(() => {
-		let socket = new SockJS("http://localhost:8080/webSocket");
+		let socket = new SockJS("www.4m2d.shop/4m2d-websocket");
 		let stompClient = Stomp.over(socket);
 		onSetSocket(socket, stompClient);
-	}, []);
+	}, [token]);
 
 	return (
 		<HeaderC>
