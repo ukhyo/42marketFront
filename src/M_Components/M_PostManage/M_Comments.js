@@ -8,7 +8,6 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 export default function Comments(props) {
 
   const [commentValue, setcommentValue] = useState('');
-  const user = useSelector((state) => state.user);
   const handleChange = (event) => {
     setcommentValue(event.currentTarget.value);
   };

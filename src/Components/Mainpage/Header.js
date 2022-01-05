@@ -3,8 +3,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { useCookies, Cookies } from "react-cookie";
-import SockJsClient from 'react-stomp';
-import { useSelector } from "react-redux";
+import SockJS from 'sockjs-client';
+import { useSelector, useDispatch } from "react-redux";
+import { setSocket } from '../../modules/Socket';
+import Stomp from 'stompjs';
 import { setUserId } from "../../modules/User";
 import { FiLogOut } from "react-icons/fi";
 import axios from "axios";
@@ -12,15 +14,19 @@ import axios from "axios";
 function Header() {
 	const cookie = new Cookies()
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
-	const $websocket = useRef (null);
 	const [Loading, setLoading] = useState(true);
 	const history = useHistory();
 	const [text, setText] = useState("");
+	const socket = useSelector((state) => state.Socket.socket);
+	const dispatch = useDispatch();
 	if (userId === undefined)
 		userId = "0";
+	const onSetSocket = (socket, stompClient) => {
+		dispatch(setSocket(socket, stompClient));
+	};
 	function onChange(e) {
 		setText(e.target.value);
-	}
+	};
 	const check = (e) => {
 		if (e.key == "Enter") {
 			imgClick();
@@ -39,12 +45,19 @@ function Header() {
 			});
 		}
 		setText("");
-	}
+	};
+
 	const headers = {
 		"Authorization": `Bearer ${token}`,
 		"withCreadentials": true,
 		"Content-Type": "application/json",
 	};
+
+	useEffect(() => {
+		let socket = new SockJS("http://localhost:8080/webSocket");
+		let stompClient = Stomp.over(socket);
+		onSetSocket(socket, stompClient);
+	}, []);
 
 	return (
 		<HeaderC>
@@ -77,16 +90,6 @@ function Header() {
 					</HeaderSearchInputC>
 				</HeaderSearchC>
 				<HeaderInfoC>
-					{
-						token ? 
-						<SockJsClient
-							url="http://www.4m2d.shop/4m2d-websocket"
-							topics={[`/sub/${userId}`]}
-							headers={headers}
-							onMessage={msg => { console.log (msg); }}
-							ref={$websocket}
-						/> : null
-					}
 					{token ?
 						<LinkC to="/product/regi">
 							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
@@ -127,7 +130,7 @@ function Header() {
 								window.location.reload();
 							}
 							LogOut();
-					}}>
+					}} to={`/`}>
 						<img src={process.env.PUBLIC_URL + "/img/logoutIcon.png"} />
 						<div>로그아웃</div>
 					</LinkC>

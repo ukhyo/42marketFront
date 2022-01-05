@@ -1,21 +1,18 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import SingleComment from './SingleComment';
 import styled from 'styled-components';
-import { propTypes } from 'react-bootstrap/esm/Image';
 
 export default function Comments(props) {
-
-	const $websocket = useRef (null);
 	const [commentValue, setcommentValue] = useState('');
-	const user = useSelector((state) => state.user);
+	const stompClient = useSelector(state => {
+		console.log(state);
+		// stompClient: state.Socket.stompClient
+	});
 	const handleChange = (event) => {
 		setcommentValue(event.currentTarget.value);
  	};
-	const sendMessage = (msg) => {
-		$websocket.current.sendMessage(`/alarm/${props.userId}`, msg);
-	};
 	const makeMessage = (type, userId) => {
 		if (type === 0)
 			return (userId + "님이 내 글에 찜을 하셨습니다.");
@@ -46,13 +43,7 @@ export default function Comments(props) {
 			content: commentValue
 		};
 		axios.post('http://api.4m2d.shop/api/comments/', variables, { headers }).then((response) => {
-			const sockets = {
-				senderId: props.intraId,
-				receiverId: props.receiverId,
-				receiverIntra: props.receiverIntra,
-				messsage: makeMessage(1, props.userId)
-			}
-			sendMessage(sockets);
+			stompClient.send(makeMessage(1, props.userId));
 			setcommentValue("");
 			props.refreshFunction(variables);
 		});
