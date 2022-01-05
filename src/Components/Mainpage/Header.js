@@ -74,7 +74,7 @@ function Header() {
 			{
 				token ?
 				<SockJsClient
-				url= '/4m2d-websocket'
+				url='http://4m2d.shop/4m2d-websocket'
 				topics={topics}
 				onMessage={msg => console.log(msg)}
 				ref={$websocket}
