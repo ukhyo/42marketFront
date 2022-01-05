@@ -7,6 +7,7 @@ import SockJS from 'sockjs-client';
 import { useSelector, useDispatch } from "react-redux";
 import { setSocket } from '../../modules/Socket';
 import Stomp from 'stompjs';
+import SockJsClient from 'react-stomp';
 import { setUserId } from "../../modules/User";
 import { FiLogOut } from "react-icons/fi";
 import axios from "axios";
@@ -19,6 +20,9 @@ function Header() {
 	const [text, setText] = useState("");
 	const socket = useSelector((state) => state.Socket.socket);
 	const dispatch = useDispatch();
+	const $websocket = useRef(null); 
+	let topics = ['/sub/'+userId];
+
 	if (userId === undefined)
 		userId = "0";
 	const onSetSocket = (socket, stompClient) => {
@@ -52,19 +56,30 @@ function Header() {
 		"withCreadentials": true,
 		"Content-Type": "application/json",
 	};
-
 	useEffect(() => {
-		let socket = new SockJS("/4m2d-websocket");
-		let stompClient = Stomp.over(socket);
-		onSetSocket(socket, stompClient);
-		stompClient.connect({}, function (frame) {
-			console.log('Connected: ' + frame);
-			stompClient.subscribe(`/sub/${userId}`, ("hello"));
-		});
+		onSetSocket($websocket, 0);
 	}, [token]);
+	// useEffect(() => {
+	// 	let socket = new SockJS("/4m2d-websocket");
+	// 	let stompClient = Stomp.over(socket);
+	// 	onSetSocket(socket, stompClient);
+	// 	stompClient.connect({}, function (frame) {
+	// 		console.log('Connected: ' + frame);
+	// 		stompClient.subscribe(`/sub/${userId}`, ("hello"));
+	// 	});
+	// }, [token]);
 
 	return (
 		<HeaderC>
+			{
+				token ?
+				<SockJsClient
+				url= '/4m2d-websocket'
+				topics={topics}
+				onMessage={msg => console.log(msg)}
+				ref={$websocket}
+				/> : null
+			}
 			<HeaderLineC>
 				<HeaderLogoC>
 					<a href="http://www.4m2d.shop/" onClick={() => {
