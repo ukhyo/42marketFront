@@ -49,10 +49,11 @@ export default function Comments(props) {
 		axios.post('http://api.4m2d.shop/api/comments/', variables, { headers }).then((response) => {
 			stompClient.connect({}, ()=>{
 				stompClient.subscribe(`/sub/${props.receiverId}`, (data) => {
-					console.log(data);
+					console.log(data, "subscribe");
 				})
 			});
-			stompClient.send("/", {}, JSON.stringify(data))
+			stompClient.send(`/alarm/${props.receiverId}`, {}, JSON.stringify(data))
+			console.log(data, "send data");
 			setcommentValue("");
 			props.refreshFunction(variables);
 		});
