@@ -16,7 +16,6 @@ function Notification() {
 }
 
 const NotiButtonC = styled.button `
-	display: none;
-`
+`;
 
 export default Notification

@@ -44,7 +44,7 @@ export default function Comments(props) {
 			senderId: props.userId,
 			receiverId: props.receiverId,
 			type: 1,
-			message: "hello world"
+			message: makeMessage(1, props.userId)
 		};
 		axios.post('http://api.4m2d.shop/api/comments/', variables, { headers }).then((response) => {
 			stompClient.connect({}, ()=>{
