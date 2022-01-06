@@ -56,7 +56,7 @@ function Header() {
 	}
 	const headers = {
 		"Authorization": `Bearer ${token}`,
-		"withCreadentials": true,
+		// "withCreadentials": true,
 		"Content-Type": "application/json",
 	};
 

@@ -31,7 +31,7 @@ export default function Comments(props) {
 		}
 		const headers = {
 			"Authorization": `Bearer ${props.token}`,
-			"withCreadentials": true,
+			// "withCreadentials": true,
 			"Access-Control-Allow-Origin": "http://api.4m2d.shop"
 		};
 		const variables = {

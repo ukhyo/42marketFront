@@ -32,7 +32,7 @@ function PostDetail(props) {
 	const ClickScribe = () => {
 		const headers = {
 			"Authorization": `Bearer ${token}`,
-			"withCreadentials": true,
+			// "withCreadentials": true,
 			"Content-Type": "application/json",
 		};
 		const config = {
