@@ -17,7 +17,6 @@ export default function Comments(props) {
 		else
 			return (userId + "님이 내 글에 댓글을 남기셨습니다.")
 	}
-	console.log(props, "comments");
 	const onSubmit = (event) => {
 		event.preventDefault();
 		if (commentValue === '')

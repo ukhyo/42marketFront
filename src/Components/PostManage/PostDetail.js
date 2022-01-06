@@ -87,8 +87,6 @@ function PostDetail(props) {
 	}, [reLoad])
 
 	const refreshFunction = (newComment) => {
-		console.log("refreshFunction");
-		console.log(newComment, "newComment");
 		setComment(Comment.concat(newComment));
 		setReLoad(!reLoad);
 	};
@@ -96,7 +94,6 @@ function PostDetail(props) {
 	const SelectPicture = (flag) => {
 		setImgIdx(flag);
 	};
-	console.log(data, "data");
 	if (!Loading)
 		<div>error</div>
 
@@ -119,7 +116,6 @@ function PostDetail(props) {
 								}} />
 							</div>
 							{data.image.map((data, idx) => {
-								console.log("hi");
 								return (<ChangeBtnC flag={idx === ImgIdx }onClick={() => {
 										SelectPicture(idx);
 									}}></ChangeBtnC>)
