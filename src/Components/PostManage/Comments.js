@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { setSocket } from '../../modules/Socket';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import SingleComment from './SingleComment';
@@ -6,10 +7,7 @@ import styled from 'styled-components';
 
 export default function Comments(props) {
 	const [commentValue, setcommentValue] = useState('');
-	const stompClient = useSelector(state => {
-		console.log(state);
-		// stompClient: state.Socket.stompClient
-	});
+	const stompClient = useSelector((state) => state.Socket.stompClient)
 	const handleChange = (event) => {
 		setcommentValue(event.currentTarget.value);
  	};
@@ -42,8 +40,19 @@ export default function Comments(props) {
 			postId: props.postId,
 			content: commentValue
 		};
+		const data = {
+			senderId: props.userId,
+			receiverId: props.receiverId,
+			type: 1,
+			message: "hello world"
+		};
 		axios.post('http://api.4m2d.shop/api/comments/', variables, { headers }).then((response) => {
-			stompClient.send(makeMessage(1, props.userId));
+			stompClient.connect({}, ()=>{
+				stompClient.subscribe(`/sub/${props.receiverId}`, (data) => {
+					console.log(data);
+				})
+			});
+			stompClient.send("/", {}, JSON.stringify(data))
 			setcommentValue("");
 			props.refreshFunction(variables);
 		});

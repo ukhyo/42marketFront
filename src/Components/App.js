@@ -1,13 +1,22 @@
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import reset from "styled-reset";
 import Router from "./Router";
 import axios from "axios";
-function App() {
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
+import { setSocket } from '../modules/Socket';
 
+let socket = new SockJS("http://4m2d.shop/4m2d-websocket");
+let stompClient = Stomp.over(socket);
+stompClient.debug= () => {};
+
+function App() {
+	const dispatch = useDispatch();
+	dispatch(setSocket(socket, stompClient));
 	return (
 		<BrowserRouter>
 			<Router />

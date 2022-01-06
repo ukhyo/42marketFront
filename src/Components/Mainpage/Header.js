@@ -3,11 +3,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import { useCookies, Cookies } from "react-cookie";
-import SockJS from 'sockjs-client';
 import { useSelector, useDispatch } from "react-redux";
+import Notification from "./Notification";
 import { setSocket } from '../../modules/Socket';
-import Stomp from 'stompjs';
-import SockJsClient from 'react-stomp';
 import { setUserId } from "../../modules/User";
 import { FiLogOut } from "react-icons/fi";
 import axios from "axios";
@@ -18,10 +16,8 @@ function Header() {
 	const [Loading, setLoading] = useState(true);
 	const history = useHistory();
 	const [text, setText] = useState("");
-	const socket = useSelector((state) => state.Socket.socket);
+	const stompClient = useSelector((state) => state.Socket.stompClient);
 	const dispatch = useDispatch();
-	const $websocket = useRef(null); 
-	let topics = ['/sub/'+userId];
 
 	if (userId === undefined)
 		userId = "0";
@@ -51,35 +47,21 @@ function Header() {
 		setText("");
 	};
 
+	function connectNoti() {
+		stompClient.connect({}, ()=>{
+			stompClient.subscribe(`/sub/all`, (data) => {
+				console.log(data);
+			})
+		});
+	}
 	const headers = {
 		"Authorization": `Bearer ${token}`,
 		"withCreadentials": true,
 		"Content-Type": "application/json",
 	};
-	useEffect(() => {
-		onSetSocket($websocket, 0);
-	}, [token]);
-	// useEffect(() => {
-	// 	let socket = new SockJS("/4m2d-websocket");
-	// 	let stompClient = Stomp.over(socket);
-	// 	onSetSocket(socket, stompClient);
-	// 	stompClient.connect({}, function (frame) {
-	// 		console.log('Connected: ' + frame);
-	// 		stompClient.subscribe(`/sub/${userId}`, ("hello"));
-	// 	});
-	// }, [token]);
 
 	return (
 		<HeaderC>
-			{
-				token ?
-				<SockJsClient
-				url='http://4m2d.shop/4m2d-websocket'
-				topics={topics}
-				onMessage={msg => console.log(msg)}
-				ref={$websocket}
-				/> : null
-			}
 			<HeaderLineC>
 				<HeaderLogoC>
 					<a href="http://www.4m2d.shop/" onClick={() => {
@@ -115,12 +97,13 @@ function Header() {
 							<div>판매하기</div>
 						</LinkC>
 						:
-						<AC onClick={() => {
-							alert("로그인이 필요합니다.");
-						}} href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
-							<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
-							<div>판매하기</div>
-						</AC>
+						null
+						// <AC onClick={() => {
+						// 	alert("로그인이 필요합니다.");
+						// }} href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
+						// 	<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
+						// 	<div>판매하기</div>
+						// </AC>
 					}
 					{token ?
 					<LinkC to={`/mypage/${userId}/selllist`}>
@@ -128,13 +111,19 @@ function Header() {
 						<div>내정보</div>
 					</LinkC>
 						:
-						<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code" onClick={() => {
-							alert("로그인이 필요합니다.")
-						}}>
-							<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
-						<div>내정보</div>
-					</AC>
-				}
+						null
+						// <AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code" onClick={() => {
+						// 	alert("로그인이 필요합니다.")
+						// }}>
+						// 	<img src={process.env.PUBLIC_URL + "/img/userIcon.png"} />
+						// <div>내정보</div>
+					// </AC>
+					}
+					{
+						// token ?
+						<Notification/>
+						//  : null
+					}
 					{token ?
 						<LinkC onClick={() => {
 							const LogOut = () => {
