@@ -10,7 +10,7 @@ import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import { setSocket } from '../modules/Socket';
 
-let socket = new SockJS("http://4m2d.shop/alarm");
+let socket = new SockJS("/alarm");
 let stompClient = Stomp.over(socket);
 stompClient.debug= () => {};
 
