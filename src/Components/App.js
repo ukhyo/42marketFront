@@ -10,7 +10,7 @@ import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import { setSocket } from '../modules/Socket';
 
-let socket = new SockJS("/4m2d/");
+let socket = new SockJS("/google");
 let stompClient = Stomp.over(socket);
 stompClient.debug= () => {};
 
