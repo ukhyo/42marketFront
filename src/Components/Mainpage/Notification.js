@@ -11,7 +11,7 @@ function Notification() {
 	const dispatch = useDispatch();
 
 	const onClick = () => {
-		let socket = new SockJS('/4m2d', null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
+		var socket = new SockJS('/4m2d', null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
 		// let stompClient = Stomp.over(socket);
 		// stompClient.debug= () => {};
 		// dispatch(setSocket(socket, stompClient));
