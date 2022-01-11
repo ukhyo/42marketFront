@@ -16,14 +16,12 @@ function Header() {
 	const [Loading, setLoading] = useState(true);
 	const history = useHistory();
 	const [text, setText] = useState("");
-	const stompClient = useSelector((state) => state.Socket.stompClient);
-	const dispatch = useDispatch();
 
 	if (userId === undefined)
 		userId = "0";
-	const onSetSocket = (socket, stompClient) => {
-		dispatch(setSocket(socket, stompClient));
-	};
+	// const onSetSocket = (socket, stompClient) => {
+	// 	dispatch(setSocket(socket, stompClient));
+	// };
 	function onChange(e) {
 		setText(e.target.value);
 	};
@@ -47,13 +45,13 @@ function Header() {
 		setText("");
 	};
 
-	function connectNoti() {
-		stompClient.connect({}, ()=>{
-			stompClient.subscribe(`/sub/all`, (data) => {
-				console.log(data);
-			})
-		});
-	}
+	// function connectNoti() {
+	// 	stompClient.connect({}, ()=>{
+	// 		stompClient.subscribe(`/sub/all`, (data) => {
+	// 			console.log(data);
+	// 		})
+	// 	});
+	// }
 	const headers = {
 		"Authorization": `Bearer ${token}`,
 		"withCreadentials": true,
