@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components';
 import { useSelector, useDispatch } from "react-redux";
 import SockJS from 'sockjs-client';
-import Stomp from 'stompjs';
+import StompJs from '@stomp/stompjs';
 import { setSocket } from '../../modules/Socket';
 
 function Notification() {
@@ -11,7 +11,29 @@ function Notification() {
 	const dispatch = useDispatch();
 
 	const onClick = () => {
-		var socket = new SockJS('/4m2d', null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
+		const client = new StompJs.Client({
+			brokerURL: '/4m2d',
+			connectHeaders: {
+			  login: 'user',
+			  passcode: 'password',
+			},
+			debug: function (str) {
+			  console.log(str);
+			},
+			reconnectDelay: 5000, //자동 재 연결
+			heartbeatIncoming: 4000,
+			heartbeatOutgoing: 4000,
+		  });
+		  client.onConnect = function (frame) {
+			console.log("connected");
+		};
+		
+		client.onStompError = function (frame) {
+		  console.log('Broker reported error: ' + frame.headers['message']);
+		  console.log('Additional details: ' + frame.body);
+		};
+		client.activate();
+		//var socket = new SockJS('/4m2d', null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
 		// let stompClient = Stomp.over(socket);
 		// stompClient.debug= () => {};
 		// dispatch(setSocket(socket, stompClient));
