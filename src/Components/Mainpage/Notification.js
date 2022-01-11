@@ -11,7 +11,7 @@ function Notification() {
 	const dispatch = useDispatch();
 
 	const onClick = () => {
-		let socket = new SockJS("/4m2d");
+		let socket = new SockJS("/bbbbbbb4m2d");
 		let stompClient = Stomp.over(socket);
 		stompClient.debug= () => {};
 		dispatch(setSocket(socket, stompClient));
