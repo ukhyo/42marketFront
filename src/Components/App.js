@@ -10,13 +10,15 @@ import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import { setSocket } from '../modules/Socket';
 
-let socket = new SockJS("http://4m2d.shop/4m2d");
-let stompClient = Stomp.over(socket);
-stompClient.debug= () => {};
 
 function App() {
 	const dispatch = useDispatch();
-	dispatch(setSocket(socket, stompClient));
+	useEffect(() => {
+		let socket = new SockJS("/4m2d");
+		let stompClient = Stomp.over(socket);
+		stompClient.debug= () => {};
+		dispatch(setSocket(socket, stompClient));
+	}, []);
 	return (
 		<BrowserRouter>
 			<Router />

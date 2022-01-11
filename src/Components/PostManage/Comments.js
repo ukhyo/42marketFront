@@ -31,7 +31,7 @@ export default function Comments(props) {
 		}
 		const headers = {
 			"Authorization": `Bearer ${props.token}`,
-			// "withCreadentials": true,
+			"withCreadentials": true,
 			"Access-Control-Allow-Origin": "http://api.4m2d.shop"
 		};
 		const variables = {
@@ -51,7 +51,7 @@ export default function Comments(props) {
 					console.log(data, "subscribe");
 				})
 			});
-			stompClient.send(`/alarm/${props.receiverId}`, {}, JSON.stringify(data))
+			// stompClient.send(`/alarm/${props.receiverId}`, {}, JSON.stringify(data))
 			console.log(data, "send data");
 			setcommentValue("");
 			props.refreshFunction(variables);
