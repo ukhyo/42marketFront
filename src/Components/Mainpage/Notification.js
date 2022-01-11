@@ -11,17 +11,17 @@ function Notification() {
 	const dispatch = useDispatch();
 
 	const onClick = () => {
-		let socket = new SockJS("/bbbbbbb4m2d");
-		let stompClient = Stomp.over(socket);
-		stompClient.debug= () => {};
-		dispatch(setSocket(socket, stompClient));
-		stompClient.connect({}, ()=>{
-			stompClient.subscribe(`/sub/all`, (data) => {
-				console.log(data);
-			})
-		});
-		console.log("connect try");
-		setIsActive(isActive);
+		let socket = new SockJS("/4m2d");
+		// let stompClient = Stomp.over(socket);
+		// stompClient.debug= () => {};
+		// dispatch(setSocket(socket, stompClient));
+		// stompClient.connect({}, ()=>{
+		// 	stompClient.subscribe(`/sub/all`, (data) => {
+		// 		console.log(data);
+		// 	})
+		// });
+		// console.log("connect try");
+		// setIsActive(isActive);
 	}
 
 	return (
