@@ -56,7 +56,7 @@ function Notification() {
 				<SockJsClient url='http://4m2d.shop/4m2d' topics={['/sub/all']}
 				onMessage={(msg) => { console.log(msg); }}
 				ref={ (client) => { this.clientRef = client }} /> : 
-				null
+				console.log("isActive?")
 			}
 
 
