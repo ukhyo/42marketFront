@@ -12,7 +12,7 @@ function Notification() {
 
 	const onClick = () => {
 		const client = new StompJs.Client({
-			brokerURL: 'ws://www.4m2d.shop/4m2d',
+			brokerURL: 'ws://www.4m2d.s',
 			connectHeaders: {
 			  login: 'user',
 			  passcode: 'password',
