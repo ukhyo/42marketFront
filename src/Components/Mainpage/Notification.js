@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components';
 import { useSelector, useDispatch } from "react-redux";
 import SockJS from 'sockjs-client';
-import StompJs from '@stomp/stompjs';
+import * as StompJs from '@stomp/stompjs';
 import { setSocket } from '../../modules/Socket';
 
 function Notification() {
