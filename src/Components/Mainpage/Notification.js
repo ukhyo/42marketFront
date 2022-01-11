@@ -13,15 +13,28 @@ function Notification() {
 	const dispatch = useDispatch();
 
 	const onClick = () => {
-		var socket = new SockJS('/api/ws');
-		let stompClient = Stomp.over(socket);
-		stompClient.debug= () => {};
-		dispatch(setSocket(socket, stompClient));
-		stompClient.connect({}, ()=>{
-			stompClient.subscribe(`/sub/all`, (data) => {
-				console.log(data);
-			})
+		var sock = new SockJS('/api/ws');
+		let stompClient = Stomp.over(sock);
+
+		sock.onopen = function() {
+		console.log('open');
+		}
+		stompClient.connect({}, function (frame) {
+		console.log('Connected: ' + frame);
+		stompClient.subscribe('/topic/public', function (greeting) {
+			console.log(greeting);
+			//you can execute any function here
 		});
+	});
+		// var socket = new SockJS('/api/ws');
+		// let stompClient = Stomp.over(socket);
+		// stompClient.debug= () => {};
+		// dispatch(setSocket(socket, stompClient));
+		// stompClient.connect({}, ()=>{
+		// 	stompClient.subscribe(`/sub/all`, (data) => {
+		// 		console.log(data);
+		// 	})
+		// });
 		console.log("connect try");
 		setIsActive(isActive);
 	}
