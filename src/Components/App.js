@@ -6,19 +6,9 @@ import { useLocation } from "react-router-dom";
 import reset from "styled-reset";
 import Router from "./Router";
 import axios from "axios";
-import SockJS from 'sockjs-client';
-import Stomp from 'stompjs';
-import { setSocket } from '../modules/Socket';
 
 
 function App() {
-	const dispatch = useDispatch();
-	useEffect(() => {
-		let socket = new SockJS("/4m2d");
-		let stompClient = Stomp.over(socket);
-		stompClient.debug= () => {};
-		dispatch(setSocket(socket, stompClient));
-	}, []);
 	return (
 		<BrowserRouter>
 			<Router />

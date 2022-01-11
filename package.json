@@ -12,6 +12,8 @@
 
   "dependencies": {
 
+    "@stomp/stompjs": "^6.1.2",
+
     "@testing-library/jest-dom": "^5.14.1",
 
     "@testing-library/react": "^11.2.7",
@@ -102,7 +104,9 @@
 
     "styled-reset": "^4.3.4",
 
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+
+    "websocket": "^1.0.34"
 
   },
 
