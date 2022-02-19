@@ -8,25 +8,33 @@ import testBanner from "../img/testBanner.png";
 import banner from "../img/test123.jpg";
 import BannerHeader from "./BannerHeader";
 import Header from "./Header";
+import { Link } from "react-router-dom";
 import image1 from "../img/ban.png";
 import image2 from "../img/ban2.png";
-import image3 from "../img/ban3.png";
+// import image3 from "../img/ban3.png";
 //import image4 from "../img/ban.png";
 
 function MainBanner() {
 	const [idx, setIdx] = useState(0);
-	const images = [image1, image2, image3];
+	const images = [image1, image2];
 	setTimeout(() => {
 		let temp = idx;
-		if (temp >= 2)
+		if (temp >= 1)
 			temp = -1;
 		setIdx(temp + 1);
 	}, 5000)
+
+	function onClick() {
+		window.location.href = "/intro"
+	}
+
 	return (
 		<MainC>
 			<ImagesC>
 				<DivC>
-					<ImageC url={images[idx]} />
+					<ImageC 
+					url={images[idx]}
+					onClick={onClick}/>
 				</DivC>
 			</ImagesC>
 		</MainC>
