@@ -15,7 +15,7 @@ import Pagination from "../../Components/utils/Pagination";
 async function getList(id)
 {
 	const response = await axios.get(
-		`http://api.4m2d.shop/api/users/${id}`
+		`http://api.4m2d.site/api/users/${id}`
 	).then(res => {
 		console.log(res, "성공?");
 		return res;

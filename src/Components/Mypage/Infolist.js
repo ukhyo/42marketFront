@@ -15,7 +15,7 @@ import Pagination from "../utils/Pagination"
 async function getList(id)
 {
 	const response = await axios.get(
-		`http://api.4m2d.shop/api/users/${id}`
+		`http://api.4m2d.site/api/users/${id}`
 	).then(res => {
 		return res;
 	});

@@ -7,7 +7,7 @@ import useAsync from './useAsync';
 async function getBadge(userId)
 {
 	const response = await axios.get(
-		`http://api.4m2d.shop/api/titles/${userId}`
+		`http://api.4m2d.site/api/titles/${userId}`
 	);
 	return response.data;
 }

@@ -113,7 +113,7 @@ function M_PreviewPost() {
 			setLoading(false);
 			if (userId === undefined)
 				userId = "0";
-			let data = await axios.get(`http://api.4m2d.shop/api/${userId}`).then((response) => {
+			let data = await axios.get(`http://api.4m2d.site/api/${userId}`).then((response) => {
 				return response.data;
 			});
 			setItem(data);

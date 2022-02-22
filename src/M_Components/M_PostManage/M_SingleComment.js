@@ -27,14 +27,14 @@ export default function SingleComment(props) {
         const headers = {
 			"Authorization": `Bearer ${props.token}`,
 			// "withCreadentials": true,
-			"Access-Control-Allow-Origin": "http://api.4m2d.shop"
+			"Access-Control-Allow-Origin": "http://api.4m2d.site"
 		};
 		const variables = {
 			userId: props.userId,
 			postId: props.postId,
 			content: CommentValue
 		};
-		axios.post('http://api.4m2d.shop/api/comments/', variables, {headers}).then((response) => {
+		axios.post('http://api.4m2d.site/api/comments/', variables, {headers}).then((response) => {
 			console.log('댓글 올리기 성공');
 			console.log(response.data, 'response');
 			props.refreshFunction(variables);

@@ -44,7 +44,7 @@ function M_PostDetail(props) {
 		if (data.subList.indexOf(`/${data.id}/`) === -1) // 구독 안되있는 상태
 		{
 			const ApiPost = async () => {
-				await axios.post("http://api.4m2d.shop/api/carts", config, {headers}).then(res => {
+				await axios.post("http://api.4m2d.site/api/carts", config, {headers}).then(res => {
 					console.log("구독 성공");
 				}).catch(err => {
 					console.log("구독 실패");
@@ -57,7 +57,7 @@ function M_PostDetail(props) {
 			console.log(userId, "구독 유저ID");
 			console.log(data.id, "구독 상품ID");
 			const ApiDelete = async () => {
-				await axios.delete(`http://api.4m2d.shop/api/carts/${userId}/${data.id}`,{ headers }).then(res => {
+				await axios.delete(`http://api.4m2d.site/api/carts/${userId}/${data.id}`,{ headers }).then(res => {
 					console.log("구독 해제 성공");
 				}).catch(err => {
 					console.log("구독 해제 실패");
@@ -90,7 +90,7 @@ function M_PostDetail(props) {
 				cookie.set("view", `/${id}/`);
 				flag = "1";
 			}
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}/${userId}/${flag}`).then(res => {
+			const { data: data } = await axios.get(`http://api.4m2d.site/api/posts/${id}/${userId}/${flag}`).then(res => {
 				return res;
 			}).catch(error => {
 				console.log("err? ", error);
@@ -188,7 +188,7 @@ function M_PostDetail(props) {
 								<li>카테고리 &nbsp; &nbsp;<span>{data.category_name}</span></li>
 							</Location>
 							{userId === "0" ?
-							(<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code"><SubscribeBtn>로그인</SubscribeBtn></a>)
+							(<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.site%2Flogin%2FgetToken&response_type=code"><SubscribeBtn>로그인</SubscribeBtn></a>)
 							:
 							(data.subList.indexOf(`/${data.id}/`) === -1 ?
 								<SubscribeBtn onClick={e => {

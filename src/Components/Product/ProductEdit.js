@@ -22,7 +22,7 @@ function ProductEdit(props) {
 	const [Loading, setLoading] = useState(false);
 	useEffect(() => {
 		const ApiGet = async () => {
-			const data = await axios.get(`http://api.4m2d.shop/api/posts/${postId}/${userId}/0`).then(res => {
+			const data = await axios.get(`http://api.4m2d.site/api/posts/${postId}/${userId}/0`).then(res => {
 				return res.data;
 			});;
 			setOldFiles(data.image);
@@ -144,7 +144,7 @@ function ProductEdit(props) {
 			};
 			setLoading(true);
 			await axios
-				.post(`http://api.4m2d.shop/api/posts/${postId}`, fileList, { headers })
+				.post(`http://api.4m2d.site/api/posts/${postId}`, fileList, { headers })
 				.then((res) => {
 					alert("상품 등록 완료!");
 					history.push("/");

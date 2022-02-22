@@ -5,7 +5,7 @@ const M_Navbar = () => {
 	let flag = 0;
 	const url = window.location.href;
 	console.log(url, "url");
-	if ("http://localhost:3000/" === url || "http://4m2d.shop/" === url || "http://www.4m2d.shop/" === url)
+	if ("http://localhost:3000/" === url || "http://4m2d.site/" === url || "http://www.4m2d.site/" === url)
 		flag = 1;
 	else if ("8" === window.location.href.slice(window.location.href.lastIndexOf("/") + 1, window.location.href.length))
 		flag = 3

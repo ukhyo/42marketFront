@@ -124,7 +124,7 @@ function ProductRegi(props) {
 			};
 			setLoading(true);
 			await axios
-				.post("http://api.4m2d.shop/api/posts/", fileList, { headers })
+				.post("http://api.4m2d.site/api/posts/", fileList, { headers })
 				.then((res) => {
 					history.push("/");
 				});

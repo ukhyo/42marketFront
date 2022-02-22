@@ -98,7 +98,7 @@ function Header() {
 						null
 						// <AC onClick={() => {
 						// 	alert("로그인이 필요합니다.");
-						// }} href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
+						// }} href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.%2Flogin%2FgetToken&response_type=code">
 						// 	<img src={process.env.PUBLIC_URL + "/img/wonIcon.png"} />
 						// 	<div>판매하기</div>
 						// </AC>
@@ -127,11 +127,11 @@ function Header() {
 							const LogOut = () => {
 								cookie.remove('Authorization', {
 									path: '/',
-									domain: '.4m2d.shop',
+									domain: '.4m2d.site',
 								});
 								cookie.remove('userId', {
 									path: '/',
-									domain: '.4m2d.shop',
+									domain: '.4m2d.site',
 								});
 								window.location.reload();
 							}
@@ -141,7 +141,7 @@ function Header() {
 						<div>로그아웃</div>
 					</LinkC>
 						:
-					<AC href="api.4m2d.site/login">
+					<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.site%2Flogin%2FgetToken&response_type=code">
 						<img src={process.env.PUBLIC_URL + "/img/loginIcon.png"} />
 						<div>로그인</div>
 					</AC>

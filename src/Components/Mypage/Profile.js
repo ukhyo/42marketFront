@@ -12,7 +12,7 @@ import { Cookies } from "react-cookie";
 async function getProfile(id)
 {
 	const response = await axios.get(
-		`http://api.4m2d.shop/api/users/${id}`
+		`http://api.4m2d.site/api/users/${id}`
 	);
 	return response.data;
 }
@@ -41,7 +41,7 @@ function	ProfileBar({ url })
 				"Content-Type": `multipart/form-data`,
 			};
 			setIsLoading(true);
-			await axios.post(`http://api.4m2d.shop/api/users/${userId}`, fileList, { headers })
+			await axios.post(`http://api.4m2d.site/api/users/${userId}`, fileList, { headers })
 				.then(res => { //아이디 수정해야함
 
 					window.location.reload();
@@ -69,7 +69,7 @@ function	ProfileBar({ url })
 				"Authorization": `Bearer ${token}`,
 			};
 			setIsLoading(true);
-			await axios.patch(`http://api.4m2d.shop/api/users/${userId}`, data, { headers }).then(res => {
+			await axios.patch(`http://api.4m2d.site/api/users/${userId}`, data, { headers }).then(res => {
 				window.location.reload();
 			});
 			setIsLoading(false);

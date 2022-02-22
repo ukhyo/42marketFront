@@ -21,7 +21,7 @@ const DropdownMenu = (props) => {
 				status: idx,
 			};
 			setStatus(idx);
-			await axios.patch(`http://api.4m2d.shop/api/posts/${props.id}`, config, { headers }).then(res => {
+			await axios.patch(`http://api.4m2d.site/api/posts/${props.id}`, config, { headers }).then(res => {
 				alert("상태변경에 성공했습니다.");
 				if (idx === 2)
 					window.location.reload();

@@ -42,11 +42,11 @@ const M_HeaderInfo = ({ cookie }) => {
 							const LogOut = () => {
 								cookie.remove('Authorization', {
 									path: '/',
-									domain: '.4m2d.shop',
+									domain: '.4m2d.site',
 								});
 								cookie.remove('userId', {
 									path: '/',
-									domain: '.4m2d.shop',
+									domain: '.4m2d.site',
 								});
 								window.location.reload();
 							}
@@ -97,7 +97,7 @@ function M_Header() {
 			<HeaderLineC>
 				<HeaderLogoC theme={theme}>
 					<div>
-						<a href="http://4m2d.shop/" onClick={() => {
+						<a href="http://4m2d.site/" onClick={() => {
 							setLoading(!Loading);
 							window.scrollTo({
 								top: 0,
@@ -111,7 +111,7 @@ function M_Header() {
 							<M_HeaderInfo cookie={cookie}/>
 						:
 						<InfoAreaC>
-						<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code">
+						<AC href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.site%2Flogin%2FgetToken&response_type=code">
 							<InfoNameC>로그인</InfoNameC>
 						</AC>
 					</InfoAreaC>

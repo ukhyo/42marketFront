@@ -22,7 +22,7 @@ function M_Search(props) {
 	useEffect(() => {
 		const ApiGet = async () => {
 			setLoading(false);
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/search/${userId}/${word}`);
+			const { data: data } = await axios.get(`http://api.4m2d.site/api/posts/search/${userId}/${word}`);
 			setItem(data);
 			setLoading(true);
 		}

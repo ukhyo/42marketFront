@@ -42,14 +42,14 @@ function PostDetail(props) {
 		if (data.subList.indexOf(`/${data.id}/`) === -1) // 구독 안되있는 상태
 		{
 			const ApiPost = async () => {
-				await axios.post("http://api.4m2d.shop/api/carts", config, { headers });
+				await axios.post("http://api.4m2d.site/api/carts", config, { headers });
 				setReLoad(!reLoad);
 			}
 			ApiPost();
 		}
 		else { //구독 해제
 			const ApiDelete = async () => {
-				await axios.delete(`http://api.4m2d.shop/api/carts/${userId}/${data.id}`, { headers });
+				await axios.delete(`http://api.4m2d.site/api/carts/${userId}/${data.id}`, { headers });
 				setReLoad(!reLoad);
 			}
 			ApiDelete();
@@ -78,7 +78,7 @@ function PostDetail(props) {
 				cookie.set("view", `/${id}/`);
 				flag = "1";
 			}
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/${id}/${userId}/${flag}`);
+			const { data: data } = await axios.get(`http://api.4m2d.site/api/posts/${id}/${userId}/${flag}`);
 			setData(data);
 			setComment(data.commentsList);
 			setLoading(true);
@@ -174,7 +174,7 @@ function PostDetail(props) {
 								</ContentC>
 							</PostContentsC> */}
 							{userId === "0" ?
-								(<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.shop%2Flogin%2FgetToken&response_type=code"><SubscribeBtn>로그인</SubscribeBtn></a>)
+								(<a href="https://api.intra.42.fr/oauth/authorize?client_id=2b02d6cbfa01cb92c9572fc7f3fbc94895fc108fc55768a7b3f47bc1fb014f01&redirect_uri=http%3A%2F%2Fapi.4m2d.site%2Flogin%2FgetToken&response_type=code"><SubscribeBtn>로그인</SubscribeBtn></a>)
 								:
 								(data.subList.indexOf(`/${data.id}/`) === -1 ?
 									<SubscribeBtn onClick={e => {
