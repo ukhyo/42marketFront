@@ -182,7 +182,7 @@ function Header() {
                 }}
                 exit={{
                   opacity: 0,
-                  y: 10,
+                  y: 20,
                   transition: {
                     delay: 0.4,
                     duration: 0.5,
@@ -205,10 +205,10 @@ function Header() {
                 }}
                 exit={{
                   opacity: 0,
-                  y: 10,
+                  y: 20,
                   transition: {
                     delay: 0.2,
-                    duration: 1,
+                    duration: 0.5,
                   },
                 }}
                 size={27.5}
