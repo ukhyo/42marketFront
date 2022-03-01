@@ -38,7 +38,7 @@ function CateDetail(props) {
 		else
 			return;
 		const alignGet = async () => {
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/category/${cate}/${url}/${userId}`);
+			const { data: data } = await axios.get(`http://api.4m2d.site/api/posts/category/${cate}/${url}/${userId}`);
 			setItem(data);
 		};
 		alignGet();
@@ -46,7 +46,7 @@ function CateDetail(props) {
 	useEffect(() => {
 		const getData = async () => {
 			setLoading(false);
-			const { data: data } = await axios.get(`http://api.4m2d.shop/api/posts/category/${cate}/${userId}`);
+			const { data: data } = await axios.get(`http://api.4m2d.site/api/posts/category/${cate}/${userId}`);
 			setItem(data);
 			setLoading(true);
 		};
