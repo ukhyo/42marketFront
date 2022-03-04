@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { setSocket } from '../../modules/Socket';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import SingleComment from './SingleComment';
