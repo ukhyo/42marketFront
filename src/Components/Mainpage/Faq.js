@@ -20,7 +20,6 @@ function Faq() {
 			};
 			const headers = {
 				"Authorization": `Bearer ${token}`,
-				"Content-Type": `multipart/form-data`,
 			};
 			await axios.post(`http://api.4m2d.site/mail/{userId}`, data, {headers})
 		}
