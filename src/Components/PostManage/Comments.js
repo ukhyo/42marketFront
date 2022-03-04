@@ -46,12 +46,6 @@ export default function Comments(props) {
 			message: makeMessage(1, props.userId)
 		};
 		axios.post('http://api.4m2d.site/api/comments/', variables, { headers }).then((response) => {
-			stompClient.connect({}, ()=>{
-				stompClient.subscribe(`/sub/${props.receiverId}`, (data) => {
-					console.log(data, "subscribe");
-				})
-			});
-			// stompClient.send(`/alarm/${props.receiverId}`, {}, JSON.stringify(data))
 			console.log(data, "send data");
 			setcommentValue("");
 			props.refreshFunction(variables);
