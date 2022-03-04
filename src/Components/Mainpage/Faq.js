@@ -1,9 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from "axios"
 import Header from "./Header"
 import Footer from "./Footer"
 import styled from "styled-components"
+import { Cookies } from "react-cookie";
 
-function faq() {
+function Faq() {
+	const cookie = new Cookies();
+	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+	const [title, setTitle] = useState("");
+	const [content, setContent] = useState("");
+
+	const onClick = () => {
+		const pushData = async () => {
+			let data = {
+				title: title,
+				content: content,
+				userId: userId
+			};
+			const headers = {
+				"Authorization": `Bearer ${token}`,
+				"Content-Type": `multipart/form-data`,
+			};
+			await axios.post(`http://api.4m2d.site/mail/{userId}`, data, {headers})
+		}
+		pushData();
+	}
+
 	return (
 		<div>
 			<Header />
@@ -16,19 +39,15 @@ function faq() {
 					</DetailC>
 					<FormC>
 						<div>
-							<label for="email">이메일</label>
-							<input type="email" id="email" required placeholder="이메일을 입력하세요."></input>
-						</div>
-						<div>
 							<label for="title">제목</label>
-							<input type="text" id="title" maxLength="150" required placeholder="제목을 입력하세요."></input>
+							<input type="text" id="title" value={title} maxLength="150" required placeholder="제목을 입력하세요."></input>
 						</div>
 						<div>
 							<label for="info">내용</label>
-							<textarea type="text" id="info" cols="50" rows="6" required placeholder="내용을 입력하세요."></textarea>
+							<textarea type="text" id="info" cols="50" rows="6" value={content} required placeholder="내용을 입력하세요."></textarea>
 						</div>
 						<SubmitC>
-							<input type="submit"></input>
+							<input type="submit" onClick={onClick}></input>
 						</SubmitC>
 					</FormC>
 				</MainC>
@@ -119,4 +138,4 @@ const SubmitC = styled.div`
 	}
 `
 
-export default faq
+export default Faq
