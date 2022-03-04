@@ -72,8 +72,7 @@ function ProductRegi(props) {
 
 	const submitHandle = (e) => {
 		const pushData = async () => {
-			console.log("here?", Files);
-			if (!Files) {
+			if (!Files.length) {
 				alert("사진을 넣어주세요");
 				return;
 			}
