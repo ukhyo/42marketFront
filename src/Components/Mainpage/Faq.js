@@ -11,12 +11,13 @@ function Faq() {
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");
 
+
+	console.log(userId, "userid");
 	const onClick = () => {
 		const pushData = async () => {
 			let data = {
 				title: title,
-				content: content,
-				userId: userId
+				content: content
 			};
 			const headers = {
 				"Authorization": `Bearer ${token}`,
