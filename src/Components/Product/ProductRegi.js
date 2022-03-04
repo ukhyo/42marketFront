@@ -167,7 +167,7 @@ function ProductRegi(props) {
 				  onChange={(e) => {
 					onChangeImg(e, setFileUrl, setFiles, Files);
 				  }}
-				  accept="image/png, image/jpeg"
+				  accept="image/png, image/jpeg, image/jpg"
 				  required
 				></input>
 			  </li>

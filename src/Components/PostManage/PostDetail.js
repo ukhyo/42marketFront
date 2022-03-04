@@ -56,7 +56,6 @@ function PostDetail(props) {
 		}
 	};
 	useEffect(() => {
-
 		if (location.state === undefined) props.history.push('/');
 		const ApiGet = async () => {
 			setLoading(false);
@@ -87,6 +86,7 @@ function PostDetail(props) {
 	}, [reLoad])
 
 	const refreshFunction = (newComment) => {
+		console.log("refresh");
 		setComment(Comment.concat(newComment));
 		setReLoad(!reLoad);
 	};
