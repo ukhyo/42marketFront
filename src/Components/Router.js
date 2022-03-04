@@ -3,6 +3,7 @@ import React from "react";
 import Mypage from "./Mypage/Mypage";
 import Mainpage from "./Mainpage/Mainpage";
 import Intro from "./Mainpage/Intro";
+import Faq from "./Mainpage/Faq";
 import PostDetail from "./PostManage/PostDetail";
 import Product from "./Product/Product";
 import Category from "./Category/Category";
@@ -36,6 +37,7 @@ function Router() {
         <Switch>
           <Route path={"/"} exact component={Mainpage}></Route>
           <Route path={"/intro"} exact component={Intro}></Route>
+          <Route path={"/faq"} exact component={Faq}></Route>
           <Route path={"/mypage/:id/:url"} component={Mypage}></Route>
           <Route path={"/postview/:id"} exact component={PostDetail}></Route>
           <Route path={"/product/edit"} exact component={ProductEdit} />

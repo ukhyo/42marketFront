@@ -47,6 +47,7 @@ const DivC = styled.div`
 `;
 
 const ImageC = styled.div`
+	cursor:pointer;
 	width: 1200px;
 	height: 700px;
 	background-image: url("${(props) => props.url}");

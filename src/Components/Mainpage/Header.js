@@ -163,61 +163,66 @@ function Header() {
             </AC>
           )}
         </HeaderInfoC>
-        <AnimatePresence>
-          {remoteState && (
-            <>
-              <RemoteOpt onClick={() => setRemoteState(!remoteState)}>
-                X
-              </RemoteOpt>
-              <RemotePart
-                key="box1"
-                initial={{ opacity: 0, y: 5 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    delay: 0.2,
-                    duration: 0.5,
-                  },
-                }}
-                exit={{
-                  opacity: 0,
-                  y: 20,
-                  transition: {
-                    delay: 0.4,
-                    duration: 0.5,
-                  },
-                }}
-                size={35}
-              >
-                문의?
-              </RemotePart>
-              <RemotePart
-                key="box2"
-                initial={{ opacity: 0, y: 5 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    delay: 0.4,
-                    duration: 0.5,
-                  },
-                }}
-                exit={{
-                  opacity: 0,
-                  y: 20,
-                  transition: {
-                    delay: 0.2,
-                    duration: 0.5,
-                  },
-                }}
-                size={27.5}
-              >
-                음
-              </RemotePart>
-            </>
+        {/* {
+          token ? */}
+          <AnimatePresence>
+            {remoteState && (
+              <>
+                <RemoteOpt onClick={() => setRemoteState(!remoteState)}>
+                  X
+                </RemoteOpt>
+                <RemotePart
+                  key="box1"
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      delay: 0.2,
+                      duration: 0.5,
+                    },
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: 20,
+                    transition: {
+                      delay: 0.4,
+                      duration: 0.5,
+                    },
+                  }}
+                  size={35}
+                >
+                <Link to="/faq">문의</Link>
+                </RemotePart>
+                <RemotePart
+                  key="box2"
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      delay: 0.4,
+                      duration: 0.5,
+                    },
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: 20,
+                    transition: {
+                      delay: 0.2,
+                      duration: 0.5,
+                    },
+                  }}
+                  size={27.5}
+                >
+                <Link to="/product/regi">판매</Link>
+                </RemotePart>
+              </>
           )}
-        </AnimatePresence>
+        </AnimatePresence> : null
+        {/* } */}
+        {/* {
+          token ? */}
         <AnimatePresence exitBeforeEnter>
           {!remoteState ? (
             <RemoteOpt
@@ -229,7 +234,8 @@ function Header() {
               클릭
             </RemoteOpt>
           ) : null}
-        </AnimatePresence>
+        </AnimatePresence> : null
+        {/* } */}
         <RemoteUp onClick={ScrollUp}>⬆</RemoteUp>
       </HeaderLineC>
     </HeaderC>
@@ -259,6 +265,7 @@ const HeaderLineC = styled.div`
 `;
 
 const RemotePart = styled(motion.div)`
+  cursor: pointer;
   position: fixed;
   right: 5vw;
   top: ${(props) => props.size}vh;
@@ -275,6 +282,7 @@ const RemotePart = styled(motion.div)`
 const St = motion;
 
 const RemoteOpt = styled(motion.div)`
+  cursor: pointer;
   position: fixed;
   right: 5vw;
   top: 42.5vh;
@@ -289,6 +297,7 @@ const RemoteOpt = styled(motion.div)`
 `;
 
 const RemoteUp = styled.div`
+  cursor: pointer;
   position: fixed;
   right: 5vw;
   top: 50vh;

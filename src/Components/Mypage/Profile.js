@@ -76,6 +76,7 @@ function	ProfileBar({ url })
 		}
 		pushData();
 	}
+	console.log(error);
 	if (error) return <div>Error occured</div>;
 	if (!profile) return null;
 	if (userId === id)
