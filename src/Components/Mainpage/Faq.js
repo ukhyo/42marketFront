@@ -27,6 +27,14 @@ function Faq() {
 		pushData();
 	}
 
+	const onChangeTitle = (e) => {
+		setTitle(e.target.value);
+	}
+
+	const onChangeContent = (e) => {
+		setContent(e.target.value);
+	}
+
 	return (
 		<div>
 			<Header />
@@ -40,11 +48,11 @@ function Faq() {
 					<FormC>
 						<div>
 							<label for="title">제목</label>
-							<input type="text" id="title" value={title} maxLength="150" required placeholder="제목을 입력하세요."></input>
+							<input onChange={onChangeTitle} type="text" id="title" value={title} maxLength="150" required placeholder="제목을 입력하세요."></input>
 						</div>
 						<div>
 							<label for="info">내용</label>
-							<textarea type="text" id="info" cols="50" rows="6" value={content} required placeholder="내용을 입력하세요."></textarea>
+							<textarea onChange={onChangeContent} type="text" id="info" cols="50" rows="6" value={content} required placeholder="내용을 입력하세요."></textarea>
 						</div>
 						<SubmitC>
 							<input type="submit" onClick={onClick}></input>
