@@ -163,8 +163,8 @@ function Header() {
             </AC>
           )}
         </HeaderInfoC>
-        {/* {
-          token ? */}
+        {
+          token ?
           <AnimatePresence>
             {remoteState && (
               <>
@@ -220,9 +220,9 @@ function Header() {
               </>
           )}
         </AnimatePresence> : null
-        {/* } */}
-        {/* {
-          token ? */}
+        }
+        {
+          token ?
         <AnimatePresence exitBeforeEnter>
           {!remoteState ? (
             <RemoteOpt
@@ -235,7 +235,7 @@ function Header() {
             </RemoteOpt>
           ) : null}
         </AnimatePresence> : null
-        {/* } */}
+        }
         <RemoteUp onClick={ScrollUp}>⬆</RemoteUp>
       </HeaderLineC>
     </HeaderC>
