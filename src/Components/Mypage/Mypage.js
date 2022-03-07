@@ -17,7 +17,6 @@ function	MypageMain(props)
 		<MypageMainC>
 			<ProfileBar url={name}/>
 			<InfoList id={id} url={url} />
-			<Footer></Footer>
 		</MypageMainC>
 	);
 }
@@ -30,12 +29,14 @@ function	Mypage({match})
 			<Header />
 			<NaviBar name={params}/>
 			<MypageMain name={params}/>
+			<Footer></Footer>
 		</MypageC>
 	);
 };
 
 const		MypageC = styled.div`
 	width: 100%;
+	height: 100%;
 	min-width: 1200px;
 `;
 
