@@ -25,8 +25,8 @@ function Badge(profile) {
 			<BadgeHeaderC>
 				<span>칭호</span>
 			</BadgeHeaderC>
-			{/* <img src={Coming_soon} /> */}
-			{
+			<img src={Coming_soon} />
+			{/* {
 
 				badges.map((badge, index) => {
 					return (<ShowBadgeC>
@@ -34,7 +34,7 @@ function Badge(profile) {
 					</ShowBadgeC>);
 				})
 			}
-			<CheckBadgeC>Check Badges</CheckBadgeC>
+			<CheckBadgeC>Check Badges</CheckBadgeC> */}
 		</BadgeC>
     )
 }
