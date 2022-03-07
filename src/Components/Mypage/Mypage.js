@@ -6,6 +6,7 @@ import Header from "../Mainpage/Header"
 import ProfileBar from "./Profile";
 import NaviBar from "./Navibar";
 import InfoList from "./Infolist";
+import Footer from "../Mainpage/Footer"
 
 function	MypageMain(props)
 {
@@ -28,6 +29,7 @@ function	Mypage({match})
 			<Header />
 			<NaviBar name={params}/>
 			<MypageMain name={params}/>
+			<Footer></Footer>
 		</MypageC>
 	);
 };
