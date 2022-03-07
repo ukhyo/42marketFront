@@ -240,7 +240,6 @@ const		ProfileNameC = styled.div`
 
 const		ProfileBarC = styled.div`
 	width: 280px;
-	height: 600px;
 	margin-top: 30px;
 	margin-right: 50px;
 	cursor: ${props => (props.Loading ? 'wait' : '')};
