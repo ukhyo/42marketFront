@@ -12,29 +12,29 @@ async function getBadge(userId)
 	return response.data;
 }
 
-function Badge(pros) {
-	// const [state] = useAsync(() => getBadge(profile.id), [profile.id]);
+function Badge(profile) {
+	const [state] = useAsync(() => getBadge(profile.id), [profile.id]);
 	const [CheckBadge, setCheckBadge] = useState(false);
-	// const { loading, data: badges, error }  = state;
+	const { loading, data: badges, error }  = state;
 
-	// if (loading) return <div>Loading</div>;
-	// if (error) return <div>Error occured</div>
-	// if (!badges) return null;
+	if (loading) return <div>Loading</div>;
+	if (error) return <div>Error occured</div>
+	if (!badges) return null;
 	return (
 		<BadgeC>
 			<BadgeHeaderC>
 				<span>칭호</span>
 			</BadgeHeaderC>
-			<img src={Coming_soon} />
+			{/* <img src={Coming_soon} /> */}
 			{
 
-				// badges.map((badge, index) => {
-				// 	return (<ShowBadgeC>
-				// 		<img src={badge.image} />
-				// 	</ShowBadgeC>);
-				// })
+				badges.map((badge, index) => {
+					return (<ShowBadgeC>
+						<img src={badge.image} />
+					</ShowBadgeC>);
+				})
 			}
-			{/* <CheckBadgeC>Check Badges</CheckBadgeC> */}
+			<CheckBadgeC>Check Badges</CheckBadgeC>
 		</BadgeC>
     )
 }
