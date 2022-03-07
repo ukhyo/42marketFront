@@ -14,9 +14,15 @@ import Comments from "./Comments";
 import { HiOutlineClock } from 'react-icons/hi';
 import { BsArrowLeftShort } from "react-icons/bs";
 import { BsArrowRightShort } from "react-icons/bs";
+import Pagination from '../utils/Pagination';
+
 function PostDetail(props) {
 	const cookie = new Cookies();
 	const statusName = ["판매중", "판매완료"];
+	const [currentPage, setCurrentPage] = useState(1);
+	const [postsPerPage, setPostsPerPage] = useState(20);
+	const indexOfLast = currentPage * postsPerPage; //
+	const indexOfFirst = indexOfLast - postsPerPage; //
 	let { userId: userId, intra: intraId, Authorization: token, view: view } = cookie.getAll();
 	const { location } = props;
 	const { location: { state: { itemId: id } } } = props;
@@ -205,6 +211,11 @@ function PostDetail(props) {
 						refreshFunction={refreshFunction}>
 					</Comments>
 				</CommentArea>
+				{
+				props.commentsList > 0 ?
+									<Pagination postsPerPage={postsPerPage} totalPosts={props.commentsList.length} paginate={setCurrentPage} current={currentPage}></Pagination>
+									: null
+				}
 			</PostDetailC>
 
 			<Footer />
