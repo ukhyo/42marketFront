@@ -30,9 +30,10 @@ const BadgeListC = styled.div`
 	justify-content: space-between;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
+	flex-wrap: wrap;
 	> div {
-		width: 80px;
-		height: 80px;
+		width: 60px;
+		height: 60px;
 		margin: 5px;
 		border-radius: 5px;
 		border: 1px solid rgba(0, 0, 0, 0.5);
