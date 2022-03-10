@@ -29,9 +29,9 @@ function Badge(profile) {
 				<span>칭호</span>
 			</BadgeHeaderC>
 			<BadgesC>
-				{/* <Badge1/>
-				<Badge2/>
-				<Badge3/> */}
+				<img src="../img/baddge1.png"/>
+				<img src="../img/baddge2.png"/>
+				<img src="../img/baddge3.png"/>
 			</BadgesC>
 			<CheckBadgeC>Check Badges</CheckBadgeC>
 		</BadgeC>
@@ -41,6 +41,11 @@ function Badge(profile) {
 const	BadgesC = styled.div`
 	display: flex;
 	justify-content: start;
+	margin-right: 5px;
+	> img {
+		width: 30px;
+		height: 30px;
+	}
 `
 
 const	BadgeHeaderC = styled.div`
