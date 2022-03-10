@@ -3,14 +3,9 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import SingleComment from './SingleComment';
 import styled from 'styled-components';
-import Pagination from '../utils/Pagination';
 
 export default function Comments(props) {
 	const [commentValue, setcommentValue] = useState('');
-	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage, setPostsPerPage] = useState(20);
-	const indexOfLast = currentPage * postsPerPage; //
-	const indexOfFirst = indexOfLast - postsPerPage; //
 	const stompClient = useSelector((state) => state.Socket.stompClient)
 	const handleChange = (event) => {
 		setcommentValue(event.currentTarget.value);
@@ -84,11 +79,6 @@ export default function Comments(props) {
 						key={index}
 						></SingleComment>
 		)))
-	}
-	{
-	props.commentsList > 0 ?
-						<Pagination postsPerPage={postsPerPage} totalPosts={props.commentsList.length} paginate={setCurrentPage} current={currentPage}></Pagination>
-						 : null
 	}
     </div>
   );

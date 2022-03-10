@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Coming_soon from "../../Images/coming_soon.jpeg";
+import Badge1 from "../img/badge1.png";
+import Badge2 from "../img/badge2.png";
+import Badge3 from "../img/badge3.png";
 import useAsync from './useAsync';
 
 async function getBadge(userId)
@@ -25,24 +28,25 @@ function Badge(profile) {
 			<BadgeHeaderC>
 				<span>칭호</span>
 			</BadgeHeaderC>
-			<img src={Coming_soon} />
-			{/* {
-
-				badges.map((badge, index) => {
-					return (<ShowBadgeC>
-						<img src={badge.image} />
-					</ShowBadgeC>);
-				})
-			}
-			<CheckBadgeC>Check Badges</CheckBadgeC> */}
+			<BadgesC>
+				<Badge1/>
+				<Badge2/>
+				<Badge3/>
+			</BadgesC>
+			<CheckBadgeC>Check Badges</CheckBadgeC>
 		</BadgeC>
     )
 }
 
+const	BadgesC = styled.div`
+	display: flex;
+	justify-content: start;
+`
+
 const	BadgeHeaderC = styled.div`
 	margin: 20px 0px;
-	color: rgb()
-`;
+	color: rgb();
+`
 
 const	BadgeC = styled.div`
 	width: 100%;
@@ -50,16 +54,15 @@ const	BadgeC = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
-`;
+`
 
 const	ShowBadgeC = styled.div`
 	> img {
 		width: 50px;
 		height: 50px;
 	}
-`;
+`
 const	CheckBadgeC = styled.button`
-
-`;
+`
 
 export default Badge;
