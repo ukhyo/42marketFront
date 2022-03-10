@@ -50,7 +50,7 @@ const	BadgesC = styled.div`
 
 const	BadgeHeaderC = styled.div`
 	margin: 20px 0px;
-	color: rgb();
+	color: rgb(0, 0, 0, 0.8);
 `
 
 const	BadgeC = styled.div`
