@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import Coming_soon from "../../Images/coming_soon.jpeg";
-import Badge1 from "../img/badge1.png";
-import Badge2 from "../img/badge2.png";
-import Badge3 from "../img/badge3.png";
-import useAsync from './useAsync';
+import Badge1 from "../../img/badge1.png";
+import Badge2 from "../../img/badge2.png";
+import Badge3 from "../../img/badge3.png";
+import useAsync from '../useAsync';
+import BadgeList from './BadgeList';
 
 async function getBadge(userId)
 {
@@ -20,6 +20,10 @@ function Badge(profile) {
 	const [CheckBadge, setCheckBadge] = useState(false);
 	const { loading, data: badges, error }  = state;
 
+	const onClick = () => {
+		setCheckBadge(!CheckBadge);
+	}
+
 	if (loading) return <div>Loading</div>;
 	if (error) return <div>Error occured</div>
 	if (!badges) return null;
@@ -33,7 +37,10 @@ function Badge(profile) {
 				<img src={Badge2}/>
 				<img src={Badge3}/>
 			</BadgesC>
-			<CheckBadgeC>Check Badges</CheckBadgeC>
+			<CheckBadgeC onClick={onClick}>Check Badges</CheckBadgeC>
+			{
+				CheckBadge ? <BadgeList /> : null
+			}
 		</BadgeC>
     )
 }
@@ -41,8 +48,10 @@ function Badge(profile) {
 const	BadgesC = styled.div`
 	display: flex;
 	justify-content: start;
+	position: relative;
 	margin-bottom: 15px;
 	> img {
+		margin-right: 5px;
 		width: 30px;
 		height: 30px;
 	}
