@@ -25,7 +25,7 @@ const BadgeListC = styled.div`
 	height: 450px;
 	padding: 10px;
 	position: absolute;
-	top: -200px;
+	top: 600px;
 	left: 500px;
 	background-color: rgb(253, 253, 253);
 	display: flex;
