@@ -29,9 +29,9 @@ function Badge(profile) {
 				<span>칭호</span>
 			</BadgeHeaderC>
 			<BadgesC>
-				<Badge1/>
+				{/* <Badge1/>
 				<Badge2/>
-				<Badge3/>
+				<Badge3/> */}
 			</BadgesC>
 			<CheckBadgeC>Check Badges</CheckBadgeC>
 		</BadgeC>
