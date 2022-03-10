@@ -20,18 +20,20 @@ function BadgeList() {
 }
 
 const BadgeListC = styled.div`
-	width: 400px;
-	height: 500px;
+	width: 300px;
+	height: 400px;
 	padding: 10px;
 	position: absolute;
-	left: 300px;
+	left: 500px;
 	background-color: rgb(253, 253, 253);
 	display: flex;
-	justify-content: space-between;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
+	justify-content: space-between;
+	align-content: space-between;
 	flex-wrap: wrap;
 	> div {
+		cursor: pointer;
 		width: 60px;
 		height: 60px;
 		margin: 5px;
