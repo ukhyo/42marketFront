@@ -24,15 +24,16 @@ const BadgeListC = styled.div`
 	height: 500px;
 	padding: 10px;
 	position: absolute;
-	right: 300px;
+	left: 300px;
 	background-color: rgb(253, 253, 253);
 	display: flex;
 	justify-content: space-between;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
 	> div {
-		width: 40px;
-		height: 40px;
+		width: 80px;
+		height: 80px;
+		margin: 5px;
 		border-radius: 5px;
 		border: 1px solid rgba(0, 0, 0, 0.5);
 		background-color: blue;
