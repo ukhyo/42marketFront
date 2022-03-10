@@ -41,8 +41,8 @@ function Badge(profile) {
 const	BadgesC = styled.div`
 	display: flex;
 	justify-content: start;
+	margin-bottom: 15px;
 	> img {
-		margin: 5px 0px;
 		width: 30px;
 		height: 30px;
 	}
