@@ -15,16 +15,17 @@ function BadgeList() {
 			<div></div>
 			<div></div>
 			<div></div>
+			<div></div>
 		</BadgeListC>
 	)
 }
 
 const BadgeListC = styled.div`
 	width: 300px;
-	height: 400px;
+	height: 450px;
 	padding: 10px;
 	position: absolute;
-	left: 500px;
+	left: 600px;
 	background-color: rgb(253, 253, 253);
 	display: flex;
 	border: 1px solid rgba(0, 0, 0, 0.2);
