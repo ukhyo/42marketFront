@@ -42,7 +42,7 @@ const	BadgesC = styled.div`
 	display: flex;
 	justify-content: start;
 	> img {
-		margin-right: 5px;
+		margin: 5px 0px;
 		width: 30px;
 		height: 30px;
 	}
