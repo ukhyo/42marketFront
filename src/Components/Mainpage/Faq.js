@@ -22,7 +22,7 @@ function Faq() {
 			const headers = {
 				"Authorization": `Bearer ${token}`
 			};
-			await axios.post(`http://api.4m2d.site/api/mail/${userId}`, data, {headers})
+			await axios.post(`http://api.4m2d.site/ai/mail/${userId}`, data, {headers})
 		}
 		pushData();
 	}
