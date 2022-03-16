@@ -20,7 +20,7 @@ async function getList(id)
 		return res;
 	});
 	return response.data;
-	}
+}
 function InfoList({id, url})
 {
 	const cookie = new Cookies();

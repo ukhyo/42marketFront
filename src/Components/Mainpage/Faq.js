@@ -12,19 +12,49 @@ function Faq() {
 	const [content, setContent] = useState("");
 
 
-	console.log(userId, "userid");
-	const onClick = () => {
-		const pushData = async () => {
-			let data = {
-				title: title,
-				content: content
-			};
-			const headers = {
-				"Authorization": `Bearer ${token}`
-			};
-			await axios.post(`http://api.4m2d.site/ai/mail/${userId}`, data, {headers})
+	// console.log(userId, "userid");
+	// const onClick = () => {
+	// 	const pushData = async () => {
+	// 		let data = {
+	// 			title: title,
+	// 			content: content
+	// 		};
+	// 		const headers = {
+	// 			"Authorization": `Bearer ${token}`
+	// 		};
+	// 		await axios.post(`http://api.4m2d.site/api/mail/${userId}`, data, {headers})
+	// 		.then(response => {
+	// 			console.log(data, "send data");
+	// 		},
+	// 	}
+	// 	pushData();
+	// }
+	const onClick = (event) => {
+		event.preventDefault();
+		if (title === '')
+		{
+			alert("제목을 입력하세요.")
+				return;
 		}
-		pushData();
+		if (content === '')
+		{
+			alert("내용을 입력하세요.")
+				return;
+		}
+		const headers = {
+			"Authorization": `Bearer ${token}`,
+		};
+		const variables = {
+			title: title,
+			content: content
+		};
+		const data = {
+			title: title,
+			content: content
+		};
+		axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers }).then((response) => {
+			console.log(data, "send data");
+		});
 	}
 
 	const onChangeTitle = (e) => {
