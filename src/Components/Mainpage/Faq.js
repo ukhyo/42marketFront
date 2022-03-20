@@ -1,34 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import Header from "./Header"
 import Footer from "./Footer"
 import styled from "styled-components"
 import { Cookies } from "react-cookie";
+import { Redirect, Route } from 'react-router-dom';
 
 function Faq() {
 	const cookie = new Cookies();
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+	const [submit, setSubmit] = useState(false);
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");
 
+	const initData = () => {
+		setTitle("");
+		setContent("");
+	}
 
-	// console.log(userId, "userid");
-	// const onClick = () => {
-	// 	const pushData = async () => {
-	// 		let data = {
-	// 			title: title,
-	// 			content: content
-	// 		};
-	// 		const headers = {
-	// 			"Authorization": `Bearer ${token}`
-	// 		};
-	// 		await axios.post(`http://api.4m2d.site/api/mail/${userId}`, data, {headers})
-	// 		.then(response => {
-	// 			console.log(data, "send data");
-	// 		},
-	// 	}
-	// 	pushData();
-	// }
+	useEffect(() => {
+		setSubmit(false);
+	}, [])
+
 	const onClick = (event) => {
 		event.preventDefault();
 		if (title === '')
@@ -52,8 +45,10 @@ function Faq() {
 			title: title,
 			content: content
 		};
-		axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers }).then((response) => {
-			console.log(data, "send data");
+		axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
+		.then((response) => {
+			initData();
+			setSubmit(true);
 		});
 	}
 
@@ -86,6 +81,9 @@ function Faq() {
 						</div>
 						<SubmitC>
 							<input type="submit" onClick={onClick}></input>
+							{
+								submit ? <Redirect to="/" /> : null
+							}
 						</SubmitC>
 					</FormC>
 				</MainC>
