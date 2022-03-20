@@ -21,11 +21,11 @@ function BadgeList() {
 }
 
 const BadgeListC = styled.div`
-	width: 300px;
-	height: 450px;
+	width: 800px;
+	height: 900px;
 	padding: 10px;
 	position: absolute;
-	top: 600px;
+	top: 400px;
 	left: 500px;
 	background-color: rgb(253, 253, 253);
 	display: flex;
