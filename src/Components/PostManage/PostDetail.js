@@ -211,11 +211,9 @@ function PostDetail(props) {
 						refreshFunction={refreshFunction}>
 					</Comments>
 				</CommentArea>
-
-				{console.log(props.commentsList, "commentsList")}
 				{
-					props.commentsList > 0 ?
-									<Pagination postsPerPage={postsPerPage} totalPosts={props.commentsList.length} paginate={setCurrentPage} current={currentPage}></Pagination>
+					Comment > 0 ?
+									<Pagination postsPerPage={postsPerPage} totalPosts={Comment.length} paginate={setCurrentPage} current={currentPage}></Pagination>
 									: null
 				}
 			</PostDetailC>
