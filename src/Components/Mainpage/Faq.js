@@ -48,8 +48,10 @@ function Faq() {
 			content: content
 		};
 		setLoading(true);
+		console.log("here?");
 		axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
-		.then((response) => {
+		.then(() => {
+			console.log("here?2");
 			alert("문의 등록이 완료되었습니다. 좋은 의견 감사합니다.");
 			initData();
 			history.push("/");
