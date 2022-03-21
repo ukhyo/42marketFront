@@ -13,6 +13,7 @@ function Faq() {
 	const [submit, setSubmit] = useState(false);
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");
+	const [loading, setLoading] = useState(false);
 
 	const initData = () => {
 		setTitle("");
@@ -46,13 +47,14 @@ function Faq() {
 			title: title,
 			content: content
 		};
+		setLoading(true);
 		axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
 		.then((response) => {
-			let path = `/`;
 			alert("문의 등록이 완료되었습니다. 좋은 의견 감사합니다.");
 			initData();
 			history.push("/");
-		});
+		})
+		setLoading(false);
 	}
 
 	const onChangeTitle = (e) => {
@@ -83,7 +85,13 @@ function Faq() {
 							<textarea onChange={onChangeContent} type="text" id="info" cols="50" rows="6" value={content} required placeholder="내용을 입력하세요."></textarea>
 						</div>
 						<SubmitC>
-							<input type="submit" onClick={onClick}></input>
+							<input type="submit" onClick = {() => {
+								if (!loading)
+									onClick();
+								else
+									alert("문의 등록중입니다.");
+							}
+							}></input>
 						</SubmitC>
 					</FormC>
 				</MainC>
