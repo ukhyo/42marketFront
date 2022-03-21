@@ -4,11 +4,12 @@ import Header from "./Header"
 import Footer from "./Footer"
 import styled from "styled-components"
 import { Cookies } from "react-cookie";
-import { Redirect, Route } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 function Faq() {
 	const cookie = new Cookies();
 	let { userId: userId, Authorization: token, subscribes: sub } = cookie.getAll();
+	let history = useHistory();
 	const [submit, setSubmit] = useState(false);
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");
@@ -47,8 +48,10 @@ function Faq() {
 		};
 		axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
 		.then((response) => {
+			let path = `/`;
+			alert("문의 등록이 완료되었습니다. 좋은 의견 감사합니다.");
 			initData();
-			setSubmit(true);
+			history.push("/");
 		});
 	}
 
@@ -81,9 +84,6 @@ function Faq() {
 						</div>
 						<SubmitC>
 							<input type="submit" onClick={onClick}></input>
-							{
-								submit ? <Redirect to="/" /> : null
-							}
 						</SubmitC>
 					</FormC>
 				</MainC>
