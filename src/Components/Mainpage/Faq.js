@@ -48,7 +48,6 @@ function Faq() {
 			content: content
 		};
 		setLoading(true);
-		console.log("here?");
 		axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
 		.then(() => {
 			console.log("here?2");

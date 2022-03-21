@@ -36,12 +36,13 @@ const BadgeListC = styled.div`
 	flex-wrap: wrap;
 	> div {
 		cursor: pointer;
-		width: 60px;
-		height: 60px;
+		width: 100px;
+		height: 100px;
 		margin: 5px;
-		border-radius: 5px;
+		border-radius: 50px;
 		border: 1px solid rgba(0, 0, 0, 0.5);
-		background-color: blue;
+		background-color: gray;
+		z-index: 10;
 	}
 `
 
