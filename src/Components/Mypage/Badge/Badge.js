@@ -39,7 +39,7 @@ function Badge(profile) {
 			</BadgesC>
 			<CheckBadgeC onClick={onClick}>Check Badges</CheckBadgeC>
 			{
-				CheckBadge ? <BadgeList /> : null
+				CheckBadge ? <BadgeList onClick={onClick}/> : null
 			}
 		</BadgeC>
     )
