@@ -17,10 +17,6 @@ function BadgeList(props) {
 			<BadgeC></BadgeC>
 			<BadgeC></BadgeC>
 			<BadgeC></BadgeC>
-			<div>
-				<button>선택</button>
-				<button onClick={props.onClick}>취소</button>
-			</div>
 		</BadgeListC>
 	)
 }
@@ -35,7 +31,7 @@ const BadgeC = styled.div`
 	width: 80px;
 	height: 80px;
 	border-radius: 30px;
-	color: gray;
+	background-color: gray;
 `
 
 
