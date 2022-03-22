@@ -89,7 +89,7 @@ function Faq() {
 						</div>
 						<SubmitC>
 							<button onClick={() => {
-							if (!Loading)
+							if (!loading)
 								onClick();
 							else
 								alert("상품 등록중입니다");
