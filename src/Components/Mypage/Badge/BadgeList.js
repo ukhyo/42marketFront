@@ -25,13 +25,14 @@ const BadgeListC = styled.div`
 	width: 100%;
 	height: 500px;
 	display: flex;
+	align-items: flex-start;
 	flex-direction: auto;
 	flex-wrap: wrap;
 	padding: 10px;
 `
 
 const BadgeC = styled.div`
-	padding: 20px;
+	margin: 10px;
 	width: 80px;
 	height: 80px;
 	border-radius: 50px;
