@@ -25,39 +25,34 @@ function Faq() {
 	}, [])
 
 	const onClick = (event) => {
-		const pushData = (event) => {
-			event.preventDefault();
-			if (title === '')
-			{
-				alert("제목을 입력하세요.")
-					return;
-			}
-			if (content === '')
-			{
-				alert("내용을 입력하세요.")
-					return;
-			}
-			const headers = {
-				"Authorization": `Bearer ${token}`,
-			};
-			const variables = {
-				title: title,
-				content: content
-			};
-			const data = {
-				title: title,
-				content: content
-			};
-			setLoading(!loading);
-			axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
-			.then(() => {
-				alert("문의 등록이 완료되었습니다. 좋은 의견 감사합니다.");
-				initData();
-				history.push("/");
-			})
-			setLoading(!loading);
+		event.preventDefault();
+		if (title === '')
+		{
+			alert("제목을 입력하세요.")
+				return;
 		}
-		pushData(event);
+		if (content === '')
+		{
+			alert("내용을 입력하세요.")
+				return;
+		}
+		const headers = {
+			"Authorization": `Bearer ${token}`,
+		};
+		const variables = {
+			title: title,
+			content: content
+		};
+		const data = {
+			title: title,
+			content: content
+		};
+		axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
+		.then(() => {
+			alert("문의 등록이 완료되었습니다. 좋은 의견 감사합니다.");
+			initData();
+			history.push("/");
+		})
 	}
 
 	const onChangeTitle = (e) => {
@@ -88,12 +83,7 @@ function Faq() {
 							<textarea onChange={onChangeContent} type="text" id="info" cols="50" rows="6" value={content} required placeholder="내용을 입력하세요."></textarea>
 						</div>
 						<SubmitC>
-							<button onClick={() => {
-							if (!loading)
-								onClick();
-							else
-								alert("상품 등록중입니다");
-							}}>등록하기</button>
+							<input type="submit" onClick={onClick}></input>
 						</SubmitC>
 					</FormC>
 				</MainC>
@@ -174,7 +164,7 @@ const DetailC = styled.div`
 const SubmitC = styled.div`
 	width: 20%;
 	margin: 0 auto;
-	> button {
+	> input {
 		display: block;
 		color: rgba(0, 0, 0, 0.7);
 		padding: 12px, 70px;
