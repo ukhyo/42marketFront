@@ -25,6 +25,8 @@ const BadgeListC = styled.div`
 	width: 100%;
 	height: 500px;
 	display: flex;
+	flex-direction: auto;
+	flex-wrap: wrap;
 	padding: 10px;
 `
 
