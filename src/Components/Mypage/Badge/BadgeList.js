@@ -37,6 +37,7 @@ const BadgeC = styled.div`
 	width: 70px;
 	height: 70px;
 	border-radius: 50px;
+	cursor: pointer;
 	background-color: gray;
 `
 

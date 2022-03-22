@@ -25,37 +25,39 @@ function Faq() {
 	}, [])
 
 	const onClick = (event) => {
-		event.preventDefault();
-		if (title === '')
-		{
-			alert("제목을 입력하세요.")
-				return;
+		const pushData = (event) => {
+			event.preventDefault();
+			if (title === '')
+			{
+				alert("제목을 입력하세요.")
+					return;
+			}
+			if (content === '')
+			{
+				alert("내용을 입력하세요.")
+					return;
+			}
+			const headers = {
+				"Authorization": `Bearer ${token}`,
+			};
+			const variables = {
+				title: title,
+				content: content
+			};
+			const data = {
+				title: title,
+				content: content
+			};
+			setLoading(true);
+			axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
+			.then(() => {
+				alert("문의 등록이 완료되었습니다. 좋은 의견 감사합니다.");
+				initData();
+				history.push("/");
+			})
+			setLoading(false);
 		}
-		if (content === '')
-		{
-			alert("내용을 입력하세요.")
-				return;
-		}
-		const headers = {
-			"Authorization": `Bearer ${token}`,
-		};
-		const variables = {
-			title: title,
-			content: content
-		};
-		const data = {
-			title: title,
-			content: content
-		};
-		setLoading(true);
-		axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
-		.then(() => {
-			console.log("here?2");
-			alert("문의 등록이 완료되었습니다. 좋은 의견 감사합니다.");
-			initData();
-			history.push("/");
-		})
-		setLoading(false);
+		pushData(event);
 	}
 
 	const onChangeTitle = (e) => {
