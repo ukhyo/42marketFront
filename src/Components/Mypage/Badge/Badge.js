@@ -77,13 +77,15 @@ const	ShowBadgeC = styled.div`
 	}
 `
 const	CheckBadgeC = styled.button`
-  	width: 270px;
+  	width: 280px;
+	height: 45px;
   	margin: 20px 5px;
-	background-color: red;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 15px;
   	span {
-	  opacity: 0.7;
-	  font-size: 15px;
-      font-family: "Devanagari Sangam MN";
+		font-weight: 600;
+		font-size: 15px;
+		color: rgb(76, 76, 76);
 	}
 
 `
