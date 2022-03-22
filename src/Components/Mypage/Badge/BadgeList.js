@@ -23,6 +23,7 @@ function BadgeList(props) {
 
 const BadgeListC = styled.div`
 	width: 100%;
+	height: 500px;
 	display: flex;
 	padding: 10px;
 `
