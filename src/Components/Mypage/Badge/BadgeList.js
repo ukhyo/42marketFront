@@ -33,7 +33,7 @@ const BadgeListC = styled.div`
 `
 
 const BadgeC = styled.div`
-	margin: 10px;
+	margin: 5px;
 	width: 70px;
 	height: 70px;
 	border-radius: 50px;
