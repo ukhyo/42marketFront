@@ -31,9 +31,10 @@ const BadgeListC = styled.div`
 `
 
 const BadgeC = styled.div`
+	padding: 20px;
 	width: 80px;
 	height: 80px;
-	border-radius: 30px;
+	border-radius: 50px;
 	background-color: gray;
 `
 
