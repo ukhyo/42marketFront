@@ -26,6 +26,7 @@ const BadgeListC = styled.div`
 	height: 500px;
 	display: flex;
 	align-items: flex-start;
+	justify-content: space-between;
 	flex-direction: auto;
 	flex-wrap: wrap;
 	padding: 10px;
@@ -33,8 +34,8 @@ const BadgeListC = styled.div`
 
 const BadgeC = styled.div`
 	margin: 10px;
-	width: 80px;
-	height: 80px;
+	width: 60px;
+	height: 60px;
 	border-radius: 50px;
 	background-color: gray;
 `
