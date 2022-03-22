@@ -34,8 +34,8 @@ const BadgeListC = styled.div`
 
 const BadgeC = styled.div`
 	margin: 10px;
-	width: 60px;
-	height: 60px;
+	width: 70px;
+	height: 70px;
 	border-radius: 50px;
 	background-color: gray;
 `
