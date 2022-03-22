@@ -37,12 +37,10 @@ function Badge(profile) {
 				<img src={Badge2}/>
 				<img src={Badge3}/>
 			</BadgesC>
-			<div>
-				<CheckBadgeC onClick={onClick}>Check Badges</CheckBadgeC>
-				{
-					CheckBadge ? <BadgeList /> : null
-				}
-			</div>
+			<CheckBadgeC onClick={onClick}>Check Badges</CheckBadgeC>
+			{
+				CheckBadge ? <BadgeList /> : null
+			}
 		</BadgeC>
     )
 }
@@ -56,11 +54,6 @@ const	BadgesC = styled.div`
 		margin-right: 5px;
 		width: 30px;
 		height: 30px;
-	}
-	> div {
-		display: flex;
-		justify-content: center;
-		align-items: center;
 	}
 `
 
@@ -86,7 +79,6 @@ const	ShowBadgeC = styled.div`
 const	CheckBadgeC = styled.button`
   	width: 280px;
 	height: 45px;
-  	margin: 20px 5px;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 15px;
   	span {
