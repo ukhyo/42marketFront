@@ -79,6 +79,7 @@ const	ShowBadgeC = styled.div`
 const	CheckBadgeC = styled.button`
   	width: 270px;
   	margin: 20px 5px;
+	background-color: red;
   	span {
 	  opacity: 0.7;
 	  font-size: 15px;

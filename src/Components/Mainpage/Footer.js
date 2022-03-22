@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Footer1 from "../img/4m2dfooter1.png";
-import Footer2 from "../img/4m2dfooter1.png";
-import Footer3 from "../img/4m2dfooter1.png";
+import Footer2 from "../img/4m2dfooter2.png";
+import Footer3 from "../img/4m2dfooter3.png";
 
 function Footer() {
 	return (
