@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Badge1 from "../../img/badge1.png";
@@ -42,9 +42,10 @@ function Badge({profile, token, userId}) {
 			console.log("badge get success");
 		})
 	}	
-
-	console.log(badges, "badges");
-	console.log(badgeAdmin, "badgeAdmin");
+	useEffect(() => {
+		console.log(badges, "badges");
+		console.log(badgeAdmin, "badgeAdmin");
+	}, [badges]);
 	if (!badges) return null;
 	return (
 		<BadgeC>
