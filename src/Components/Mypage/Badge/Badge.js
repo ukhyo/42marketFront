@@ -25,15 +25,14 @@ async function getTitleAdmin(userId)
 
 function Badge({profile, token, userId}) {
 	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
-	// const [badgeAdmins] = useAsync(() => getTitleAdmin(profile.id), [profile.id]);
 	const [CheckBadge, setCheckBadge] = useState(false);
 	const {loading, data : badge, error} = badges;
-	// const {loading2, data : badgeAd, error2} = badgeAdmins;
 
 	const onClick = () => {
 		setCheckBadge(!CheckBadge);
-		console.log(badge);
 	}
+
+	console.log(token, "token");
 
 	if (loading) return null;
 	if (error) return null;
@@ -48,10 +47,10 @@ function Badge({profile, token, userId}) {
 				<img src={Badge2}/>
 				<img src={Badge3}/>
 			</BadgesC>
-			<CheckBadgeC onClick={onClick}>Check Badges</CheckBadgeC>
-			{
-				CheckBadge ? <BadgeList onClick={onClick}/> : null
-			}
+				<CheckBadgeC onClick={onClick}>Check Badges</CheckBadgeC>
+				{
+					CheckBadge ? <BadgeList onClick={onClick}/> : null
+				}
 		</BadgeC>
     )
 }
