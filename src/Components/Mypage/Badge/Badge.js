@@ -28,17 +28,16 @@ function Badge({profile, token, userId}) {
 	// const [badgeAdmins] = useAsync(() => getTitleAdmin(profile.id), [profile.id]);
 	const [CheckBadge, setCheckBadge] = useState(false);
 	const {loading, data : badge, error} = badges;
-	const {loading2, data : badgeAd, error2} = badgeAdmins;
+	// const {loading2, data : badgeAd, error2} = badgeAdmins;
 
 	const onClick = () => {
 		setCheckBadge(!CheckBadge);
 		console.log(badge);
-		console.log(badgeAdmins);
 	}
 
-	if (loading || loading2) return null;
-	if (error || error2) return null;
-	if (!badges || !badgeAd) return null;
+	if (loading) return null;
+	if (error) return null;
+	if (!badges) return null;
 	return (
 		<BadgeC>
 			<BadgeHeaderC>
