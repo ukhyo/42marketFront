@@ -37,7 +37,7 @@ function Badge({profile, token, userId}) {
 			name: "newbie",
 			image: {Badge1}
 		};
-		axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
+		axios.post(`http://api.4m2d.site/api/titles/${userId}`, variables, { headers })
 		.then(() => {
 			console.log("badge get success");
 		})
