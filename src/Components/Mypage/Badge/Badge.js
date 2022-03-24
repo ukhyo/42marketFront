@@ -30,18 +30,6 @@ function Badge({profile, token, userId}) {
 
 	const onClick = () => {
 		setCheckBadge(!CheckBadge);
-		const headers = {
-			"Authorization": `Bearer ${token}`,
-		};
-		const variables = {
-			userId: userId,
-			name: "newbie",
-			image: {Badge1}
-		};
-		axios.post(`http://api.4m2d.site/api/titles/${userId}`, variables, { headers })
-		.then(() => {
-			console.log("badge get success");
-		})
 	}	
 	useEffect(() => {
 		console.log(badges, "badges");
