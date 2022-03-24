@@ -20,6 +20,7 @@ async function getTitleAdmin(userId)
 	const response = await axios.get(
 		`http://api.4m2d.site/titles/manage/${userId}`
 	);
+	return response.data;
 }
 
 function Badge({profile, token, userId}) {
