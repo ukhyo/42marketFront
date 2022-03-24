@@ -123,7 +123,7 @@ function	ProfileBar({ url })
 				}
 				{
 					profile &&
-						<Badge profile={profile}/>
+						<Badge profile={profile} token={token} userId={userId}/>
 				}
 
 			</ProfileBarC>

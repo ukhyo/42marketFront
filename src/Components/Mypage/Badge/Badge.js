@@ -15,17 +15,36 @@ async function getBadge(userId)
 	return response.data;
 }
 
-function Badge(profile) {
-	const [state] = useAsync(() => getBadge(profile.id), [profile.id]);
+async function getTitleAdmin(userId)
+{
+	const response = await axios.get(
+		`http://api.4m2d.site/titles/manage/${userId}`
+	);
+}
+
+function Badge({profile, token, userId}) {
+	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
+	const [badgeAdmin] = useAsync(() => getTitleAdmin(profile.id), [profile.id]);
 	const [CheckBadge, setCheckBadge] = useState(false);
-	const { loading, data: badges, error }  = state;
 
 	const onClick = () => {
 		setCheckBadge(!CheckBadge);
-	}
+		const headers = {
+			"Authorization": `Bearer ${token}`,
+		};
+		const variables = {
+			userId: userId,
+			name: "newbie",
+			image: {Badge1}
+		};
+		axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
+		.then(() => {
+			console.log("badge get success");
+		})
+	}	
 
-	if (loading) return <div>Loading</div>;
-	if (error) return <div>Error occured</div>
+	console.log(badges, "badges");
+	console.log(badgeAdmin, "badgeAdmin");
 	if (!badges) return null;
 	return (
 		<BadgeC>
