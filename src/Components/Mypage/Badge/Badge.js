@@ -25,7 +25,7 @@ async function getTitleAdmin(userId)
 
 function Badge({profile, token, userId}) {
 	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
-	const [badgeAdmins] = useAsync(() => getTitleAdmin(profile.id), [profile.id]);
+	// const [badgeAdmins] = useAsync(() => getTitleAdmin(profile.id), [profile.id]);
 	const [CheckBadge, setCheckBadge] = useState(false);
 	const {loading, data : badge, error} = badges;
 	const {loading2, data : badgeAd, error2} = badgeAdmins;
@@ -34,11 +34,7 @@ function Badge({profile, token, userId}) {
 		setCheckBadge(!CheckBadge);
 		console.log(badge);
 		console.log(badgeAdmins);
-	}	
-	useEffect(() => {
-		console.log(badges, "badges");
-		console.log(badgeAd, "badgeAdmin");
-	}, [badges]);
+	}
 
 	if (loading || loading2) return null;
 	if (error || error2) return null;
