@@ -45,7 +45,7 @@ function Badge({profile, token, userId, checkSameId}) {
 				<img src={Badge2}/>
 				<img src={Badge3}/>
 			</BadgesC>
-			<CheckBadge checkSameId={checkSameId}></CheckBadge>
+			<CheckBadge checkSameId={checkSameId} userId={userId}></CheckBadge>
 		</BadgeC>
     )
 }

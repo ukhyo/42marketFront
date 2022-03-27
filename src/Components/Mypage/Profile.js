@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Coming_soon from "../../Images/coming_soon.jpeg";
 import useAsync from "./useAsync";
 import styled from "styled-components";
 import Badge from "./Badge/Badge";
 import { FaImage } from 'react-icons/fa';
-import { timeout } from "q";
-import { useSelector } from "react-redux";
 import { Cookies } from "react-cookie";
 
 async function getProfile(id)
@@ -81,7 +78,6 @@ function	ProfileBar({ url })
 		}
 		pushData();
 	}
-	console.log(error);
 	if (error) return <div>Error occured</div>;
 	if (!profile) return null;
 	if (userId === id)

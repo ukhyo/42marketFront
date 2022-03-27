@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import useAsync from '../useAsync';
 
-function BadgeList(props) {
+function BadgeList({onClick, userId}) {
 
+
+	
 	return (
 		<BadgeListC>
 			<BadgeC></BadgeC>

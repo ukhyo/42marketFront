@@ -3,20 +3,21 @@ import styled from 'styled-components';
 import BadgeList from './BadgeList';
 
 
-function CheckBadge({checkSameId}) {
+function CheckBadge({checkSameId, userId}) {
 	const [checkBadge, setCheckBadge] = useState(false);
 
 	const onClick = () => {
 		setCheckBadge(!checkBadge);
 	}
 
+	console.log(checkSameId(), "checkId");
 	if (!checkSameId())
 		return (null);
 	return (
 		<div>
 			<CheckBadgeC onClick={onClick}>Check Badges</CheckBadgeC>
 			{
-				checkBadge ? <BadgeList onClick={onClick}/> : null
+				checkBadge ? <BadgeList onClick={onClick} userId={userId}/> : null
 			}
 		</div>
 	)
