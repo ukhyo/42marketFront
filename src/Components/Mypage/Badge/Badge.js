@@ -29,6 +29,9 @@ function Badge({profile, token, userId, checkSameId}) {
 	const {loading, data : badge, error} = badges;
 
 
+	useEffect (() => {
+		console.log(badges, "badges");
+	}, [badges]);
 	if (loading) return null;
 	if (error) return null;
 	if (!badges) return null;

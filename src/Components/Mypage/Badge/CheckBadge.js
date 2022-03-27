@@ -16,7 +16,7 @@ function CheckBadge({checkSameId}) {
 		<div>
 			<CheckBadgeC onClick={onClick}>Check Badges</CheckBadgeC>
 			{
-				CheckBadge ? <BadgeList onClick={onClick}/> : null
+				checkBadge ? <BadgeList onClick={onClick}/> : null
 			}
 		</div>
 	)
