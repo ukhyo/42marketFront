@@ -28,6 +28,11 @@ function	ProfileBar({ url })
 	const [intro, setIntro] = useState("");
 	const { loading, data: profile, error }  = state;
 
+	const checkSameId = () => {
+		if (profile.id !== userId)
+			return true;
+	}
+
 	const onChangeImg = (e) => {
 		if (isLoading)
 			return ;
@@ -123,7 +128,7 @@ function	ProfileBar({ url })
 				}
 				{
 					profile &&
-						<Badge profile={profile} token={token} userId={userId}/>
+						<Badge profile={profile} token={token} userId={userId} checkSameId={checkSameId}/>
 				}
 
 			</ProfileBarC>
@@ -151,7 +156,7 @@ function	ProfileBar({ url })
 				</ProfileContentsC>
 				{
 					profile &&
-						<Badge profile={profile}/>
+						<Badge profile={profile} token={token} userId={userId} checkSameId={checkSameId}/>
 				}
 			</ProfileBarC>
 		);

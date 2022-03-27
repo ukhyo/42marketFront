@@ -6,6 +6,7 @@ import Badge2 from "../../img/badge2.png";
 import Badge3 from "../../img/badge3.png";
 import useAsync from '../useAsync';
 import BadgeList from './BadgeList';
+import CheckBadge from "./CheckBadge";
 
 async function getBadge(userId)
 {
@@ -23,16 +24,10 @@ async function getTitleAdmin(userId)
 	return response.data;
 }
 
-function Badge({profile, token, userId}) {
+function Badge({profile, token, userId, checkSameId}) {
 	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
-	const [CheckBadge, setCheckBadge] = useState(false);
 	const {loading, data : badge, error} = badges;
 
-	const onClick = () => {
-		setCheckBadge(!CheckBadge);
-	}
-
-	console.log(token, "token");
 
 	if (loading) return null;
 	if (error) return null;
@@ -47,10 +42,7 @@ function Badge({profile, token, userId}) {
 				<img src={Badge2}/>
 				<img src={Badge3}/>
 			</BadgesC>
-				<CheckBadgeC onClick={onClick}>Check Badges</CheckBadgeC>
-				{
-					CheckBadge ? <BadgeList onClick={onClick}/> : null
-				}
+			<CheckBadge checkSameId={checkSameId}></CheckBadge>
 		</BadgeC>
     )
 }
@@ -64,6 +56,7 @@ const	BadgesC = styled.div`
 		margin-right: 5px;
 		width: 30px;
 		height: 30px;
+		border-radius: 20px;
 	}
 `
 
@@ -80,18 +73,6 @@ const	BadgeC = styled.div`
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
 `
 
-const	CheckBadgeC = styled.button`
-  	width: 280px;
-	height: 45px;
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	border-radius: 15px;
-	cursor: pointer;
-  	span {
-		font-weight: 600;
-		font-size: 15px;
-		color: rgb(76, 76, 76);
-	}
 
-`
 
 export default Badge;
