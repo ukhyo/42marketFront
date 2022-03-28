@@ -99,7 +99,7 @@ function	ProfileBar({ url })
 				</ProfileNameC>
 				<ProfileLevelC>
 					<span>Level: {profile.userLevel}</span>
-					<ProfileLevelBarC>
+					<ProfileLevelBarC percent={profile.userExperience}>
 						<span>{profile.userExperience}%</span>
 						<ProgressBarC percent={profile.userExperience}>
 						</ProgressBarC>
@@ -190,6 +190,7 @@ const		ProfileModifyBtnC = styled.button`
 	border-radius: 15px;
 	margin-top: 50px;
 	margin-bottom: 10px;
+	cursor: pointer;
 	> span {
 		font-weight: 600;
 		font-size: 15px;
@@ -284,9 +285,14 @@ const		ProfileLevelBarC = styled.div`
 	span {
 		position: absolute;
 		left: 50%;
+		font-weight: 700;
 		transform: translate(-50%);
 		opacity: 0.5;
 		font-family: "TmoneyRoundWindExtraBold";
+		${props => props.userExperience > 50 &&
+		css`
+			color: white;
+		`}
 	}
 `;
 
