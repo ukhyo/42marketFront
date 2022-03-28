@@ -149,6 +149,7 @@ function	ProfileBar({ url })
 				</ProfileLevelC>
 				<ProfileContentsC>
 					<span>{profile.introduce}</span>
+					Hello world
 				</ProfileContentsC>
 				{
 					profile &&
