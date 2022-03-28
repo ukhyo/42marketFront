@@ -36,14 +36,12 @@ const BadgeListC = styled.div`
 `
 
 const BadgeC = styled.div`
-	margin: 5px;
+	margin: 10px 5px;
 	width: 70px;
 	height: 70px;
 	border-radius: 50px;
 	cursor: pointer;
 	background-color: gray;
 `
-
-
 
 export default BadgeList
