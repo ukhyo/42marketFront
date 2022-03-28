@@ -27,7 +27,7 @@ function	ProfileBar({ url })
 
 	const checkSameId = () => {
 		console.log(profile.id, userId);
-		if (profile.id === userId)
+		if (profile.id == userId)
 			return true;
 		else
 			return false;
