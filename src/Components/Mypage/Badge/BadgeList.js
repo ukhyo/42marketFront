@@ -4,8 +4,6 @@ import useAsync from '../useAsync';
 
 function BadgeList({onClick, userId}) {
 
-
-	
 	return (
 		<BadgeListC>
 			<BadgeC></BadgeC>

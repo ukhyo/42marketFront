@@ -24,7 +24,7 @@ async function getTitleAdmin(userId)
 	return response.data;
 }
 
-function Badge({profile, token, userId, checkSameId}) {
+function Badge({profile, userId, checkSameId}) {
 	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
 	const {loading, data : badge, error} = badges;
 
