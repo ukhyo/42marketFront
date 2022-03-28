@@ -11,7 +11,7 @@ function CheckBadge({checkSameId, userId}) {
 	}
 
 	console.log(checkSameId(), "checkId");
-	console.log(userId, "userId");
+	console.log(userId, "userId"); 
 	if (!checkSameId())
 		return (null);
 	return (

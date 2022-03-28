@@ -26,8 +26,10 @@ function	ProfileBar({ url })
 	const { loading, data: profile, error }  = state;
 
 	const checkSameId = () => {
-		if (profile.id !== userId)
+		if (profile.id === userId)
 			return true;
+		else
+			return false;
 	}
 
 	const onChangeImg = (e) => {
@@ -52,6 +54,7 @@ function	ProfileBar({ url })
 		};
 		ApiPost();
 	};
+
 	if (userId === undefined)
 		userId = "0";
 	const onButtonClick = () => {
@@ -78,7 +81,6 @@ function	ProfileBar({ url })
 		}
 		pushData();
 	}
-	console.log("userId", userId, id);
 	if (error) return <div>Error occured</div>;
 	if (!profile) return null;
 	if (userId === id)
