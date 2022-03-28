@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useAsync from "./useAsync";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Badge from "./Badge/Badge";
 import { FaImage } from 'react-icons/fa';
 import { Cookies } from "react-cookie";
