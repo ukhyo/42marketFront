@@ -149,7 +149,6 @@ function	ProfileBar({ url })
 				</ProfileLevelC>
 				<ProfileContentsC>
 					<span>{profile.introduce}</span>
-					Hello world
 				</ProfileContentsC>
 				{
 					profile &&
@@ -290,10 +289,6 @@ const		ProfileLevelBarC = styled.div`
 		transform: translate(-50%);
 		opacity: 0.5;
 		font-family: "TmoneyRoundWindExtraBold";
-		${props => props.userExperience > 50 &&
-		css`
-			color: white;
-		`}
 	}
 `;
 
