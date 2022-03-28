@@ -23,9 +23,10 @@ function BadgeList({onClick, userId}) {
 }
 
 const BadgeListC = styled.div`
+	margin-top: 20px;
 	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 20px;
 	width: 100%;
-	height: 500px;
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
