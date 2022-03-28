@@ -15,7 +15,6 @@ function BadgeList({onClick, userId}) {
 			<BadgeC></BadgeC>
 			<BadgeC></BadgeC>
 			<BadgeC></BadgeC>
-			
 			<BadgeC></BadgeC>
 			<BadgeC></BadgeC>
 			<BadgeC></BadgeC>
