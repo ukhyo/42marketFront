@@ -289,7 +289,7 @@ const		ProfileLevelBarC = styled.div`
 		transform: translate(-50%);
 		opacity: 0.5;
 		font-family: "TmoneyRoundWindExtraBold";
-		${props => props.userExperience > 50 && css `
+		${props => props.percent > 50 && css `
 			color: white;
 		`}
 	}
