@@ -1,8 +1,23 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import useAsync from '../useAsync';
 
+async function getTitleAdmin(userId)
+{
+	const response = await axios.get(
+		`http://api.4m2d.site/titles/manage/${userId}`
+	);
+	return response.data;
+}
+
 function BadgeList({onClick, userId}) {
+	const titleAdmin = getTitleAdmin(userId);
+
+	
+	useEffect(() => {
+		console.log(titleAdmin, "title admin");
+	}, [titleAdmin]);
+	if (!titleAdmin) return null;
 	return (
 		<div>
 			<BadgeListC>

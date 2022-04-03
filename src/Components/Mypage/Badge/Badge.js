@@ -12,14 +12,6 @@ async function getBadge(userId)
 	return response.data;
 }
 
-async function getTitleAdmin(userId)
-{
-	const response = await axios.get(
-		`http://api.4m2d.site/titles/manage/${userId}`
-	);
-	return response.data;
-}
-
 function Badge({profile, userId, checkSameId}) {
 	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
 	const {loading, data : badgeList, error} = badges;
