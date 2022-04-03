@@ -27,10 +27,13 @@ async function getTitleAdmin(userId)
 function Badge({profile, userId, checkSameId}) {
 	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
 	const {loading, data : badge, error} = badges;
-
 	useEffect (() => {
 		console.log(badge, "badges");
+		
 	}, [badges]);
+	const badgeList = badge.map((badge) => {
+		<img key={badge.name} src={badge.image} />
+	})
 	if (loading) return null;
 	if (error) return null;
 	if (!badges) return null;
@@ -40,9 +43,7 @@ function Badge({profile, userId, checkSameId}) {
 				<span>칭호</span>
 			</BadgeHeaderC>
 			<BadgesC>
-				<img src={Badge1}/>
-				<img src={Badge2}/>
-				<img src={Badge3}/>
+				{badgeList}
 			</BadgesC>
 			<CheckBadge checkSameId={checkSameId} userId={userId}></CheckBadge>
 		</BadgeC>
