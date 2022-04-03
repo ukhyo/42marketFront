@@ -27,7 +27,7 @@ function Badge({profile, userId, checkSameId}) {
 	
 	if (loading) return null;
 	if (error) return null;
-	if (!badgeList.length) return null;
+	if (!badgeList) return null;
 	return (
 		<BadgeC>
 			<BadgeHeaderC>
