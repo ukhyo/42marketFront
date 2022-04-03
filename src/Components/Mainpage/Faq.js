@@ -3,8 +3,9 @@ import axios from "axios"
 import Header from "./Header"
 import Footer from "./Footer"
 import styled from "styled-components"
-import { Cookies } from "react-cookie";
-import { useHistory } from "react-router-dom";
+import Loading from "../utils/Loading"
+import { Cookies } from "react-cookie"
+import { useHistory } from "react-router-dom"
 
 function Faq() {
 	const cookie = new Cookies();
@@ -24,7 +25,7 @@ function Faq() {
 		setSubmit(false);
 	}, [])
 
-	const onClick = (event) => {
+	const onClick = async (event) => {
 		event.preventDefault();
 		if (title === '')
 		{
@@ -43,16 +44,12 @@ function Faq() {
 			title: title,
 			content: content
 		};
-		const data = {
-			title: title,
-			content: content
-		};
-		axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
-		.then(() => {
-			alert("문의 등록이 완료되었습니다. 좋은 의견 감사합니다.");
-			initData();
-			history.push("/");
-		})
+		setLoading(!loading);
+		await axios.post(`http://api.4m2d.site/api/mail/${userId}`, variables, { headers })
+		setLoading(!loading);
+		alert("문의 등록이 완료되었습니다. 좋은 의견 감사합니다.");
+		initData();
+		history.push("/");
 	}
 
 	const onChangeTitle = (e) => {
@@ -63,6 +60,10 @@ function Faq() {
 		setContent(e.target.value);
 	}
 
+	if (loading)
+		return (
+			<Loading />
+		)
 	return (
 		<div>
 			<Header />

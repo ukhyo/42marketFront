@@ -219,6 +219,7 @@ const		ProfileImgModifyC = styled.div`
 		top: 30px;
 		justify-content: center;
 		align-items: center;
+		cursor: pointer;
 	}
 `;
 

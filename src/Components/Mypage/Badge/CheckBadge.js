@@ -10,8 +10,6 @@ function CheckBadge({checkSameId, userId}) {
 		setCheckBadge(!checkBadge);
 	}
 
-	console.log(checkSameId(), "checkId");
-	console.log(userId, "userId"); 
 	if (!checkSameId())
 		return (null);
 	return (

@@ -3,22 +3,24 @@ import styled from 'styled-components'
 import useAsync from '../useAsync';
 
 function BadgeList({onClick, userId}) {
-
 	return (
-		<BadgeListC>
-			<BadgeC></BadgeC>
-			<BadgeC></BadgeC>
-			<BadgeC></BadgeC>
-			<BadgeC></BadgeC>
-			<BadgeC></BadgeC>
-			<BadgeC></BadgeC>
-			<BadgeC></BadgeC>
-			<BadgeC></BadgeC>
-			<BadgeC></BadgeC>
-			<BadgeC></BadgeC>
-			<BadgeC></BadgeC>
-			<BadgeC></BadgeC>
-		</BadgeListC>
+		<div>
+			<BadgeListC>
+				<BadgeC></BadgeC>
+				<BadgeC></BadgeC>
+				<BadgeC></BadgeC>
+				<BadgeC></BadgeC>
+				<BadgeC></BadgeC>
+				<BadgeC></BadgeC>
+				<BadgeC></BadgeC>
+				<BadgeC></BadgeC>
+				<BadgeC></BadgeC>
+				<BadgeC></BadgeC>
+				<BadgeC></BadgeC>
+				<BadgeC></BadgeC>
+			</BadgeListC>
+			<BadgeButtonC onClick={onClick}>취소</BadgeButtonC>
+		</div>
 	)
 }
 
@@ -33,6 +35,20 @@ const BadgeListC = styled.div`
 	flex-direction: auto;
 	flex-wrap: wrap;
 	padding: 10px;
+`
+
+const BadgeButtonC = styled.div `
+  width: 280px;
+	height: 45px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 15px;
+	cursor: pointer;
+  	span {
+		font-weight: 600;
+		font-size: 15px;
+		color: rgb(76, 76, 76);
+	}
+
 `
 
 const BadgeC = styled.div`
