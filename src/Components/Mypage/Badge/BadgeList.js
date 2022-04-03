@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
+import axios from 'axios';
 import useAsync from '../useAsync';
 
 async function getTitleAdmin(userId)
@@ -11,7 +12,7 @@ async function getTitleAdmin(userId)
 }
 
 function BadgeList({onClick, userId}) {
-	const titleAdmin = getTitleAdmin(userId);
+	const [titleAdmin] = useAsync(() => getTitleAdmin(userId), [userId]);
 
 	
 	useEffect(() => {
