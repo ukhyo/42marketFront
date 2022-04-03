@@ -23,12 +23,11 @@ async function getTitleAdmin(userId)
 function Badge({profile, userId, checkSameId}) {
 	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
 	const {loading, data : badgeList, error} = badges;
-
+	console.log(badgeList);
 	
 	if (loading) return null;
 	if (error) return null;
 	if (!badgeList) return null;
-	if (badgeList === undefined) return (console.log("here?"));
 	return (
 		<BadgeC>
 			<BadgeHeaderC>
