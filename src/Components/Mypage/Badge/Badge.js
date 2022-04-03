@@ -34,8 +34,9 @@ function Badge({profile, userId, checkSameId}) {
 				<span>칭호</span>
 			</BadgeHeaderC>
 			<BadgesC>
-				<img key={badgeList.name} src={badgeList.image}/>
-				{console.log(badgeList.name)}
+				{badgeList.map((badge) => {
+					<img key={badge.name} src={badge.image} />
+				})}
 			</BadgesC>
 			<CheckBadge checkSameId={checkSameId} userId={userId}></CheckBadge>
 		</BadgeC>
