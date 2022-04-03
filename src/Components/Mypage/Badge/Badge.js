@@ -35,6 +35,7 @@ function Badge({profile, userId, checkSameId}) {
 			</BadgeHeaderC>
 			<BadgesC>
 				<img key={badgeList.name} src={badgeList.image}/>
+				{console.log(badgeList.name, badgeList.image)}
 			</BadgesC>
 			<CheckBadge checkSameId={checkSameId} userId={userId}></CheckBadge>
 		</BadgeC>
