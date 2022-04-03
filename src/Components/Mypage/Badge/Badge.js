@@ -48,11 +48,11 @@ const	BadgesC = styled.div`
 	display: flex;
 	justify-content: start;
 	position: relative;
+	border-radius: 1px solid rgba(0, 0, 0, 0.05);
 	margin-bottom: 15px;
 	> img {
 		margin-right: 5px;
-		width: 30px;
-		height: 30px;
+		width: 40px;
 		border-radius: 20px;
 	}
 `
