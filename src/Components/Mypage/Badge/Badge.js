@@ -28,6 +28,7 @@ function Badge({profile, userId, checkSameId}) {
 	if (loading) return null;
 	if (error) return null;
 	if (!badgeList) return null;
+	if (badgeList === undefined) return null;
 	return (
 		<BadgeC>
 			<BadgeHeaderC>
