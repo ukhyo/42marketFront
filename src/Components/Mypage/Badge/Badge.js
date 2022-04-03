@@ -28,9 +28,8 @@ function Badge({profile, userId, checkSameId}) {
 	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
 	const {loading, data : badge, error} = badges;
 
-
 	useEffect (() => {
-		console.log(badges, "badges");
+		console.log(badge, "badges");
 	}, [badges]);
 	if (loading) return null;
 	if (error) return null;
