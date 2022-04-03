@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import Badge1 from "../../img/badge1.png";
-import Badge2 from "../../img/badge2.png";
-import Badge3 from "../../img/badge3.png";
 import useAsync from '../useAsync';
-import BadgeList from './BadgeList';
 import CheckBadge from "./CheckBadge";
 
 async function getBadge(userId)
@@ -26,24 +22,19 @@ async function getTitleAdmin(userId)
 
 function Badge({profile, userId, checkSameId}) {
 	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
-	const {loading, data : badge, error} = badges;
-	useEffect (() => {
-		console.log(badge, "badges");
-		
-	}, [badges]);
-	const badgeList = badge.map((badge) => {
-		<img key={badge.name} src={badge.image} />
-	})
+	const {loading, data : badgeList, error} = badges;
+
+	
 	if (loading) return null;
 	if (error) return null;
-	if (!badges) return null;
+	if (!badgeList.length) return null;
 	return (
 		<BadgeC>
 			<BadgeHeaderC>
 				<span>칭호</span>
 			</BadgeHeaderC>
 			<BadgesC>
-				{badgeList}
+				<img key={badgeList.name} src={badgeList.image}/>
 			</BadgesC>
 			<CheckBadge checkSameId={checkSameId} userId={userId}></CheckBadge>
 		</BadgeC>
