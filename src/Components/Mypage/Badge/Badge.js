@@ -35,7 +35,8 @@ function Badge({profile, userId, checkSameId}) {
 			</BadgeHeaderC>
 			<BadgesC>
 				{badgeList.map((badge) => {
-					<img key={badge.name} src={badge.image} />
+					console.log(badge)
+					return <img key={badge.name} src={badge.image} />
 				})}
 			</BadgesC>
 			<CheckBadge checkSameId={checkSameId} userId={userId}></CheckBadge>
