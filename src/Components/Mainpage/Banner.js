@@ -1,45 +1,39 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import pleaseBuy from "../img/pleasebuy.png";
-import bannerimg from "../img/mainBanner.png";
-import Samyun from "../img/main_page_ver2.png";
-import testImg from "../img/test1.jpeg";
-import testBanner from "../img/testBanner.png";
-import banner from "../img/test123.jpg";
-import BannerHeader from "./BannerHeader";
-import Header from "./Header";
-import { Link } from "react-router-dom";
 import image1 from "../img/ban.png";
 import image2 from "../img/ban2.png";
+import {Carousel} from '3d-react-carousal';
+import image3 from "../img/banner2.jpeg";
 // import image3 from "../img/ban3.png";
 //import image4 from "../img/ban.png";
 
 function MainBanner() {
-	const [idx, setIdx] = useState(0);
-	const images = [image1, image2];
-	setTimeout(() => {
-		let temp = idx;
-		if (temp >= 1)
-			temp = -1;
-		setIdx(temp + 1);
-	}, 5000)
-
+	const handleDragStart = (e) => e.preventDefault();
 	function onClick() {
 		window.location.href = "/intro"
 	}
 
+	let sliders = [
+		<img  src={image1} onClick={onClick} alt="1" />,
+    <img  src={image2} onClick={onClick} alt="2" />  ,
+    <img  src={image3} onClick={onClick} alt="3" />  , 
+	];
 	return (
 		<MainC>
-			<ImagesC>
-				<DivC>
-					<ImageC 
-					url={images[idx]}
-					onClick={onClick}/>
-				</DivC>
-			</ImagesC>
+			<Carousel slides={sliders} />
 		</MainC>
 	);
 }
+
+const PrevPhotoC = styled.img`
+	width: 200px;
+	box-sizing: border-box;
+`
+
+const NextPhotoC = styled.img`
+	width: 200px;
+	box-sizing: border-box;
+`
 
 const DivC = styled.div`
 	width: 1200px;
@@ -68,11 +62,7 @@ const ImagesC = styled.div`
 `;
 
 const MainC = styled.main`
-	display: flex;
-	/*overflow: hidden;*/
-	margin: 0 auto;
-	width: 1200px;
-	height: 700px;
+	height: 80vh;
 `;
 
 
