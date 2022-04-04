@@ -62,7 +62,8 @@ const ImagesC = styled.div`
 `;
 
 const MainC = styled.main`
-	height: 80vh;
+	height:70vh;
+	padding: 30px 0px;
 `;
 
 
