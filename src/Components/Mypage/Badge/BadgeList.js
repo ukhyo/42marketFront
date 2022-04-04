@@ -6,7 +6,7 @@ import useAsync from '../useAsync';
 async function getTitleAdmin(userId)
 {
 	const response = await axios.get(
-		`http://api.4m2d.site/titles/manage/${userId}`
+		`http://api.4m2d.site/api/titles/manage/${userId}`
 	);
 	return response.data;
 }
