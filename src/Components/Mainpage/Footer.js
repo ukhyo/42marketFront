@@ -51,18 +51,17 @@ const FooterC = styled.div `
 const FooterMainC = styled.div `
 	width: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
+	padding: 0vw 26vw;
 	align-items: center;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 `
 
 const FooterMainIntroC = styled.div `
 	height: 230px;
-	margin-right: 100px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	padding-bottom: 30px;
 `
 
 const HeaderC = styled.div`
@@ -93,7 +92,7 @@ const FooterWarningC = styled.div `
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-top: 40px;
+	padding: 2vw 22vw;
 	font-weight: 600;
 	> img {
 		margin-right: 10px;

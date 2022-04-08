@@ -20,7 +20,7 @@ function MainBanner() {
 	];
 	return (
 		<MainC>
-			<Carousel slides={sliders} />
+			<Carousel slides={sliders} arrows={false} autoplay={true} interval={4000}/>
 		</MainC>
 	);
 }
