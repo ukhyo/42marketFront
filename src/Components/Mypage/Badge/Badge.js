@@ -51,6 +51,10 @@ const BadgeListC = styled.ul`
 		> img {
 			width: 50px;
 		}
+		> span {
+			padding: 0px 20px;
+			box-sizing: border-box;
+		}
 	}
 `
 
