@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import axios from 'axios';
 import useAsync from '../useAsync';
-import Title from 'antd/lib/skeleton/Title';
+import Yosemite from './Yosemite';
 
 async function getTitleAdmin(userId)
 {
@@ -30,6 +30,7 @@ function BadgeList({CancelButton, userId}) {
 						console.log(title, "title");
 						return (
 							<BadgeC>
+								<Yosemite CancelButton={CancelButton}/>
 							</BadgeC>
 						)
 					})
@@ -56,7 +57,7 @@ const BadgeListColumnC = styled.div`
 `
 
 const BadgeC = styled.div`
-	width: 90%;
+	width: 95%;
 	height: 20%;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 `
