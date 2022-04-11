@@ -6,6 +6,7 @@ import styled from "styled-components"
 import Loading from "../utils/Loading"
 import { Cookies } from "react-cookie"
 import { useHistory } from "react-router-dom"
+import { Oval } from "react-loader-spinner";
 
 function Faq() {
 	const cookie = new Cookies();
@@ -61,9 +62,7 @@ function Faq() {
 	}
 
 	if (loading)
-		return (
-			<Loading />
-		)
+		return <Oval color="#00BFFF" height={80} width={80} />
 	return (
 		<div>
 			<Header />
