@@ -42,6 +42,11 @@ function Badge({profile, userId, checkSameId}) {
 }
 
 const BadgeListC = styled.ul`
+	> li {
+		> img {
+			width: 1vw;
+		}
+	}
 `
 
 const	BadgeHeaderC = styled.div`
