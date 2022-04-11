@@ -43,8 +43,10 @@ function Badge({profile, userId, checkSameId}) {
 
 const BadgeListC = styled.ul`
 	> li {
+		border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 		> img {
-			width: 1vw;
+			width: 4vw;
+			padding: 3vw;
 		}
 	}
 `
