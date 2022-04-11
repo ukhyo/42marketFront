@@ -18,18 +18,21 @@ function Badge({profile, userId, checkSameId}) {
 	const {loading, data : badgeList, error} = badges;
 	if (loading) return null;
 	if (error) return null;
-	if (!badgeList || badgeList === undefined) return null;
+	if (!badgeList) return null;
 	return (
 		<BadgeC>
 			<BadgeHeaderC>
 				<span>칭호</span>
 			</BadgeHeaderC>
 			<BadgeListC>
-				{console.log(badgeList, "badgeList")}
-				<li key={badgeList.name}>
-					<img src={badgeList.img} />
-					<span>{badgeList.name}</span>
-				</li>
+				{
+					badgeList.map((badge) => {
+						<li key={badge.name}>
+							<img src={badge.img} />
+							<span>{badge.name}</span>
+						</li>
+					})
+				}
 			</BadgeListC>
 			<CheckBadge checkSameId={checkSameId} userId={userId}></CheckBadge>
 		</BadgeC>
