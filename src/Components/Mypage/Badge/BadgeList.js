@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import axios from 'axios';
 import useAsync from '../useAsync';
+import Title from 'antd/lib/skeleton/Title';
 
 async function getTitleAdmin(userId)
 {
@@ -11,16 +12,29 @@ async function getTitleAdmin(userId)
 	return response.data;
 }
 
-function BadgeList({onClick, userId, badgeList}) {
+function BadgeList({CancelButton, userId}) {
 	const [titleAdmin] = useAsync(() => getTitleAdmin(userId), [userId]);
+	const {loading, data: titles, error} = titleAdmin;
+	const onClick = (e) => {
+		console.log(e, "event");
+	}
 
-	useEffect(() => {
-		console.log(titleAdmin, "title admin");
-	}, [titleAdmin]);
 	if (!titleAdmin) return null;
+	if (loading) return null;
 	return (
 		<BadgeListC>
-			<BadgeC />
+			<BadgeListColumnC>
+				{
+					titles.map((title) => {
+						return (
+							<BadgeC onClick={onClick} key={title.name}>
+								<img src={title.image} />
+								<span>{title.name}</span>
+							</BadgeC>
+						)
+					})
+				}
+			</BadgeListColumnC>
 		</BadgeListC>
 	)
 }
@@ -28,11 +42,19 @@ function BadgeList({onClick, userId, badgeList}) {
 const BadgeListC = styled.div`
 	width: 100vw;
 	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 10;
 	background-color: rgba(0, 0, 0, 0.6);
+`
+
+const BadgeListColumnC = styled.div`
+	width: 70%;
+	height: 70%;
 `
 
 const BadgeC = styled.div`
