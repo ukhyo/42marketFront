@@ -48,7 +48,7 @@ const BadgeListC = styled.ul`
 		align-items: center;
 		justify-content: center;
 		> img {
-			width: 20px;
+			width: 40px;
 			box-sizing: border-box;
 		}
 	}
