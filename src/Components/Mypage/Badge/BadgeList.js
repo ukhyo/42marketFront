@@ -20,6 +20,7 @@ function BadgeList({CancelButton, userId}) {
 	}
 
 	if (!titleAdmin) return null;
+	if (!titles) return null;
 	if (loading) return null;
 	return (
 		<BadgeListC>
