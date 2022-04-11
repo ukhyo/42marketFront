@@ -16,19 +16,20 @@ async function getBadge(userId)
 function Badge({profile, userId, checkSameId}) {
 	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
 	const {loading, data : badgeList, error} = badges;
-	const getBadgeList = badgeList.map(() => {
-		<li key={badgeList.name}><img src={badgeList.img}></img><span>{badgeList.name}</span></li>
-	})
 	if (loading) return null;
 	if (error) return null;
 	if (!badgeList) return null;
+
 	return (
 		<BadgeC>
 			<BadgeHeaderC>
 				<span>칭호</span>
 			</BadgeHeaderC>
 			<BadgeListC>
-				{getBadgeList}
+				<li key={badgeList.name}>
+					<img src={badgeList.img} />
+					<span>{badgeList.name}</span>
+				</li>
 			</BadgeListC>
 			<CheckBadge checkSameId={checkSameId} userId={userId}></CheckBadge>
 		</BadgeC>
