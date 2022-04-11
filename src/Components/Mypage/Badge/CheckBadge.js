@@ -6,7 +6,7 @@ import BadgeList from './BadgeList';
 function CheckBadge({checkSameId, userId, badgeList}) {
 	const [checkBadge, setCheckBadge] = useState(false);
 
-	const onClick = () => {
+	const changeBadgeState = () => {
 		setCheckBadge(!checkBadge);
 	}
 
@@ -14,9 +14,9 @@ function CheckBadge({checkSameId, userId, badgeList}) {
 		return (null);
 	return (
 		<div>
-			<CheckBadgeC onClick={onClick}>Check Badges</CheckBadgeC>
+			<CheckBadgeC onClick={changeBadgeState}>Check Badges</CheckBadgeC>
 			{
-				checkBadge ? <BadgeList onClick={onClick} userId={userId} badgeList={badgeList}/> : null
+				checkBadge ? <BadgeList changeBadgeState={changeBadgeState} userId={userId}/> : null
 			}
 		</div>
 	)

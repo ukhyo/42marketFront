@@ -12,7 +12,7 @@ async function getTitleAdmin(userId)
 	return response.data;
 }
 
-function BadgeList({CancelButton, userId}) {
+function BadgeList({changeBadgeState, userId}) {
 	const [titleAdmin] = useAsync(() => getTitleAdmin(userId), [userId]);
 	const {loading, data: titles, error} = titleAdmin;
 	const onClick = (e) => {
@@ -25,7 +25,7 @@ function BadgeList({CancelButton, userId}) {
 	return (
 		<div>
 			<BadgeListColumnC>
-			<Yosemite CancelButton={CancelButton}/>
+			<Yosemite changeBadgeState={changeBadgeState}/>
 				{
 					titles.map((title) => {
 						console.log(title, "title");
