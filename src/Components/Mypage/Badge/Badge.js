@@ -27,9 +27,8 @@ function Badge({profile, userId, checkSameId}) {
 			<BadgeListC>
 				{
 					badgeList.map((badge) => {
-						{console.log(badge, "badge")}
 						<li key={badge.name}>
-							<img src={badge.img} />
+							<img src={badge.image} />
 							<span>{badge.name}</span>
 						</li>
 					})
