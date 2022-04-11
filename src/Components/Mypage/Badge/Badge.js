@@ -54,6 +54,7 @@ const BadgeListC = styled.ul`
 			width: 50px;
 		}
 		> div {
+			width: 100%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
