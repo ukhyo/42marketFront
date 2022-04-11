@@ -26,10 +26,9 @@ function BadgeList({CancelButton, userId}) {
 			<BadgeListColumnC>
 				{
 					titles.map((title) => {
+						console.log(title, "title");
 						return (
-							<BadgeC onClick={onClick} key={title.name}>
-								<img src={title.image} />
-								<span>{title.name}</span>
+							<BadgeC onClick={onClick} >
 							</BadgeC>
 						)
 					})
