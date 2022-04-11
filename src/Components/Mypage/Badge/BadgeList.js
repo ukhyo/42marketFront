@@ -23,7 +23,7 @@ function BadgeList({CancelButton, userId}) {
 	if (!titles) return null;
 	if (loading) return null;
 	return (
-		<BadgeListC>
+		<div>
 			<BadgeListColumnC>
 				{
 					titles.map((title) => {
@@ -35,26 +35,18 @@ function BadgeList({CancelButton, userId}) {
 					})
 				}
 			</BadgeListColumnC>
-		</BadgeListC>
+		</div>
 	)
 }
 
-const BadgeListC = styled.div`
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 10;
-	background-color: rgba(0, 0, 0, 0.6);
-`
-
 const BadgeListColumnC = styled.div`
-	width: 70%;
-	height: 70%;
+	width: 70vw;
+	height: 70vh;
+	position: fixed;
+	box-shadow: 5px 5px 5px 5px gray;
+	top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 	background-color: --BackColor;
 `
 
