@@ -43,13 +43,14 @@ function Badge({profile, userId, checkSameId}) {
 
 const BadgeListC = styled.ul`
 	> li {
-		border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+		border-top: 1px solid rgba(0, 0, 0, 0.05);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		> img {
-			width: 2vw;
+			width: 15px;
 			padding: 1vw;
+			box-sizing: border-box;
 		}
 	}
 `
