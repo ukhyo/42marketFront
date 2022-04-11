@@ -29,7 +29,7 @@ function BadgeList({CancelButton, userId}) {
 					titles.map((title) => {
 						console.log(title, "title");
 						return (
-							<BadgeC onClick={onClick} >
+							<BadgeC>
 							</BadgeC>
 						)
 					})
@@ -42,6 +42,7 @@ function BadgeList({CancelButton, userId}) {
 const BadgeListColumnC = styled.div`
 	width: 50vw;
 	height: 50vh;
+	border-radius: 15px;
 	position: fixed;
 	box-shadow: 5px 5px 5px 5px gray;
 	top: 50%;
@@ -53,7 +54,8 @@ const BadgeListColumnC = styled.div`
 `
 
 const BadgeC = styled.div`
-
+	height: 20%;
+	border-bottom: 1px solid --LineColor;
 `
 
 export default BadgeList
