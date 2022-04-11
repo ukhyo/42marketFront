@@ -6,13 +6,13 @@ function Yosemite({changeBadgeState}) {
 		<TitleBarC>
 			<ButtonC>
 				<CloseC>
-					<button class="closebutton" onClick={changeBadgeState}><span><strong>x</strong></span></button>
+					<button onClick={changeBadgeState}><span><strong>x</strong></span></button>
 				</CloseC>
 				<MinimizeC>
-        	<button class="minimizebutton" onClick={changeBadgeState}><span><strong>&ndash;</strong></span></button>
+        	<button onClick={changeBadgeState}><span><strong>&ndash;</strong></span></button>
      		</MinimizeC>
 				<ZoomC>
-      	  <button  class="zoombutton" onClick={changeBadgeState}><span><strong>+</strong></span></button>
+      	  <button onClick={changeBadgeState}><span><strong>+</strong></span></button>
       	</ZoomC>
 			</ButtonC>
 		</TitleBarC>
