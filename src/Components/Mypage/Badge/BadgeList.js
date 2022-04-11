@@ -40,14 +40,15 @@ function BadgeList({CancelButton, userId}) {
 }
 
 const BadgeListColumnC = styled.div`
-	width: 70vw;
-	height: 70vh;
+	width: 50vw;
+	height: 50vh;
 	position: fixed;
 	box-shadow: 5px 5px 5px 5px gray;
 	top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 	background-color: --BackColor;
+	z-index: 10;
 `
 
 const BadgeC = styled.div`
