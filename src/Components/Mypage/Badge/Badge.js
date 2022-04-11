@@ -18,8 +18,7 @@ function Badge({profile, userId, checkSameId}) {
 	const {loading, data : badgeList, error} = badges;
 	if (loading) return null;
 	if (error) return null;
-	if (!badgeList) return null;
-
+	if (!badgeList || badgeList === undefined) return null;
 	return (
 		<BadgeC>
 			<BadgeHeaderC>
