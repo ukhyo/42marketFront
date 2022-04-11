@@ -16,6 +16,9 @@ async function getBadge(userId)
 function Badge({profile, userId, checkSameId}) {
 	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
 	const {loading, data : badgeList, error} = badges;
+	const getBadgeList = badgeList.map(() => {
+		<li key={badgeList.name}><img src={badgeList.img}></img><span>{badgeList.name}</span></li>
+	})
 	if (loading) return null;
 	if (error) return null;
 	if (!badgeList) return null;
@@ -24,30 +27,16 @@ function Badge({profile, userId, checkSameId}) {
 			<BadgeHeaderC>
 				<span>칭호</span>
 			</BadgeHeaderC>
-			<BadgesC>
-				{badgeList.map((badge) => {
-					return <img key={badge.name} src={badge.image} />
-				})}
-				{badgeList.map((badge) => {
-					return <span key={badge.name}>{badge.name}</span>
-				})}
-			</BadgesC>
+			<BadgeListC>
+				{getBadgeList}
+			</BadgeListC>
 			<CheckBadge checkSameId={checkSameId} userId={userId}></CheckBadge>
 		</BadgeC>
     )
 }
 
-const	BadgesC = styled.div`
-	display: flex;
-	justify-content: start;
-	position: relative;
-	margin-bottom: 15px;
-	> img {
-		border: 1px solid rgba(0, 0, 0, 0.05);
-		margin-right: 5px;
-		width: 40px;
-		border-radius: 20px;
-	}
+const BadgeListC = styled.ul`
+	list-style: none;
 `
 
 const	BadgeHeaderC = styled.div`
