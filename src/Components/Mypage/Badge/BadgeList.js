@@ -26,9 +26,9 @@ function BadgeList({onClick, userId, badgeList}) {
 }
 
 const BadgeListC = styled.div`
-	position: fixed;
 	width: 100vw;
 	height: 100vh;
+	position: fixed;
 	background-color: rgba(131, 131, 131, 0.7);
 `
 
