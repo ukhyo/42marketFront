@@ -47,7 +47,7 @@ const BadgeListColumnC = styled.div`
 	top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-	background-color: gray;
+	background-color: rgb(253, 253, 253);
 	opacity: 1;
 	z-index: 10;
 `
