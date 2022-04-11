@@ -38,7 +38,7 @@ function Badge({profile, userId, checkSameId}) {
 					})
 				}
 			</BadgeListC>
-			<CheckBadge checkSameId={checkSameId} userId={userId}></CheckBadge>
+			<CheckBadge checkSameId={checkSameId} userId={userId} badgeList={badgeList}></CheckBadge>
 		</BadgeC>
     )
 }
