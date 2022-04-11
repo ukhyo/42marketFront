@@ -54,7 +54,7 @@ const BadgeListColumnC = styled.div`
 
 const BadgeC = styled.div`
 	height: 20%;
-	border-bottom: 1px solid --LineColor;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 `
 
 export default BadgeList
