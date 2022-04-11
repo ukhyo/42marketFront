@@ -43,6 +43,9 @@ const BadgeListColumnC = styled.div`
 	width: 35vw;
 	height: 50vh;
 	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	position: fixed;
 	box-shadow: 10px 5px 5px 5px gray;
 	top: 50%;
@@ -53,8 +56,9 @@ const BadgeListColumnC = styled.div`
 `
 
 const BadgeC = styled.div`
+	width: 90%;
 	height: 20%;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 `
 
 export default BadgeList
