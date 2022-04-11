@@ -30,7 +30,9 @@ function Badge({profile, userId, checkSameId}) {
 						return (
 							<li key={badge.name}>
 								<img src={badge.image} />
-								<span>{badge.name}</span>
+								<div>
+									<span>{badge.name}</span>
+								</div>
 							</li>
 						)
 					})
@@ -51,9 +53,13 @@ const BadgeListC = styled.ul`
 		> img {
 			width: 50px;
 		}
-		> span {
-			padding: 0px 20px;
-			box-sizing: border-box;
+		> div {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			> span {
+				color: rgba(0, 0, 0, 0.5);
+			}
 		}
 	}
 `
