@@ -26,6 +26,7 @@ function Badge({profile, userId, checkSameId}) {
 				<span>칭호</span>
 			</BadgeHeaderC>
 			<BadgeListC>
+				{console.log(badgeList.name, "badgeList")}
 				<li key={badgeList.name}>
 					<img src={badgeList.img} />
 					<span>{badgeList.name}</span>
@@ -37,7 +38,6 @@ function Badge({profile, userId, checkSameId}) {
 }
 
 const BadgeListC = styled.ul`
-	list-style: none;
 `
 
 const	BadgeHeaderC = styled.div`
