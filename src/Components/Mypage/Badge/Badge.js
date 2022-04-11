@@ -27,10 +27,12 @@ function Badge({profile, userId, checkSameId}) {
 			<BadgeListC>
 				{
 					badgeList.map((badge) => {
-						<li key={badge.name}>
-							<img src={badge.image} />
-							<span>{badge.name}</span>
-						</li>
+						return (
+							<li key={badge.name}>
+								<img src={badge.image} />
+								<span>{badge.name}</span>
+							</li>
+						)
 					})
 				}
 			</BadgeListC>
