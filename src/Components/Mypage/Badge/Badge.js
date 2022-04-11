@@ -46,10 +46,9 @@ const BadgeListC = styled.ul`
 		border-top: 1px solid rgba(0, 0, 0, 0.1);
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-between;
 		> img {
-			width: 40px;
-			box-sizing: border-box;
+			width: 50px;
 		}
 	}
 `
