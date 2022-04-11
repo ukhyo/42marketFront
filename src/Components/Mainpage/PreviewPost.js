@@ -71,7 +71,6 @@ function PostViewComp({ item, subList, Loading, flag }) {
 			setPostsPerPage(40);
 	},[])
 	return (
-
 		<SectionC>
 			<PostViewLineC flag={flag}>
 				{

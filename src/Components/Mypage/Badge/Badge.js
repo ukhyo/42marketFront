@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import useAsync from '../useAsync';
 import CheckBadge from "./CheckBadge";
+import BadgeList from './BadgeList';
 
 async function getBadge(userId)
 {
@@ -15,8 +16,6 @@ async function getBadge(userId)
 function Badge({profile, userId, checkSameId}) {
 	const [badges] = useAsync(() => getBadge(profile.id), [profile.id]);
 	const {loading, data : badgeList, error} = badges;
-	console.log(badgeList);
-	
 	if (loading) return null;
 	if (error) return null;
 	if (!badgeList) return null;
@@ -27,8 +26,10 @@ function Badge({profile, userId, checkSameId}) {
 			</BadgeHeaderC>
 			<BadgesC>
 				{badgeList.map((badge) => {
-					console.log(badge)
 					return <img key={badge.name} src={badge.image} />
+				})}
+				{badgeList.map((badge) => {
+					return <span key={badge.name}>{badge.name}</span>
 				})}
 			</BadgesC>
 			<CheckBadge checkSameId={checkSameId} userId={userId}></CheckBadge>
