@@ -25,12 +25,12 @@ function BadgeList({CancelButton, userId}) {
 	return (
 		<div>
 			<BadgeListColumnC>
+			<Yosemite CancelButton={CancelButton}/>
 				{
 					titles.map((title) => {
 						console.log(title, "title");
 						return (
 							<BadgeC>
-								<Yosemite CancelButton={CancelButton}/>
 							</BadgeC>
 						)
 					})
