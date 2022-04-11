@@ -25,7 +25,7 @@ function Badge({profile, userId, checkSameId}) {
 				<span>칭호</span>
 			</BadgeHeaderC>
 			<BadgeListC>
-				{console.log(badgeList.name, "badgeList")}
+				{console.log(badgeList, "badgeList")}
 				<li key={badgeList.name}>
 					<img src={badgeList.img} />
 					<span>{badgeList.name}</span>
