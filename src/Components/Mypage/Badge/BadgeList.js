@@ -55,6 +55,7 @@ const BadgeListC = styled.div`
 const BadgeListColumnC = styled.div`
 	width: 70%;
 	height: 70%;
+	background-color: --BackColor;
 `
 
 const BadgeC = styled.div`
