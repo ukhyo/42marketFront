@@ -29,6 +29,8 @@ const BadgeListC = styled.div`
 	width: 100vw;
 	height: 100vh;
 	position: fixed;
+	top: 0;
+	left: 0;
 	background-color: rgba(131, 131, 131, 0.7);
 `
 
