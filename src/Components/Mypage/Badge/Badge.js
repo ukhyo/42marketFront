@@ -44,9 +44,12 @@ function Badge({profile, userId, checkSameId}) {
 const BadgeListC = styled.ul`
 	> li {
 		border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		> img {
-			width: 4vw;
-			padding: 3vw;
+			width: 2vw;
+			padding: 1vw;
 		}
 	}
 `
