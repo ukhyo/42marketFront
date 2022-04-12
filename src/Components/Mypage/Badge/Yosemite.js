@@ -51,7 +51,7 @@ const ButtonC = styled.div `
   padding-top: 3px;
   float: left;
   line-height: 0px;
-	&:hover {
+	&:hover a {
 		visibility: visible;
 	}
 `
