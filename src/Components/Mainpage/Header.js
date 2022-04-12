@@ -191,7 +191,7 @@ function Header() {
                   size={35}
                 >
 									<RemoteLinkC to="/faq">
-										<RemoteImgC src={remoteAnswer} />	åå
+										<RemoteImgC src={remoteAnswer} />
 									</RemoteLinkC>
                 </RemotePart>
                 <RemotePart
