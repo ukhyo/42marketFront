@@ -59,6 +59,7 @@ const ButtonC = styled.div `
 const CloseC = styled.div `
 	background: #ff5c5c;
   font-size: 9pt;
+  line-height: 11px;
   width: 11px;
   height: 11px;
   border: 1px solid #e33e41;
