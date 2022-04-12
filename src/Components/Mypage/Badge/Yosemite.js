@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 
 function Yosemite({onClickCancelButton}) {
+	console.log(onClickCancelButton);
 	const cancelButton = onClickCancelButton;
 	return (
 		<TitleBarC>
