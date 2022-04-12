@@ -168,7 +168,6 @@ function Header() {
               <>
                 <RemoteOpt onClick={() => setRemoteState(!remoteState)}>
 									<RemoteImgC src={remoteX}/>
-                  X
                 </RemoteOpt>
                 <RemotePart
                   key="box1"
@@ -191,8 +190,7 @@ function Header() {
                   }}
                   size={35}
                 >
-								<RemoteImgC src={remoteAnswer} />
-                <Link to="/faq">문의</Link>
+                <Link to="/faq"><RemoteImgC src={remoteAnswer} /></Link>
                 </RemotePart>
                 <RemotePart
                   key="box2"
@@ -215,8 +213,8 @@ function Header() {
                   }}
                   size={27.5}
                 >
-								<RemoteImgC src={remoteSell} />
-                <Link to="/product/regi">판매</Link>
+								
+                <Link to="/product/regi"><RemoteImgC src={remoteSell} /></Link>
                 </RemotePart>
               </>
           )}
