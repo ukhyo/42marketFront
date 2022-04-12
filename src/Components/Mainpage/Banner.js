@@ -63,7 +63,7 @@ const ImagesC = styled.div`
 
 const MainC = styled.main`
 	height:70vh;
-	padding: 30px 0px;
+	margin: 40px 0px;
 `;
 
 
