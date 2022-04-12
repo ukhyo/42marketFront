@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import image1 from "../img/ban.png";
-import image2 from "../img/ban2.png";
+import image1 from "../img/002.png";
+import image2 from "../img/003.png";
+import image3 from "../img/004.jpeg";
 import {Carousel} from '3d-react-carousal';
-import image3 from "../img/banner2.jpeg";
 // import image3 from "../img/ban3.png";
 //import image4 from "../img/ban.png";
 
