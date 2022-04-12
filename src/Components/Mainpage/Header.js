@@ -215,9 +215,9 @@ function Header() {
                   }}
                   size={27.5}
                 >
-                <RemoteLinkC to="/product/regi">
-									<RemoteImgC src={remoteSell} />
-								</RemoteLinkC>
+									<RemoteLinkC to="/product/regi">
+										<RemoteImgC src={remoteSell} />
+									</RemoteLinkC>
                 </RemotePart>
               </>
           )}
@@ -274,7 +274,6 @@ const RemotePart = styled(motion.div)`
   width: 3vw;
   height: 3vw;
   border-radius: 1.5vw;
-  background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
