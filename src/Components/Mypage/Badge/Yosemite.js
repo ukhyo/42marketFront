@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 
 function Yosemite({changeBadgeState}) {
+	console.log(changeBadgeState, "state");
 	return (
 		<TitleBarC>
 			<ButtonC>
@@ -87,8 +88,8 @@ const MinimizeC = styled.div `
   border-radius: 50%;
   display: inline-block;
 	&:active {
-		background: #029740;
-  	border: 1px solid #128435;
+		background: #c08e38;
+  	border: 1px solid #af7c33;
 	}
 	&:active button{
 		color: #5a2607;
