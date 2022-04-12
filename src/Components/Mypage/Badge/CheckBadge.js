@@ -7,7 +7,6 @@ function CheckBadge({checkSameId, userId, badgeList}) {
 	const [checkBadge, setCheckBadge] = useState(false);
 
 	const changeBadgeState = () => {
-		console.log("here?");
 		setCheckBadge(!checkBadge);
 	}
 

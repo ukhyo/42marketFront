@@ -29,9 +29,10 @@ function BadgeList({changeBadgeState, userId}) {
 			<Yosemite onClickCancelButton={onClickCancelButton}/>
 				{
 					titles.map((title) => {
-						console.log(title, "title");
 						return (
 							<BadgeC>
+								<img src={title.image}/>
+								<span>{title.name}</span>
 							</BadgeC>
 						)
 					})
