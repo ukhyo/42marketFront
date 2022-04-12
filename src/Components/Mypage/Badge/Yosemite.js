@@ -1,18 +1,18 @@
 import React from 'react'
 import styled from 'styled-components';
 
-function Yosemite({changeBadgeState}) {
+function Yosemite({onClickCancelButton}) {
 	return (
 		<TitleBarC>
 			<ButtonC>
 				<CloseC>
-					<button onClick={changeBadgeState}><span><strong>x</strong></span></button>
+					<button onClick={onClickCancelButton}><span><strong>x</strong></span></button>
 				</CloseC>
 				<MinimizeC>
-        	<button onClick={changeBadgeState}><span><strong>&ndash;</strong></span></button>
+        	<button onClick={onClickCancelButton}><span><strong>&ndash;</strong></span></button>
      		</MinimizeC>
 				<ZoomC>
-      	  <button onClick={changeBadgeState}><span><strong>+</strong></span></button>
+      	  <button onClick={onClickCancelButton}><span><strong>+</strong></span></button>
       	</ZoomC>
 			</ButtonC>
 		</TitleBarC>

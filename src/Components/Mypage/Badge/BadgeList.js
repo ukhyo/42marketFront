@@ -19,15 +19,14 @@ function BadgeList({changeBadgeState, userId}) {
 		console.log(e, "event");
 	}
 
-	const onClickButton = changeBadgeState;
+	const onClickCancelButton = changeBadgeState;
 	if (!titleAdmin) return null;
 	if (!titles) return null;
 	if (loading) return null;
 	return (
 		<div>
 			<BadgeListColumnC>
-			<button onClick={onClickButton}></button>
-			<Yosemite changeBadgeState={changeBadgeState}/>
+			<Yosemite onClickCancelButton={onClickCancelButton}/>
 				{
 					titles.map((title) => {
 						console.log(title, "title");
