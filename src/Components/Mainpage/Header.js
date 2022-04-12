@@ -190,8 +190,9 @@ function Header() {
                   }}
                   size={35}
                 >
-								<RemoteImgC src={remoteAnswer} />	
-									<Link to="/faq"></Link>
+									<Link to="/faq">
+										<RemoteImgC src={remoteAnswer} />	åå
+									</Link>
                 </RemotePart>
                 <RemotePart
                   key="box2"
@@ -214,8 +215,9 @@ function Header() {
                   }}
                   size={27.5}
                 >
-								<RemoteImgC src={remoteSell} />
-                <Link to="/product/regi"></Link>
+                <Link to="/product/regi">
+									<RemoteImgC src={remoteSell} />
+								</Link>
                 </RemotePart>
               </>
           )}
