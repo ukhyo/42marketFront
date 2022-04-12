@@ -8,13 +8,13 @@ function Yosemite({onClickCancelButton}) {
 		<TitleBarC>
 			<ButtonC>
 				<CloseC>
-					<button onClick={cancelButton}><span><strong>x</strong></span></button>
+					<a onClick={cancelButton}><span><strong>x</strong></span></a>
 				</CloseC>
 				<MinimizeC>
-        	<button onClick={cancelButton}><span><strong>&ndash;</strong></span></button>
+        	<a onClick={cancelButton}><span><strong>&ndash;</strong></span></a>
      		</MinimizeC>
 				<ZoomC>
-      	  <button onClick={cancelButton}><span><strong>+</strong></span></button>
+      	  <a onClick={cancelButton}><span><strong>+</strong></span></a>
       	</ZoomC>
 			</ButtonC>
 		</TitleBarC>
@@ -68,10 +68,10 @@ const CloseC = styled.div `
 		background: #c14645;
   	border: 1px solid #b03537;
 	}
-	&:active button{
+	&:active a{
 		color: #4e0002;
 	}
-	> button {
+	> a {
 		color: #820005;
   	visibility: hidden;
 		cursor: default;
@@ -92,10 +92,10 @@ const MinimizeC = styled.div `
 		background: #c08e38;
   	border: 1px solid #af7c33;
 	}
-	&:active button{
+	&:active a{
 		color: #5a2607;
 	}
-	> button {
+	> a {
 		color: #9a5518;
   	visibility: hidden;
   	cursor: default;
@@ -115,10 +115,10 @@ const ZoomC = styled.div `
 		background: #029740;
  		border: 1px solid #128435;
 	}
-	&:active button {
+	&:active a {
 		color: #003107;
 	}
-	> button {
+	> a {
 		color: #006519;
 		visibility: hidden;
   	cursor: default;
