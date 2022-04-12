@@ -67,7 +67,7 @@ const BadgeC = styled.div`
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	> img {
 		width: 4em;
-		border-radius: 20px;
+		border-radius: 30px;
 	}
 `
 
