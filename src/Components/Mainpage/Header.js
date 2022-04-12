@@ -295,7 +295,7 @@ const RemoteOpt = styled(motion.div)`
   color: white;
 `;
 
-const RemoteImgC = styled.div`
+const RemoteImgC = styled.img`
 	cursor: pointer;
   position: fixed;
   right: 5vw;
