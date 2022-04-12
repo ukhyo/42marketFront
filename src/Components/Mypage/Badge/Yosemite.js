@@ -2,17 +2,18 @@ import React from 'react'
 import styled from 'styled-components';
 
 function Yosemite({onClickCancelButton}) {
+	const cancelButton = onClickCancelButton;
 	return (
 		<TitleBarC>
 			<ButtonC>
 				<CloseC>
-					<button onClick={onClickCancelButton}><span><strong>x</strong></span></button>
+					<button onClick={cancelButton}><span><strong>x</strong></span></button>
 				</CloseC>
 				<MinimizeC>
-        	<button onClick={onClickCancelButton}><span><strong>&ndash;</strong></span></button>
+        	<button onClick={cancelButton}><span><strong>&ndash;</strong></span></button>
      		</MinimizeC>
 				<ZoomC>
-      	  <button onClick={onClickCancelButton}><span><strong>+</strong></span></button>
+      	  <button onClick={cancelButton}><span><strong>+</strong></span></button>
       	</ZoomC>
 			</ButtonC>
 		</TitleBarC>
