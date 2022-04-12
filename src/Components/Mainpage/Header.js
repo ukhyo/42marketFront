@@ -190,7 +190,7 @@ function Header() {
                   }}
                   size={35}
                 >
-									<RemoteImgC src={remoteAnswer} />	
+								<RemoteImgC src={remoteAnswer} />	
 									<Link to="/faq"></Link>
                 </RemotePart>
                 <RemotePart
@@ -298,9 +298,6 @@ const RemoteOpt = styled(motion.div)`
 
 const RemoteImgC = styled.img`
 	cursor: pointer;
-  position: fixed;
-  right: 5vw;
-  top: 50vh;
   width: 3vw;
   height: 3vw;
   border-radius: 1.5vw;
