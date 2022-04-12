@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-//import logoimg from "../img/logo.png";
-//import logoimg from "../img/noname.png";
-
-
 
 function BannerHeader() {
 	const [text, setText] = useState("");

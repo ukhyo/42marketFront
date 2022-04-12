@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-// import {AnimatePresence}
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import { useCookies, Cookies } from "react-cookie";
-import { useSelector, useDispatch } from "react-redux";
-import Notification from "./Notification";
-import { setSocket } from "../../modules/Socket";
-import { setUserId } from "../../modules/User";
-import { FiLogOut } from "react-icons/fi";
-import axios from "axios";
+import { Cookies } from "react-cookie";
+import remoteX from '../img/remote/remoteX.png';
+import remoteAnswer from '../img/remote/remoteAnswer.png';
+import remoteArrow from '../img/remote/remoteArrow.png';
+import remoteSell from '../img/remote/remoteSell.png';
+
 function Header() {
   const cookie = new Cookies();
   const [remoteState, setRemoteState] = useState(false);
@@ -169,6 +167,7 @@ function Header() {
             {remoteState && (
               <>
                 <RemoteOpt onClick={() => setRemoteState(!remoteState)}>
+									<RemoteImgC src={remoteX}/>
                   X
                 </RemoteOpt>
                 <RemotePart
@@ -192,6 +191,7 @@ function Header() {
                   }}
                   size={35}
                 >
+								<RemoteImgC src={remoteAnswer} />
                 <Link to="/faq">문의</Link>
                 </RemotePart>
                 <RemotePart
@@ -215,6 +215,7 @@ function Header() {
                   }}
                   size={27.5}
                 >
+								<RemoteImgC src={remoteSell} />
                 <Link to="/product/regi">판매</Link>
                 </RemotePart>
               </>
@@ -236,7 +237,7 @@ function Header() {
           ) : null}
         </AnimatePresence> : null
         }
-        <RemoteUp onClick={ScrollUp}>⬆</RemoteUp>
+        <RemoteUp onClick={ScrollUp}><RemoteImgC src={remoteArrow}/></RemoteUp>
       </HeaderLineC>
     </HeaderC>
   );
@@ -295,6 +296,16 @@ const RemoteOpt = styled(motion.div)`
   align-items: center;
   color: white;
 `;
+
+const RemoteImgC = styled.div`
+	cursor: pointer;
+  position: fixed;
+  right: 5vw;
+  top: 50vh;
+  width: 3vw;
+  height: 3vw;
+  border-radius: 1.5vw;
+`
 
 const RemoteUp = styled.div`
   cursor: pointer;
