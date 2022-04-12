@@ -190,9 +190,9 @@ function Header() {
                   }}
                   size={35}
                 >
-									<LinkC to="/faq">
+									<RemoteLinkC to="/faq">
 										<RemoteImgC src={remoteAnswer} />	åå
-									</LinkC>
+									</RemoteLinkC>
                 </RemotePart>
                 <RemotePart
                   key="box2"
@@ -215,9 +215,9 @@ function Header() {
                   }}
                   size={27.5}
                 >
-                <LinkC to="/product/regi">
+                <RemoteLinkC to="/product/regi">
 									<RemoteImgC src={remoteSell} />
-								</LinkC>
+								</RemoteLinkC>
                 </RemotePart>
               </>
           )}
@@ -297,6 +297,10 @@ const RemoteOpt = styled(motion.div)`
   align-items: center;
   color: white;
 `;
+
+const RemoteLinkC = styled(Link)`
+	display: none;
+`
 
 const RemoteImgC = styled.img`
 	cursor: pointer;
