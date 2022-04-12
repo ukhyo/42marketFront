@@ -299,7 +299,7 @@ const RemoteOpt = styled(motion.div)`
 `;
 
 const RemoteLinkC = styled(Link)`
-	display: none;
+	text-decoration: none;
 `
 
 const RemoteImgC = styled.img`
