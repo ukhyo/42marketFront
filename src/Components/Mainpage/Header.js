@@ -8,6 +8,7 @@ import remoteX from '../img/remote/remoteX.png';
 import remoteAnswer from '../img/remote/remoteAnswer.png';
 import remoteArrow from '../img/remote/remoteArrow.png';
 import remoteSell from '../img/remote/remoteSell.png';
+import remoteClick from '../img/remote/remoteClick.png';
 
 function Header() {
   const cookie = new Cookies();
@@ -233,7 +234,7 @@ function Header() {
                 setIdx((prev) => prev + 1);
               }}
             >
-              클릭
+							<RemoteImgC src={remoteClick}/>
             </RemoteOpt>
           ) : null}
         </AnimatePresence> : null

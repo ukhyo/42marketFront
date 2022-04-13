@@ -8,15 +8,15 @@ import {Carousel} from '3d-react-carousal';
 //import image4 from "../img/ban.png";
 
 function MainBanner() {
-	const handleDragStart = (e) => e.preventDefault();
-	function onClick() {
+	function onClick(e) {
+		console.log(e);
 		window.location.href = "/intro"
 	}
 
 	let sliders = [
 		<img  src={image1} onClick={onClick} alt="1" />,
-    <img  src={image2} onClick={onClick} alt="2" />  ,
-    <img  src={image3} onClick={onClick} alt="3" />  , 
+    <img  src={image3} onClick={onClick} alt="2" />  ,
+    <img  src={image2} onClick={onClick} alt="3" />  , 
 	];
 	return (
 		<MainC>
