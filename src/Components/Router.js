@@ -2,7 +2,9 @@ import { Route, Switch } from "react-router-dom";
 import React from "react";
 import Mypage from "./Mypage/Mypage";
 import Mainpage from "./Mainpage/Mainpage";
-import Intro from "./Mainpage/Intro";
+import Intro1 from "./Mainpage/Intro1";
+import Intro2 from "./Mainpage/Intro2";
+import Intro3 from "./Mainpage/Intro3";
 import Faq from "./Mainpage/Faq";
 import PostDetail from "./PostManage/PostDetail";
 import Product from "./Product/Product";
@@ -36,7 +38,9 @@ function Router() {
       ) : (
         <Switch>
           <Route path={"/"} exact component={Mainpage}></Route>
-          <Route path={"/intro"} exact component={Intro}></Route>
+          <Route path={"/intro1"} exact component={Intro1}></Route>
+          <Route path={"/intro2"} exact component={Intro2}></Route>
+          <Route path={"/intro3"} exact component={Intro3}></Route>
           <Route path={"/faq"} exact component={Faq}></Route>
           <Route path={"/mypage/:id/:url"} component={Mypage}></Route>
           <Route path={"/postview/:id"} exact component={PostDetail}></Route>

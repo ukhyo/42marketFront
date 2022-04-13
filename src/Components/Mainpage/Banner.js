@@ -8,15 +8,19 @@ import {Carousel} from '3d-react-carousal';
 //import image4 from "../img/ban.png";
 
 function MainBanner() {
-	function onClick(e) {
-		console.log(e);
-		window.location.href = "/intro"
+	function onClick(imageNum) {
+		if (imageNum === 1)
+			window.location.href = "/intro1";
+		else if (imageNum === 2)
+			window.location.href = "/intro2";
+		else
+			window.location.href = "/intro3";
 	}
 
 	let sliders = [
-		<img  src={image1} onClick={onClick} alt="1" />,
-    <img  src={image3} onClick={onClick} alt="2" />  ,
-    <img  src={image2} onClick={onClick} alt="3" />  , 
+		<img  src={image1} onClick={() => onClick(1)} alt="1" />,
+    <img  src={image3} onClick={() => onClick(2)} alt="2" />  ,
+    <img  src={image2} onClick={() => onClick(3)} alt="3" />  , 
 	];
 	return (
 		<MainC>
