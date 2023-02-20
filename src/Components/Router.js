@@ -22,8 +22,10 @@ import M_PostDetail from "../M_Components/M_PostManage/M_PostDetail";
 import M_ProductEdit from "../M_Components/M_Product/M_ProductEdit";
 
 function Router() {
-  const mobileWidth = useMediaQuery({ maxWidth: 519 });
-  return (
+	const mobileWidth = useMediaQuery(
+		{maxWidth: 499}
+	)
+	return (
     <div>
       {mobileWidth ? (
         <Switch>
