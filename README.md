@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# 42 학생 개발자를 위한 중고거래 웹사이트입니다.
+<br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 설명
+42Seoul에서 주최한 팀 프로젝트에 참여해 개발자를 위한 중고거래 사이트를 제작했습니다.
+<br>
+<br>
 
-## Available Scripts
+## 팀 구성원
+프론트엔드 2명, 백엔드 2명으로 구성된 팀이었고 React와 Spring을 사용했습니다.
+<br>
+<br>
 
-In the project directory, you can run:
+## 기술선정이유
+우리 팀 구성원들은 모두 첫 프로젝트였기 때문에 리딩 가능한 다른 기술이 없어서 HTML과 JavaScript로 직접
+개발하는 대신에 React를 경험해보기로 결정했습니다.
+<br>
+<br>
 
-### `npm start`
+## 담당
+1. 프론트엔드 포지션을 담당했고 프로젝트 배포를 위해 AWS EC2, Route53, 가비아를 사용하여 프로젝트를 배포했습니다.
+2. 메인 화면 UI, 42OAuth연동, 상품 페이지 UI, fileReader사용해 상품 등록/삭제를 구현했습니다.
+3. useMediaQuery를 사용해 모바일 view 컴포넌트를 따로 제작하였습니다.
+<br>
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 어려웠던 점
+HTML, CSS, JavaScript의 지식이 부족한 상태에서 React로 개발을 진행하다보니 간단한 퍼블리싱부터 문제가 발생했습니다. 
+그래서 네이버, 다음, 카카오톡, 야후 등의 페이지를 클론 코딩하며 HTML과 CSS를 공부하였습니다. 웹 개발이 처음이라 
+커뮤니케이션이 어려웠고, 특정 기능을 구현하기 위해 클라이언트와 서버 중 어느 쪽에서 구현해야 하는지에 대한 기획이 오래 걸렸습니다.
+기술 리딩을 받지 않고 진행했기 때문에 AWS S3에 이미지를 클라이언트에서 처리하는 과정에서 페이지 전환이 발생하면 DB에는 남아있지만
+S3에는 올라가지 않는 문제가 발생했습니다. 이후에는 이 문제를 직접 해결하기 위해 서버에서 처리하는 방식을 적용하는 등의 수정 작업으로 시간을 소모하였습니다.
